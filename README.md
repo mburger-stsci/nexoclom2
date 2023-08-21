@@ -10,13 +10,6 @@ https://nexoclom.readthedocs.io/en/latest/ (Reasonably complete and up to date).
 
 ### Installation 
 
-The easiest way to install is to create a fresh venv or conda environment and 
-use:
-
-```
-pip install nexoclom
-```
-
 There is configuration work that will need to be completed before nexoclom 
 can be used. This process is given in detail below, although it is likely to 
 change soon.
@@ -41,86 +34,86 @@ In [1]:
 * NOTE: I think Anaconda python likes the bash shell, but there
 are probably ways around that. 
 
-2. Create a new python environment with the model.
-   1. Download the file [nexoclom_environment.yml](https://github.com/mburger-stsci/nexoclom/blob/master/nexoclom_environment.yml)
-   2. In a text editor, update the last four lines
-      ```
-      prefix: /user/mburger/anaconda3/envs/nexoclom/bin/python
-      variables:
+ 2. Clone the nexoclom2 git repository:
+     ```
+     $ git clone https://github.com/mburger-stsci/nexoclom2.git
+     ``` 
+     
+3. In a text editor, update the last two lines
+    ```
+    variables:
         PGDATA: /user/mburger/.postgres/main
         NEXOCLOMCONFIG : /user/mburger/.nexoclom
-      ```
-      For prefix, you want `$HOME/anaconda3/...`, but `$HOME` needs to be the
-      specific path.
+    ```
+   
+    For prefix, you want `$HOME/anaconda3/...`, but `$HOME` needs to be the
+    specific path.
 
-   3. Create the envirnoment:
-      ```
-      (base) [sunra m🍔 /~/]$ conda env create -f nexoclom_environment.yml
-      ```
-   4. To use this environment run:
-      ```
-      (base) [sunra m🍔 /~/]$ conda activate nexoclom
-      WARNING: overwriting environment variables set in the machine
-      overwriting variable PGDATA
-      ```
-      Activating nexoclom sets the environment variables `PGDATA` and 
-      `NEXOCLOMCONFIG`
+3. Create the conda environment:
+    ```
+    (base) [sunra m🍔 /~/]$ conda env create -f nexoclom_environment.yml
+    ```
+ 4. To use this environment run:
+    ```
+    (base) [sunra m🍔 /~/]$ conda activate nexoclom2
+    WARNING: overwriting environment variables set in the machine
+    overwriting variable PGDATA
+    ```
+    Activating nexoclom sets the environment variables `PGDATA` and 
+    `NEXOCLOMCONFIG`
       
-      None of this will work if the correct environment is not active. You will 
+None of this will work if the correct environment is not active. You will 
 know it's active because your prompt will change and `python` will point to a 
 different executable:
-      ```
-      (nexoclom) [sunra m🍔 /~/]$ which python
-      /Users/mburger/anaconda/envs/nexoclom/bin/python
-      ```
+    ```
+    (nexoclom2) [sunra m🍔 /~/]$ which python
+    /Users/mburger/anaconda/envs/nexoclom2/bin/python
+    ```
 
-   6. To turn it off run:
-      ```
-      (nexoclom) [sunra m🍔 /~/]$ conda deactivate
-      ```
+6. To turn it off run:
+    ```
+    (nexoclom2) [sunra m🍔 /~/]$ conda deactivate
+    ```
 
-3. Create the .nexoclom file
-   1. In your home directory create a file called `.nexoclom` with the
-       following lines:
-        ```
-        savepath = <fullpath>/modeloutputs
-        datapath = <fullpath>/ModelData
-        database = thesolarsystemmb
-        mesdatapath = <fullpath>/UVVSData
-        mesdatabase = messengeruvvsdb
-        ```
+7. Create the .nexoclom file: 
+
+In your home directory create a file called `.nexoclom` with the following lines:
+    ```
+    savepath = <fullpath>/modeloutputs
+    datapath = <fullpath>/ModelData
+    database = thesolarsystemmb
+    port = 5432
+    mesdatapath = <fullpath>/UVVSData
+    mesdatabase = messengeruvvsdb
+    ```
 
 `<fullpath>` does not need to be the same in all lines, but the directories all
-need to be valid.
+need to be valid. If `port` is not specified, the default port 5432 will be used.
 
 4. Initialize the postgres server if necessary:
-   1. In your `.bashrc` or `.bash_profile` file (the file that runs when you
-       start a terminal window) add the line:
-      ```  
-      export PGDATA=/Users/mburger/.postgres/main
-      ```
-       (This step technically isn't needed because the environment variable gets
-       set when you activate the environment).
-   2. Execute the following commands
-      ```
-      (nexoclom) [sunra m🍔 /~/]$ initdb -D $PGDATA
-      (nexoclom) [sunra m🍔 /~/]$ pg_ctl -l $PGDATA/logfile start
-      (nexoclom) [sunra m🍔 /~/]$ createdb <username>
-      (nexoclom) [sunra m🍔 /~/]$ createdb thesolarsystemmb
-      (nexoclom) [sunra m🍔 /~/]$ createdb messengeruvvsdb
-      ```
-      * Find `<username>` with 
-     
-        ```(nexoclom) [sunra m🍔 /~/]$ echo $USER```
-      * This needs to match database in the `.nexoclom` file
-      * This needs to match mesdatabase in the `.nexoclom` file
+
+Execute the following commands
+    ```
+    (nexoclom) [sunra m🍔 /~/]$ initdb -D $PGDATA
+    (nexoclom) [sunra m🍔 /~/]$ pg_ctl -o "-p <port>" -l $PGDATA/logfile start
+    (nexoclom) [sunra m🍔 /~/]$ createdb <username>
+    (nexoclom) [sunra m🍔 /~/]$ createdb thesolarsystemmb
+    (nexoclom) [sunra m🍔 /~/]$ createdb messengeruvvsdb
+    ```
+  * Find `<username>` with 
+    ```
+     (nexoclom) [sunra m🍔 /~/]$ echo $USER
+     ```
+  * If using the default port, the `-o "-p <port>` can be omited.
+  * This needs to match database in the `.nexoclom` file
+  * This needs to match mesdatabase in the `.nexoclom` file
 
 5. Configure the MESSENGER UVVS database if you will be making comparisons to 
-    MASCS/UVVS data. Unfortunately, the data products being used here are not 
-    publicly available (I don't own this data reduction). UVVS data is available 
-    from the [Planetary Data System](https://atmos.nmsu.edu/data_and_services/atmospheres_data/MESSENGER/messenger.html), but it would
-    take some work to get it integrated into the database. We could probably work
-    something out if you want to compare with the data.
+MASCS/UVVS data. Unfortunately, the data products being used here are not 
+publicly available (I don't own this data reduction). UVVS data is available 
+from the [Planetary Data System](https://atmos.nmsu.edu/data_and_services/atmospheres_data/MESSENGER/messenger.html), but it would
+take some work to get it integrated into the database. We could probably work
+something out if you want to compare with the data.
 
     1. Download the MESSENGERdata package if you're authorized (email 
     [Matthew Burger](mailto:mburger@stsci.edu))
@@ -142,9 +135,9 @@ need to be valid.
 
     This will take a while to run (hours probably).
 
-6. To install updates, run:
+6. To install updates from github run:
     ```
-    (nexoclom) [sunra m🍔 /~/]$ pip install --upgrade nexoclom
+    (nexoclom) [sunra m🍔 /~/]$ pip install 
     (nexoclom) [sunra m🍔 /~/]$ pip install --upgrade MESSENGERuvvs
     ```
    or to update everything:

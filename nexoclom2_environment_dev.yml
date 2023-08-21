@@ -19,7 +19,8 @@ dependencies:
     - sphinx
     - stsci_rtd_theme
     - statsmodels
+    - python-semantic-release
 
 variables:
-  PGDATA: /Users/mburger/.postgres2_dev/main
-  NEXOCLOMCONFIG : /Users/mburger/.nexoclom_dev
+  PGDATA: /Users/mburger/.postgres_dev/main
+  NEXOCLOMCONFIG : /Users/mburger/.nexoclom2_dev
