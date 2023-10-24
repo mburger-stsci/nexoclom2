@@ -1,6 +1,6 @@
 from importlib.metadata import version
-from nexoclom2.utilities.configure import configure
-config, engine = configure(verbose=False)
+# from nexoclom2.utilities.configure import configure
+# config, engine = configure(verbose=False)
 
 
 # from nexoclom2.initial_state.Input import Input

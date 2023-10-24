@@ -7,10 +7,16 @@ Welcome to nexoclom2's documentation!
 =====================================
 NEXOCLOM2 is the Neutral EXosphere and CLOud Model, Version 2.
 
+.. note::
+
+   This project is under active development.
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+.. autoclass:: NexoclomConfig
+   :members:
 
 Indices and tables
 ==================
