@@ -3,17 +3,81 @@ from nexoclom2.utilities.exceptions import ConfigfileError
 
 
 DEFAULT_DATABASE = 'thesolarsystemmb.db'
+__all__ = ['NexoclomConfig']
 
 class NexoclomConfig:
-    """ Reads the nexoclom configuration file.
-    The NEXCOCLOMCONFIG environment variable must be set. This is automatically
-    set to `.nexoclom` when the nexoclom2 Python environment is activated.
+    r""" Configuration object based on the nexoclom2 configuration file.
     
-    Values in 
-        savepath: Toplevel path on disk where all model output is saved
-        database: Name of the TinyDB database file (optional)
-        user: username (required if not set as an environment variable).
+    The `NEXCOCLOMCONFIG` environment variable must be set. This is automatically
+    set to ``$HOME/.nexoclom`` when the nexoclom2 Python environment is activated,
+    although the user is free to change it.
+    
+    Each line in the nexoclom configuration file should be in the form
+    ``key = value`` where the keys are highlighed below. Configuration
+    settings for nexoclom2 extensions (such as for working with speficic
+    instrument data) can also be placed here. All lines in the file with the
+    proper format are included in the returned object.
+    
+    ``savepath``: Top-level path on disk where all model output is saved (Required)
+    
+    ``database``: Name of the TinyDB database file (Optional). Defaults to
+    ``thesolarsystemmb.db``.
+    
+    ``user``: username (Required if not set as an environment variable).
+
+    Parameters
+    ----------
+    None
+    
+    Attributes
+    ----------
+    configfile: str
+        Name of configuration file used.
         
+    savepath: str
+        Top-level path on disk where all model output is saved.
+        
+    database: str
+        Name of the TinyDB database file modelresults are cataloged in.
+        
+    user: str
+        User's username on the system.
+    
+    other: str
+        Other configuration settings can be included.
+        
+    Raises
+    ------
+    ConfigfileError
+        If ``NEXOCLOMCONFIG`` environment variable not set or a required
+        parameter in the configuration file is not given
+        
+    FileNotFoundError
+        If the configuration file is not found
+        
+    See Also
+    --------
+    nexoclom2.utilities.exceptions.ConfigfileError
+    
+    Examples
+    --------
+    For a configuration file in ``$HOME/.nexoclom`` containing the following::
+    
+        savepath = /user/mburger/Data/ModelData
+        database = thesolarsystemmb.db
+        mesdatapath = /Users/mburger/Work/Data/MESSENGER/UVVS
+        mesdatabase = messengeruvvsdb
+    
+    In Python:
+    
+    >>> config = NexoclomConfig()
+    >>> print(config)
+    configfile = /Users/mburger/.nexoclom2_dev
+    savepath = /Volumes/nexoclom_output/modeloutputs2_dev
+    database = /Volumes/nexoclom_output/modeloutputs2_dev/thesolarsystemmb_dev.db
+    user = mburger
+    
+    :Authors: Matthew Burger
     """
     def __init__(self):
         try:
@@ -62,3 +126,11 @@ class NexoclomConfig:
                 self.__dict__[key] = value
             else:
                 pass
+            
+    def __str__(self):
+        return '\n'.join([f'{key} = {value}'
+                          for key, value
+                          in self.__dict__.items()])
+            
+    def __repr__(self):
+        return self.__str__()

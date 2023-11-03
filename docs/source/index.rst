@@ -1,26 +1,31 @@
-.. nexoclom2 documentation master file, created by
-   sphinx-quickstart on Tue Aug 22 15:23:12 2023.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+=======================
+NEXOCLOM2 documentation
+=======================
 
-Welcome to nexoclom2's documentation!
-=====================================
-NEXOCLOM2 is the Neutral EXosphere and CLOud Model, Version 2.
+---------------------------------------------
+Neutral EXosphere and CLOud Model, Version 2
+---------------------------------------------
+
+**NEXOCLOM2** is the Neutral EXosphere and CLOud Model, Version 2. The high
+level goals and requirements for NEXOCLOM2 can be found in the
+Requirements Document](nexoclom2/NEXOCLOM_Requirements_Document)
 
 .. note::
-
    This project is under active development.
+
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-.. autoclass:: NexoclomConfig
-   :members:
+   nexoclom2/NEXOCLOM_Requirements_Document.md
+   nexoclom2/install.md
+   nexoclom2/TestCases.md
+   nexoclom2/inputfiles.rst
 
 Indices and tables
 ==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+:ref:`genindex`
+:ref:`modindex`
+:ref:`search`

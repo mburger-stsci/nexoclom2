@@ -1,8 +1,5 @@
 import os
-import shutil
-import subprocess
 import pytest
-from inspect import currentframe, getframeinfo
 from nexoclom2 import __path__
 from nexoclom2.utilities.NexoclomConfig import NexoclomConfig
 from nexoclom2.utilities.exceptions import ConfigfileError
@@ -16,13 +13,13 @@ configfiles = [os.path.join(datapath, conf) if conf is not None else None
                            'nexoclom2e', None, 'nexoclom2f']]
 results = [
     {'savepath': '/Volumes/nexoclom_output/modeloutputs2',
-     'database': '/Volumes/nexoclom_output/modeloutputs2/thesolarsystemmb.db',
+     'database': 'thesolarsystemmb.db',
      'user': 'mburger'},
     {'savepath': '/Volumes/nexoclom_output/modeloutputs2',
-     'database': '/Volumes/nexoclom_output/modeloutputs2/thesolarsystemmb_other.db',
+     'database': 'thesolarsystemmb_other.db',
      'user': 'someoneelse'},
     {'savepath': '/Volumes/nexoclom_output/modeloutputs2',
-     'database': '/Volumes/nexoclom_output/modeloutputs2/thesolarsystemmb.db',
+     'database': 'thesolarsystemmb.db',
      'user': 'mburger',
      'extra': 'extra'},
     ConfigfileError,
@@ -53,7 +50,7 @@ def test_NexoclomConfig(configfile, result):
                 f'{key} not set correctly for {os.path.basename(configfile)}')
     elif isinstance(result, str):
         os.environ.pop('USER')
-        with pytest.raises(ConfigfileError) as err:
+        with pytest.raises(ConfigfileError):
             config = NexoclomConfig()
         os.environ['USER'] = user
     else:
