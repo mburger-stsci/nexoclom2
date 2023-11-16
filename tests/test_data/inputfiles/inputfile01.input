@@ -1,7 +1,9 @@
 # Planet with 1 satellite, start at satellite; timestamp
 geometry.planet = Jupiter
 geometry.StartPoint = Io
-geometry.starttime = 2022-03-08T19:53:21
+geometry.modeltime = 2022-03-08T19:53:21
+
+forces.radpres = False
 
 # Incomplete sticking
 surfaceinteraction.stickcoef = 0.5
@@ -22,4 +24,3 @@ options.lifetime = 0.
 options.species = Na
 options.outeredge = 15
 options.step_size = 30.
-

@@ -17,6 +17,22 @@ Documentation for all the unit, system, and regression tests performed in the ne
     3. NEXOCLOMCONFIG environment variable not set 
     4. NEXOCLOMCONFIG file does not exist ➔ nexoclom2f
 
+### DatabaseOperations
+
+* __init__
+  * sets the path to the database correctly
+* make_acceptable
+  * Can strip the input classes into dict with only floats, strings, ints, 
+    bools, and dicts.
+  * One-to-one mapping between class and cleaned up version
+* insert_parts
+  * Only inserts records that aren't currently in the table. This won't be 
+    100% foolproof since there could be multiple processes accessing the 
+    database, but that's acceptable.
+* query_parts
+* insert outputs
+* query_outputs
+
 ## Solar System
 
 ### SSObject
@@ -30,7 +46,13 @@ Documentation for all the unit, system, and regression tests performed in the ne
 
 ## Initial State
 
-### input_classes.Geometry
+### Input
+
+* Don't need to test every configuration. That's done for the individual 
+  pieces. Just need to verfiy that it parses the file correctly. 
+
+
+### Geometry
 
 1. Setting everything
    1. With modeltime
@@ -38,3 +60,6 @@ Documentation for all the unit, system, and regression tests performed in the ne
 2. Setting only required
 3. Starting from Sun, Planet, Satellite
 4. Exceptions are properly raised.
+
+### Forces
+1. Basic comparisons on equality and non-equality of different settings

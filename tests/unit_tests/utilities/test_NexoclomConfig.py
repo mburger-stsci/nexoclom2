@@ -9,8 +9,8 @@ user = 'mburger'
 datapath = os.path.join(os.path.dirname(__path__[0]), 'tests', 'test_data',
                         'configfiles')
 configfiles = [os.path.join(datapath, conf) if conf is not None else None
-               for conf in['nexoclom2a', 'nexoclom2b', 'nexoclom2c', 'nexoclom2d',
-                           'nexoclom2e', None, 'nexoclom2f']]
+               for conf in ['nexoclom2a', 'nexoclom2b', 'nexoclom2c', 'nexoclom2d',
+                            'nexoclom2e', None, 'nexoclom2f']]
 results = [
     {'savepath': '/Volumes/nexoclom_output/modeloutputs2',
      'database': 'thesolarsystemmb.db',
@@ -31,6 +31,7 @@ results = [
 @pytest.mark.utilities
 @pytest.mark.parametrize('configfile, result', zip(configfiles, results))
 def test_NexoclomConfig(configfile, result):
+    old_configfile = os.environ['NEXOCLOMCONFIG']
     if isinstance(configfile, str):
         os.environ['NEXOCLOMCONFIG'] = configfile
     elif isinstance(configfile, tuple):
@@ -56,6 +57,8 @@ def test_NexoclomConfig(configfile, result):
     else:
         with pytest.raises(result) as err:
             config = NexoclomConfig()
+    
+    os.environ['NEXOCLOMCONFIG'] = old_configfile
 
 if __name__ == '__main__':
     for configfile, result in zip(configfiles, results):

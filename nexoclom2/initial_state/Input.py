@@ -1,11 +1,10 @@
 """ Class containing the input parameters for a model run.
 """
-import os
 from nexoclom2.utilities.NexoclomConfig import NexoclomConfig
 from nexoclom2.utilities.exceptions import InputfileError
 from nexoclom2.initial_state.Geometry import Geometry
-from tinydb import TinyDB, Query
-from nexoclom2.utilities.make_acceptable import make_acceptable
+from nexoclom2.initial_state.SurfaceInteraction import SurfaceInteraction
+from nexoclom2.initial_state.Forces import Forces
 
 
 class Input:
@@ -39,9 +38,14 @@ class Input:
         extract_param = lambda tag:{b:c for (a, b, c) in params if a == tag}
 
         self.geometry = Geometry(extract_param('geometry'))
-        # self.surfaceinteraction = SurfaceInteraction(extract_param(
-        #     'surfaceinteraction'))
-        # self.forces = Forces(extract_param('forces'))
+        self.surfaceinteraction = SurfaceInteraction(extract_param(
+            'surfaceinteraction'))
+        self.forces = Forces(extract_param('forces'))
+        
+        sparams = extract_param('spatialdist')
+        
+        
+        
         # self.spatialdist = SpatialDist(extract_param('spatialdist'))
         # self.speeddist = SpeedDist(extract_param('speeddist'))
         # self.angulardist = AngularDist(extract_param('angulardist'))
@@ -65,25 +69,28 @@ class Input:
             else:
                 pass
         return params
-        
-    def insert(self):
-        """Insert records into database"""
-        db_path = os.path.join(self.config.savepath, self.config.database)
-        database = TinyDB(db_path)
-        inputs = database.table('inputs')
-        cleaned = make_acceptable(self)
-        old_results = self.search()
-        if old_results is None:
-            database.insert(cleaned)
-
-    def search(self):
-        """Search records in the database"""
-        db_path = os.path.join(self.config.savepath, self.config.database)
-        database = TinyDB(db_path)
-        inputs = database.table('inputs')
-        cleaned = make_acceptable(self)
-        results = database.search(Query().fragment(cleaned))
-        if results is not None:
-            return [result.doc_id for result in results]
-        else:
-            return None
+    
+    # def __str__(self):
+    
+    
+    # def insert(self):
+    #     """Insert records into database"""
+    #     db_path = os.path.join(self.config.savepath, self.config.database)
+    #     database = TinyDB(db_path)
+    #     inputs = database.table('inputs')
+    #     cleaned = make_acceptable(self)
+    #     old_results = self.search()
+    #     if old_results is None:
+    #         database.insert(cleaned)
+    #
+    # def search(self):
+    #     """Search records in the database"""
+    #     db_path = os.path.join(self.config.savepath, self.config.database)
+    #     database = TinyDB(db_path)
+    #     inputs = database.table('inputs')
+    #     cleaned = make_acceptable(self)
+    #     results = database.search(Query().fragment(cleaned))
+    #     if results is not None:
+    #         return [result.doc_id for result in results]
+    #     else:
+    #         return None

@@ -6,10 +6,6 @@ from nexoclom2.initial_state.Geometry import Geometry
 from nexoclom2.utilities.exceptions import InputfileError
 
 
-config = {'savepath': '/Volumes/nexoclom_output/modeloutputs2_dev',
-          'database': 'thesolarsystemmb.db'}
-
-
 inputs = [{'planet': 'Mercury',
            'startpoint': 'Mercury',
            'include': 'Mercury',
@@ -18,6 +14,9 @@ inputs = [{'planet': 'Mercury',
           {'planet': 'Mercury',
            'modeltime':'2023-11-02 00:00:00',
            'num': 1},
+          {'planet': 'Mercury',
+           'taa': '3.14',
+           'num': 1.5},
           {'planet': 'Jupiter',
            'startpoint': 'Io',
            'include': 'Jupiter, Io, Europa',
@@ -66,15 +65,25 @@ inputs = [{'planet': 'Mercury',
            'dtaa': '0.1',
            'num': 9}]
 
-results = [{'planet': 'Mercury',
+compare = [{'__name__': 'Geometry',
+            'planet': 'Mercury',
             'startpoint': 'Mercury',
             'included': ('Mercury',),
             'modeltime': Time('2023-11-02T00:00:00')},
-           {'planet': 'Mercury',
+           {'__name__': 'Geometry',
+            'planet': 'Mercury',
             'startpoint': 'Mercury',
             'included': ('Mercury',),
             'modeltime': Time('2023-11-02T00:00:00')},
-           {'planet': 'Jupiter',
+           {'__name__': 'Geometry',
+            'planet': 'Mercury',
+            'startpoint': 'Mercury',
+            'included': ('Mercury',),
+            'subsolarpoint': (0.*u.rad, 0*u.rad),
+            'taa': 3.14*u.rad,
+            'dtaa': 2*u.deg},
+           {'__name__': 'Geometry',
+            'planet': 'Jupiter',
             'startpoint': 'Io',
             'included': ('Jupiter', 'Io', 'Europa'),
             'phi': {'Io': 0*u.rad, 'Europa': 3.14*u.rad},
@@ -84,52 +93,52 @@ results = [{'planet': 'Mercury',
            InputfileError,
            InputfileError,
            InputfileError,
-           {'planet':'Jupiter',
+           {'__name__': 'Geometry',
+            'planet':'Jupiter',
             'startpoint':'Io',
-            'included':['Jupiter', 'Io', 'Europa'],
+            'included':('Jupiter', 'Io', 'Europa'),
             'phi':{'Io':0 * u.rad, 'Europa':3.14 * u.rad},
             'subsolarpoint':(0 * u.rad, -0.4 * u.rad),
             'taa':1.5 * u.rad,
             'dtaa':np.radians(2) * u.rad},
-           (Geometry({'planet': 'Jupiter',
+           Geometry({'planet': 'Jupiter',
                       'startpoint': 'Io',
                       'phi': '3.14',
                       'taa': '0.05',
-                      'dtaa': '0.1'}), True),
-           (Geometry({'planet':'Jupiter',
+                      'dtaa': '0.1'}),
+           Geometry({'planet':'Jupiter',
                       'startpoint':'Io',
                       'include': 'Jupiter, Io, Europa',
                       'phi': '0, 3.14',
-                      'taa': '1.5'}), False),
-           (Geometry({'planet':'Jupiter',
+                      'taa': '1.5'}),
+           Geometry({'planet':'Jupiter',
                       'startpoint':'Io',
                       'phi': '0',
-                      'taa': '0'}), False)]
-                      
+                      'taa': '0'})]
+
+results = [True, True, True, True, None, None, None, True, True, False, False]
 
 @pytest.mark.initial_state
-@pytest.mark.parametrize('gparams, result', zip(inputs, results))
-def test_Geometry(gparams, result):
+@pytest.mark.parametrize('gparams, correct, result',
+                         zip(inputs, compare, results))
+def test_Geometry(gparams, correct, result):
     print(gparams['num'])
-    if result is InputfileError:
+    if correct is InputfileError:
         with pytest.raises(InputfileError):
             geometry = Geometry(gparams)
-    elif isinstance(result, tuple):
-        print(result[0])
+    elif isinstance(correct, Geometry):
         geometry = Geometry(gparams)
-        assert (geometry == result[0]) is result[1]
+        assert (geometry == correct) is result
+        
+        equal_test = Geometry(inputs[0])
+        assert (geometry == equal_test) == (gparams == inputs[0])
+    elif isinstance(correct, dict):
+        geometry = Geometry(gparams)
+        assert (geometry.__dict__ == correct) is result
     else:
-        geometry = Geometry(gparams)
-        assert geometry.__dict__ == result
+        assert False, 'Probably need a to add something'
 
 
-@pytest.mark.initial_state
-@pytest.mark.parametrize('gparams, result', zip(inputs, results))
-def test_Geometry_io(gparams, result):
-    geometry = Geometry(gparams)
-    geometry.insert(config)
-    
 if __name__ == '__main__':
-    for inp, result in zip(inputs, results):
-        test_Geometry(inp, result)
-        test_Geometry_io(inp, result)
+    for inp, comp, result in zip(inputs, compare, results):
+        test_Geometry(inp, comp, result)

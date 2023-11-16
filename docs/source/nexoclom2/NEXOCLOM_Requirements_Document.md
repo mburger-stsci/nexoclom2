@@ -31,6 +31,21 @@ correctly.
 5. `user` is required if it is not set by the operating system (e.g. with
    Windows)
 
+**Database Operations**
+* sets the path to the database correctly
+* Format as a TinyDB record
+  * Strip the input classes into dict with only floats, strings, ints,
+    bools, and dicts.
+  * One-to-one mapping between class and cleaned up version
+* Search
+  * Builds a query only retrieves records that match the inputs.
+* insert
+  * Only inserts records that aren't currently in the table. This won't be
+    100% foolproof since there could be multiple processes accessing the
+    database, but that's acceptable.
+  * Table containing outputs information that can point back to doc_ids of 
+    the individual input classes
+
 ### Input/Output
 
 ***System geometry***

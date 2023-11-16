@@ -4,7 +4,7 @@ Documentation will be online at readthedocs.org"""
 import os
 from importlib.metadata import version
 from nexoclom2.initial_state.Input import Input
-# from nexoclom2.particle_tracking.Output import Output
+from nexoclom2.particle_tracking.Output import Output
 # from nexoclom2.data_simulation.LOSResult import LOSResult
 # from nexoclom2.data_simulation.LOSResultFitted import LOSResultFitted
 # from nexoclom2.data_simulation.ModelImage import ModelImage

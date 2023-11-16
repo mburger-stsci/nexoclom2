@@ -82,6 +82,8 @@ geometry.TAA : Required
 geometry.dtaa : Default = 2º
     Tolerance for true anomaly differences in model searches.
 
+.. _surfaceinteractions:
+
 SurfaceInteraction
 ==================
 
@@ -92,15 +94,15 @@ If no values are provided, 100% sticking is assumed.
 Constant Sticking Coefficient
 -----------------------------
 
-surfaceinteraction.stickcoef [Optional]
+surfaceinteraction.stickcoef : Default = 1
     Sticking coefficient to be used uniformly across the body's surface.
-    For complete surface sticking, set `surfaceinteraction.stickcoef = 1.`.
+    For complete surface sticking, set ``surfaceinteraction.stickcoef = 1.``.
     For no sticking (100% of packets are reemitted from the surface, set
-    `surfaceinteraction.stickcoef = 0`. Default = 1.
+    ``surfaceinteraction.stickcoef = 0``.
 
-surfaceinteraction.accomfactor [Required if stickcoef < 1]
+surfaceinteraction.accomfactor : Required if stickcoef < 1
     Surface accommodation factor. 1 = Fully accommodated to local surface
-    temperature. 0 = Elastic reemission.
+    temperature. 0 = Elastic scattering.
 
 Temperature Dependent Sticking Coefficient
 ------------------------------------------
@@ -111,43 +113,45 @@ The sticking coefficient follows the functional form (Yakshinskiy & Madey 2005):
     S(T) = A_0 e^{A_1 T} + A_2
 
 where the coefficients are species dependent. For Na,
-:math:`A_0=1.57014, A_1=-0.006262, A_2=0.1614157`.
+:math:`A_0=1.57014, A_1=-0.006262, A_2=0.1614157.`
 
-surfaceinteraction.sticktype [Required]
-    Set `surfaceinteraction.sticktype = temperature dependent`.
+surfaceinteraction.sticktype : Required
+    Set ``surfaceinteraction.sticktype = temperature dependent``.
 
-surfaceinteraction.accomfactor [Required]
+surfaceinteraction.accomfactor : Required
     Surface accommodation factor. 1 = Fully accommodated to local surface
     temperature. 0 = Elastic reemission.
 
-surfaceinteraction.A [Optional]
-    Comma separated values for the coeffeicients.
-    Default = 1.57014, 0.006262, 0.1614157. (Ideally the defaults will be
-    species dependent, but I only have values for Na.)
-
-
+surfaceinteraction.A : Default = (1.57014, 0.006262, 0.1614157)
+    Comma separated values for the coefficients. Ideally the defaults will be
+    species dependent, but I only have values for Na.
 
 Sticking Coefficient from a Surface Map
 ---------------------------------------
 
-surfaceinteraction.type [Required]
-    Set `surfaceinteraction.sticktype = surface map`.
+surfaceinteraction.type : Required
+    Set ``surfaceinteraction.sticktype = surface map``.
 
-surfaceinteraction.stick_mapfile [Required]
-    Path to the file containing a map of the sticking coeficient. The format
-    for the map has not been determined.
+surfaceinteraction.stick_mapfile : Default : 'default'
+    Path to the file containing a map of the sticking coeficient. **Add link to
+    mapfile class when written**
 
-surfaceinteraction.subsolarlon [required for planet-fixed surfacemaps]
-    Sub-solar longitude for the observation in radians. This is required for
-    a planet-fixed coordinate system. However, if simulating a MESSENGER
-    orbit, this value will be overwritten by the value at the time the data
-    were taken. If it is required, but not given or specified programmatically,
-    an Exception will be raised.
+surfaceinteraction.accom_mapfile : Default : 'default'
+    Path to the file containing a map of the accommodation coeficient. **Add link
+    to mapfile class when written**
 
-surfaceinteraction.accomfactor [Required]
+surfaceinteraction.accomfactor : Optional
     Surface accommodation factor. 1 = Fully accommodated to local surface
-    temperature. 0 = Elastic reemission.
+    temperature. 0 = Elastic scattering. If not specified, assumes
+    accommodation is set by ``surfaceinteraction.accom_mapfile``. If it is
+    specified, ``surfaceinteraction.accom_mapfile`` is ignored.
 
+.. note:: ``surfaceinteraction.stick_mapfile`` and
+   ``surfaceinteraction.accom_mapfile`` do not need to point to valid files when
+   defining the inputs. This is to allow a future application that sets the
+   mapfiles dynamically in the code.
+
+.. _forces:
 
 Forces
 ======
@@ -156,11 +160,13 @@ The Forces class determines which forces are included in the simulation.
 Currently, the model only includes gravity and radiation pressure. If
 no forces are set in the input file both are included by default.
 
-forces.gravity [Optional]
-    True to include gravity; False to exclude. Default = True.
+forces.gravity : Default = True
+    True to include gravity; False to exclude.
 
-forces.radpres [Optional]
-    True to include radiation pressure; False to exclude. Default = True
+forces.radpres : Default = True
+    True to include radiation pressure; False to exclude.
+
+.. _spatialdist:
 
 SpatialDist
 ===========
@@ -246,13 +252,6 @@ spatialdist.mapfile [Optional]
         * coordinate_system: planet-fixed, solar-fixed, or moon-fixed
 
     If not given, the default, planet-fixed surface composition map is used.
-
-spatialdist.subsolarlon [Optional]
-    Sub-solar longitude for the observation in radians. This is required for
-    a planet-fixed coordinate system. However, if simulating a MESSENGER
-    orbit, this value will be overwritten by the value at the time the data
-    were taken. If it is required, but not given or specified programmatically,
-    an Exception will be raised.
 
 spatialdist.exobase [Optional]
     Location of the exobase in units of the starting point's radius.

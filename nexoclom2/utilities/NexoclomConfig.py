@@ -74,7 +74,7 @@ class NexoclomConfig:
     >>> print(config)
     configfile = /Users/mburger/.nexoclom2_dev
     savepath = /Volumes/nexoclom_output/modeloutputs2_dev
-    database = /Volumes/nexoclom_output/modeloutputs2_dev/thesolarsystemmb_dev.db
+    database = thesolarsystemmb_dev.db
     user = mburger
     
     :Authors: Matthew Burger
@@ -87,8 +87,6 @@ class NexoclomConfig:
                                   'NEXOCLOMCONFIG environment variable not set')
         
         self.configfile = os.path.expandvars(configfile)
-
-        print(f'Using configuration file {self.configfile}')
 
         config = {}
         if os.path.exists(os.path.expandvars(self.configfile)):
@@ -111,7 +109,7 @@ class NexoclomConfig:
             pass
 
         database = config.get('database', DEFAULT_DATABASE)
-        self.database = os.path.join(self.savepath, database)
+        self.database = database
         
         self.user = config.get('user', None)
         if self.user is None:

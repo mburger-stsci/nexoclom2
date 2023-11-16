@@ -1,8 +1,7 @@
-"""Classes for different required NEXOCLOM2 parameter sets"""
-import os
 import numpy as np
 from astropy.time import Time
 import astropy.units as u
+from tinydb.table import Document
 from nexoclom2.solarsystem import SSObject
 from nexoclom2.utilities.exceptions import InputfileError
 
@@ -45,80 +44,94 @@ class Geometry:
     dtaa : astropy quantity
         Tolerance for true anomaly differences in model searches.
         
-    Examples
-    --------
-    TO DO
-
-    :Authors: Matthew Burger
     """
-    def __init__(self, gparam: dict):
-        obj = gparam.get('planet', None)
-        if obj is None:
-            raise InputfileError('Geometry.__init__',
-                             'Planet not defined in inputfile.')
-        else:
-            self.planet = obj.title()
-            
-        planet = SSObject(self.planet)
-        
-        # Get list of objects (planet + satellites)
-        objlist = [self.planet]
-        if len(planet) > 1:
-            objlist.extend(planet.satellites)
-        else:
-            pass
-        
-        self.startpoint = gparam.get('startpoint', self.planet).title()
-        if self.startpoint not in objlist:
-            raise InputfileError('input_classes.Geometry',
-                                 f'{self.startpoint} is not a valid starting point')
-        else:
-            pass
-
-        objects = gparam.get('include', f'{self.planet}, {self.startpoint}')
-        objects = set(obj.strip().title() for obj in objects.split(',') if
-                      obj.strip().title() in objlist)
-        # Order objects correctly
-        self.included = tuple(sorted(list(objects), key=lambda x: objlist.index(x)))
-        
-        if 'modeltime' in gparam:
-            try:
-                self.modeltime = Time(gparam['modeltime'].upper())
-            except ValueError:
-                raise InputfileError('input_classes.Geometry',
-                                     f'Time is not in a valid format.')
-        else:
-            included_sats = set(self.included) - {self.planet}
-            included_sats = sorted(list(included_sats),
-                                        key=lambda x: objlist.index(x))
-            if len(included_sats) == 0:
-                pass
+    def __init__(self, gparam: (dict, Document)):
+        self.__name__ = 'Geometry'
+        if isinstance(gparam, Document):
+            self.planet = gparam['planet']
+            self.startpoint = gparam['startpoint']
+            self.included = tuple(gparam['included'])
+            if 'modeltime' in gparam:
+                self.modeltime = Time(gparam['modeltime'])
             else:
-                phi_ = gparam.get('phi', '').split(',')
-                if (phi_ == ['']) or (len(phi_) != len(included_sats)):
-                    raise InputfileError('input_class.Geometry',
-                                         'geometry.phi not set correctly')
+                if 'phi' in gparam:
+                    self.phi = {key: value*u.rad
+                                for key, value in gparam['phi'].items()}
                 else:
-                    self.phi = {moon: float(p)*u.rad
-                                for moon, p in zip(included_sats, phi_)}
-            subs = gparam.get('subsolarpoint', '0, 0').split(',')
-            try:
-                self.subsolarpoint = (float(subs[0])*u.rad, float(subs[1])*u.rad)
-            except BaseException:
+                    pass
+                self.included = tuple(gparam['included'])
+                self.subsolarpoint = (gparam['subsolarpoint'][0]*u.rad,
+                                      gparam['subsolarpoint'][1]*u.rad)
+                self.taa = gparam['taa']*u.rad
+                self.dtaa = 0*u.rad
+        else:
+            obj = gparam.get('planet', None)
+            if obj is None:
+                raise InputfileError('Geometry.__init__',
+                                 'Planet not defined in inputfile.')
+            else:
+                self.planet = obj.title()
+                
+            planet = SSObject(self.planet)
+            
+            # Get list of objects (planet + satellites)
+            objlist = [self.planet]
+            if len(planet) > 1:
+                objlist.extend(planet.satellites)
+            else:
+                pass
+            
+            self.startpoint = gparam.get('startpoint', self.planet).title()
+            if self.startpoint not in objlist:
                 raise InputfileError('input_classes.Geometry',
-                                     'subsolar point is not set correctly')
-            # Ensure proper ranges for subsolar point
-            if ((self.subsolarpoint[0] < 0*u.rad) or
-                (self.subsolarpoint[0] > 2*np.pi*u.rad)):
-                raise InputfileError('input_class.Gemoetry',
-                'subsolar longitude must be betwee 0 and 2π radians')
-            if ((self.subsolarpoint[1] < -np.pi/2*u.rad) or
-                (self.subsolarpoint[1] > np.pi/2*u.rad)):
-                raise InputfileError('input_class.Gemoetry',
-                    'subsolar latitude must be between -π/2 and π/2 radians')
+                                     f'{self.startpoint} is not a valid starting point')
+            else:
+                pass
 
-            self.taa = float(gparam.get('taa', 0))*u.rad
-            self.dtaa = float(gparam.get('dtaa', np.radians(2)))*u.rad
+            objects = gparam.get('include', f'{self.planet}, {self.startpoint}')
+            objects = set(obj.strip().title() for obj in objects.split(',') if
+                          obj.strip().title() in objlist)
+            # Order objects correctly
+            self.included = tuple(sorted(list(objects), key=lambda x: objlist.index(x)))
+            
+            if 'modeltime' in gparam:
+                try:
+                    self.modeltime = Time(gparam['modeltime'].upper())
+                except ValueError:
+                    raise InputfileError('input_classes.Geometry',
+                                         f'Time is not in a valid format.')
+            else:
+                included_sats = set(self.included) - {self.planet}
+                included_sats = sorted(list(included_sats),
+                                            key=lambda x: objlist.index(x))
+                if len(included_sats) == 0:
+                    pass
+                else:
+                    phi_ = gparam.get('phi', '').split(',')
+                    if (phi_ == ['']) or (len(phi_) != len(included_sats)):
+                        raise InputfileError('input_class.Geometry',
+                                             'geometry.phi not set correctly')
+                    else:
+                        self.phi = {moon: float(p)*u.rad
+                                    for moon, p in zip(included_sats, phi_)}
+                subs = gparam.get('subsolarpoint', '0, 0').split(',')
+                try:
+                    self.subsolarpoint = (float(subs[0])*u.rad, float(subs[1])*u.rad)
+                except BaseException:
+                    raise InputfileError('input_classes.Geometry',
+                                         'subsolar point is not set correctly')
+                # Ensure proper ranges for subsolar point
+                if ((self.subsolarpoint[0] < 0*u.rad) or
+                    (self.subsolarpoint[0] > 2*np.pi*u.rad)):
+                    raise InputfileError('input_class.Gemoetry',
+                    'subsolar longitude must be betwee 0 and 2π radians')
+                if ((self.subsolarpoint[1] < -np.pi/2*u.rad) or
+                    (self.subsolarpoint[1] > np.pi/2*u.rad)):
+                    raise InputfileError('input_class.Gemoetry',
+                        'subsolar latitude must be between -π/2 and π/2 radians')
+
+                self.taa = float(gparam.get('taa', 0))*u.rad
+                self.dtaa = float(gparam.get('dtaa', np.radians(2)))*u.rad
 
     def __eq__(self, other):
         if not isinstance(other, Geometry):

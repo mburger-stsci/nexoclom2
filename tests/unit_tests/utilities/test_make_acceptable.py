@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 from astropy.time import Time
-from nexoclom2.utilities.make_acceptable import make_acceptable
+from nexoclom2.utilities.database_operations import DatabaseOperations
 from nexoclom2.initial_state.Geometry import Geometry
 
 
@@ -70,8 +70,7 @@ results = [{'planet': 'Mercury',
 def test_make_accpetable(params, result):
     print(params['num'])
     geometry = Geometry(params)
-    cleaned = make_acceptable(geometry)
-    print(cleaned)
+    cleaned = DatabaseOperations().make_acceptable(geometry)
     for key in cleaned:
         assert cleaned[key] == pytest.approx(result[key])
 
