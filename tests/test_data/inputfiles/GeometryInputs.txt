@@ -1,0 +1,21 @@
+# Planet with satellites, start at satellite
+geometry.planet = Jupiter
+geometry.StartPoint = Io
+geometry.include = Jupiter, Io, Europa
+geometry.phi = 1, 2
+geometry.subsolarpoint = 3.14, 0
+geometry.taa = 1.57
+geometry.dtaa = 0.0523598775
+
+# Planet with 1 satellite, start at satellite; timestamp
+geometry.planet = Jupiter
+geometry.StartPoint = Io
+geometry.modeltime = 2022-03-08T19:53:21
+
+# Planet no satellites
+geometry.planet = Mercury
+geometry.taa = 0.0174532
+
+# Planet no satellites
+geometry.planet = Mercury
+geometry.taa = 6.2657320

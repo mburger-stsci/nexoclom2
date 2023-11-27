@@ -2,9 +2,7 @@
 """
 from nexoclom2.utilities.NexoclomConfig import NexoclomConfig
 from nexoclom2.utilities.exceptions import InputfileError
-from nexoclom2.initial_state.Geometry import Geometry
-from nexoclom2.initial_state.SurfaceInteraction import SurfaceInteraction
-from nexoclom2.initial_state.Forces import Forces
+from nexoclom2.initial_state import *
 
 
 class Input:
@@ -19,14 +17,12 @@ class Input:
     Attributes
     ----------
     geometry : Geometry
-    
-    
-    Notes
-    -----
-    TO DO
-    
-        * Currently does not do a range search for TAA.
-    
+    forces : Forces
+    surfaceinteraction : ConstantSurfaceInteraction, etc
+    spatialdist : UniformSpatialDist, etc.
+    speeddist : GaussianSpeedDist, etc.
+    angulardist : RadialAngularDist, IsotropicAngularDist
+    options : Options
     """
     def __init__(self, infile: str):
         self._inputfile = infile
@@ -38,18 +34,46 @@ class Input:
         extract_param = lambda tag:{b:c for (a, b, c) in params if a == tag}
 
         self.geometry = Geometry(extract_param('geometry'))
-        self.surfaceinteraction = SurfaceInteraction(extract_param(
-            'surfaceinteraction'))
         self.forces = Forces(extract_param('forces'))
         
+        sparams = extract_param('surfaceinteraction')
+        type = sparams.get('type', 'constant')
+        if type == 'constant':
+            self.surfaceinteraction = ConstantSurfaceInteraction(sparams)
+        else:
+            assert False, 'Not set up yet.'
+        
         sparams = extract_param('spatialdist')
-        
-        
-        
-        # self.spatialdist = SpatialDist(extract_param('spatialdist'))
-        # self.speeddist = SpeedDist(extract_param('speeddist'))
-        # self.angulardist = AngularDist(extract_param('angulardist'))
-        # self.options = Options(extract_param('options'))
+        type = sparams.get('type', None)
+        if type is None:
+            raise InputfileError('Input.__init__',
+                                 'spatialdist.type not given.')
+        elif type == 'uniform':
+            self.spatialdist = UniformSpatialDist(sparams)
+        else:
+            assert False, 'Not set up yet.'
+            
+        sparams = extract_param('speeddist')
+        type = sparams.get('type', None)
+        if type is None:
+            raise InputfileError('Input.__init__',
+                                 'speeddist.type not given.')
+        elif type == 'maxwellian':
+            self.speeddist = MaxwellianFlxuDist(sparams)
+        else:
+            assert False, 'Not set up yet.'
+
+        sparams = extract_param('angulardist')
+        type = sparams.get('type', None)
+        if type is None:
+            raise InputfileError('Input.__init__',
+                                 'angulardist.type not given.')
+        elif type == 'radial':
+            self.angulardist = RadialAngularDist(sparams)
+        else:
+            assert False, 'Not set up yet.'
+            
+        self.options = Options(extract_param('options'))
 
     def read_params(self):
         params = []

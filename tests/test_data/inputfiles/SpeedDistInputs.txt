@@ -1,0 +1,5 @@
+speeddist.type = maxwellian
+speeddist.temperature = 50000
+
+speeddist.type = maxwellian
+speeddist.temperature = 1200

@@ -1,29 +1,60 @@
 import os
 import pytest
 import glob
+from tinydb import TinyDB
 from nexoclom2 import Input, __path__
 from nexoclom2.utilities.database_operations import DatabaseOperations
-from nexoclom2.initial_state import Geometry, Forces, SurfaceInteraction
+from nexoclom2.initial_state import (Geometry, Forces, ConstantSurfaceInteraction,
+                                     UniformSpatialDist, MaxwellianFluxDist,
+                                     RadialAngularDist, Options)
 
+def read_in_inputs(filename):
+    inputfile = os.path.join(os.path.dirname(path), 'tests', 'test_data',
+                             'inputfiles', filename)
+     
+    inputs = []
+    result = {}
+    for line in open(inputfile):
+        if line.strip() == '':
+            inputs.append(result)
+            result = {}
+        elif '=' in line:
+            key, value = line.split('=')
+            value = value.strip()
+            key = key.split('.')[1].strip()
+            result[key] = value
+        else:
+            pass
+        
+    return inputs
 
 path = __path__[0]
-inputfile_path = os.path.join(os.path.dirname(path), 'tests', 'test_data',
-                              'inputfiles')
-inputfiles = glob.glob(os.path.join(inputfile_path, '*.input'))
-inputs = [Input(inputfile) for inputfile in inputfiles]
-geometries = [input_.geometry for input_ in inputs]
-forces = [input_.forces for input_ in inputs]
-surfints = [input_.surfaceinteraction for input_ in inputs]
 
+geometries = [Geometry(params) for params in read_in_inputs('GeometryInputs.txt')]
+surfints = [ConstantSurfaceInteraction(params) for params
+            in read_in_inputs('SurfaceInteractionInputs.txt')]
+forces = [Forces(params) for params in read_in_inputs('ForcesInputs.txt')]
+spatialdists = [UniformSpatialDist(params) for params
+                in read_in_inputs('SpatialDistInputs.txt')]
+speeddists = [MaxwellianFluxDist(params) for params
+              in read_in_inputs('SpeedDistInputs.txt')]
+angulardists = [RadialAngularDist(params) for params
+                in read_in_inputs('AngularDistInputs.txt')]
+options = [Options(params) for params in read_in_inputs('OptionsInputs.txt')]
+
+base_input_file = os.path.join(os.path.dirname(path), 'tests', 'test_data',
+                               'inputfiles', 'inputfile00.input')
 allinputs = []
 for geo in geometries:
     for force in forces:
         for surf in surfints:
-            inputs = Input(inputfiles[0])
-            inputs.geometry = geo
-            inputs.forces = force
-            inputs.surfaceinteraction = surf
-            allinputs.append(inputs)
+            for spat in spatialdists:
+                inputs = Input(base_input_file)
+                inputs.geometry = geo
+                inputs.forces = force
+                inputs.surfaceinteraction = surf
+                inputs.spatialdist = spat
+                allinputs.append(inputs)
 
 inputs0 = Input(inputfiles[0])
 database = DatabaseOperations()
@@ -40,25 +71,42 @@ def test_DatabaseOperations(inputs):
     database.insert_parts(inputs.geometry)
     database.insert_parts(inputs.forces)
     database.insert_parts(inputs.surfaceinteraction)
+    database.insert_parts(inputs.spatialdist)
     
-    results = database.query_parts(inputs.geometry)
+    results = inputs.geometry.query()
     assert len(results) == 1
-    assert inputs.geometry == Geometry(results[0])
-    assert ((Geometry(results[0]) == inputs0.geometry) ==
-            (inputs.geometry == inputs0.geometry))
+    doc_id = results[0]
+    result = Geometry(database.get(inputs.geometry.__name__, doc_id))
     
-    results = database.query_parts(inputs.forces)
-    assert len(results) == 1
-    assert inputs.forces == Forces(results[0])
-    assert ((Forces(results[0]) == inputs0.forces) ==
-            (inputs.forces == inputs0.forces))
+    assert inputs.geometry == result
+    # This only works if __eq__ is implemented correctly
+    assert ((inputs0.geometry == result) == (inputs.geometry == inputs0.geometry))
     
-    results = database.query_parts(inputs.surfaceinteraction)
+    results = inputs.forces.query()
     assert len(results) == 1
-    assert inputs.surfaceinteraction == SurfaceInteraction(results[0])
-    assert ((SurfaceInteraction(results[0]) == inputs0.surfaceinteraction) ==
+    doc_id = results[0]
+    result = Forces(database.get(inputs.forces.__name__, doc_id))
+    assert inputs.forces == result
+    assert (result == inputs0.forces) == (inputs.forces == inputs0.forces)
+    
+    results = inputs.surfaceinteraction.query()
+    assert len(results) == 1
+    doc_id = results[0]
+    result = ConstantSurfaceInteraction(
+        database.get(inputs.surfaceinteraction.__name__, doc_id))
+    assert inputs.surfaceinteraction == result
+    assert ((result == inputs0.surfaceinteraction) ==
             (inputs.surfaceinteraction == inputs0.surfaceinteraction))
 
+    results = inputs.spatialdist.query()
+    assert len(results) == 1
+    doc_id = results[0]
+    result = UniformSpatialDist(database.get(inputs.spatialdist.__name__, doc_id))
+    assert inputs.spatialdist == result
+    assert ((result == inputs0.spatialdist) ==
+            (inputs.spatialdist == inputs0.spatialdist))
+    
+    
 if __name__ == '__main__':
     for inputs in allinputs:
         test_DatabaseOperations(inputs)

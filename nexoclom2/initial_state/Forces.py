@@ -1,11 +1,12 @@
 from tinydb.table import Document
+from nexoclom2.initial_state.InputClass import InputClass
 from nexoclom2.utilities.exceptions import InputfileError
 
 
-class Forces:
+class Forces(InputClass):
     """Specify what forces to include in the model simulation
     
-    Specify whether to include graviational and radiation pressure forces.
+    Specify whether to include gravitational and radiation pressure forces.
     Default is to include both. See :ref:`forces` for more information.
     
     Parameters
@@ -14,10 +15,7 @@ class Forces:
         keys, values for indicating what forces to include. If a tinydb
         Document, no checks are performed since it is assumed to be a record
         from the database
-    from_db : bool, default=False
-        Create the object from a saved database record. No checks are performed
-        on inputs as it is assumed
-        
+
     Attributes
     ----------
     gravity : bool
@@ -27,10 +25,10 @@ class Forces:
     """
 
     def __init__(self, fparam: (dict, Document)):
+        super().__init__(fparam)
         self.__name__ = 'Forces'
         if isinstance(fparam, Document):
-            self.gravity = fparam['gravity']
-            self.radpres = fparam['radpres']
+            pass
         else:
             gravity = fparam.get('gravity', 'True').title()
             if gravity == 'True':
@@ -49,12 +47,3 @@ class Forces:
             else:
                 raise InputfileError('Forces.__init__',
                                      'forces.radpres must be True or False')
-    
-    def __eq__(self, other):
-        return self.__dict__ == other.__dict__
-
-    def __str__(self):
-        return f'gravity = {self.gravity}\nradpres = {self.radpres}'
-    
-    def __repr__(self):
-        return self.__str__()

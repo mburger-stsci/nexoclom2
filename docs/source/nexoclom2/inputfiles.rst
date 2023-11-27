@@ -93,6 +93,7 @@ If no values are provided, 100% sticking is assumed.
 
 Constant Sticking Coefficient
 -----------------------------
+surfaceinteracction.type : Default = constant
 
 surfaceinteraction.stickcoef : Default = 1
     Sticking coefficient to be used uniformly across the body's surface.
@@ -199,6 +200,8 @@ point increasing positive through the leading point: ::
 Latitude ranges from -π/2 rad to π/2 rad for the south pole to the north pole.
 All angular values are given in radians in the input file.
 
+.. _uniformsource:
+
 Uniform Surface
 ---------------
 
@@ -303,10 +306,12 @@ speeddist.vprob [Required]
 speeddist.sigma [Required]
     Standard deviation of the distribution in km/s.
 
+.. _maxwellian:
+
 Maxwellian Distribution
 -----------------------
 
-Packet speeds are chosen from a Maxwellian distribution given by:
+Packet speeds are chosen from a Maxwellian flux distribution given by:
 
 .. math::
     :nowrap:
@@ -401,6 +406,8 @@ angulardist.azimuth [Optional]
     comma-separated list of *az0, az1* in radians. This should be measured with
     azimuth = 0 rad pointing to north, but I'm not sure if it actually works.
     Use of this option is not recommended.
+
+.. _options:
 
 Options
 -------

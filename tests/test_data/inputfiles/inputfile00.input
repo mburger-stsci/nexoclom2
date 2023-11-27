@@ -1,22 +1,16 @@
-# Planet with satellites, start at satellite
-geometry.planet = Jupiter
-geometry.StartPoint = Io
-geometry.include = Jupiter, Io, Europa
-geometry.phi = 1, 2
-geometry.subsolarpoint = 3.14, 0
-geometry.taa = 1.57
+geometry.planet = Mercury
+geometry.taa = 0
 
-# Constant sticking coefficient
 surfaceinteraction.stickcoef = 1.
 
 SpatialDist.type = uniform
 
 SpeedDist.type = flat
-SpeedDist.vprob = 4.
-SpeedDist.delv = 4.
-
-AngularDist.type = isotropic
+SpeedDist.vprob = 5.
+SpeedDist.delv = 5.
 
 options.endtime = 10800.
 options.lifetime = 0.
-options.species = Na
+options.species = Ca
+options.outeredge = 15
+options.step_size = 30.

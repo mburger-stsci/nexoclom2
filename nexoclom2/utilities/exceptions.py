@@ -1,5 +1,6 @@
 """Exceptions used in nexoclom"""
 import numpy as np
+import astropy.units as u
 
 
 class InputfileError(Exception):
@@ -23,16 +24,23 @@ class OutOfRangeError(Exception):
         self.expression = expression
         self.message = f'{param} must be in range [{nums[0]}, {nums[1]}]'
         
-    def format_number(self, num):
+    def format_number(self, num_):
+        if isinstance(num_, type(1*u.s)):
+            num = num_.value
+            unit = ' ' + num_.unit.name
+        else:
+            num = num_
+            unit = ''
+
         if np.isclose(num, 2*np.pi):
-            return '2π'
+            return '2π' + unit
         elif np.isclose(num, np.pi):
-            return 'π'
+            return 'π' + unit
         elif np.isclose(num, np.pi/2):
-            return 'π/2'
+            return 'π/2' + unit
         elif np.isclose(num, -np.pi/2):
-            return '-π/2'
+            return '-π/2' + unit
         elif np.isclose(num, 0):
-            return '0'
+            return '0' + unit
         else:
             return f'{num:0.1f}'

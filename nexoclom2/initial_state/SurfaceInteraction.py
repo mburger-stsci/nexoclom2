@@ -16,7 +16,6 @@ class SurfaceInteraction:
     Attributes
     ----------
     
-    :Authors: Matthew Burger
     """
     def __init__(self, sparam: (dict, Document)):
         self.__name__ = 'SurfaceInteraction'
@@ -30,25 +29,7 @@ class SurfaceInteraction:
             sticktype = sparam.get('sticktype', 'constant')
             self.sticktype = sticktype
 
-            if sticktype == 'constant':
-                self.stickcoef = float(sparam.get('stickcoef', 1.0))
-
-                if (self.stickcoef < 0) or (self.stickcoef > 1):
-                    raise InputfileError('SurfaceInteraction.__init__',
-                        'surfaceinteraction.stickcoef must between 0 and 1, inclusive.')
-                else:
-                    pass
-                
-                if self.stickcoef < 1:
-                    try:
-                        self.accomfactor = float(sparam['accomfactor'])
-                    except ValueError:
-                        raise InputfileError('SurfaceInteraction.__init__',
-                            'surfaceinteraction.accomfactor must be a number.')
-                    except KeyError:
-                        raise InputfileError('SurfaceInteraction.__init__',
-                            'surfaceinteraction.accomfactor not given.')
-            elif sticktype == 'temperature dependent':
+            if sticktype == 'temperature dependent':
                 try:
                     self.accomfactor = float(sparam['accomfactor'])
                 except ValueError:

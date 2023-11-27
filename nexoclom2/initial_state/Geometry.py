@@ -3,15 +3,15 @@ from astropy.time import Time
 import astropy.units as u
 from tinydb.table import Document
 from nexoclom2.solarsystem import SSObject
+from nexoclom2.initial_state.InputClass import InputClass
 from nexoclom2.utilities.exceptions import InputfileError
 
 
-class Geometry:
+class Geometry(InputClass):
     """Solar System geometry information
     
     Defines the position of the central object and satellites relative to
     the Sun and one another. See :ref:`geometry` for more information.
-
     
     Parameters
     ----------
@@ -35,7 +35,7 @@ class Geometry:
     phi : dict
         Orbital phase angle for each included satellite.
         
-    subsolarpoint : tupple of astropy quantities
+    subsolarpoint : tuple of astropy quantities
         Longitude and latitude of the sub-solar point on the planet.
         
     taa : astropy quantity
@@ -43,26 +43,24 @@ class Geometry:
         
     dtaa : astropy quantity
         Tolerance for true anomaly differences in model searches.
-        
     """
     def __init__(self, gparam: (dict, Document)):
+        super().__init__(gparam)
         self.__name__ = 'Geometry'
         if isinstance(gparam, Document):
-            self.planet = gparam['planet']
-            self.startpoint = gparam['startpoint']
-            self.included = tuple(gparam['included'])
             if 'modeltime' in gparam:
+                self.type = 'GeometryWithTime'
                 self.modeltime = Time(gparam['modeltime'])
             else:
+                self.type = 'GeometryWithoutTime'
                 if 'phi' in gparam:
                     self.phi = {key: value*u.rad
                                 for key, value in gparam['phi'].items()}
                 else:
                     pass
-                self.included = tuple(gparam['included'])
-                self.subsolarpoint = (gparam['subsolarpoint'][0]*u.rad,
-                                      gparam['subsolarpoint'][1]*u.rad)
-                self.taa = gparam['taa']*u.rad
+                self.subsolarpoint = (self.subsolarpoint[0]*u.rad,
+                                      self.subsolarpoint[1]*u.rad)
+                self.taa = self.taa*u.rad
                 self.dtaa = 0*u.rad
         else:
             obj = gparam.get('planet', None)
@@ -92,15 +90,18 @@ class Geometry:
             objects = set(obj.strip().title() for obj in objects.split(',') if
                           obj.strip().title() in objlist)
             # Order objects correctly
-            self.included = tuple(sorted(list(objects), key=lambda x: objlist.index(x)))
+            self.included = tuple(sorted(list(objects),
+                                         key=lambda x: objlist.index(x)))
             
             if 'modeltime' in gparam:
+                self.type = 'GeometryWithTime'
                 try:
                     self.modeltime = Time(gparam['modeltime'].upper())
                 except ValueError:
                     raise InputfileError('input_classes.Geometry',
                                          f'Time is not in a valid format.')
             else:
+                self.type = 'GeometryWithoutTime'
                 included_sats = set(self.included) - {self.planet}
                 included_sats = sorted(list(included_sats),
                                             key=lambda x: objlist.index(x))
@@ -134,6 +135,7 @@ class Geometry:
                 self.dtaa = float(gparam.get('dtaa', np.radians(2)))*u.rad
 
     def __eq__(self, other):
+        """Override of superclass __eq__"""
         if not isinstance(other, Geometry):
             return False
         else:
@@ -146,8 +148,14 @@ class Geometry:
                 for key in keys_self:
                     if same:
                         if key == 'taa':
-                            same = np.abs(self.__dict__[key] -
-                                          other.__dict__[key]) < self.dtaa
+                            if self.taa < self.dtaa:
+                                same = ((other.taa-self.taa < self.dtaa) or
+                                        (self.taa-other.taa+2*np.pi*u.rad < self.dtaa))
+                            elif self.taa > 2*np.pi*u.rad-self.dtaa:
+                                same = ((self.taa - other.dtaa < self.dtaa) or
+                                        (other.taa-self.taa-2*np.pi*u.rad < self.dtaa))
+                            else:
+                                same = np.abs(self.taa - other.taa) < self.dtaa
                         elif key == 'dtaa':
                             pass
                         elif (isinstance(self.__dict__[key], float) or
@@ -159,6 +167,7 @@ class Geometry:
                 return bool(same)
 
     def __str__(self):
+        """Override of superclass __str__"""
         output = f'Planet: {self.planet}\nStart Point: {self.startpoint}\n'
         output += f'Included: {", ".join(self.included)}\n'
         if hasattr(self, 'modeltime'):
@@ -174,6 +183,3 @@ class Geometry:
                        f'{self.subsolarpoint[1].to(u.deg):0.1f})\n')
         
         return output
-    
-    def __repr__(self):
-        return self.__str__()
