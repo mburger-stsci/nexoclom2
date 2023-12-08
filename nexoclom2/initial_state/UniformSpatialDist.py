@@ -20,10 +20,13 @@ class UniformSpatialDist(InputClass):
     Attributes
     ----------
     type : 'uniform'
+    
     longitude : tuple of astropy quantities
         longitude range packets are ejected from. Default: (0 rad, 2π rad)
+        
     laitutde : tuple of astropy quantities
         latitude range packets are ejected from. Default: (-π/2 rad, π/2 rad)
+        
     exobase : float
         Distance from starting object's center from which to eject particles.
         Measured relative to starting object's radius. Default: 1.0
@@ -47,17 +50,23 @@ class UniformSpatialDist(InputClass):
             if isinstance(lonstr, str):
                 if lonstr.count(',') == 1:
                     longitude_ = tuple(l for l in lonstr.split(','))
-                    if np.all(l.isnumeric() for l in longitude_):
-                        longitude = tuple(float(l)*u.rad for l in longitude_)
-                        if np.all([self._check_value(l, default_longitude)
-                                  for l in longitude]):
-                            self.longitude = longitude
-                        else:
-                            raise OutOfRangeError('input_classes.UniformSpatialDist',
-                                                  'spatialdist.longitude',
-                                                  default_longitude)
-                    else:
+                    try:
+                        l0 = float(longitude_[0])
+                        l1 = float(longitude_[1])
+                    except:
                         raise InputfileError('input_classes.UniformSpatialDist',
+                                             "spatialdist.longitude must be in form 'x, y'")
+                    
+                    longitude = (l0*u.rad, l1*u.rad)
+                    if np.all([self._check_value(l, default_longitude)
+                              for l in longitude]):
+                        self.longitude = longitude
+                    else:
+                        raise OutOfRangeError('input_classes.UniformSpatialDist',
+                                              'spatialdist.longitude',
+                                              default_longitude)
+                else:
+                    raise InputfileError('input_classes.UniformSpatialDist',
                             "spatialdist.longitude must be in form 'x, y'")
             else:
                 self.longitude = lonstr
@@ -67,17 +76,22 @@ class UniformSpatialDist(InputClass):
             if isinstance(latstr, str):
                 if latstr.count(',') == 1:
                     latitude_ = tuple(l for l in latstr.split(','))
-                    if np.all(l.isnumeric() for l in latitude_):
-                        latitude = tuple(float(l)*u.rad for l in latitude_)
-                        if np.all([self._check_value(l, default_latitude)
-                                   for l in latitude]):
-                            self.latitude = latitude
-                        else:
-                            raise OutOfRangeError('input_classes.UniformSpatialDist',
-                                                  'spatialdist.latitude',
-                                                  default_latitude)
-                    else:
+                    try:
+                        l0 = float(latitude_[0])
+                        l1 = float(latitude_[1])
+                    except ValueError:
                         raise InputfileError('input_classes.UniformSpatialDist',
+                            "spatialdist.latitude must be in form 'x, y'")
+                        
+                    latitude = (l0*u.rad, l1*u.rad)
+                    if np.all([self._check_value(l, default_latitude)
+                               for l in latitude]):
+                        self.latitude = latitude
+                    else:
+                        raise OutOfRangeError('input_classes.UniformSpatialDist',
+                                              'spatialdist.latitude', default_latitude)
+                else:
+                    raise InputfileError('input_classes.UniformSpatialDist',
                             "spatialdist.latitude must be in form 'x, y'")
             else:
                 self.latitude = latstr

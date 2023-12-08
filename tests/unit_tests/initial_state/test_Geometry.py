@@ -187,9 +187,8 @@ correct.append(False)
 def test_Geometry(gparams, right, result):
     print(gparams['num'])
     if right is InputfileError:
-        pass
-        # with pytest.raises(InputfileError):
-        #     geometry = Geometry(gparams)
+        with pytest.raises(InputfileError):
+            geometry = Geometry(gparams)
     elif isinstance(right, Geometry):
         geometry = Geometry(gparams)
         assert (geometry == right) is result

@@ -15,7 +15,7 @@ def read_in_inputs(filename):
     inputs = []
     result = {}
     for line in open(inputfile):
-        if line.strip() == '':
+        if line.strip() == '---':
             inputs.append(result)
             result = {}
         elif '=' in line:
@@ -49,14 +49,21 @@ for geo in geometries:
     for force in forces:
         for surf in surfints:
             for spat in spatialdists:
-                inputs = Input(base_input_file)
-                inputs.geometry = geo
-                inputs.forces = force
-                inputs.surfaceinteraction = surf
-                inputs.spatialdist = spat
-                allinputs.append(inputs)
+                for speed in speeddists:
+                    for angdist in angulardists:
+                        for option in options:
+                            inputs = Input(base_input_file)
+                            inputs.geometry = geo
+                            inputs.forces = force
+                            inputs.surfaceinteraction = surf
+                            inputs.spatialdist = spat
+                            inputs.speeddist = speed
+                            inputs.angulardist = angdist
+                            inputs.options = option
+                            
+                            allinputs.append(inputs)
 
-inputs0 = Input(inputfiles[0])
+inputs0 = allinputs[0]
 database = DatabaseOperations()
 
 # Start with a fresh database
@@ -72,6 +79,9 @@ def test_DatabaseOperations(inputs):
     database.insert_parts(inputs.forces)
     database.insert_parts(inputs.surfaceinteraction)
     database.insert_parts(inputs.spatialdist)
+    database.insert_parts(inputs.speeddist)
+    database.insert_parts(inputs.angulardist)
+    database.insert_parts(inputs.options)
     
     results = inputs.geometry.query()
     assert len(results) == 1
@@ -105,6 +115,30 @@ def test_DatabaseOperations(inputs):
     assert inputs.spatialdist == result
     assert ((result == inputs0.spatialdist) ==
             (inputs.spatialdist == inputs0.spatialdist))
+    
+    results = inputs.speeddist.query()
+    assert len(results) == 1
+    doc_id = results[0]
+    result = MaxwellianFluxDist(database.get(inputs.speeddist.__name__, doc_id))
+    assert inputs.speeddist == result
+    assert ((result == inputs0.speeddist) ==
+            (inputs.speeddist == inputs0.speeddist))
+    
+    results = inputs.angulardist.query()
+    assert len(results) == 1
+    doc_id = results[0]
+    result = RadialAngularDist(database.get(inputs.angulardist.__name__, doc_id))
+    assert inputs.angulardist == result
+    assert ((result == inputs0.angulardist) ==
+            (inputs.angulardist == inputs0.angulardist))
+    
+    results = inputs.options.query()
+    assert len(results) == 1
+    doc_id = results[0]
+    result = Options(database.get(inputs.options.__name__, doc_id))
+    assert inputs.options == result
+    assert ((result == inputs0.options) ==
+            (inputs.options == inputs0.options))
     
     
 if __name__ == '__main__':

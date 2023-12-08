@@ -19,7 +19,9 @@ class MaxwellianFluxDist(InputClass):
     Attributes
     ----------
     type : 'maxwellian'
+    
     temperature : astropy quantity
+    
     species : str
         Particle being ejected
     
@@ -55,8 +57,13 @@ class MaxwellianFluxDist(InputClass):
         else:
             self.type = 'maxwellian'
             if 'temperature' in sparam:
-                self.temperature = sparam['temperature'] * u.K
-                if self.temperature < 0*u.K:
+                try:
+                    self.temperature = float(sparam['temperature']) * u.K
+                except ValueError:
+                    raise InputfileError('input_classes.MaxwellianFluxDist',
+                                         'speeddist.temperature must be a number')
+                
+                if self.temperature <= 0*u.K:
                     raise InputfileError('input_classes.MaxwellianFluxDist',
                                          'speeddist.temperature must be > 0')
             else:

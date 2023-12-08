@@ -1,8 +1,10 @@
-""" Class containing the input parameters for a model run.
-"""
-from nexoclom2.utilities.NexoclomConfig import NexoclomConfig
+import numpy as np
+from astropy.time import Time
 from nexoclom2.utilities.exceptions import InputfileError
+from nexoclom2.particle_tracking.Output import Output
 from nexoclom2.initial_state import *
+from nexoclom2.utilities.NexoclomConfig import NexoclomConfig
+from nexoclom2.utilities.database_operations import DatabaseOperations
 
 
 class Input:
@@ -31,7 +33,7 @@ class Input:
         
         params = self.read_params()
 
-        extract_param = lambda tag:{b:c for (a, b, c) in params if a == tag}
+        extract_param = lambda tag:{b: c for (a, b, c) in params if a == tag}
 
         self.geometry = Geometry(extract_param('geometry'))
         self.forces = Forces(extract_param('forces'))
@@ -59,22 +61,43 @@ class Input:
             raise InputfileError('Input.__init__',
                                  'speeddist.type not given.')
         elif type == 'maxwellian':
-            self.speeddist = MaxwellianFlxuDist(sparams)
+            self.speeddist = MaxwellianFluxDist(sparams)
         else:
             assert False, 'Not set up yet.'
 
         sparams = extract_param('angulardist')
-        type = sparams.get('type', None)
-        if type is None:
-            raise InputfileError('Input.__init__',
-                                 'angulardist.type not given.')
-        elif type == 'radial':
-            self.angulardist = RadialAngularDist(sparams)
+        type = sparams.get('type', 'isotropic')
+        if type == 'radial':
+            self.angulardist = RadialAngularDist()
+        elif type == 'isotropic':
+            assert False, 'Not set up yet'
         else:
             assert False, 'Not set up yet.'
             
         self.options = Options(extract_param('options'))
-
+    
+    def __str__(self):
+        return '\n'.join([self.geometry.__str__(),
+                          self.surfaceinteraction.__str__() +
+                          self.forces.__str__(), self.spatialdist.__str__() +
+                          self.speeddist.__str__(), self.angulardist.__str__(),
+                          self.options.__str__()])
+    
+    def __repr__(self):
+        return self.__str__()
+    
+    def __eq__(self, other):
+        if isinstance(other, Input):
+            return ((self.geometry == other.geometry) and
+                    (self.surfaceinteraction == other.surfaceinteraction) and
+                    (self.forces == other.forces) and
+                    (self.spatialdist == other.spatialdist) and
+                    (self.speeddist == other.speeddist) and
+                    (self.angulardist == other.angulardist) and
+                    (self.options == other.options))
+        else:
+            return False
+        
     def read_params(self):
         params = []
         for line in open(self._inputfile):
@@ -93,28 +116,69 @@ class Input:
             else:
                 pass
         return params
+
+    def search(self):
+        db = DatabaseOperations()
+        geo_id = self.geometry.query()
+        sint_id = self.surfaceinteraction.query()
+        for_id = self.forces.query()
+        spat_id = self.spatialdist.query()
+        spd_id = self.speeddist.query()
+        ang_id = self.angulardist.query()
+        opt_id = self.options.query()
+        
+    def delete_files(self):
+        pass
     
-    # def __str__(self):
+    def save(self, output):
+        pass
     
-    
-    # def insert(self):
-    #     """Insert records into database"""
-    #     db_path = os.path.join(self.config.savepath, self.config.database)
-    #     database = TinyDB(db_path)
-    #     inputs = database.table('inputs')
-    #     cleaned = make_acceptable(self)
-    #     old_results = self.search()
-    #     if old_results is None:
-    #         database.insert(cleaned)
-    #
-    # def search(self):
-    #     """Search records in the database"""
-    #     db_path = os.path.join(self.config.savepath, self.config.database)
-    #     database = TinyDB(db_path)
-    #     inputs = database.table('inputs')
-    #     cleaned = make_acceptable(self)
-    #     results = database.search(Query().fragment(cleaned))
-    #     if results is not None:
-    #         return [result.doc_id for result in results]
-    #     else:
-    #         return None
+    def run(self, npackets: (int, float), packs_per_it=None, overwrite=False,
+            compress=True, seed=None) -> list:
+        """Run the nexoclom particle integrate with the current inputs.
+        
+        Computes the particle trajectories for the specified number of particles.
+        If necessary, it will compute multiple iterations of the simulation to
+        track the requested numer of particles.
+        
+        Parameters
+        ----------
+        npackets : int, float
+            Total number of pacekets to run
+            
+        packs_per_it : None, int, float, Default = None
+            Number of packets per iteration. If None, a best guess will be used.
+            
+        overwrite : bool, Default = False
+            Set to True to erase previously run models.
+            
+        compress : True
+            Set to True to remove packets that have fractional value = 0 from the
+            file that is saved.
+            
+        seed : int
+            Seed to use in the random generator
+
+        Returns
+        -------
+        List of outputfiles created.
+
+        """
+        t0_ = Time.now()
+        print(f'Starting at {t0_}')
+        if overwrite:
+            self.delete_files()
+            totalpackets = 0
+            outputfiles = []
+        else:
+            # _, outputfiles, totalpackets, _ = self.search()
+            outputfiles, totalpackets = [], 0
+            print(f'Found {len(outputfiles)} with {totalpackets} packets')
+
+        ntodo = int(npackets - totalpackets)
+        # Will add looping in later if needed
+        output = Output(self, ntodo, compress=compress, seed=seed)
+        
+        outputfiles.append(self.save(output))
+        
+        return outputfiles

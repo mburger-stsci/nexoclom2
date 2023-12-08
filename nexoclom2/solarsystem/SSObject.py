@@ -115,7 +115,7 @@ class SSObject:
             self.orbperiod = row.orb_period * u.d
             self.GM = -self.mass * const.G
 
-            satellites = data.loc[data.orbits == self.object, 'Object'].to_list()
+            satellites = tuple(data.loc[data.orbits == self.object, 'Object'].to_list())
             self.satellites = satellites if len(satellites) > 0 else None
 
             if self.orbits == 'Milky Way':

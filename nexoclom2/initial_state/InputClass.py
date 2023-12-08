@@ -47,9 +47,10 @@ class InputClass:
         return (value >= rng[0]) and (value <= rng[1])
 
     def __str__(self):
-        string = f'Type: {self.__name__}\n'
+        string = f'Class: {self.__name__}\n'
         string = string + '\n'.join([f'{key}: {value}'
-                                     for key, value in self.__dict__.items()])
+                                     for key, value in self.__dict__.items()
+                                     if key != '__name__'])
         return string
 
     def __repr__(self):

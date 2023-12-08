@@ -2,7 +2,7 @@ import numpy as np
 from astropy.time import Time
 import astropy.units as u
 from tinydb.table import Document
-from nexoclom2.solarsystem import SSObject
+from nexoclom2.solarsystem import SSObject, planet_geometry
 from nexoclom2.initial_state.InputClass import InputClass
 from nexoclom2.utilities.exceptions import InputfileError
 
@@ -100,6 +100,12 @@ class Geometry(InputClass):
                 except ValueError:
                     raise InputfileError('input_classes.Geometry',
                                          f'Time is not in a valid format.')
+                planet_geo = get_planet_geometry(self.planet, self.modeltime)
+                self.taa = planet_geo['taa']
+                self.subsolarpoint = (planet_geo['subslong'], planet_geo['subslat'])
+                self.phi = {}
+                for moon in self.included:
+                    self.phi[moon] = planet_geo[moon]
             else:
                 self.type = 'GeometryWithoutTime'
                 included_sats = set(self.included) - {self.planet}
@@ -168,7 +174,8 @@ class Geometry(InputClass):
 
     def __str__(self):
         """Override of superclass __str__"""
-        output = f'Planet: {self.planet}\nStart Point: {self.startpoint}\n'
+        output = f'Class: {self.__name__}\n'
+        output += f'Planet: {self.planet}\nStart Point: {self.startpoint}\n'
         output += f'Included: {", ".join(self.included)}\n'
         if hasattr(self, 'modeltime'):
             output += f'Model Time: {self.modeltime.iso}\n'

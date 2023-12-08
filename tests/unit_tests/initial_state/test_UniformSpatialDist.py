@@ -36,6 +36,14 @@ def test_UniformSpatialDist(sparams, right):
 
         equal_test = UniformSpatialDist(inputs[0])
         assert (spatdist == equal_test) == (sparams == inputs[0])
+    elif right is InputfileError:
+        with pytest.raises(InputfileError):
+            spatdist = UniformSpatialDist(sparams)
+    elif right is OutOfRangeError:
+        with pytest.raises(OutOfRangeError):
+            spatdist = UniformSpatialDist(sparams)
+    else:
+        pass
 
 
 if __name__ == '__main__':

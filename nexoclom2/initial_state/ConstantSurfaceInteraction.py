@@ -14,9 +14,11 @@ class ConstantSurfaceInteraction(InputClass):
     Attributes
     ----------
     sticktype : 'ConstantSurfaceInteraction'
+    
     stickcoef : float
         Sticking coefficient between 0 (no sticking) and 1 (complete sticking).
         Default = 1.
+        
     accomfactor : float
         Accommodation factor between 0 (elastic scattering) and 1 (complete
         accommodation to surface temperature). Required if stickcoef < 1.

@@ -90,7 +90,16 @@ class DatabaseOperations:
         return result
         
     def return_table(self, tablename: str) -> (str, None):
-        """Return all records for an input classes (inputs.geometry, etc.)"""
+        """Retrieve all records for an input classes (inputs.geometry, etc.)
+        
+        Parameters
+        ----------
+        tablename : str
+        
+        Returns
+        -------
+        List of TinyDB Documents if there are any; None if not.
+        """
         with TinyDB(self.db_path) as db:
             table = db.table(tablename)
             results = table.all()

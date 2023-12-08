@@ -5,9 +5,10 @@ surfaceinteraction.stickcoef = 1.
 
 SpatialDist.type = uniform
 
-SpeedDist.type = flat
-SpeedDist.vprob = 5.
-SpeedDist.delv = 5.
+SpeedDist.type = Maxwellian
+SpeedDist.temperature = 15000
+
+angulardist.type = radial
 
 options.endtime = 10800.
 options.lifetime = 0.

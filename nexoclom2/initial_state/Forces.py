@@ -18,10 +18,9 @@ class Forces(InputClass):
 
     Attributes
     ----------
-    gravity : bool
-    radpres : bool
+    gravity : bool, default = True
+    radpres : bool, default = True
     
-    :Authors: Matthew Burger
     """
 
     def __init__(self, fparam: (dict, Document)):

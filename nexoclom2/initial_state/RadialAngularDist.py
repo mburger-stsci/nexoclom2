@@ -11,7 +11,7 @@ class RadialAngularDist(InputClass):
     
     Parameters
     ----------
-    None
+    sparam : None, TinyDB Document
     
     Attributes
     ----------
@@ -19,7 +19,8 @@ class RadialAngularDist(InputClass):
     
     """
     def __init__(self, sparam=None):
-        super().__init__({})
+        sparam_ = {} if sparam is None else sparam
+        super().__init__(sparam_)
         self.__name__ = 'RadialAngularDist'
         if isinstance(sparam, Document):
             pass

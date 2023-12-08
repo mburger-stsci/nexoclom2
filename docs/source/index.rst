@@ -15,13 +15,14 @@ Requirements Document](nexoclom2/NEXOCLOM_Requirements_Document)
 
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+    :maxdepth: 2
+    :caption: Contents:
 
-   nexoclom2/NEXOCLOM_Requirements_Document.md
-   nexoclom2/install.md
-   nexoclom2/TestCases.md
-   nexoclom2/inputfiles.rst
+    nexoclom2/NEXOCLOM_Requirements_Document.md
+    nexoclom2/install.md
+    nexoclom2/TestCases.md
+    nexoclom2/inputfiles.rst
+    nexoclom2/planet_distance.rst
 
 Indices and tables
 ==================

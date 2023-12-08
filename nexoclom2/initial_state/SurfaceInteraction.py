@@ -1,3 +1,6 @@
+""" Keep this for setting other surface interaction types.
+"""
+assert False
 import numpy as np
 from nexoclom2.utilities.exceptions import InputfileError
 from tinydb.table import Document
@@ -26,10 +29,7 @@ class SurfaceInteraction:
                 else:
                     self.__dict__[key] = value
         else:
-            sticktype = sparam.get('sticktype', 'constant')
-            self.sticktype = sticktype
-
-            if sticktype == 'temperature dependent':
+            if self.sticktype == 'temperature dependent':
                 try:
                     self.accomfactor = float(sparam['accomfactor'])
                 except ValueError:
