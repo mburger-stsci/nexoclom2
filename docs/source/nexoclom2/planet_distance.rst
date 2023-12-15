@@ -23,7 +23,7 @@ increase at a constant rate. The mean anomaly as a function of time is simply
     M(t) = 2\pi \frac{t}{P}
 
 where *P* is the planet's orbital period. The true anomaly can be approximated
-from the mean anomaly with:
+from the mean anomaly with:G
 
 .. math::
 
@@ -31,3 +31,15 @@ from the mean anomaly with:
     \frac{13/12} e^3 \sin 3M + \mathcal{O}(e^4)
 
 This allows one to compute :math:`dr/dt` using the equation for *r* above.
+
+A comparison of distance and radial velocity relative to the Sun computed
+using the above equations and retrieved from
+`JPL Horizons <https://astroquery.readthedocs.io/en/latest/jplhorizons/jplhorizons.html>`_ for Mercury, Earth, Jupiter and Saturn are shown here:
+
+.. image:: distance_and_velocity_Mercury.png
+
+.. image:: distance_and_velocity_Earth.png
+
+.. image:: distance_and_velocity_Jupiter.png
+
+.. image:: distance_and_velocity_Saturn.png

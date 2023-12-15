@@ -6,6 +6,7 @@ from astroquery.jplhorizons import Horizons
 from nexoclom2.solarsystem.SSObject import SSObject
 from nexoclom2.solarsystem.planet_distance import planet_distance
 import matplotlib.pyplot as plt
+from matplotlib import ticker
 
 
 planets = ['Mercury', 'Jupiter', 'Earth', 'Saturn']
@@ -32,32 +33,37 @@ def test_planet_distance(planet_, step):
     r0, drdt0 = r0[s], drdt0[s]
     r1, drdt1 = r1[s], drdt1[s]
     
-    fig, ax = plt.subplots(2, 2)
-    ax[0,0].plot(taa, r0, label='Calculated')
-    ax[0,0].plot(taa, r1, label='From Horizons', linestyle='--')
-    ax[0,0].set_xlabel('True Anomaly Angle (º)')
-    ax[0,0].set_ylabel('Distance from Sun (AU)')
-    ax[0,0].set_title('Heliocentric Distance')
-    ax[0,0].legend()
+    fig, ax = plt.subplot_mosaic([[0,1], [2, 3]])
+    fig.suptitle(planet_)
     
-    ax[0,1].plot(taa, r0-r1, label='Calculated - Horizons')
-    ax[0,1].set_xlabel('True Anomaly Angle (º)')
-    ax[0,1].set_ylabel('Residuals (AU)')
-    ax[0,1].set_title('Heliocentric Distance Residuals')
-    ax[0,1].legend()
+    ax[0].plot(taa, r0, label='Calculated')
+    ax[0].plot(taa, r1, label='From Horizons', linestyle='--')
+    ax[0].set_xlabel('True Anomaly Angle (º)')
+    ax[0].set_ylabel('Distance from Sun (AU)')
+    ax[0].set_title('Heliocentric Distance')
+    ax[0].legend()
     
-    ax[1,0].plot(taa, drdt0, label='Calculated')
-    ax[1,0].plot(taa, drdt1, label='From Horizons', linestyle='--')
-    ax[1,0].set_xlabel('True Anomaly Angle (º)')
-    ax[1,0].set_ylabel('Radial Velocity (km/s)')
-    ax[1,0].set_title('Heliocentric Radial Velocity')
-    ax[1,0].legend()
+    ax[1].plot(taa, r0-r1, label='Calculated - Horizons')
+    ax[1].set_xlabel('True Anomaly Angle (º)')
+    ax[1].set_ylabel('Residuals (AU)')
+    ax[1].set_title('Heliocentric Distance Residuals')
+    ax[1].legend()
     
-    ax[1,1].plot(taa, drdt0-drdt1, label='Calculated - Horizons')
-    ax[1,1].set_xlabel('True Anomaly Angle (º)')
-    ax[1,1].set_ylabel('Residuals (km/s)')
-    ax[1,1].set_title('Heliocentric Radial Velocity Residuals')
-    ax[1,1].legend()
+    ax[2].plot(taa, drdt0, label='Calculated')
+    ax[2].plot(taa, drdt1, label='From Horizons', linestyle='--')
+    ax[2].set_xlabel('True Anomaly Angle (º)')
+    ax[2].set_ylabel('Radial Velocity (km/s)')
+    ax[2].set_title('Heliocentric Radial Velocity')
+    ax[2].legend()
+    
+    ax[3].plot(taa, drdt0-drdt1, label='Calculated - Horizons')
+    ax[3].set_xlabel('True Anomaly Angle (º)')
+    ax[3].set_ylabel('Residuals (km/s)')
+    ax[3].set_title('Heliocentric Radial Velocity Residuals')
+    ax[3].legend()
+    
+    for a in ax:
+        ax[a].xaxis.set_major_locator(ticker.MultipleLocator(90))
     
     plt.tight_layout()
     plt.savefig(f'distance_and_velocity_{planet_}.png')
