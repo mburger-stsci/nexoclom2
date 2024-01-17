@@ -1,2 +1,3 @@
-agulatdist.type = radial
+# Radial
+angulardist.type = radial
 ---

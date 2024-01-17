@@ -409,8 +409,44 @@ angulardist.azimuth [Optional]
 
 .. _options:
 
+LossInformation
+===============
+
+The LossInformation class allows customization of loss rates either by
+modifying default values or specifying which sets of cross-sections or
+rate coefficients to use. If not specified, default values are used as
+appropriate.
+
+lossinformation.constant_lifetime [Optional]
+    The lifetime due to ionization or dissociation of the species in seconds.
+    Must be greater than 0. If set, all other options are ignored.
+
+lossinformation.photo_lifetime [Optional]
+    Photoionization or dissociation lifetime in seconds. Must be >= 0.
+    This differs from `lossinformation.constant_lifetime` because no loss
+    occurs in geometric shadows. If `lossinformation.photo_lifetime = 0`,
+    rate based on default rate coefficients is used.
+
+lossinformation.photo_factor [Optional]
+    Adjust default photo-loss rate by a constant factor. Must be >= 0.
+    Default = 1.0
+
+.. note::
+
+    The photo rate is 1/photo_lifetime. `lossinformation.photo_factor > 1`
+    increases the loss rate; i.e, decreases the lifetime. This is done for
+    consistency with eimp_factor and chX_factor.
+
+lossinformation.eimp_factor [Optional]
+    Adjust default electron impact loss rate by a constant factor. Must be
+    >= 0. Default = 1.0
+
+lossinformation.chX_factor [Optional]
+    Adjust default charge exchange loss rate by a constant factor. Must be
+    >= 0. Default = 1.0
+
 Options
--------
+=======
 
 The Options class sets runtime options that don't fit into other categories.
 
@@ -420,14 +456,6 @@ options.endtime [Required]
 
 options.species [Required]
     The species to be simulated.
-
-options.lifetime [Optional]
-    The lifetime due to ionization or dissociation of the species in seconds.
-    If `options.lifetime = 0`, the lifetime is computed based on available
-    ionization and dissociation reactions. If `options.lifetime > 0`, the
-    lifetime is constant throughout the system. If `options.lifetime < 0`,
-    the lifetime is assumed to be the photo-lifetime and no loss occurs in
-    the geometric shadow. Default = 0 (use available reactions).
 
 options.outer_edge [Optional]
     Distance from *geometry.startpoint* to simulate in object radii. Default =

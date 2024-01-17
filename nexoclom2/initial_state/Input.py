@@ -1,5 +1,6 @@
 import numpy as np
 from astropy.time import Time
+import astropy.units as u
 from nexoclom2.utilities.exceptions import InputfileError
 from nexoclom2.particle_tracking.Output import Output
 from nexoclom2.initial_state import *
@@ -24,6 +25,7 @@ class Input:
     spatialdist : UniformSpatialDist, etc.
     speeddist : GaussianSpeedDist, etc.
     angulardist : RadialAngularDist, IsotropicAngularDist
+    lossinfo : LossInformation
     options : Options
     """
     def __init__(self, infile: str):
@@ -35,7 +37,12 @@ class Input:
 
         extract_param = lambda tag:{b: c for (a, b, c) in params if a == tag}
 
-        self.geometry = Geometry(extract_param('geometry'))
+        gparams = extract_param('geometry')
+        if 'modeltime' in gparams:
+            self.geometry = GeometryTime(gparams)
+        else:
+            self.geometry = GeometryNoTime(gparams)
+        
         self.forces = Forces(extract_param('forces'))
         
         sparams = extract_param('surfaceinteraction')
@@ -74,14 +81,22 @@ class Input:
         else:
             assert False, 'Not set up yet.'
             
+        self.lossinfo = LossInformation(extract_param('loss_information'))
         self.options = Options(extract_param('options'))
+        
+        # Do some cross input checking
+        if (len(self.geometry.included) > 1) and (self.options.step_size != 0*u.s):
+            raise InputfileError('Input.__init__',
+                                 'Step size must be 0 when simulating moons')
+        else:
+            pass
     
     def __str__(self):
         return '\n'.join([self.geometry.__str__(),
                           self.surfaceinteraction.__str__() +
                           self.forces.__str__(), self.spatialdist.__str__() +
                           self.speeddist.__str__(), self.angulardist.__str__(),
-                          self.options.__str__()])
+                          self.lossinfo.__str__(), self.options.__str__()])
     
     def __repr__(self):
         return self.__str__()
@@ -94,6 +109,7 @@ class Input:
                     (self.spatialdist == other.spatialdist) and
                     (self.speeddist == other.speeddist) and
                     (self.angulardist == other.angulardist) and
+                    (self.lossinfo == other.lossinfo) and
                     (self.options == other.options))
         else:
             return False
@@ -125,6 +141,7 @@ class Input:
         spat_id = self.spatialdist.query()
         spd_id = self.speeddist.query()
         ang_id = self.angulardist.query()
+        loss_id = self.lossinfo.query()
         opt_id = self.options.query()
         
     def delete_files(self):

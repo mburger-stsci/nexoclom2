@@ -31,7 +31,6 @@ class UniformSpatialDist(InputClass):
         Distance from starting object's center from which to eject particles.
         Measured relative to starting object's radius. Default: 1.0
     """
-    
     def __init__(self, sparam: (dict, Document)):
         super().__init__(sparam)
         self.__name__ = 'UniformSpatialDist'

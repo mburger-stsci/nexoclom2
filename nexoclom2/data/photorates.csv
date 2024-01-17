@@ -1,0 +1,71 @@
+# Reference = Huebner & Mukherjee 2015
+# datatype = Rate Coeficient
+# reaction_type = Photo
+# unit = s**-1
+# ref_distance = 1.0
+#
+# Data contains columns for quiet and active sun.
+# Active sun values have not been updated based on the website.
+#
+# Most of these values come from the website http://phidrates.space.swri.edu.
+# Still trying to sort everything out regarding these values.
+#
+# Atomic Values confirmed by M. Burger on 3 Jan 2024
+species : reaction : rate
+H    : H, photon -> H+, e		: 7.26e-8
+He   : He, photon -> He+, e		: 5.64e-8
+C    : C, photon -> C+, e		: 5.63e-7
+N    : N, photon -> N+, e		: 2.31e-7
+O    : O, photon -> O+, e		: 2.44e-7
+Na   : Na, photon -> Na+, e		: 7.26e-6
+Ca   : Ca, photon -> Ca+, e		: 6.95e-5
+Mg   : Mg, photon -> Mg+, e	 	: 6.49e-7
+S    : S, photon -> S+, e 		: 1.37e-6
+Cl   : Cl, photon -> Cl+, e 		: 1.41e-6
+K    : K, photon -> K+, e		: 2.7e-5
+CH_4 : CH_4, photon -> CH_3, H 		: 2.64e-7
+CH_4 : CH_4, photon -> CH_2, H_2 	: 3.96e-6
+CH_4 : CH_4, photon -> CH, H_2, H 	: 6.39e-7
+CH_4 : CH_4, photon -> CH_2, H, H 	: 2.14e-6
+CH_4 : CH_4, photon -> CH_4+, e		: 3.58e-7
+CH_4 : CH_4, photon -> H, CH_3+, e 	: 1.98e-7
+CH_4 : CH_4, photon -> H_2, CH_2+, e 	: 2.08e-8
+CH_4 : CH_4, photon -> CH_3, H+, e 	: 9.12e-9
+CH_4 : CH_4, photon -> H_2, H, CH+, e	: 4.21e-9
+CO_2 : CO_2, photon -> CO, O 		: 1.22e-6
+CO_2 : CO_2, photon -> CO_2+, e 	: 6.55e-7
+CO_2 : CO_2, photon -> CO, O+, e 	: 6.38e-8
+CO_2 : CO_2, photon -> O, CO+, e 	: 5.02e-8
+CO_2 : CO_2, photon -> O_2, C+, e	: 2.89e-8
+H_2  : H_2, photon -> H, H 		: 8.24e-8
+H_2  : H_2, photon -> H_2+, e 		: 5.41e-8
+H_2  : H_2, photon -> H, H+, e		: 9.52e-9
+H_2O : H_2O, photon -> OH, H 		: 1.03e-5
+H_2O : H_2O, photon -> H_2, O 		: 5.97e-7
+H_2O : H_2O, photon -> H, H, O		: 7.54e-7
+H_2O : H_2O, photon -> H_2O+, e		: 3.31e-7
+H_2O : H_2O, photon -> H, OH+, e 	: 5.54e-8
+H_2O : H_2O, photon -> H_2, O+, e 	: 5.85e-9
+H_2O : H_2O, photon -> OH, H+, e	: 1.31e-8
+NH_3 : NH_3, photon -> NH_2, H 		: 1.7e-4
+NH_3 : NH_3, photon -> NH, H_2 		: 3.95e-6
+NH_3 : NH_3, photon -> NH, H, H 	: 1.99e-6
+NH_3 : NH_3, photon -> NH_3+, e		: 6.1e-7
+NH_3 : NH_3, photon -> H, NH_2+, e 	: 1.77e-7
+NH_3 : NH_3, photon -> H_2, NH+, e 	: 6.92e-9
+NH_3 : NH_3, photon -> H_2, H, N+, e 	: 3.25e-9
+NH_3 : NH_3, photon -> NH_2, H+, e	: 3.33e-9
+O_2  : O_2, photon -> O, O 		: 4.23e-6
+O_2  : O_2, photon -> O_2+, e 		: 4.67e-7
+O_2  : O_2, photon -> O, O+, e		: 1.10e-7
+OH   : OH, photon -> O, H 		: 1.98e-5
+OH   : OH, photon -> OH+, e		: 2.43e-7
+SO_2 : SO_2, photon -> SO, O 		: 1.59e-4
+SO_2 : SO_2, photon -> S+, O_2, e 	: 5.09e-5
+SO_2 : SO_2, photon -> SO_2+, e		: 1.06e-6
+SO   : SO, photon -> S, O 		: 6.16e-4
+SO   : SO, photon -> SO+, e		: 8.62e-7
+N_2  : N_2, photon -> N, N 		: 6.61e-7
+N_2  : N_2, photon -> N_2+, e 		: 3.52e-7
+N_2  : N_2, photon -> N, N+, e		: 1.50e-8
+# \enddata

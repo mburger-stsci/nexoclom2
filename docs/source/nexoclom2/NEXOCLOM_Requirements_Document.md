@@ -54,6 +54,10 @@ correctly.
    anomaly angle, central meridian longitude, etc.
 2. Central object (e.g., planet or Sun) for the simulation is fixed
 3. StartPoint is either the central object or a satellite of the central object
+4. For the constant step size model, all objects are assumed to be fixed. This 
+   is because each packet has to be launched in the same system configuration
+   (especially the loss environment). Will need to give a demonstration/more 
+   complete explanation of why this must be true.
 
 ***Energy distributions***
 

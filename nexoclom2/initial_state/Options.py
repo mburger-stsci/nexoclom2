@@ -18,8 +18,8 @@ class Options(InputClass):
     
     Attributes
     ----------
-    endtime : astropy quantity
-        Endtime of the simulation in seconds
+    runtime : astropy quantity
+        Total runtime for the simulation in seconds
         
     species : str
     
@@ -47,23 +47,22 @@ class Options(InputClass):
         self.__name__ = 'Options'
         
         if isinstance(options, Document):
-            self.endtime = self.endtime * u.s
-            self.lifetime = self.lifetime * u.s
+            self.runtime = self.runtime * u.s
             self.step_size = self.step_size * u.s
             
         else:
-            if 'endtime' in options:
+            if 'runtime' in options:
                 try:
-                    self.endtime = float(options['endtime'])*u.s
+                    self.runtime = float(options['runtime'])*u.s
                 except ValueError:
                     raise InputfileError('input_classes.Options',
-                                         'options.endtime must be a number')
+                                         'options.runtime must be a number')
             else:
                 raise InputfileError('input_classes.Options',
-                                     'options.endtime not specified')
-            if self.endtime <= 0*u.s:
+                                     'options.runtime not specified')
+            if self.runtime <= 0*u.s:
                 raise InputfileError('input_classes.Options',
-                                     'options.endtime must be > 0')
+                                     'options.runtime must be > 0')
             
             if 'species' in options:
                 self.species = options['species'].title()
@@ -72,12 +71,6 @@ class Options(InputClass):
                                      'options.species not specified')
             # Add check that species is valid
             
-            try:
-                self.lifetime = float(options.get('lifetime', 0))*u.s
-            except ValueError:
-                raise InputfileError('input_classes.Options',
-                                     'options.lifetime must be a number.')
-                
             try:
                 self.outer_edge = float(options.get('outer_edge', 1e30))
             except ValueError:
