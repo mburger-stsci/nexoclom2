@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # This is a basic workflow to help you get started with Actions
 
 name: CI
@@ -34,3 +35,38 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+=======
+name: pytest
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+  pull_request:
+    branches: [ "main" ]
+
+
+jobs:
+    # Set up operating system
+  build:
+    runs-on: ubuntu-latest
+
+    # Define job steps
+    steps:
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10
+
+    - name: Check-out repository
+      uses: actions/checkout@v2
+
+    - name: Create the environment
+      uses: s-weigand/setup-conda
+      run: conda env create -f nexoclom2_environment.yml
+
+    - name: Install poetry
+      uses: snok/install-poetry@v1
+
+    - name: Install package
+      run: poetry install
+>>>>>>> 9f0af84 (NexoclomConfig has tests)

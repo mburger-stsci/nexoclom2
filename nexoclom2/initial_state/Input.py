@@ -9,6 +9,10 @@ class Input:
     
     PARAMETERS
     ----------
-    infile : str,
+    infile : str, plain text file containing model input parameters. See
+    :doc:`inputfiles` for a description of the input file format
     """
     def __init__(self, infile):
+        self._inputfile = infile
+        
+    # def save(self):
