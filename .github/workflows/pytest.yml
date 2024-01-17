@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # This is a basic workflow to help you get started with Actions
 
 name: CI
@@ -35,7 +34,6 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-=======
 name: pytest
 
 on:
@@ -69,4 +67,3 @@ jobs:
 
     - name: Install package
       run: poetry install
->>>>>>> 9f0af84 (NexoclomConfig has tests)
