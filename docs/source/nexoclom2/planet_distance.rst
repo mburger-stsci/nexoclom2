@@ -34,7 +34,8 @@ This allows one to compute :math:`dr/dt` using the equation for *r* above.
 
 A comparison of distance and radial velocity relative to the Sun computed
 using the above equations and retrieved from
-`JPL Horizons <https://astroquery.readthedocs.io/en/latest/jplhorizons/jplhorizons.html>`_ for Mercury, Earth, Jupiter and Saturn are shown here:
+`JPL Horizons <https://astroquery.readthedocs.io/en/latest/jplhorizons/jplhorizons.html>`_
+for Mercury, Earth, Jupiter and Saturn are shown here:
 
 .. image:: distance_and_velocity_Mercury.png
 
