@@ -407,7 +407,7 @@ angulardist.azimuth [Optional]
     azimuth = 0 rad pointing to north, but I'm not sure if it actually works.
     Use of this option is not recommended.
 
-.. _options:
+.. _lossinfo:
 
 LossInformation
 ===============
@@ -444,6 +444,8 @@ lossinformation.eimp_factor [Optional]
 lossinformation.chX_factor [Optional]
     Adjust default charge exchange loss rate by a constant factor. Must be
     >= 0. Default = 1.0
+
+.. _options:
 
 Options
 =======

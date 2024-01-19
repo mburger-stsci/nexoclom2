@@ -30,6 +30,9 @@ class Input:
     """
     def __init__(self, infile: str):
         self._inputfile = infile
+        self._classes = ['geometry', 'surfaceinteraction', 'forces',
+                         'spatialdist', 'speeddist', 'angulardist',
+                         'lossinformation', 'options']
         
         self.config = NexoclomConfig()
         
@@ -135,6 +138,7 @@ class Input:
 
     def search(self):
         db = DatabaseOperations()
+        ids = {self.__dict__[part].query() for part in self._classes}
         geo_id = self.geometry.query()
         sint_id = self.surfaceinteraction.query()
         for_id = self.forces.query()

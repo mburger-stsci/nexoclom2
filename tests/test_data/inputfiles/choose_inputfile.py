@@ -7,9 +7,14 @@ path = __path__[0]
 infiledir = os.path.join(os.path.dirname(path), 'tests', 'test_data',
                          'inputfiles')
 
-def choose_inputfile(choices={}, interactive=False):
+def choose_inputfile(choices=None, interactive=False):
     classes = ['Geometry', 'SurfaceInteraction', 'Forces', 'SpatialDist',
                'SpeedDist', 'AngularDist', 'Options']
+    
+    if choices is None:
+        choices = {}
+    else:
+        pass
     
     with NamedTemporaryFile(mode='w', delete=False) as file:
         for class_ in classes:
