@@ -81,6 +81,11 @@ class UniformSpatialDist(InputClass):
                     except ValueError:
                         raise InputfileError('input_classes.UniformSpatialDist',
                             "spatialdist.latitude must be in form 'x, y'")
+                    if l0 > l1:
+                        raise InputfileError('input_classes.UniformSpatialDist',
+                                             'latitude0 must be <= latitude 1')
+                    else:
+                        pass
                         
                     latitude = (l0*u.rad, l1*u.rad)
                     if np.all([self._check_value(l, default_latitude)
@@ -94,3 +99,85 @@ class UniformSpatialDist(InputClass):
                             "spatialdist.latitude must be in form 'x, y'")
             else:
                 self.latitude = latstr
+                
+    def pdf(self, lon, sinlat):
+        """Probability Distribution Function"""
+        # longitude = np.linspace(0, 2*np.pi, 1000)
+        # latitude = np.linspace(-np.pi/2, np.pi/2, 500)
+        # longrid, latgrid = np.meshgrid(longitude, latitude)
+
+        sinlatrange = np.array([np.sin(self.latitude[0]),
+                                np.sin(self.latitude[1])])
+        if self.longitude[0] == self.longitude[1]:
+            longood = lon == self.longitude[0]
+        elif self.longitude[0] < self.longitude[1]:
+            longood = (lon >= self.longitude[0]) & (lon <= self.longitude[1])
+        else:
+            longood = (lon <= self.longitude[0]) | (lon >= self.longitude[1])
+        latgood = (sinlat >= sinlatrange[0]) & (sinlat <= sinlatrange[1])
+
+        return (longood & latgood).astype(float)
+        
+
+    def choose_points(self, npackets, randgen=None) -> type(1*u.km):
+        """
+        Returns initial x, y, and z. For a moon, a rotation will be done later
+        to move packets into the proper orbital position
+        
+        Parameters
+        ----------
+        npack : int
+            Number of packets to generate
+        randgen : numpy.random._generator.Generator
+            Optional. Default=None
+
+        Returns
+        -------
+        npack x 3 ndarray with x, y, and z positions
+
+        """
+        if randgen is None:
+            randgen = np.random.default_rng()
+        else:
+            pass
+        
+        # if ((self.longitude[0] == self.longitude[1]) and
+        #     (self.latitude[0] == self.latitude[1])):
+        #     lon = np.zeros(npackets) + self.longitude[0]
+        #     lat = np.zeros(npackets) + self.latitude[0]
+        # elif self.longitude[0] == self.longitude[1]:
+        #     lon = np.zeros(npackets) + self.longitude[0]
+        #     sinlatrange = np.array([np.sin(self.latitude[0]),
+        #                             np.sin(self.latitude[1])])
+        #     sinlat = (randgen.random(npackets) * (sinlatrange[1]-sinlatrange[0]) +
+        #               sinlatrange[0])
+        #     lat = np.arcsin(sinlat)
+        # elif self.latitude[0] == self.latitude[1]:
+        #     if self.longitude[0] < self.longitude[1]:
+        #         lon = (randgen.random(npackets) *
+        #                (self.longitude[1] - self.longitude[0]) + self.longitude[0])
+        #     else:
+        #         lon = (randgen.random(npackets) *
+        #                (self.longitude[0]+2*np.pi - self.longitude[0]) +
+        #                self.longitude[0]) % (2*np.pi)
+        #     lat = np.zeros(npackets) + self.latitude[0]
+        # else:
+        #     lon, lat = self.generate_sphere(npackets, randgen)
+        
+        if self.longitude[0] < self.longitude[1]:
+            lon = (randgen.random(npackets) *
+                   (self.longitude[1] - self.longitude[0]) + self.longitude[0])
+        else:
+            lon = (randgen.random(npackets) *
+                   (self.longitude[0]+2*np.pi*u.rad - self.longitude[0]) +
+                   self.longitude[0]) % (2*np.pi*u.rad)
+            
+        sinlatrange = np.array([np.sin(self.latitude[0]),
+                                np.sin(self.latitude[1])])
+        sinlat = (randgen.random(npackets) * (sinlatrange[1]-sinlatrange[0]) +
+                  sinlatrange[0])
+        lat = np.arcsin(sinlat) * u.rad
+        
+        xyz = self.exobase * self.lonlat_to_xyz(lon, lat)
+        
+        return xyz

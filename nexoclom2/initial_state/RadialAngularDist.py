@@ -26,3 +26,10 @@ class RadialAngularDist(InputClass):
             pass
         else:
             self.type = 'radial'
+
+    def choose_points(self, npackets, randgen=None):
+        # All packets going radially outward
+        alt = (np.zeros(npackets) + np.pi/2.) * u.rad
+        az = np.zeros(npackets) * u.rad
+        
+        return alt, az

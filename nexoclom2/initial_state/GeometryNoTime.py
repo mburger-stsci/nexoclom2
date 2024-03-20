@@ -2,7 +2,7 @@ import numpy as np
 from tinydb.table import Document
 import astropy.units as u
 from nexoclom2.initial_state import Geometry
-from nexoclom2.solarsystem import SSObject, PlanetGeometryNoTime, MoonGeometryNoTime
+from nexoclom2.solarsystem import SSObject
 from nexoclom2.utilities.exceptions import InputfileError
 
 
@@ -43,11 +43,14 @@ class GeometryNoTime(Geometry):
         self.__name__ = 'GeometryNoTime'
         self.type = 'geometry_without_time'
         if isinstance(gparam, Document):
-            self.phi = {key: value*u.rad
-                        for key, value in self.phi.items()}
-            self.subsolarpoint = (self.subsolarpoint[0]*u.rad,
-                                  self.subsolarpoint[1]*u.rad)
-            self.taa = self.taa*u.rad
+            if 'phi' in gparam:
+                self.phi = {key: value*u.rad
+                            for key, value in gparam['phi'].items()}
+            else:
+                pass
+            self.subsolarpoint = (gparam['subsolarpoint'][0]*u.rad,
+                                  gparam['subsolarpoint'][1]*u.rad)
+            self.taa = gparam['taa']*u.rad
             self.dtaa = 0*u.rad
         else:
             planet = SSObject(self.planet)
@@ -128,29 +131,3 @@ class GeometryNoTime(Geometry):
         output += (f'Subsolar point: ({self.subsolarpoint[0].to(u.deg):0.1f}, '
                    f'{self.subsolarpoint[1].to(u.deg):0.1f})\n')
         return output
-    
-    def compute_planet_geometry(self, **kwargs):
-        """Wrapper function to make sure the correct PlanetGeometry is instantiated
-        
-        Parameters
-        ----------
-        runtime : astropy Quantity
-        n_epochs : int
-        
-        Returns
-        -------
-        Dictionary of PlanetGeometryTime and MoonGeometryTime objects
-        
-        Notes
-        -----
-        Parameters must be given as keywords
-        """
-        geometries = {}
-        planet_geometry = PlanetGeometryNoTime(self, **kwargs)
-        for object in self.included:
-            if object == self.planet:
-                geometries[object] = planet_geometry
-            else:
-                geometries[object] = MoonGeometryNoTime(object, self, planet_geometry)
-        
-        return geometries

@@ -4,7 +4,8 @@ import pytest
 from tinydb import TinyDB
 from nexoclom2 import Input, __path__
 from nexoclom2.utilities.database_operations import DatabaseOperations
-from nexoclom2.initial_state import (Geometry, Forces, ConstantSurfaceInteraction,
+from nexoclom2.initial_state import (GeometryTime, GeometryNoTime, Forces,
+                                     ConstantSurfaceInteraction,
                                      UniformSpatialDist, MaxwellianFluxDist,
                                      RadialAngularDist, Options)
 
@@ -74,7 +75,7 @@ if os.path.exists(database.db_path):
 else:
     pass
 
-inputs0 = choose_inputfile()
+inputs0 = Input(choose_inputfile())
 
 
 @pytest.mark.utilities
@@ -91,7 +92,10 @@ def test_DatabaseOperations():
     results = inputs.geometry.query()
     assert len(results) == 1
     doc_id = results[0]
-    result = Geometry(database.get(inputs.geometry.__name__, doc_id))
+    if inputs.geometry.__name__ == 'GeometryTime':
+        result = GeometryTime(database.get(inputs.geometry.__name__, doc_id))
+    else:
+        result = GeometryNoTime(database.get(inputs.geometry.__name__, doc_id))
     
     assert inputs.geometry == result
     # This only works if __eq__ is implemented correctly
@@ -147,5 +151,4 @@ def test_DatabaseOperations():
     
     
 if __name__ == '__main__':
-    for inputs in allinputs:
-        test_DatabaseOperations(inputs)
+    test_DatabaseOperations()

@@ -1,6 +1,3 @@
-import numpy as np
-from astropy.time import Time
-import astropy.units as u
 from tinydb.table import Document
 from nexoclom2.solarsystem import SSObject
 from nexoclom2.initial_state.InputClass import InputClass

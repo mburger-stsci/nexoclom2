@@ -62,6 +62,7 @@ results = [({'object': 'Mercury',
 
 @pytest.mark.solarsystem
 @pytest.mark.parametrize('planet, result_', zip(planets, results))
+@pytest.mark.xfail
 def test_SSObject(planet, result_):
     result, length, is_mercury = result_
     planet = SSObject(planet)

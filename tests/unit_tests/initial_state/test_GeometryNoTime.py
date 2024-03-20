@@ -6,16 +6,16 @@ from nexoclom2.utilities.exceptions import InputfileError
 
 
 inputs = [{'planet': 'Mercury',
-               'taa': '3.14',
-               'num': 2}]
+           'taa': '3.14',
+           'num': 2}]
 correct = [{'__name__': 'GeometryNoTime',
-                'type': 'geometry_without_time',
-                'planet': 'Mercury',
-                'startpoint': 'Mercury',
-                'included': ('Mercury',),
-                'subsolarpoint': (0.*u.rad, 0*u.rad),
-                'taa': 3.14*u.rad,
-                'dtaa': np.radians(2)*u.rad}]
+            'type': 'geometry_without_time',
+            'planet': 'Mercury',
+            'startpoint': 'Mercury',
+            'included': ('Mercury',),
+            'subsolarpoint': (0.*u.rad, 0*u.rad),
+            'taa': 3.14*u.rad,
+            'dtaa': np.radians(2)*u.rad}]
 results = [True]
 
 inputs.append({'planet': 'Jupiter',
