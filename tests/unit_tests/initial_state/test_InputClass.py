@@ -1,11 +1,7 @@
 import numpy as np
-import os
-import sys
 import pytest
-import glob
 import astropy.units as u
 from nexoclom2.initial_state import InputClass
-from nexoclom2 import __path__, Input
 
 
 @pytest.mark.initial_state

@@ -23,7 +23,9 @@ Requirements Document](nexoclom2/NEXOCLOM_Requirements_Document)
     nexoclom2/TestCases.md
     nexoclom2/inputfiles.rst
     nexoclom2/planet_distance.rst
-    nexoclom2/planet_geometry.rst
+    nexoclom2/coordinate_systems.rst
+    nexoclom2/surface_interaction.rst
+    nexoclom2/integrator.rst
 
 Indices and tables
 ==================

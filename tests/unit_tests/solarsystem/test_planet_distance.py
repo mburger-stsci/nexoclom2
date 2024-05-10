@@ -19,7 +19,8 @@ def test_planet_distance_runtime0(planet_):
     """Compare SSObject distances and radial velocity for planets computation
     vs. Horizons when runtime = 0"""
     print(planet_)
-    modeltime = Time('2023-12-20 19:49')
+    # modeltime = Time('2023-12-20 19:49')
+    modeltime = Time('2011-04-01T00:00:00.000')
     planet_time = SSObject(planet_)
     planet_notime = SSObject(planet_)
     

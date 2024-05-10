@@ -6,14 +6,13 @@ import pytest
 import numpy as np
 import astropy.units as u
 from scipy.stats import ks_1samp
-from nexoclom2 import Input, __path__
+from nexoclom2 import path
 from nexoclom2.initial_state.UniformSpatialDist import UniformSpatialDist
 from nexoclom2.utilities.exceptions import InputfileError, OutOfRangeError
 
-path = __path__[0]
-sys.path.append(os.path.join(os.path.dirname(path), 'tests', 'test_data',
-                             'inputfiles'))
-from choose_inputfile import choose_inputfile
+# sys.path.append(os.path.join(os.path.dirname(path), 'tests', 'test_data',
+#                              'inputfiles'))
+# from choose_inputfile import choose_inputs
 
 
 inputs = [{},
@@ -77,6 +76,13 @@ def test_choose_points(values):
     spatdist.exobase *= u.km
     xyz_test = spatdist.choose_points(100000)
     
+    if (long0 == long1) and (lat0 == lat1):
+        assert np.all(xyz_test[0,:] == xyz_test[0,0])
+        assert np.all(xyz_test[1,:] == xyz_test[1,0])
+        assert np.all(xyz_test[2,:] == xyz_test[2,0])
+    else:
+        pass
+    
     x = np.linspace(-1, 1, 500)*u.km
     xgrid, ygrid, zgrid = np.meshgrid(x, x, x)
     longrid, latgrid, local_time = spatdist.xyz_to_lonlat(xgrid, ygrid, zgrid)
@@ -98,14 +104,14 @@ def test_choose_points(values):
         test = ks_1samp(x_test.value, cdf)
         
         assert test.pvalue < 0.05
-
+        
     # assert np.all(np.isclose(xyz_test.mean(axis=1), 0, atol=1e-3))
     assert np.all(np.isclose(np.linalg.norm(xyz_test, axis=0), 1*u.km))
 
-    
 
 if __name__ == '__main__':
     for sparam, right in zip(inputs, correct):
         test_UniformSpatialDist(sparam, right)
 
-    test_choose_points((0, 0, 0, 0))
+    for value in values:
+        test_choose_points(value)

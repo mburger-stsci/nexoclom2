@@ -76,3 +76,7 @@ def test_SSObject(planet, result_):
     
     assert len(planet) == length
     assert (planet == SSObject('Mercury')) is is_mercury
+
+if __name__ == '__main__':
+    for planet, result in zip(planets, results):
+        test_SSObject(planet, result)

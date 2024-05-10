@@ -16,6 +16,7 @@ def test_loss_information():
                                'taa': '0',
                                'num': 2})
     mercury = SSObject('Mercury')
+    
     geo_info = geometry.compute_planet_geometry(runtime=mercury.orbperiod,
                                                 n_epochs=100)['Mercury']
     s = np.argsort(geo_info.taa)

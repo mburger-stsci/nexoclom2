@@ -1,15 +1,10 @@
 import os
 import numpy as np
-import xarray as xr
-from scipy.interpolate import CubicSpline
 import astropy.units as u
 import astropy.constants as c
 import pandas as pd
 from nexoclom2.atomicdata import atomicmass
-from nexoclom2 import __path__
-
-
-path = __path__[0]
+from nexoclom2 import path
 
 
 class gValue:
@@ -60,15 +55,13 @@ class gValue:
             for wave in self.wavelengths:
                 self.radiation_accel += (c.h/atomicmass(self.species)/wave).to(
                     self.v_unit).value * self._data[wave]
-            
         else:
             print(f'g-values not found for {species}')
             self._ref_dist = 1*u.au
+            self._data = None
             self.wavelengths = np.array([0])*u.AA
             self.velocity = np.array([-100, 100])*u.km/u.s
-            self.g = {}
-            for wave in self.wavelengths:
-                self.g[wave] = lambda v: 0.
+            self.radiation_accel = np.array([0, 0])
             
     def gvalue(self, drdt, r=1.):
         """
@@ -115,3 +108,16 @@ class gValue:
         radiation_accel = np.interp(drdt, self.velocity.value, self.radiation_accel)
         
         return radiation_accel * (self._ref_dist.value/r)**2
+
+    def __eq__(self, other):
+        if isinstance(other, gValue):
+            if self.species != other.species:
+                return False
+            elif ((len(self.wavelengths) != len(other.wavelengths)) or
+                  (len(self.velocity) != len(other.velocity)) or
+                  (len(self.radiation_accel) != len(other.radiation_accel))):
+                return False
+            else:
+                return np.all(self.radiation_accel) == np.all(other.radiation_accel)
+        else:
+            return False

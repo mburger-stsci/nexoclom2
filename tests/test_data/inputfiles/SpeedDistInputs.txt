@@ -1,3 +1,7 @@
+speeddist.type = flat
+speeddist.v0 = 4.
+speeddist.v1 = 4.
+---
 speeddist.type = maxwellian
 speeddist.temperature = 50000
 ---

@@ -1,13 +1,13 @@
 import os
 from tempfile import NamedTemporaryFile
 import random
-from nexoclom2 import __path__
-path = __path__[0]
+from nexoclom2 import path, Input
+
 
 infiledir = os.path.join(os.path.dirname(path), 'tests', 'test_data',
                          'inputfiles')
 
-def choose_inputfile(choices=None, interactive=False):
+def choose_inputs(choices=None, interactive=False, return_filename=False):
     classes = ['Geometry', 'SurfaceInteraction', 'Forces', 'SpatialDist',
                'SpeedDist', 'AngularDist', 'Options']
     
@@ -43,4 +43,9 @@ def choose_inputfile(choices=None, interactive=False):
                     
             file.write(part)
             
-    return file.name
+    if return_filename:
+        return file.name
+    else:
+        inputs = Input(file.name)
+        os.remove(file.name)
+        return inputs

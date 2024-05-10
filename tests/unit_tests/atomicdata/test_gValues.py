@@ -2,22 +2,21 @@ import os
 import pytest
 import pandas as pd
 import numpy as np
+import pickle
 import astropy.units as u
-import astropy.constants as c
 import matplotlib.pyplot as plt
 from matplotlib import ticker
-from nexoclom2.atomicdata import gValue, atomicmass
+from nexoclom2.atomicdata import gValue
 from nexoclom2.initial_state import GeometryNoTime
 from nexoclom2.solarsystem import SSObject
-from nexoclom2 import __path__
-
-
-path = __path__[0]
+from nexoclom2 import path
 
 
 @pytest.mark.atomicdata
 def test_gValue():
     species = ['Na', 'Ca', 'Mg']
+    gvalue_test = []
+    
     # Direct comparison old and new at reference point
     old_g = pd.read_csv(os.path.join(os.path.dirname(path), 'tests', 'test_data',
                                      'g-values.csv'))
@@ -28,6 +27,7 @@ def test_gValue():
     ref_pt = 0.352*u.au
     for i, sp in enumerate(species):
         gvalue = gValue(sp)
+        gvalue_test.append(gvalue)
         v = np.linspace(gvalue.velocity.min()*1.1, gvalue.velocity.max()*1.1, 200)
         g = gvalue.gvalue(v.value, r=ref_pt)
         for wave in g.keys():
@@ -73,6 +73,7 @@ def test_gValue():
     colors = (x for x in ['red', 'green', 'blue'])
     for i, sp in enumerate(species):
         gvalue = gValue(sp, v_unit=mercury.unit/u.s)
+        gvalue_test.append(gvalue)
         gvals = gvalue.gvalue(v_r, r)
         radpres = gvalue.radaccel(v_r, r)*gvalue.v_unit.to(u.cm/u.s)
         
@@ -110,6 +111,19 @@ def test_gValue():
     plt.tight_layout()
     plt.savefig('gvalue_vs_taa.png')
     plt.close()
+    
+    # Regression test
+    gvalue_test_data_file = os.path.join(os.path.join(os.path.dirname(path),
+                                                      'tests', 'test_data',
+                                                      'gvalue_regression.pkl'))
+    if not os.path.exists(gvalue_test_data_file):
+        with open(gvalue_test_data_file, 'wb') as file:
+            pickle.dump(gvalue_test, file)
+    else:
+        with open(gvalue_test_data_file, 'rb') as file:
+            gvalue_regression = pickle.load(file)
+        for new, old in zip(gvalue_test, gvalue_regression):
+            assert np.all(new == old)
     
 if __name__ == '__main__':
     test_gValue()

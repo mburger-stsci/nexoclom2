@@ -2,71 +2,18 @@ import os
 import sys
 import pytest
 from tinydb import TinyDB
-from nexoclom2 import Input, __path__
+from nexoclom2 import Input, path
 from nexoclom2.utilities.database_operations import DatabaseOperations
 from nexoclom2.initial_state import (GeometryTime, GeometryNoTime, Forces,
                                      ConstantSurfaceInteraction,
                                      UniformSpatialDist, MaxwellianFluxDist,
                                      RadialAngularDist, Options)
 
-
-path = __path__[0]
 sys.path.append(os.path.join(os.path.dirname(path), 'tests', 'test_data',
                              'inputfiles'))
-from choose_inputfile import choose_inputfile
+from choose_inputfile import choose_inputs
 
-# def read_in_inputs(filename):
-#
-#     inputs = []
-#     result = {}
-#     for line in open(inputfile):
-#         if line.strip() == '---':
-#             inputs.append(result)
-#             result = {}
-#         elif '=' in line:
-#             key, value = line.split('=')
-#             value = value.strip()
-#             key = key.split('.')[1].strip()
-#             result[key] = value
-#         else:
-#             pass
-#
-#     return inputs
-#
-# geometries = [Geometry(params) for params in read_in_inputs('GeometryInputs.txt')]
-# surfints = [ConstantSurfaceInteraction(params) for params
-#             in read_in_inputs('SurfaceInteractionInputs.txt')]
-# forces = [Forces(params) for params in read_in_inputs('ForcesInputs.txt')]
-# spatialdists = [UniformSpatialDist(params) for params
-#                 in read_in_inputs('SpatialDistInputs.txt')]
-# speeddists = [MaxwellianFluxDist(params) for params
-#               in read_in_inputs('SpeedDistInputs.txt')]
-# angulardists = [RadialAngularDist() for params
-#                 in read_in_inputs('AngularDistInputs.txt')]
-# options = [Options(params) for params in read_in_inputs('OptionsInputs.txt')]
-#
-# base_input_file = os.path.join(os.path.dirname(path), 'tests', 'test_data',
-#                                'inputfiles', 'inputfile00.input')
-# allinputs = []
-# for geo in geometries:
-#     for force in forces:
-#         for surf in surfints:
-#             for spat in spatialdists:
-#                 for speed in speeddists:
-#                     for angdist in angulardists:
-#                         for option in options:
-#                             inputs = Input(base_input_file)
-#                             inputs.geometry = geo
-#                             inputs.forces = force
-#                             inputs.surfaceinteraction = surf
-#                             inputs.spatialdist = spat
-#                             inputs.speeddist = speed
-#                             inputs.angulardist = angdist
-#                             inputs.options = option
-#
-#                             allinputs.append(inputs)
-#
-# inputs0 = allinputs[0]
+
 database = DatabaseOperations()
 
 # Start with a fresh database
@@ -75,12 +22,12 @@ if os.path.exists(database.db_path):
 else:
     pass
 
-inputs0 = Input(choose_inputfile())
+inputs0 = choose_inputs()
 
 
 @pytest.mark.utilities
 def test_DatabaseOperations():
-    inputs = Input(choose_inputfile())
+    inputs = choose_inputs()
     database.insert_parts(inputs.geometry)
     database.insert_parts(inputs.forces)
     database.insert_parts(inputs.surfaceinteraction)

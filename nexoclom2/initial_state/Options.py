@@ -1,6 +1,4 @@
-import numpy as np
 import astropy.units as u
-import astropy.constants as const
 from tinydb.table import Document
 from nexoclom2.initial_state.InputClass import InputClass
 from nexoclom2.utilities.exceptions import InputfileError
@@ -33,6 +31,10 @@ class Options(InputClass):
     
     step_size : astropy quantity, Default = 0 sec
         Time step. If 0, uses adaptive step size integrator.
+        
+    start_together : bool, optional, Default = False
+        If step_size = 0, tells integrator to start all packets at the same
+        time. Good for seeing cloud evolution and particle trajectories
     
     resolution : float, Default = 10**-4
         Precision necessary in adaptive step size integrator. Not used with
@@ -98,8 +100,15 @@ class Options(InputClass):
                 if self.resolution <= 0:
                     raise InputfileError('input_classes.Options',
                                          'options.resolution must be a number > 0')
+                
+                together = options.get('start_together', 'False')
+                if together in ('True', 'False'):
+                    self.start_together = eval(together)
+                else:
+                    raise InputfileError('input_classes.Options',
+                                         'options.start_together must be True or False')
             else:
-                pass
+                self.start_together = True
             
             fitted = options.get('fitted', 'False').title()
             if fitted in ('True', 'False'):

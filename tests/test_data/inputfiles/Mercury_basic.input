@@ -1,0 +1,17 @@
+geometry.planet = Mercury
+geometry.taa = 0.0174532
+
+# Full surface
+SpatialDist.type = uniform
+
+speeddist.type = flat
+speeddist.v0 = 4.
+speeddist.v1 = 4.
+
+angulardist.type = radial
+
+options.runtime = 18000
+options.species = Ca
+options.outer_edge = 30
+options.step_size = 30
+options.fitted = False

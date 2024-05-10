@@ -1,6 +1,8 @@
 """NEXOCLOM2: Neutral EXosphere and CLoud Model v2
 
 Documentation will be online at readthedocs.org"""
+from nexoclom2 import __path__
+path = __path__[0]
 import os
 from importlib.metadata import version
 from nexoclom2.initial_state.Input import Input

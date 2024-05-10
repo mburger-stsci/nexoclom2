@@ -54,7 +54,7 @@ def test_MaxwellianFluxDist(sparams, right):
 
 @pytest.mark.initial_state
 @hypo.given(temperature=st.floats(min_value=100., max_value=100000, exclude_min=True),
-            species=st.sampled_from(['Na', 'Ca', 'Mg', 'O', 'S']))
+            species=st.sampled_from(('Na', 'Ca', 'Mg', 'O', 'S')))
 def test_choose_points(temperature, species):
     speeddist = MaxwellianFluxDist({'temperature': f'{temperature}',
                                     'species': species})

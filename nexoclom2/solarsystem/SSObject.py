@@ -6,10 +6,8 @@ import astropy.constants as const
 import astropy.units as u
 from astropy.time import TimeDelta
 from astroquery.jplhorizons import Horizons
-from nexoclom2 import __path__
+from nexoclom2 import path
 
-
-basepath = __path__[0]
 __all__ = ['SSObject']
 
 
@@ -101,7 +99,7 @@ class SSObject:
         self.endtime = None
         self.starttime = None
         self.object = obj.title()
-        datafile = os.path.join(basepath, 'data', 'PlanetaryConstants.csv')
+        datafile = os.path.join(path, 'data', 'PlanetaryConstants.csv')
         data = pd.read_csv(datafile, skipinitialspace=True,
                            skip_blank_lines=True, comment='#', sep=':')
         data.columns = [x.strip() for x in data.columns]
@@ -140,9 +138,7 @@ class SSObject:
         else:
             self.type = 'Unknown'
         
-        
-        
-        naiffile = os.path.join(basepath, 'data', 'naifids.csv')
+        naiffile = os.path.join(path, 'data', 'naifids.csv')
         naifids = pd.read_csv(naiffile)
 
         idnums = naifids.loc[naifids.Object.apply(lambda x: x.title()) ==
@@ -222,7 +218,7 @@ class SSObject:
                 
             if self.type == 'Planet':
                 # Runtime = 0, Planet
-                planetH = Horizons(self.naifid, f'@{sun.naifid}', epochs=times)
+                planetH = Horizons(self.naifid, location=f'@{sun.naifid}', epochs=times)
                 ephem = planetH.ephemerides()
                 vectors = planetH.vectors()
                 
@@ -256,12 +252,18 @@ class SSObject:
                         np.interp(t, self.time, subsolar_longitude) % (2*np.pi))
                     self.subsolar_latitude = lambda t: np.interp(t, self.time,
                                                                  subsolar_latitude)
+                self.x_planet = lambda t: 0.*t
+                self.y_planet = lambda t: 0.*t
+                self.z_planet = lambda t: 0.*t
+                self.dxdt_planet = lambda t: 0.*t
+                self.dydt_planet = lambda t: 0.*t
+                self.dzdt_planet = lambda t: 0.*t
             elif self.type == 'Moon':
                 planet = SSObject(self.orbits)
                 planet.set_up_geometry_for_model(geometry, runtime)
                 self.taa = planet.taa
                 
-                moonH = Horizons(self.naifid, f'@{planet.naifid}', epochs=times)
+                moonH = Horizons(self.naifid, location=f'@{planet.naifid}', epochs=times)
                 ephem = moonH.ephemerides()
                 vectors = moonH.vectors()
                 
@@ -273,11 +275,12 @@ class SSObject:
                 subsolar_longitude = ephem['PDSunLon'].to(u.rad).value
                 subsolar_latitude = ephem['PDSunLat'].to(u.rad).value
                 
-                moonH = Horizons(self.naifid, f'@{sun.naifid}', epochs=times)
+                moonH = Horizons(self.naifid, location=f'@{sun.naifid}', epochs=times)
                 vectors2 = moonH.vectors()
                 r_sun = vectors2['range'].to(u.au).value
                 drdt_sun = vectors2['range_rate'].to(self.unit/u.s).value
                 
+                v_orbit = (2*np.pi*self.a/self.orbperiod).to(self.unit/u.s).value
                 if runtime == 0*u.s:
                     self.r_planet = lambda t: r_planet[0]
                     self.drdt_planet = lambda t: drdt_planet[0]
@@ -287,12 +290,6 @@ class SSObject:
                     self.subsolar_latitude = lambda t: subsolar_latitude[0]
                     self.r_sun = lambda t: r_sun[0]
                     self.drdt_sun = lambda t: drdt_sun[0]
-                    
-                    self.x_planet = lambda t: self.r_planet(t) * np.cos(
-                        self.subsolar_longitude(t))
-                    self.y_planet = lambda t: self.r_planet(t) * np.sin(
-                        self.subsolar_longitude(t))
-                    self.z_planet = lambda t: self.r_planet(t) * 0.
                 else:
                     for i in range(1, len(times)):
                         if subplanet_longitude[i] < subplanet_longitude[i-1]:
@@ -314,13 +311,18 @@ class SSObject:
                     self.subsolar_latitude = lambda t: np.interp(t, self.time,
                                                                  subsolar_latitude)
 
-                    self.x_planet = lambda t: self.r_planet(t) * np.cos(
-                        self.subsolar_longitude(t))
-                    self.y_planet = lambda t: self.r_planet(t) * np.sin(
-                        self.subsolar_longitude(t))
-                    self.z_planet = lambda t: self.r_planet(t) * 0.
-                
-            elif self.type == 'Sun':
+                self.x_planet = lambda t: -self.r_planet(t) * np.cos(
+                    self.subsolar_longitude(t))
+                self.y_planet = lambda t: -self.r_planet(t) * np.sin(
+                    self.subsolar_longitude(t))
+                self.z_planet = lambda t: self.r_planet(t) * 0.
+            
+                self.dxdt_planet = lambda t: v_orbit * np.sin(
+                    self.subsolar_longitude(t))
+                self.dydt_planet = lambda t: -v_orbit * np.cos(
+                    self.subsolar_longitude(t))
+                self.dzdt_planet = lambda t: t * 0
+            elif self.type == 'Star':
                 assert False, 'Not set up yet'
             else:
                 assert False, 'Can not get here'
@@ -351,6 +353,13 @@ class SSObject:
                         2*np.pi * t/self.rotperiod.to(u.s).value) % (2*np.pi)
                     self.subsolar_latitude = lambda t: (
                         np.ones(len(t)) * geometry.subsolarpoint[1].value)
+                
+                self.x_planet = lambda t: 0.*t
+                self.y_planet = lambda t: 0.*t
+                self.z_planet = lambda t: 0.*t
+                self.dxdt_planet = lambda t: 0.*t
+                self.dydt_planet = lambda t: 0.*t
+                self.dzdt_planet = lambda t: 0.*t
             elif self.type == 'Moon':
                 planet = SSObject(self.orbits)
                 planet.set_up_geometry_for_model(geometry, runtime)
@@ -358,11 +367,11 @@ class SSObject:
                 v_orbit = (2*np.pi*self.a/self.orbperiod).to(self.unit/u.s).value
                 
                 if runtime == 0*u.s:
-                    self.subsolar_longitude = lambda t: geometry.subsolarpoint[0].value
+                    self.subsolar_longitude = lambda t: geometry.phi[self.object].value
                     self.subsolar_latitude = lambda t: geometry.subsolarpoint[1].value
                 else:
                     self.subsolar_longitude = lambda t: self.moon_subsolar_longitude(t,
-                        geometry.subsolarpoint[0].value)
+                        geometry.phi[self.object].value)
                     self.subsolar_latitude = lambda t: geometry.subsolarpoint[1].value
                     
                 self.subplanet_longitude = lambda t: 0.
@@ -370,18 +379,18 @@ class SSObject:
                 self.r_planet = lambda t: self.a.to(self.unit).value
                 self.drdt_planet = lambda t: 0.
             
-                self.x_planet = lambda t: self.r_planet(t) * np.cos(
+                self.x_planet = lambda t: -self.r_planet(t) * np.cos(
                     self.subsolar_longitude(t))
-                self.y_planet = lambda t: self.r_planet(t) * np.sin(
+                self.y_planet = lambda t: -self.r_planet(t) * np.sin(
                     self.subsolar_longitude(t))
-                self.z_planet = lambda t: self.r_planet(t) * 0.
+                self.z_planet = lambda t: np.zeros_like(t)
             
                 self.dxdt_planet = lambda t: v_orbit * np.sin(
                     self.subsolar_longitude(t))
                 self.dydt_planet = lambda t: -v_orbit * np.cos(
                     self.subsolar_longitude(t))
                 self.dzdt_planet = lambda t: t * 0
-                
+
                 self.r_sun = lambda t: planet.r_sun(t) - self.x_planet(t)
                 self.drdt_sun = lambda t: planet.drdt_sun(t) - self.dxdt_planet(t)
             elif self.type == 'Sun':

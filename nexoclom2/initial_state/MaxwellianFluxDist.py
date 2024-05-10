@@ -97,14 +97,14 @@ class MaxwellianFluxDist(InputClass):
         """
         return 0, self.v_th.value*3
     
-    def choose_points(self, npackets, randgen=None):
+    def choose_points(self, n_packets, randgen=None):
         """Compute random deviates from arbitrary 1D distribution.
         f_x does not need to integrate to 1. The function normalizes the
         distribution. Uses Transformation method (Numerical Recipes, 7.3.2)
 
         Parameters
         ----------
-        npackets : int
+        n_packets : int
             The number of random deviates to compute
 
         randgen : numpy.random._generator.Generator
@@ -119,7 +119,7 @@ class MaxwellianFluxDist(InputClass):
         else:
             pass
         if self.temperature != 0*u.K:
-            v = self.generate1d(npackets, randgen) * u.km/u.s
+            v = self.generate1d(n_packets, randgen) * u.km/u.s
             return v
         else:
             # Use a surface temperature map

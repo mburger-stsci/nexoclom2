@@ -24,9 +24,3 @@ geometry.taa = 6.2657320
 geometry.planet = Mercury
 geometry.modeltime = 2022-03-08T19:53:21
 ---
-# 5 Mercury orbiting Sun, time
-geometry.planet = Sun
-geometry.startpoint = Mercury
-geometry.modeltime = 2022-03-08T19:53:21
-geometry.include = Sun, Mercury
----

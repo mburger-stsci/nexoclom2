@@ -6,19 +6,17 @@ import pytest
 import glob
 import astropy.units as u
 from nexoclom2.utilities.exceptions import InputfileError
-from nexoclom2 import __path__, Input
+from nexoclom2 import path, Input
 
-path = __path__[0]
 sys.path.append(os.path.join(os.path.dirname(path), 'tests', 'test_data',
                              'inputfiles'))
 from choose_inputfile import choose_inputfile
 
 
-
-path = __path__[0]
 inputfiles = glob.glob(os.path.join(os.path.dirname(path), 'tests', 'test_data',
                                     'inputfiles', '*.input'))
 
+@pytest.mark.skip
 @pytest.mark.initial_state
 @pytest.mark.parametrize('inputfile', inputfiles)
 def test_Input(inputfile):

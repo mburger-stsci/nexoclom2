@@ -2,10 +2,8 @@
 import os
 import pandas as pd
 import re
-from nexoclom2 import __path__
+from nexoclom2 import path
 
-
-path = __path__[0]
 
 def reformat_gvalues(species):
     datafile = os.path.join(path, 'data', 'gvalues', f'{species}.txt')

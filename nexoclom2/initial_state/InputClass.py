@@ -27,7 +27,9 @@ class InputClass:
         else:
             same = True
             for key, value in self.__dict__.items():
-                if same:
+                if not isinstance(other.__dict__[key], type(value)):
+                    return False
+                elif same:
                     if isinstance(value, float):
                         same = np.isclose(value, other.__dict__[key])
                     elif isinstance(value, tuple):
@@ -63,14 +65,14 @@ class InputClass:
     def cdf(self, v):
         pass
     
-    def generate1d(self, npackets, randgen):
+    def generate1d(self, n_packets, randgen):
         """Compute random deviates from arbitrary 1D distribution.
         f_x does not need to integrate to 1. The function normalizes the
         distribution. Uses Transformation method (Numerical Recipes, 7.3.2)
 
         Parameters
         ----------
-        npackets : int
+        n_packets : int
             The number of random deviates to compute
 
         randgen : numpy.random._generator.Generator
@@ -81,9 +83,9 @@ class InputClass:
         numpy array of length num chosen from the distribution f_x.
         """
         rng = NumericalInversePolynomial(self, random_state=randgen)
-        return rng.rvs(npackets)
+        return rng.rvs(n_packets)
     
-    def generate_sphere(self, npackets, randgen):
+    def generate_sphere(self, n_packets, randgen):
         """Create random deviates (longitude, latitude) from a distribution on a sphere
         
         Uses the rejection mechanism to choose random points on the surface
@@ -92,17 +94,17 @@ class InputClass:
         a sphere. Also, the probability distribution function (pdf) in the
         distribution class must vary between 0 and 1
         """
-        longitude, latitude = np.zeros(npackets)*u.rad, np.zeros(npackets)*u.rad
+        longitude, latitude = np.zeros(n_packets)*u.rad, np.zeros(n_packets)*u.rad
         ct = 0
-        while ct < npackets:
-            u_lon = randgen.random(npackets) * 2*np.pi * u.rad
-            u_sinlat = (randgen.random(npackets) * 2 - 1)
-            u_f = randgen.random(npackets)
+        while ct < n_packets:
+            u_lon = randgen.random(n_packets) * 2*np.pi * u.rad
+            u_sinlat = (randgen.random(n_packets) * 2 - 1)
+            u_f = randgen.random(n_packets)
             
             good = u_f < self.pdf(u_lon, u_sinlat)
             ng = sum(good)
             if ng > 0:
-                ept = np.min([ct+ng, npackets])
+                ept = np.min([ct+ng, n_packets])
                 longitude[ct:ept] = u_lon[good][:ept-ct]
                 latitude[ct:ept] = np.arcsin(u_sinlat[good][:ept-ct]) * u.rad
                 ct += ng
@@ -123,12 +125,13 @@ class InputClass:
         np.ndarray of x, y, z normalized to the unit sphere
         """
         x0 = np.cos(longitude) * np.cos(latitude)
-        y0 = np.sin(longitude) * np.cos(latitude)
+        y0 = -np.sin(longitude) * np.cos(latitude)
         z0 = np.sin(latitude)
         return np.array([x0, y0, z0])
 
     def xyz_to_lonlat(self, x, y, z):
-        longitude = (np.arctan2(y, x) + 2*np.pi*u.rad) % (2*np.pi * u.rad)
+        print('Not tested')
+        longitude = (np.arctan2(-y, x) + 2*np.pi*u.rad) % (2*np.pi * u.rad)
         latitude = np.arcsin(z/np.sqrt(x**2 + y**2 + z**2))
         local_time = (longitude * 24*u.hr/(2*np.pi*u.rad) + 12*u.hr) % (24*u.hr)
         
@@ -164,10 +167,10 @@ class InputClass:
         
         return V0
 
-    def insert(self):
-        database = DatabaseOperations()
-        database.insert_parts(self)
-        
+    # def insert(self):
+    #     database = DatabaseOperations()
+    #     database.insert_parts(self)
+    
     def query(self):
         """Find matching records in the database
         

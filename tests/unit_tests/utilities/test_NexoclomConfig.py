@@ -1,12 +1,12 @@
 import os
 import pytest
-from nexoclom2 import __path__
+from nexoclom2 import path
 from nexoclom2.utilities.NexoclomConfig import NexoclomConfig
 from nexoclom2.utilities.exceptions import ConfigfileError
 
 
 user = 'mburger'
-datapath = os.path.join(os.path.dirname(__path__[0]), 'tests', 'test_data',
+datapath = os.path.join(os.path.dirname(path), 'tests', 'test_data',
                         'configfiles')
 configfiles = [os.path.join(datapath, conf) if conf is not None else None
                for conf in ['nexoclom2a', 'nexoclom2b', 'nexoclom2c', 'nexoclom2d',

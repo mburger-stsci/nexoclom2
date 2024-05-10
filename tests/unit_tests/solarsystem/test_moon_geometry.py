@@ -98,7 +98,7 @@ def test_moon_geometry_runtime0(planet_):
         #     ax[a].xaxis.set_major_locator(ticker.MultipleLocator(90))
         
         plt.tight_layout()
-        plt.savefig(f'moon_geometry_{planet_}_{moon}_run0.png')
+        plt.savefig(f'figures/moon_geometry_{planet_}_{moon}_run0.png')
         plt.close()
         
 @pytest.mark.solarsystem
@@ -185,7 +185,7 @@ def test_moon_geometry(planet_):
         #     ax[a].xaxis.set_major_locator(ticker.MultipleLocator(90))
         
         plt.tight_layout()
-        plt.savefig(f'moon_geometry_{planet_}_{moon}.png')
+        plt.savefig(f'figures/moon_geometry_{planet_}_{moon}.png')
         plt.close()
  
 
@@ -232,7 +232,7 @@ def test_planet_subsolarlong(planet_):
     ax[1].legend()
 
     plt.tight_layout()
-    plt.savefig(f'subsolar_longitude_{planet_}.png')
+    plt.savefig(f'figures/subsolar_longitude_{planet_}.png')
     plt.close()
     
     # assert np.all(np.isclose(subslong_time, subslong_notime, atol=0.2))
