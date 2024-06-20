@@ -135,6 +135,11 @@ class DatabaseOperations:
             return None
         else:
             return result[0].doc_id
+        
+    def delete_inputs(self, doc_id):
+        with TinyDB(self.db_path) as db:
+            table = db.table('inputs')
+            table.remove(doc_ids=[doc_id])
     
     # def get(self, tablename: str, doc_id: int) -> Document:
     #     """Return a record from a database table

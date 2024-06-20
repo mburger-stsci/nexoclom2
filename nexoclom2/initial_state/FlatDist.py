@@ -29,7 +29,7 @@ class FlatDistribution(InputClass):
         else:
             self.type = 'flat'
             v0 = float(sparam.get('v0', 0.))
-            v1 = float(sparam.get('v0', 10.))
+            v1 = float(sparam.get('v1', 10.))
             self.v0 = np.min([v0, v1]) * u.km/u.s
             self.v1 = np.max([v0, v1]) * u.km/u.s
     
@@ -60,7 +60,6 @@ class FlatDistribution(InputClass):
             pass
         
         if self.v0 == self.v1:
-            return np.zeros(n_packets) + self.v0
+            return np.zeros(n_packets)*self.v0.unit + self.v0.value
         else:
-            # Use a surface temperature map
             return self.v0 + randgen.random(n_packets) * (self.v1 - self.v0)
