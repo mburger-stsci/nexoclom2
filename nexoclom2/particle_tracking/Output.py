@@ -65,19 +65,20 @@ class Output:
         
         # Check to see what's already been run
         existing = inputs.search()
-        if overwrite and (existing is not None):
+        
+        if overwrite or (existing is None):
             self.remove(existing)
-        else:
-            pass
-            
-        if existing is not None:
-            self.savefile = self.make_savefile(existing)
-            with pd.HDFStore(self.savefile) as store:
-                n_existing = store.starting_point.shape[0]
-                self.n_iterations = store.starting_point.integration_number.max() + 1
-        else:
+            db = DatabaseOperations()
+            self.doc_id = db.insert_inputs(self.inputs)
+            self.savefile = self.make_savefile(self.doc_id)
             n_existing = 0
             self.n_iterations = 0
+        else:
+            self.savefile = self.make_savefile(existing)
+            self.doc_id = existing
+            with pd.HDFStore(self.savefile) as store:
+                n_existing = store.starting_point.shape[0]
+                self.n_iterations = store.starting_point.iteration_number.max() + 1
         
         self.randgen = np.random.default_rng(seed)
         self.n_packets = int(n_packets - n_existing)
@@ -108,55 +109,50 @@ class Output:
                 print(f'Running {n_iterations} iterations of {self.n_packets} each')
                 
             for it_number in range(int_start, int_start+n_iterations):
-                self.starting_point, self.initial_state = self.source_distribution()
+                starting_point, initial_state = self.source_distribution()
             
-                r_sun = self.objects[self.inputs.geometry.planet].r_sun(self.starting_point.time)
-                vr_sun = self.objects[self.inputs.geometry.planet].drdt_sun(self.starting_point.time)
+                r_sun = self.objects[self.inputs.geometry.planet].r_sun(starting_point.time)
+                vr_sun = self.objects[self.inputs.geometry.planet].drdt_sun(starting_point.time)
                 
-                self.starting_point.loc[:, 'r_sun'] = r_sun
-                self.starting_point.loc[:, 'vr_sun'] = vr_sun
+                starting_point.loc[:, 'r_sun'] = r_sun
+                starting_point.loc[:, 'vr_sun'] = vr_sun
                 
-                assert np.all(np.logical_not(self.starting_point.isna()))
-                assert np.all(np.logical_not(self.initial_state.isna()))
+                assert np.all(np.logical_not(starting_point.isna()))
+                assert np.all(np.logical_not(initial_state.isna()))
                 
+                print(self.savefile)
+                start_time = Time.now()
+                starting_point['start_time'] = start_time.mjd
+                starting_point['iteration_number'] = it_number
+                initial_state['start_time'] = start_time.mjd
+                initial_state['iteration_number'] = it_number
+                with pd.HDFStore(self.savefile) as store:
+                    store.append('starting_point', starting_point)
+                    store.append('initial_state', initial_state)
+            
                 # At this point it is assumed that all numbers are in the correct units
                 if run_model:
-                    start_time = Time.now()
                     print(f'{start_time.iso}: Starting iteration {it_number+1} '
                           f'of {n_iterations}')
-                    self.final_state = Integrator().integrate(self)
+        
+                    variable_step = self.inputs.options.step_size.value == 0
+                    if variable_step:
+                        Integrator().integrate_variable(self, initial_state,
+                                                        start_time.mjd, it_number)
+                    else:
+                        Integrator().integrate_constant(self, initial_state,
+                                                        start_time.mjd, it_number)
+                        
                     end_time = Time.now()
-                    
-                    # Adding start and end times to DataFrames to avoid packet number confusion
-                    self.starting_point['start_time'] = start_time.mjd
-                    self.initial_state['start_time'] = start_time.mjd
-                    self.final_state['start_time'] = start_time.mjd
-                    
-                    self.starting_point['end_time'] = end_time.mjd
-                    self.initial_state['end_time'] = end_time.mjd
-                    self.final_state['end_time'] = end_time.mjd
-                    
-                    self.starting_point['iteration_number'] = it_number
-                    self.initial_state['iteration_number'] = it_number
-                    self.final_state['iteration_number'] = it_number
-                    
-                    doc_id = self.save()
-                    
                     print(f'End Time: {end_time.iso}')
                     print(f'Elapsed Time: {(end_time - start_time).quantity_str}')
                     
-                    self.__delattr__('starting_point')
-                    self.__delattr__('initial_state')
-                    self.__delattr__('final_state')
+                    del starting_point, initial_state
+                    
                 else:
-                    pass
-            
-        store = pd.HDFStore(self.savefile)
-        self.starting_point = store.starting_point
-        self.initial_state = store.initial_state
-        self.final_state = store.final_state
-        store.close()
-        
+                    with pd.HDFStore(self.savefile) as store:
+                        store.append('final_state', initial_state*0.)
+
     def initialize_objects(self):
         self.objects = {obj: SSObject(obj)
                           for obj in self.inputs.geometry.included}
@@ -210,38 +206,30 @@ class Output:
             assert False, 'Should not be able to get here'
 
         initial_state['time'] = starting_point['time']
-        starting_point.attrs['time'] = u.s
-        initial_state.attrs['time'] = u.s
         
         # Starting fraction for each packet
         starting_point.loc[:, 'frac'] = np.ones(self.n_packets)
         initial_state.loc[:, 'frac'] = np.ones(self.n_packets)
         
+        # Exobase needs to be included in the choose_points() method
         X0, lon, lat, loctime = self.inputs.spatialdist.choose_points(
             self.n_packets, self.randgen)
-        if hasattr(self.inputs.spatialdist, 'exobase'):
-            exobase = (self.inputs.spatialdist.exobase *
-                       self.objects[self.inputs.geometry.startpoint].radius)
-            X0 = X0 * exobase
-        else:
-            pass
+        
+        radius = self.objects[self.inputs.geometry.startpoint].radius.to(self.unit)
         
         # Initial spatial distribution
         starting_point.loc[:, 'x'] = X0[0,:]
         starting_point.loc[:, 'y'] = X0[1,:]
         starting_point.loc[:, 'z'] = X0[2,:]
         starting_point.loc[:, 'r'] = np.linalg.norm(X0, axis=0)
-        starting_point.attrs['distance_unit'] = self.unit
         
-        initial_state.loc[:, 'x'] = X0[0,:].to(self.unit)
-        initial_state.loc[:, 'y'] = X0[1,:].to(self.unit)
-        initial_state.loc[:, 'z'] = X0[2,:].to(self.unit)
-        initial_state.attrs['distance_unit'] = self.unit
+        initial_state.loc[:, 'x'] = X0[0,:] * radius
+        initial_state.loc[:, 'y'] = X0[1,:] * radius
+        initial_state.loc[:, 'z'] = X0[2,:] * radius
         
         # Initial speed distribution
         v0 = self.inputs.speeddist.choose_points(self.n_packets, self.randgen)
         starting_point.loc[:, 'v'] = v0
-        starting_point.attrs['velocity_unit'] = self.unit/u.s
         
         # Initial velocity distribution
         alt, az = self.inputs.angulardist.choose_points(self.n_packets, self.randgen)
@@ -253,14 +241,12 @@ class Output:
         initial_state.loc[:, 'vx'] = V0[0, :].to(self.unit/u.s)
         initial_state.loc[:, 'vy'] = V0[1, :].to(self.unit/u.s)
         initial_state.loc[:, 'vz'] = V0[2, :].to(self.unit/u.s)
-        initial_state.attrs['velocity_unit'] = self.unit/u.s
         
         starting_point.loc[:, 'longitude'] = lon
         starting_point.loc[:, 'latitude'] = lat
         starting_point.loc[:, 'local_time'] = loctime
         starting_point.loc[:, 'altitude'] = alt
         starting_point.loc[:, 'azimuth'] = az
-        starting_point.attrs['angle_unit'] = lat.unit
         
         # Rotate everything to proper position for running the model
         if self.inputs.geometry.planet != self.inputs.geometry.startpoint:
@@ -316,23 +302,28 @@ class Output:
          
         return str(savefile)
     
-    def save(self):
-        db = DatabaseOperations()
-        doc_id = db.insert_inputs(self.inputs)
-        
-        self.savefile = self.make_savefile(doc_id)
-        store = pd.HDFStore(self.savefile)
-        store.append('starting_point', self.starting_point)
-        store.append('initial_state', self.initial_state)
-        store.append('final_state', self.final_state)
-        self.n_packets = store.starting_point.shape[0]
-        store.close()
-        
-        return doc_id
-
     def remove(self, doc_id):
-        savefile = self.make_savefile(doc_id)
-        if os.path.exists(savefile):
-            os.remove(savefile)
-        db = DatabaseOperations()
-        db.delete_inputs(doc_id)
+        if doc_id is not None:
+            savefile = self.make_savefile(doc_id)
+            if os.path.exists(savefile):
+                os.remove(savefile)
+            db = DatabaseOperations()
+            db.delete_inputs(doc_id)
+
+    def starting_point(self):
+        with pd.HDFStore(self.savefile) as store:
+            starting_point = store['starting_point']
+        
+        return starting_point
+    
+    def initial_state(self):
+        with pd.HDFStore(self.savefile) as store:
+            initial_state = store['initial_state']
+        
+        return initial_state
+    
+    def final_state(self):
+        with pd.HDFStore(self.savefile) as store:
+            final_state = store['final_state']
+        
+        return final_state

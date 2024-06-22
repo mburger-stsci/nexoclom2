@@ -1,10 +1,11 @@
 import os
+import shutil
 import sys
 import numpy as np
 import pandas as pd
 import pytest
 import astropy.units as u
-from nexoclom2 import Input, Output, path, SSObject
+from nexoclom2 import Input, Output, path, SSObject, NexoclomConfig
 
 sys.path.append(os.path.join(os.path.dirname(path), 'tests', 'test_data',
                              'inputfiles'))
@@ -20,6 +21,11 @@ inputparams = [{'Geometry': 2, 'Options': 2, 'Forces': 0, 'SpatialDist': 0,
                # {'Geometry': 0, 'Options': 1, 'Forces': 0, 'SpatialDist': 0},
                # {'Geometry': 2, 'Options': 1, 'Forces': 0, 'SpatialDist': 0},
 
+
+config = NexoclomConfig()
+if os.path.exists(config.savepath):
+    shutil.rmtree(config.savepath)
+os.makedirs(config.savepath)
 
 @pytest.mark.particle_tracking
 def test_setup():
@@ -38,7 +44,7 @@ def test_radial_ejection_rotation():
     inputs = choose_inputs({'Geometry': 0,  # Start at Io
                             'angulardist': 0,
                             'speeddist': 0})  # Radial
-    inputs.options.runtime = 3600*20
+    inputs.options.runtime = 3600*20*u.s
     inputs.geometry.phi[inputs.geometry.startpoint] = np.pi/2*u.rad
     output = Output(inputs, 1000, run_model=False)
     spoint = output.objects[inputs.geometry.startpoint]
@@ -47,7 +53,7 @@ def test_radial_ejection_rotation():
     assert (spoint.subsolar_longitude(0)*u.rad ==
             inputs.geometry.phi[inputs.geometry.startpoint])
     
-    x0 = output.starting_point.copy()
+    x0 = output.initial_state()
     
     # Starting conditions for moon
     moonx = spoint.x_planet(x0.time)
@@ -85,9 +91,11 @@ def test_radial_ejection_rotation():
     #              x0.z.apply(lambda x: float(x))**2)
     v0 = np.sqrt(x0.vx**2 + x0.vy**2 + x0.vz**2)
     assert np.all(np.isclose(dot/r0/v0, 1))
-    assert np.all(np.isclose(r0, output.inputs.spatialdist.exobase.value))
+    
+    exobase = output.inputs.spatialdist.exobase * spoint.radius
+    assert np.all(np.isclose(r0, exobase.value))
     assert np.all(np.isclose(v0*output.unit.to(u.km),
-                             output.initial_state.v))
+                             output.starting_point().v))
     
     
 io = SSObject('Io')
@@ -142,8 +150,8 @@ def test_surface_position_rotation(num):
     inputs.spatialdist.longitude = (row.lon0*u.rad, row.lon0*u.rad)
     inputs.spatialdist.latitude = (row.lat0*u.rad, row.lat0*u.rad)
     output = Output(inputs, 10, run_model=False)
-    x0 = output.starting_point
-    init = output.initial_state
+    x0 = output.initial_state()
+    init = output.starting_point()
     
     assert np.all(np.isclose(x0.x, row.x))
     assert np.all(np.isclose(x0.y, row.y))
@@ -158,7 +166,7 @@ if __name__ == '__main__':
         test_setup()
 
     test_radial_ejection_rotation()
-    
+   
     test_surface_position_rotation(8)
     for i in range(len(correct)):
         test_surface_position_rotation(i)

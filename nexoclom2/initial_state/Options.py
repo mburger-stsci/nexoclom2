@@ -51,7 +51,6 @@ class Options(InputClass):
         if isinstance(options, Document):
             self.runtime = self.runtime * u.s
             self.step_size = self.step_size * u.s
-            
         else:
             if 'runtime' in options:
                 try:

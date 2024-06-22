@@ -16,19 +16,24 @@ Test Cases
 (3) Starting at moon, variable step size
 """
 import os
+import shutil
 import numpy as np
 import sys
 import pytest
 import astropy.units as u
 import hypothesis as hypo
 import hypothesis.strategies as st
-from nexoclom2 import Input, Output, path, SSObject
+from nexoclom2 import Input, Output, path, SSObject, NexoclomConfig
 import matplotlib.pyplot as plt
 
 sys.path.append(os.path.join(os.path.dirname(path), 'tests', 'test_data',
                              'inputfiles'))
 from choose_inputfile import choose_inputs
 
+config = NexoclomConfig()
+if os.path.exists(config.savepath):
+    shutil.rmtree(config.savepath)
+os.makedirs(config.savepath)
 
 # inputparams = {'Forces': 0, 'SpatialDist': 0, 'SurfaceInteraction': 0,
 #                'SpeedDist': 0}
@@ -47,35 +52,33 @@ def compute_energy(packets, planet):
     return packets
 
 @pytest.mark.particle_tracking
-# @hypo.given(geometry=st.sampled_from((0, 1, 2, 3, 4, 5)),
-#             options=st.sampled_from((1, 2)))
+@hypo.given(geometry=st.sampled_from((0, 1, 2, 3, 4, 5)),
+            options=st.sampled_from((1, 2)))
+@hypo.settings(deadline=None)
 def test_energy_conserve(geometry, options):
-# def test_energy_conserve():
     inputparams = {'Forces': 0, 'SpatialDist': 0, 'SurfaceInteraction': 0,
-                   'SpeedDist': 0, 'Geometry': 2, 'Options': 1}
-
-    # inputparams['geometry'] = geometry
-    # inputparams['options'] = options
+                   'SpeedDist': 0, 'Geometry': geometry, 'Options': options}
 
     inputs = choose_inputs(inputparams)
     inputs.forces.radpres = False
     inputs.forces.gravity = True
     inputs.speeddist.v0 = 0.1*u.km/u.s
-    inputs.spatialdist.v1 = 10*u.km/u.s
-    print(inputs.options.step_size)
+    inputs.speeddist.v1 = 10*u.km/u.s
     
     output = Output(inputs, 1000)
     planet = output.objects[inputs.geometry.planet]
     start_at_planet = inputs.geometry.planet != inputs.geometry.startpoint
+
     if not start_at_planet:
         startpoint = output.objects[inputs.geometry.startpoint]
     else:
         startpoint = planet
     
     # Test energy conservation
-    initial_state = compute_energy(output.initial_state.copy(), planet)
-    final_state = compute_energy(output.final_state[output.final_state.frac > 0].copy(),
-                                 planet)
+    init, final = output.initial_state(), output.final_state()
+    final = final[final.frac > 0]
+    initial_state = compute_energy(init, planet)
+    final_state = compute_energy(final, planet)
     
     # plt.ion()
     # for i in range(100):
@@ -95,4 +98,4 @@ def test_energy_conserve(geometry, options):
         assert np.all(grouped.energy.min() == grouped.energy.max())
 
 if __name__ == '__main__':
-    test_energy_conserve(1, 1)
+    test_energy_conserve(0, 1)

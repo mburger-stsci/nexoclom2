@@ -97,6 +97,7 @@ class DatabaseOperations:
                         table = db.table(part.__name__)
                         table.insert(cleaned)
                         id_num = part.query()
+                    
                     assert id_num is not None
                 else:
                     pass

@@ -12,5 +12,5 @@ angulardist.type = radial
 
 options.runtime =  50000
 options.species = Na
-options.outer_edge = 100
+options.outer_edge = 20
 options.step_size = 30

@@ -60,6 +60,6 @@ class FlatDistribution(InputClass):
             pass
         
         if self.v0 == self.v1:
-            return np.zeros(n_packets)*self.v0.unit + self.v0.value
+            return np.zeros(n_packets)*self.v0.unit + self.v0
         else:
             return self.v0 + randgen.random(n_packets) * (self.v1 - self.v0)

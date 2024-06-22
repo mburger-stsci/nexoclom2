@@ -7,12 +7,12 @@ license = "BSD 3-Clause"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.11,<3.13"
+python = ">=3.12,<4"
 numpy = "^1.26"
 dask = "^2024"
 scipy = "^1.11.1"
-astropy = "^6.0.0"
-#pandas = {version="^2", extras=["performance", "computation", "parquet", "feather"]}
+astropy = "^6.1"
+pandas = {version="^2", extras=["performance", "computation", "parquet", "feather"]}
 tinydb = "^4.8.0"
 dash = "^2.11.0"
 ipython = "^8.14.0"
@@ -35,6 +35,9 @@ numpydoc = "^1.6.0"
 pyarrow = "^14.0.1"
 statsmodels = "^0"
 h5py = "^3.11.0"
+pytables = "^3.9.2"
+
+
 
 [build-system]
 requires = ["poetry-core"]

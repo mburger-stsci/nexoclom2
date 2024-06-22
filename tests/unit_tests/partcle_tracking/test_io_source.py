@@ -45,10 +45,10 @@ def test_io_source():
         
         io = output.objects['Io']
         
-        q = output.final_state.frac > 0
-        if q.any():
-            ax.scatter(output.final_state.loc[q, 'x'],
-                       output.final_state.loc[q, 'y'], s=1)
+        final = output.final_state()
+        final = final[final.frac > 0]
+        if len(final) > 0:
+            ax.scatter(final.x, final.y, s=1)
             ax.set_aspect('equal')
             ax.set_xlim((-10, 10))
             ax.set_ylim((-10, 10))
@@ -57,18 +57,17 @@ def test_io_source():
             ax.scatter(-np.cos(phi)*io.a.value, -np.sin(phi)*io.a.value, color='black')
             plt.savefig('Io_test.png')
             
-        if final_state is None:
-            final_state = output.final_state
-            # starting_point = output.starting_point
-            # initial_state = output.initial_state
-        else:
-            final_state = pd.concat([final_state,
-                                     output.final_state[output.final_state.frac > 0]])
-            # starting_point = pd.concat([starting_point, output.starting_point])
-            # initial_state = pd.concat([initial_state, output.initial_state])
-    
-        del output
+            if final_state is None:
+                final_state = final
+                # starting_point = output.starting_point
+                # initial_state = output.initial_state
+            else:
+                final_state = pd.concat([final_state, final])
+                # starting_point = pd.concat([starting_point, output.starting_point])
+                # initial_state = pd.concat([initial_state, output.initial_state])
         
+            del output
+            
     final_state.to_pickle('io_test.pkl')
     plt.close()
     
@@ -85,12 +84,6 @@ def test_io_source():
     ax.scatter(-np.cos(phi)*io.a.value, -np.sin(phi)*io.a.value, color='black')
     plt.savefig('Io_test.png')
 
-    from inspect import currentframe, getframeinfo
-    frameinfo = getframeinfo(currentframe())
-    print(frameinfo.filename, frameinfo.lineno)
-    from IPython import embed; embed()
-    import sys; sys.exit()
-    
 
 if __name__ == '__main__':
     test_io_source()

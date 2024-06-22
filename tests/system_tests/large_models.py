@@ -1,17 +1,23 @@
 import os
+import shutil
 import numpy as np
+import pandas as pd
 import pytest
-from nexoclom2 import Input, Output, path
+from nexoclom2 import Input, Output, path, NexoclomConfig
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
 
 
 def test_large_models(planet):
+    print(planet)
     inputfile = os.path.join(os.path.dirname(path), 'tests', 'test_data',
                              'inputfiles', f'{planet}_basic.input')
     inputs = Input(inputfile)
-    output = Output(inputs, 1e6, overwrite=True, n_iterations=10)
-    final = output.final_state
+    print(inputs.options.step_size)
+    output = Output(inputs, 1e6, overwrite=False, n_iterations=10)
+    # output = Output(inputs, 1e5, overwrite=True, n_iterations=10)
+    
+    final = output.final_state()
     
     if planet == 'Mercury':
         x = np.linspace(-15, 5, 1001)
@@ -35,7 +41,6 @@ def test_large_models(planet):
                 output.objects['Europa'].a.to(output.unit).value * yc, color='red')
     ax.set_aspect('equal')
     
-    plt.savefig(f'{planet}_basic.png')
     
 if __name__ == '__main__':
     for planet in ('Mercury', 'Io'):

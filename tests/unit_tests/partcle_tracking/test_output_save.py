@@ -10,7 +10,6 @@ sys.path.append(os.path.join(os.path.dirname(path), 'tests', 'test_data',
 from choose_inputfile import choose_inputs
 
 config = NexoclomConfig()
-db_path = os.path.join(config.savepath, config.database)
 if os.path.exists(config.savepath):
     shutil.rmtree(config.savepath)
     
@@ -23,9 +22,9 @@ def test_save_retrieve():
     output1 = Output(inputs, 200)
     output = Output(inputs, 200)
     
-    assert np.all(output1.starting_point.values == output.starting_point.values)
-    assert np.all(output1.initial_state.values == output.initial_state.values)
-    assert np.all(output1.final_state.values == output.final_state.values)
+    assert np.all(output1.starting_point().values == output.starting_point().values)
+    assert np.all(output1.initial_state().values == output.initial_state().values)
+    assert np.all(output1.final_state().values == output.final_state().values)
     
 
 if __name__ == '__main__':
