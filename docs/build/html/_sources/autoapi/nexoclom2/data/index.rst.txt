@@ -1,0 +1,29 @@
+nexoclom2.data
+==============
+
+.. py:module:: nexoclom2.data
+
+.. autoapi-nested-parse::
+
+   
+   nexoclom.inputs package
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+

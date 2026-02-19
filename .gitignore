@@ -25,7 +25,6 @@ MANIFEST
 
 # Sphinx
 docs/api
-docs/_build
 
 # Eclipse editor project files
 .project
@@ -43,7 +42,6 @@ docs/_build
 *.egg
 *.egg-info
 dist
-build
 eggs
 parts
 bin

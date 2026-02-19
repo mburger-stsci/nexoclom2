@@ -1,0 +1,357 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nexoclom2.utilities package &mdash; nexoclom2 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/stsci.css?v=d876f643" />
+      <link rel="stylesheet" type="text/css" href="../_static/stsci.css?v=d876f643" />
+
+  
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> nexoclom2
+            
+            <img src="../_static/stsci_pri_combo_mark_white.png" class="logo" />
+          </a>
+
+          
+            
+            
+          
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+  
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nexoclom2/NEXOCLOM_Requirements_Document.html">NEXOCLOM Goals and Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nexoclom2/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nexoclom2/TestCases.html">NEXOCLOM Test Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nexoclom2/inputfiles.html">Input File Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nexoclom2/planet_distance.html">Solar System Geometries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nexoclom2/coordinate_systems.html">Planetary Coordinate Systems and System Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nexoclom2/surface_interaction.html">Interactions between incident atoms and surfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nexoclom2/lossrates.html">Neutral Loss Rates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nexoclom2/integrator.html">Runge-Kutta Integrator &amp; The Equations of Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nexoclom2/atomicdata.html">Atomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nexoclom2/particle_tracking.html">Particle Tracking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nexoclom2/references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nexoclom2/api.html">API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nexoclom2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">nexoclom2.utilities package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/apidocs/nexoclom2.utilities.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nexoclom2-utilities-package">
+<h1>nexoclom2.utilities package<a class="headerlink" href="#nexoclom2-utilities-package" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-nexoclom2.utilities.NexoclomConfig">
+<span id="nexoclom2-utilities-nexoclomconfig-module"></span><h2>nexoclom2.utilities.NexoclomConfig module<a class="headerlink" href="#module-nexoclom2.utilities.NexoclomConfig" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="nexoclom2.utilities.NexoclomConfig.NexoclomConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nexoclom2.utilities.NexoclomConfig.</span></span><span class="sig-name descname"><span class="pre">NexoclomConfig</span></span><a class="headerlink" href="#nexoclom2.utilities.NexoclomConfig.NexoclomConfig" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Configuration object based on the nexoclom2 configuration file.</p>
+<p>The config file can be set with the environment variable <cite>NEXCOCLOMCONFIG</cite>.
+The default value is <code class="docutils literal notranslate"><span class="pre">$HOME/.nexoclom2</span></code>.</p>
+<p>Each line in the nexoclom configuration file should be in the form
+<code class="docutils literal notranslate"><span class="pre">key</span> <span class="pre">=</span> <span class="pre">value</span></code> where the keys are highlighed below. Configuration
+settings for nexoclom2 extensions (such as for working with speficic
+instrument data) can also be placed here. All lines in the file with the
+proper format are included in the returned object.</p>
+<p><code class="docutils literal notranslate"><span class="pre">savepath</span></code>: Top-level path on disk where all model output is saved (Required)</p>
+<p><code class="docutils literal notranslate"><span class="pre">database</span></code>: Name of the TinyDB database file (Optional). Defaults to
+<code class="docutils literal notranslate"><span class="pre">thesolarsystemmb.db</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">user</span></code>: username (Required if not set as an environment variable).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>None</strong></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>configfile: str</strong></dt><dd><p>Name of configuration file used.</p>
+</dd>
+<dt><strong>savepath: str</strong></dt><dd><p>Top-level path on disk where all model output is saved.</p>
+</dd>
+<dt><strong>database: str</strong></dt><dd><p>Name of the TinyDB database file modelresults are cataloged in.</p>
+</dd>
+<dt><strong>user: str</strong></dt><dd><p>User’s username on the system.</p>
+</dd>
+<dt><strong>other: str</strong></dt><dd><p>Other configuration settings can be included.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>ConfigfileError</dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">NEXOCLOMCONFIG</span></code> environment variable not set or a required
+parameter in the configuration file is not given</p>
+</dd>
+<dt>FileNotFoundError</dt><dd><p>If the configuration file is not found</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#nexoclom2.utilities.exceptions.ConfigfileError" title="nexoclom2.utilities.exceptions.ConfigfileError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nexoclom2.utilities.exceptions.ConfigfileError</span></code></a></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<p>For a configuration file in <code class="docutils literal notranslate"><span class="pre">$HOME/.nexoclom2</span></code> containing the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">savepath</span> <span class="o">=</span> <span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="n">mburger</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">ModelData</span>
+<span class="n">database</span> <span class="o">=</span> <span class="n">thesolarsystemmb</span><span class="o">.</span><span class="n">db</span>
+<span class="n">mesdatapath</span> <span class="o">=</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">mburger</span><span class="o">/</span><span class="n">Work</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">MESSENGER</span><span class="o">/</span><span class="n">UVVS</span>
+<span class="n">mesdatabase</span> <span class="o">=</span> <span class="n">messengeruvvsdb</span>
+</pre></div>
+</div>
+<p>In Python:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">NexoclomConfig</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="go">configfile = /Users/mburger/.nexoclom2_dev</span>
+<span class="go">savepath = /Volumes/nexoclom_output/modeloutputs2_dev</span>
+<span class="go">database = thesolarsystemmb_dev.db</span>
+<span class="go">user = mburger</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Authors<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Matthew Burger</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.utilities.NexoclomConfig.NexoclomConfig.__dict__">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'nexoclom2.utilities.NexoclomConfig',</span> <span class="pre">'__firstlineno__':</span> <span class="pre">9,</span> <span class="pre">'__doc__':</span> <span class="pre">&quot;Configuration</span> <span class="pre">object</span> <span class="pre">based</span> <span class="pre">on</span> <span class="pre">the</span> <span class="pre">nexoclom2</span> <span class="pre">configuration</span> <span class="pre">file.\n\nThe</span> <span class="pre">config</span> <span class="pre">file</span> <span class="pre">can</span> <span class="pre">be</span> <span class="pre">set</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">environment</span> <span class="pre">variable</span> <span class="pre">`NEXCOCLOMCONFIG`.\nThe</span> <span class="pre">default</span> <span class="pre">value</span> <span class="pre">is</span> <span class="pre">``$HOME/.nexoclom2``.\n\nEach</span> <span class="pre">line</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">nexoclom</span> <span class="pre">configuration</span> <span class="pre">file</span> <span class="pre">should</span> <span class="pre">be</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">form\n``key</span> <span class="pre">=</span> <span class="pre">value``</span> <span class="pre">where</span> <span class="pre">the</span> <span class="pre">keys</span> <span class="pre">are</span> <span class="pre">highlighed</span> <span class="pre">below.</span> <span class="pre">Configuration\nsettings</span> <span class="pre">for</span> <span class="pre">nexoclom2</span> <span class="pre">extensions</span> <span class="pre">(such</span> <span class="pre">as</span> <span class="pre">for</span> <span class="pre">working</span> <span class="pre">with</span> <span class="pre">speficic\ninstrument</span> <span class="pre">data)</span> <span class="pre">can</span> <span class="pre">also</span> <span class="pre">be</span> <span class="pre">placed</span> <span class="pre">here.</span> <span class="pre">All</span> <span class="pre">lines</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">file</span> <span class="pre">with</span> <span class="pre">the\nproper</span> <span class="pre">format</span> <span class="pre">are</span> <span class="pre">included</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">returned</span> <span class="pre">object.\n\n``savepath``:</span> <span class="pre">Top-level</span> <span class="pre">path</span> <span class="pre">on</span> <span class="pre">disk</span> <span class="pre">where</span> <span class="pre">all</span> <span class="pre">model</span> <span class="pre">output</span> <span class="pre">is</span> <span class="pre">saved</span> <span class="pre">(Required)\n\n``database``:</span> <span class="pre">Name</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">TinyDB</span> <span class="pre">database</span> <span class="pre">file</span> <span class="pre">(Optional).</span> <span class="pre">Defaults</span> <span class="pre">to\n``thesolarsystemmb.db``.\n\n``user``:</span> <span class="pre">username</span> <span class="pre">(Required</span> <span class="pre">if</span> <span class="pre">not</span> <span class="pre">set</span> <span class="pre">as</span> <span class="pre">an</span> <span class="pre">environment</span> <span class="pre">variable).\n\nParameters\n----------\nNone\n\nAttributes\n----------\nconfigfile:</span> <span class="pre">str\n</span>&#160;&#160;&#160; <span class="pre">Name</span> <span class="pre">of</span> <span class="pre">configuration</span> <span class="pre">file</span> <span class="pre">used.\n</span>&#160;&#160;&#160; <span class="pre">\nsavepath:</span> <span class="pre">str\n</span>&#160;&#160;&#160; <span class="pre">Top-level</span> <span class="pre">path</span> <span class="pre">on</span> <span class="pre">disk</span> <span class="pre">where</span> <span class="pre">all</span> <span class="pre">model</span> <span class="pre">output</span> <span class="pre">is</span> <span class="pre">saved.\n</span>&#160;&#160;&#160; <span class="pre">\ndatabase:</span> <span class="pre">str\n</span>&#160;&#160;&#160; <span class="pre">Name</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">TinyDB</span> <span class="pre">database</span> <span class="pre">file</span> <span class="pre">modelresults</span> <span class="pre">are</span> <span class="pre">cataloged</span> <span class="pre">in.\n</span>&#160;&#160;&#160; <span class="pre">\nuser:</span> <span class="pre">str\n</span>&#160;&#160;&#160; <span class="pre">User's</span> <span class="pre">username</span> <span class="pre">on</span> <span class="pre">the</span> <span class="pre">system.\n\nother:</span> <span class="pre">str\n</span>&#160;&#160;&#160; <span class="pre">Other</span> <span class="pre">configuration</span> <span class="pre">settings</span> <span class="pre">can</span> <span class="pre">be</span> <span class="pre">included.\n</span>&#160;&#160;&#160; <span class="pre">\nRaises\n------\nConfigfileError\n</span>&#160;&#160;&#160; <span class="pre">If</span> <span class="pre">``NEXOCLOMCONFIG``</span> <span class="pre">environment</span> <span class="pre">variable</span> <span class="pre">not</span> <span class="pre">set</span> <span class="pre">or</span> <span class="pre">a</span> <span class="pre">required\n</span>&#160;&#160;&#160; <span class="pre">parameter</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">configuration</span> <span class="pre">file</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">given\n</span>&#160;&#160;&#160; <span class="pre">\nFileNotFoundError\n</span>&#160;&#160;&#160; <span class="pre">If</span> <span class="pre">the</span> <span class="pre">configuration</span> <span class="pre">file</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">found\n</span>&#160;&#160;&#160; <span class="pre">\nSee</span> <span class="pre">Also\n--------\nnexoclom2.utilities.exceptions.ConfigfileError\n\nExamples\n--------\nFor</span> <span class="pre">a</span> <span class="pre">configuration</span> <span class="pre">file</span> <span class="pre">in</span> <span class="pre">``$HOME/.nexoclom2``</span> <span class="pre">containing</span> <span class="pre">the</span> <span class="pre">following::\n\n</span>&#160;&#160;&#160; <span class="pre">savepath</span> <span class="pre">=</span> <span class="pre">/user/mburger/Data/ModelData\n</span>&#160;&#160;&#160; <span class="pre">database</span> <span class="pre">=</span> <span class="pre">thesolarsystemmb.db\n</span>&#160;&#160;&#160; <span class="pre">mesdatapath</span> <span class="pre">=</span> <span class="pre">/Users/mburger/Work/Data/MESSENGER/UVVS\n</span>&#160;&#160;&#160; <span class="pre">mesdatabase</span> <span class="pre">=</span> <span class="pre">messengeruvvsdb\n\nIn</span> <span class="pre">Python:\n\n&gt;&gt;&gt;</span> <span class="pre">config</span> <span class="pre">=</span> <span class="pre">NexoclomConfig()\n&gt;&gt;&gt;</span> <span class="pre">print(config)\nconfigfile</span> <span class="pre">=</span> <span class="pre">/Users/mburger/.nexoclom2_dev\nsavepath</span> <span class="pre">=</span> <span class="pre">/Volumes/nexoclom_output/modeloutputs2_dev\ndatabase</span> <span class="pre">=</span> <span class="pre">thesolarsystemmb_dev.db\nuser</span> <span class="pre">=</span> <span class="pre">mburger\n\n:Authors:</span> <span class="pre">Matthew</span> <span class="pre">Burger\n&quot;,</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">NexoclomConfig.__init__&gt;,</span> <span class="pre">'__str__':</span> <span class="pre">&lt;function</span> <span class="pre">NexoclomConfig.__str__&gt;,</span> <span class="pre">'__repr__':</span> <span class="pre">&lt;function</span> <span class="pre">NexoclomConfig.__repr__&gt;,</span> <span class="pre">'__static_attributes__':</span> <span class="pre">('configfile',</span> <span class="pre">'database',</span> <span class="pre">'savepath',</span> <span class="pre">'user'),</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'NexoclomConfig'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'NexoclomConfig'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#nexoclom2.utilities.NexoclomConfig.NexoclomConfig.__dict__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.utilities.NexoclomConfig.NexoclomConfig.__firstlineno__">
+<span class="sig-name descname"><span class="pre">__firstlineno__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">9</span></em><a class="headerlink" href="#nexoclom2.utilities.NexoclomConfig.NexoclomConfig.__firstlineno__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.utilities.NexoclomConfig.NexoclomConfig.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.utilities.NexoclomConfig.NexoclomConfig.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.utilities.NexoclomConfig.NexoclomConfig.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'nexoclom2.utilities.NexoclomConfig'</span></em><a class="headerlink" href="#nexoclom2.utilities.NexoclomConfig.NexoclomConfig.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.utilities.NexoclomConfig.NexoclomConfig.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.utilities.NexoclomConfig.NexoclomConfig.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.utilities.NexoclomConfig.NexoclomConfig.__static_attributes__">
+<span class="sig-name descname"><span class="pre">__static_attributes__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('configfile',</span> <span class="pre">'database',</span> <span class="pre">'savepath',</span> <span class="pre">'user')</span></em><a class="headerlink" href="#nexoclom2.utilities.NexoclomConfig.NexoclomConfig.__static_attributes__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.utilities.NexoclomConfig.NexoclomConfig.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.utilities.NexoclomConfig.NexoclomConfig.__str__" title="Link to this definition">¶</a></dt>
+<dd><p>Return str(self).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.utilities.NexoclomConfig.NexoclomConfig.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#nexoclom2.utilities.NexoclomConfig.NexoclomConfig.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-nexoclom2.utilities.exceptions">
+<span id="nexoclom2-utilities-exceptions-module"></span><h2>nexoclom2.utilities.exceptions module<a class="headerlink" href="#module-nexoclom2.utilities.exceptions" title="Link to this heading">¶</a></h2>
+<p>Exceptions used in nexoclom</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="nexoclom2.utilities.exceptions.ConfigfileError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nexoclom2.utilities.exceptions.</span></span><span class="sig-name descname"><span class="pre">ConfigfileError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">configfile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.utilities.exceptions.ConfigfileError" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised when there is a configuration file problem</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.utilities.exceptions.ConfigfileError.__firstlineno__">
+<span class="sig-name descname"><span class="pre">__firstlineno__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">14</span></em><a class="headerlink" href="#nexoclom2.utilities.exceptions.ConfigfileError.__firstlineno__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.utilities.exceptions.ConfigfileError.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">configfile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.utilities.exceptions.ConfigfileError.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.utilities.exceptions.ConfigfileError.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'nexoclom2.utilities.exceptions'</span></em><a class="headerlink" href="#nexoclom2.utilities.exceptions.ConfigfileError.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.utilities.exceptions.ConfigfileError.__static_attributes__">
+<span class="sig-name descname"><span class="pre">__static_attributes__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('expression',</span> <span class="pre">'message')</span></em><a class="headerlink" href="#nexoclom2.utilities.exceptions.ConfigfileError.__static_attributes__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.utilities.exceptions.ConfigfileError.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#nexoclom2.utilities.exceptions.ConfigfileError.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="nexoclom2.utilities.exceptions.InputfileError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nexoclom2.utilities.exceptions.</span></span><span class="sig-name descname"><span class="pre">InputfileError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expression</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.utilities.exceptions.InputfileError" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised when a required parameter is not included</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.utilities.exceptions.InputfileError.__firstlineno__">
+<span class="sig-name descname"><span class="pre">__firstlineno__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#nexoclom2.utilities.exceptions.InputfileError.__firstlineno__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.utilities.exceptions.InputfileError.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expression</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.utilities.exceptions.InputfileError.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.utilities.exceptions.InputfileError.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'nexoclom2.utilities.exceptions'</span></em><a class="headerlink" href="#nexoclom2.utilities.exceptions.InputfileError.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.utilities.exceptions.InputfileError.__static_attributes__">
+<span class="sig-name descname"><span class="pre">__static_attributes__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('expression',</span> <span class="pre">'message')</span></em><a class="headerlink" href="#nexoclom2.utilities.exceptions.InputfileError.__static_attributes__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.utilities.exceptions.InputfileError.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#nexoclom2.utilities.exceptions.InputfileError.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="nexoclom2.utilities.exceptions.OutOfRangeError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nexoclom2.utilities.exceptions.</span></span><span class="sig-name descname"><span class="pre">OutOfRangeError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expression</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.utilities.exceptions.OutOfRangeError" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised when an value in an input file is out of specified range</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.utilities.exceptions.OutOfRangeError.__firstlineno__">
+<span class="sig-name descname"><span class="pre">__firstlineno__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">22</span></em><a class="headerlink" href="#nexoclom2.utilities.exceptions.OutOfRangeError.__firstlineno__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.utilities.exceptions.OutOfRangeError.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expression</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.utilities.exceptions.OutOfRangeError.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.utilities.exceptions.OutOfRangeError.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'nexoclom2.utilities.exceptions'</span></em><a class="headerlink" href="#nexoclom2.utilities.exceptions.OutOfRangeError.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.utilities.exceptions.OutOfRangeError.__static_attributes__">
+<span class="sig-name descname"><span class="pre">__static_attributes__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('expression',</span> <span class="pre">'message')</span></em><a class="headerlink" href="#nexoclom2.utilities.exceptions.OutOfRangeError.__static_attributes__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.utilities.exceptions.OutOfRangeError.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#nexoclom2.utilities.exceptions.OutOfRangeError.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.utilities.exceptions.OutOfRangeError.format_number">
+<span class="sig-name descname"><span class="pre">format_number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.utilities.exceptions.OutOfRangeError.format_number" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-nexoclom2.utilities">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-nexoclom2.utilities" title="Link to this heading">¶</a></h2>
+<p>Miscellaneous helper functions used by nexoclom2.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Matthew Burger.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+nexoclom2.particle_tracking
+===========================
+
+.. py:module:: nexoclom2.particle_tracking
+
+.. autoapi-nested-parse::
+
+   
+   nexoclom.inputs package
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/nexoclom2/particle_tracking/ConstantIntegrator/index
+   /autoapi/nexoclom2/particle_tracking/Output/index
+   /autoapi/nexoclom2/particle_tracking/VariableIntegrator/index
+   /autoapi/nexoclom2/particle_tracking/compute_accel/index
+   /autoapi/nexoclom2/particle_tracking/final_state/index
+   /autoapi/nexoclom2/particle_tracking/packets/index
+   /autoapi/nexoclom2/particle_tracking/rk5_integrator/index
+   /autoapi/nexoclom2/particle_tracking/starting_point/index
+   /autoapi/nexoclom2/particle_tracking/state_vectors/index
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.ConstantIntegrator
+   nexoclom2.particle_tracking.VariableIntegrator
+
+
+Package Contents
+----------------
+
+.. py:class:: ConstantIntegrator(output, state, method='rk5')
+
+   
+   Constant step size integrator
+   :param output: nexoclom2 Output clas
+   :type output: Output
+
+   :Returns:
+
+       Final state of the system
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:class:: VariableIntegrator(output, state, method='rk5')
+
+   
+   Runge Kutta integrator
+
+   Can run with either constant or variable step size.
+
+   :Parameters:
+
+       **output** : Output
+           nexoclom2 Output clas
+
+
+
+   :Returns:
+
+       Final state of the system
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+

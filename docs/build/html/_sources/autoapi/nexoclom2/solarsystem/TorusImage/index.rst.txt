@@ -1,0 +1,22 @@
+nexoclom2.solarsystem.TorusImage
+================================
+
+.. py:module:: nexoclom2.solarsystem.TorusImage
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.solarsystem.TorusImage.IoTorusImage
+
+
+Module Contents
+---------------
+
+.. py:class:: IoTorusImage(cml)
+
+   .. py:attribute:: cml
+
+

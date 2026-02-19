@@ -1,0 +1,877 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nexoclom2.particle_tracking.rk_scipy &mdash; nexoclom2 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/stsci.css?v=d876f643" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/stsci.css?v=d876f643" />
+
+  
+      <script src="../../../../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="nexoclom2.particle_tracking.starting_point" href="../starting_point/index.html" />
+    <link rel="prev" title="nexoclom2.particle_tracking.rk5_integrator" href="../rk5_integrator/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> nexoclom2
+            
+            <img src="../../../../_static/stsci_pri_combo_mark_white.png" class="logo" />
+          </a>
+
+          
+            
+            
+          
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+  
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/NEXOCLOM_Requirements_Document.html">NEXOCLOM Goals and Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/TestCases.html">NEXOCLOM Test Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/inputfiles.html">Input File Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/planet_distance.html">Solar System Geometries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/coordinate_systems.html">Planetary Coordinate Systems and System Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/surface_interaction.html">Interactions between incident atoms and surfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/integrator.html">Runge-Kutta Integrator &amp; The Equations of Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/atomicdata.html">Atomic Data</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../Geometry/index.html">Geometry</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">nexoclom2</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#attributes">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../GeometryTime/index.html">GeometryTime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../FlatSpeedDist/index.html">FlatSpeedDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../RadialAngDist/index.html">RadialAngDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../GeometryNoTime/index.html">GeometryNoTime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../SurfMapSurfInt/index.html">SurfMapSurfInt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../UniformSpatDist/index.html">UniformSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../SurfMapSpatDist/index.html">SurfMapSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ConstantSurfInt/index.html">ConstantSurfInt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../IsotropicAngDist/index.html">IsotropicAngDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../SurfSpotSpatDist/index.html">SurfSpotSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reformat_gvalues/index.html">reformat_gvalues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../SputteringFluxDist/index.html">SputteringFluxDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../MaxwellianFluxDist/index.html">MaxwellianFluxDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../TwoDRegularSpatDist/index.html">TwoDRegularSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../TemperatureDependentSurfInt/index.html">TemperatureDependentSurfInt</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">nexoclom2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">nexoclom2</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">nexoclom2.particle_tracking</a></li>
+      <li class="breadcrumb-item active">nexoclom2.particle_tracking.rk_scipy</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/autoapi/nexoclom2/particle_tracking/rk_scipy/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-nexoclom2.particle_tracking.rk_scipy">
+<span id="nexoclom2-particle-tracking-rk-scipy"></span><h1>nexoclom2.particle_tracking.rk_scipy<a class="headerlink" href="#module-nexoclom2.particle_tracking.rk_scipy" title="Link to this heading">¶</a></h1>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nexoclom2.particle_tracking.rk_scipy.SAFETY" title="nexoclom2.particle_tracking.rk_scipy.SAFETY"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SAFETY</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nexoclom2.particle_tracking.rk_scipy.MIN_FACTOR" title="nexoclom2.particle_tracking.rk_scipy.MIN_FACTOR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MIN_FACTOR</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nexoclom2.particle_tracking.rk_scipy.MAX_FACTOR" title="nexoclom2.particle_tracking.rk_scipy.MAX_FACTOR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MAX_FACTOR</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nexoclom2.particle_tracking.rk_scipy.RungeKutta" title="nexoclom2.particle_tracking.rk_scipy.RungeKutta"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RungeKutta</span></code></a></p></td>
+<td><p>Base class for explicit Runge-Kutta methods.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nexoclom2.particle_tracking.rk_scipy.RK23" title="nexoclom2.particle_tracking.rk_scipy.RK23"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RK23</span></code></a></p></td>
+<td><p>Explicit Runge-Kutta method of order 3(2).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nexoclom2.particle_tracking.rk_scipy.RK45" title="nexoclom2.particle_tracking.rk_scipy.RK45"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RK45</span></code></a></p></td>
+<td><p>Explicit Runge-Kutta method of order 5(4).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nexoclom2.particle_tracking.rk_scipy.DOP853" title="nexoclom2.particle_tracking.rk_scipy.DOP853"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DOP853</span></code></a></p></td>
+<td><p>Explicit Runge-Kutta method of order 8.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nexoclom2.particle_tracking.rk_scipy.RkDenseOutput" title="nexoclom2.particle_tracking.rk_scipy.RkDenseOutput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RkDenseOutput</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nexoclom2.particle_tracking.rk_scipy.Dop853DenseOutput" title="nexoclom2.particle_tracking.rk_scipy.Dop853DenseOutput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dop853DenseOutput</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nexoclom2.particle_tracking.rk_scipy.rk_step" title="nexoclom2.particle_tracking.rk_scipy.rk_step"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rk_step</span></code></a>(fun, t, y, f, h, A, B, C, K)</p></td>
+<td><p>Perform a single Runge-Kutta step.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.SAFETY">
+<span class="sig-prename descclassname"><span class="pre">nexoclom2.particle_tracking.rk_scipy.</span></span><span class="sig-name descname"><span class="pre">SAFETY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.9</span></em><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.SAFETY" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.MIN_FACTOR">
+<span class="sig-prename descclassname"><span class="pre">nexoclom2.particle_tracking.rk_scipy.</span></span><span class="sig-name descname"><span class="pre">MIN_FACTOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.2</span></em><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.MIN_FACTOR" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.MAX_FACTOR">
+<span class="sig-prename descclassname"><span class="pre">nexoclom2.particle_tracking.rk_scipy.</span></span><span class="sig-name descname"><span class="pre">MAX_FACTOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10</span></em><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.MAX_FACTOR" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.rk_step">
+<span class="sig-prename descclassname"><span class="pre">nexoclom2.particle_tracking.rk_scipy.</span></span><span class="sig-name descname"><span class="pre">rk_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.rk_step" title="Link to this definition">¶</a></dt>
+<dd><p>Perform a single Runge-Kutta step.</p>
+<p>This function computes a prediction of an explicit Runge-Kutta method and
+also estimates the error of a less accurate method.</p>
+<p>Notation for Butcher tableau is as in <a class="reference internal" href="#r4e8f1c391965-1" id="id1">[1]</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>fun</strong><span class="classifier">callable</span></dt><dd><p>Right-hand side of the system.</p>
+</dd>
+<dt><strong>t</strong><span class="classifier">float</span></dt><dd><p>Current time.</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">ndarray, shape (n,)</span></dt><dd><p>Current state.</p>
+</dd>
+<dt><strong>f</strong><span class="classifier">ndarray, shape (n,)</span></dt><dd><p>Current value of the derivative, i.e., <code class="docutils literal notranslate"><span class="pre">fun(x,</span> <span class="pre">y)</span></code>.</p>
+</dd>
+<dt><strong>h</strong><span class="classifier">float</span></dt><dd><p>Step to use.</p>
+</dd>
+<dt><strong>A</strong><span class="classifier">ndarray, shape (n_stages, n_stages)</span></dt><dd><p>Coefficients for combining previous RK stages to compute the next
+stage. For explicit methods the coefficients at and above the main
+diagonal are zeros.</p>
+</dd>
+<dt><strong>B</strong><span class="classifier">ndarray, shape (n_stages,)</span></dt><dd><p>Coefficients for combining RK stages for computing the final
+prediction.</p>
+</dd>
+<dt><strong>C</strong><span class="classifier">ndarray, shape (n_stages,)</span></dt><dd><p>Coefficients for incrementing time for consecutive RK stages.
+The value for the first stage is always zero.</p>
+</dd>
+<dt><strong>K</strong><span class="classifier">ndarray, shape (n_stages + 1, n)</span></dt><dd><p>Storage array for putting RK stages here. Stages are stored in rows.
+The last row is a linear combination of the previous rows with
+coefficients</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>y_new</strong><span class="classifier">ndarray, shape (n,)</span></dt><dd><p>Solution at t + h computed with a higher accuracy.</p>
+</dd>
+<dt><strong>f_new</strong><span class="classifier">ndarray, shape (n,)</span></dt><dd><p>Derivative <code class="docutils literal notranslate"><span class="pre">fun(t</span> <span class="pre">+</span> <span class="pre">h,</span> <span class="pre">y_new)</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="r4e8f1c391965-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>E. Hairer, S. P. Norsett G. Wanner, “Solving Ordinary Differential
+Equations I: Nonstiff Problems”, Sec. II.4.</p>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RungeKutta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nexoclom2.particle_tracking.rk_scipy.</span></span><span class="sig-name descname"><span class="pre">RungeKutta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_bound</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vectorized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extraneous</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RungeKutta" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">nexoclom2.particle_tracking.base.OdeSolver</span></code></p>
+<p>Base class for explicit Runge-Kutta methods.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RungeKutta.C">
+<span class="sig-name descname"><span class="pre">C</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">NotImplemented</span></em><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RungeKutta.C" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RungeKutta.A">
+<span class="sig-name descname"><span class="pre">A</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">NotImplemented</span></em><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RungeKutta.A" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RungeKutta.B">
+<span class="sig-name descname"><span class="pre">B</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">NotImplemented</span></em><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RungeKutta.B" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RungeKutta.E">
+<span class="sig-name descname"><span class="pre">E</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">NotImplemented</span></em><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RungeKutta.E" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RungeKutta.P">
+<span class="sig-name descname"><span class="pre">P</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">NotImplemented</span></em><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RungeKutta.P" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RungeKutta.order">
+<span class="sig-name descname"><span class="pre">order</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">NotImplemented</span></em><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RungeKutta.order" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RungeKutta.error_estimator_order">
+<span class="sig-name descname"><span class="pre">error_estimator_order</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">NotImplemented</span></em><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RungeKutta.error_estimator_order" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RungeKutta.n_stages">
+<span class="sig-name descname"><span class="pre">n_stages</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">NotImplemented</span></em><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RungeKutta.n_stages" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RungeKutta.y_old">
+<span class="sig-name descname"><span class="pre">y_old</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RungeKutta.y_old" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RungeKutta.max_step">
+<span class="sig-name descname"><span class="pre">max_step</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RungeKutta.max_step" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RungeKutta.f">
+<span class="sig-name descname"><span class="pre">f</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RungeKutta.f" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RungeKutta.K">
+<span class="sig-name descname"><span class="pre">K</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RungeKutta.K" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RungeKutta.error_exponent">
+<span class="sig-name descname"><span class="pre">error_exponent</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RungeKutta.error_exponent" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RungeKutta.h_previous">
+<span class="sig-name descname"><span class="pre">h_previous</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RungeKutta.h_previous" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RungeKutta._estimate_error">
+<span class="sig-name descname"><span class="pre">_estimate_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">K</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RungeKutta._estimate_error" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RungeKutta._estimate_error_norm">
+<span class="sig-name descname"><span class="pre">_estimate_error_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">K</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RungeKutta._estimate_error_norm" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RungeKutta._step_impl">
+<span class="sig-name descname"><span class="pre">_step_impl</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RungeKutta._step_impl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RungeKutta._dense_output_impl">
+<span class="sig-name descname"><span class="pre">_dense_output_impl</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RungeKutta._dense_output_impl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RK23">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nexoclom2.particle_tracking.rk_scipy.</span></span><span class="sig-name descname"><span class="pre">RK23</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_bound</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vectorized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extraneous</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RK23" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nexoclom2.particle_tracking.rk_scipy.RungeKutta" title="nexoclom2.particle_tracking.rk_scipy.RungeKutta"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RungeKutta</span></code></a></p>
+<p>Explicit Runge-Kutta method of order 3(2).</p>
+<p>This uses the Bogacki-Shampine pair of formulas <a class="reference internal" href="#rb6a33f4a3b5e-1" id="id3">[1]</a>. The error is controlled
+assuming accuracy of the second-order method, but steps are taken using the
+third-order accurate formula (local extrapolation is done). A cubic Hermite
+polynomial is used for the dense output.</p>
+<p>Can be applied in the complex domain.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>fun</strong><span class="classifier">callable</span></dt><dd><p>Right-hand side of the system: the time derivative of the state <code class="docutils literal notranslate"><span class="pre">y</span></code>
+at time <code class="docutils literal notranslate"><span class="pre">t</span></code>. The calling signature is <code class="docutils literal notranslate"><span class="pre">fun(t,</span> <span class="pre">y)</span></code>, where <code class="docutils literal notranslate"><span class="pre">t</span></code> is a
+scalar and <code class="docutils literal notranslate"><span class="pre">y</span></code> is an ndarray with <code class="docutils literal notranslate"><span class="pre">len(y)</span> <span class="pre">=</span> <span class="pre">len(y0)</span></code>. <code class="docutils literal notranslate"><span class="pre">fun</span></code> must
+return an array of the same shape as <code class="docutils literal notranslate"><span class="pre">y</span></code>. See <cite>vectorized</cite> for more
+information.</p>
+</dd>
+<dt><strong>t0</strong><span class="classifier">float</span></dt><dd><p>Initial time.</p>
+</dd>
+<dt><strong>y0</strong><span class="classifier">array_like, shape (n,)</span></dt><dd><p>Initial state.</p>
+</dd>
+<dt><strong>t_bound</strong><span class="classifier">float</span></dt><dd><p>Boundary time - the integration won’t continue beyond it. It also
+determines the direction of the integration.</p>
+</dd>
+<dt><strong>first_step</strong><span class="classifier">float or None, optional</span></dt><dd><p>Initial step size. Default is <code class="docutils literal notranslate"><span class="pre">None</span></code> which means that the algorithm
+should choose.</p>
+</dd>
+<dt><strong>max_step</strong><span class="classifier">float, optional</span></dt><dd><p>Maximum allowed step size. Default is np.inf, i.e., the step size is not
+bounded and determined solely by the solver.</p>
+</dd>
+<dt><strong>rtol, atol</strong><span class="classifier">float and array_like, optional</span></dt><dd><p>Relative and absolute tolerances. The solver keeps the local error
+estimates less than <code class="docutils literal notranslate"><span class="pre">atol</span> <span class="pre">+</span> <span class="pre">rtol</span> <span class="pre">*</span> <span class="pre">abs(y)</span></code>. Here <cite>rtol</cite> controls a
+relative accuracy (number of correct digits), while <cite>atol</cite> controls
+absolute accuracy (number of correct decimal places). To achieve the
+desired <cite>rtol</cite>, set <cite>atol</cite> to be smaller than the smallest value that
+can be expected from <code class="docutils literal notranslate"><span class="pre">rtol</span> <span class="pre">*</span> <span class="pre">abs(y)</span></code> so that <cite>rtol</cite> dominates the
+allowable error. If <cite>atol</cite> is larger than <code class="docutils literal notranslate"><span class="pre">rtol</span> <span class="pre">*</span> <span class="pre">abs(y)</span></code> the
+number of correct digits is not guaranteed. Conversely, to achieve the
+desired <cite>atol</cite> set <cite>rtol</cite> such that <code class="docutils literal notranslate"><span class="pre">rtol</span> <span class="pre">*</span> <span class="pre">abs(y)</span></code> is always smaller
+than <cite>atol</cite>. If components of y have different scales, it might be
+beneficial to set different <cite>atol</cite> values for different components by
+passing array_like with shape (n,) for <cite>atol</cite>. Default values are
+1e-3 for <cite>rtol</cite> and 1e-6 for <cite>atol</cite>.</p>
+</dd>
+<dt><strong>vectorized</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether <cite>fun</cite> may be called in a vectorized fashion. False (default)
+is recommended for this solver.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">vectorized</span></code> is False, <cite>fun</cite> will always be called with <code class="docutils literal notranslate"><span class="pre">y</span></code> of
+shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code>, where <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">len(y0)</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">vectorized</span></code> is True, <cite>fun</cite> may be called with <code class="docutils literal notranslate"><span class="pre">y</span></code> of shape
+<code class="docutils literal notranslate"><span class="pre">(n,</span> <span class="pre">k)</span></code>, where <code class="docutils literal notranslate"><span class="pre">k</span></code> is an integer. In this case, <cite>fun</cite> must behave
+such that <code class="docutils literal notranslate"><span class="pre">fun(t,</span> <span class="pre">y)[:,</span> <span class="pre">i]</span> <span class="pre">==</span> <span class="pre">fun(t,</span> <span class="pre">y[:,</span> <span class="pre">i])</span></code> (i.e. each column of
+the returned array is the time derivative of the state corresponding
+with a column of <code class="docutils literal notranslate"><span class="pre">y</span></code>).</p>
+<p>Setting <code class="docutils literal notranslate"><span class="pre">vectorized=True</span></code> allows for faster finite difference
+approximation of the Jacobian by methods ‘Radau’ and ‘BDF’, but
+will result in slower execution for this solver.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>n</strong><span class="classifier">int</span></dt><dd><p>Number of equations.</p>
+</dd>
+<dt><strong>status</strong><span class="classifier">string</span></dt><dd><p>Current status of the solver: ‘running’, ‘finished’ or ‘failed’.</p>
+</dd>
+<dt><strong>t_bound</strong><span class="classifier">float</span></dt><dd><p>Boundary time.</p>
+</dd>
+<dt><strong>direction</strong><span class="classifier">float</span></dt><dd><p>Integration direction: +1 or -1.</p>
+</dd>
+<dt><strong>t</strong><span class="classifier">float</span></dt><dd><p>Current time.</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">ndarray</span></dt><dd><p>Current state.</p>
+</dd>
+<dt><strong>t_old</strong><span class="classifier">float</span></dt><dd><p>Previous time. None if no steps were made yet.</p>
+</dd>
+<dt><strong>step_size</strong><span class="classifier">float</span></dt><dd><p>Size of the last successful step. None if no steps were made yet.</p>
+</dd>
+<dt><strong>nfev</strong><span class="classifier">int</span></dt><dd><p>Number evaluations of the system’s right-hand side.</p>
+</dd>
+<dt><strong>njev</strong><span class="classifier">int</span></dt><dd><p>Number of evaluations of the Jacobian.
+Is always 0 for this solver as it does not use the Jacobian.</p>
+</dd>
+<dt><strong>nlu</strong><span class="classifier">int</span></dt><dd><p>Number of LU decompositions. Is always 0 for this solver.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="rb6a33f4a3b5e-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">1</a><span class="fn-bracket">]</span></span>
+<p>P. Bogacki, L.F. Shampine, “A 3(2) Pair of Runge-Kutta Formulas”,
+Appl. Math. Lett. Vol. 2, No. 4. pp. 321-325, 1989.</p>
+</div>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RK23.order">
+<span class="sig-name descname"><span class="pre">order</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RK23.order" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RK23.error_estimator_order">
+<span class="sig-name descname"><span class="pre">error_estimator_order</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RK23.error_estimator_order" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RK23.n_stages">
+<span class="sig-name descname"><span class="pre">n_stages</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RK23.n_stages" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RK23.C">
+<span class="sig-name descname"><span class="pre">C</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RK23.C" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RK23.A">
+<span class="sig-name descname"><span class="pre">A</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RK23.A" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RK23.B">
+<span class="sig-name descname"><span class="pre">B</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RK23.B" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RK23.E">
+<span class="sig-name descname"><span class="pre">E</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RK23.E" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RK23.P">
+<span class="sig-name descname"><span class="pre">P</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RK23.P" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RK45">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nexoclom2.particle_tracking.rk_scipy.</span></span><span class="sig-name descname"><span class="pre">RK45</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_bound</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vectorized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extraneous</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RK45" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nexoclom2.particle_tracking.rk_scipy.RungeKutta" title="nexoclom2.particle_tracking.rk_scipy.RungeKutta"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RungeKutta</span></code></a></p>
+<p>Explicit Runge-Kutta method of order 5(4).</p>
+<p>This uses the Dormand-Prince pair of formulas <a class="reference internal" href="#rfa208770a3c6-1" id="id5">[1]</a>. The error is controlled
+assuming accuracy of the fourth-order method accuracy, but steps are taken
+using the fifth-order accurate formula (local extrapolation is done).
+A quartic interpolation polynomial is used for the dense output <a class="reference internal" href="#rfa208770a3c6-2" id="id6">[2]</a>.</p>
+<p>Can be applied in the complex domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>fun</strong><span class="classifier">callable</span></dt><dd><p>Right-hand side of the system. The calling signature is <code class="docutils literal notranslate"><span class="pre">fun(t,</span> <span class="pre">y)</span></code>.
+Here <code class="docutils literal notranslate"><span class="pre">t</span></code> is a scalar, and there are two options for the ndarray <code class="docutils literal notranslate"><span class="pre">y</span></code>:
+It can either have shape (n,); then <code class="docutils literal notranslate"><span class="pre">fun</span></code> must return array_like with
+shape (n,). Alternatively it can have shape (n, k); then <code class="docutils literal notranslate"><span class="pre">fun</span></code>
+must return an array_like with shape (n, k), i.e., each column
+corresponds to a single column in <code class="docutils literal notranslate"><span class="pre">y</span></code>. The choice between the two
+options is determined by <cite>vectorized</cite> argument (see below).</p>
+</dd>
+<dt><strong>t0</strong><span class="classifier">float</span></dt><dd><p>Initial time.</p>
+</dd>
+<dt><strong>y0</strong><span class="classifier">array_like, shape (n,)</span></dt><dd><p>Initial state.</p>
+</dd>
+<dt><strong>t_bound</strong><span class="classifier">float</span></dt><dd><p>Boundary time - the integration won’t continue beyond it. It also
+determines the direction of the integration.</p>
+</dd>
+<dt><strong>first_step</strong><span class="classifier">float or None, optional</span></dt><dd><p>Initial step size. Default is <code class="docutils literal notranslate"><span class="pre">None</span></code> which means that the algorithm
+should choose.</p>
+</dd>
+<dt><strong>max_step</strong><span class="classifier">float, optional</span></dt><dd><p>Maximum allowed step size. Default is np.inf, i.e., the step size is not
+bounded and determined solely by the solver.</p>
+</dd>
+<dt><strong>rtol, atol</strong><span class="classifier">float and array_like, optional</span></dt><dd><p>Relative and absolute tolerances. The solver keeps the local error
+estimates less than <code class="docutils literal notranslate"><span class="pre">atol</span> <span class="pre">+</span> <span class="pre">rtol</span> <span class="pre">*</span> <span class="pre">abs(y)</span></code>. Here <cite>rtol</cite> controls a
+relative accuracy (number of correct digits), while <cite>atol</cite> controls
+absolute accuracy (number of correct decimal places). To achieve the
+desired <cite>rtol</cite>, set <cite>atol</cite> to be smaller than the smallest value that
+can be expected from <code class="docutils literal notranslate"><span class="pre">rtol</span> <span class="pre">*</span> <span class="pre">abs(y)</span></code> so that <cite>rtol</cite> dominates the
+allowable error. If <cite>atol</cite> is larger than <code class="docutils literal notranslate"><span class="pre">rtol</span> <span class="pre">*</span> <span class="pre">abs(y)</span></code> the
+number of correct digits is not guaranteed. Conversely, to achieve the
+desired <cite>atol</cite> set <cite>rtol</cite> such that <code class="docutils literal notranslate"><span class="pre">rtol</span> <span class="pre">*</span> <span class="pre">abs(y)</span></code> is always smaller
+than <cite>atol</cite>. If components of y have different scales, it might be
+beneficial to set different <cite>atol</cite> values for different components by
+passing array_like with shape (n,) for <cite>atol</cite>. Default values are
+1e-3 for <cite>rtol</cite> and 1e-6 for <cite>atol</cite>.</p>
+</dd>
+<dt><strong>vectorized</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether <cite>fun</cite> is implemented in a vectorized fashion. Default is False.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>n</strong><span class="classifier">int</span></dt><dd><p>Number of equations.</p>
+</dd>
+<dt><strong>status</strong><span class="classifier">string</span></dt><dd><p>Current status of the solver: ‘running’, ‘finished’ or ‘failed’.</p>
+</dd>
+<dt><strong>t_bound</strong><span class="classifier">float</span></dt><dd><p>Boundary time.</p>
+</dd>
+<dt><strong>direction</strong><span class="classifier">float</span></dt><dd><p>Integration direction: +1 or -1.</p>
+</dd>
+<dt><strong>t</strong><span class="classifier">float</span></dt><dd><p>Current time.</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">ndarray</span></dt><dd><p>Current state.</p>
+</dd>
+<dt><strong>t_old</strong><span class="classifier">float</span></dt><dd><p>Previous time. None if no steps were made yet.</p>
+</dd>
+<dt><strong>step_size</strong><span class="classifier">float</span></dt><dd><p>Size of the last successful step. None if no steps were made yet.</p>
+</dd>
+<dt><strong>nfev</strong><span class="classifier">int</span></dt><dd><p>Number evaluations of the system’s right-hand side.</p>
+</dd>
+<dt><strong>njev</strong><span class="classifier">int</span></dt><dd><p>Number of evaluations of the Jacobian.
+Is always 0 for this solver as it does not use the Jacobian.</p>
+</dd>
+<dt><strong>nlu</strong><span class="classifier">int</span></dt><dd><p>Number of LU decompositions. Is always 0 for this solver.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="rfa208770a3c6-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">1</a><span class="fn-bracket">]</span></span>
+<p>J. R. Dormand, P. J. Prince, “A family of embedded Runge-Kutta
+formulae”, Journal of Computational and Applied Mathematics, Vol. 6,
+No. 1, pp. 19-26, 1980.</p>
+</div>
+<div class="citation" id="rfa208770a3c6-2" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">2</a><span class="fn-bracket">]</span></span>
+<p>L. W. Shampine, “Some Practical Runge-Kutta Formulas”, Mathematics
+of Computation,, Vol. 46, No. 173, pp. 135-150, 1986.</p>
+</div>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RK45.order">
+<span class="sig-name descname"><span class="pre">order</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RK45.order" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RK45.error_estimator_order">
+<span class="sig-name descname"><span class="pre">error_estimator_order</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RK45.error_estimator_order" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RK45.n_stages">
+<span class="sig-name descname"><span class="pre">n_stages</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RK45.n_stages" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RK45.C">
+<span class="sig-name descname"><span class="pre">C</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RK45.C" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RK45.A">
+<span class="sig-name descname"><span class="pre">A</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RK45.A" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RK45.B">
+<span class="sig-name descname"><span class="pre">B</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RK45.B" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RK45.E">
+<span class="sig-name descname"><span class="pre">E</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RK45.E" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RK45.P">
+<span class="sig-name descname"><span class="pre">P</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RK45.P" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.DOP853">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nexoclom2.particle_tracking.rk_scipy.</span></span><span class="sig-name descname"><span class="pre">DOP853</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_bound</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vectorized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extraneous</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.DOP853" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nexoclom2.particle_tracking.rk_scipy.RungeKutta" title="nexoclom2.particle_tracking.rk_scipy.RungeKutta"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RungeKutta</span></code></a></p>
+<p>Explicit Runge-Kutta method of order 8.</p>
+<p>This is a Python implementation of “DOP853” algorithm originally written
+in Fortran <a class="reference internal" href="#rc6e508233a2b-1" id="id9">[1]</a>, <a class="reference internal" href="#rc6e508233a2b-2" id="id10">[2]</a>. Note that this is not a literal translation, but
+the algorithmic core and coefficients are the same.</p>
+<p>Can be applied in the complex domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>fun</strong><span class="classifier">callable</span></dt><dd><p>Right-hand side of the system. The calling signature is <code class="docutils literal notranslate"><span class="pre">fun(t,</span> <span class="pre">y)</span></code>.
+Here, <code class="docutils literal notranslate"><span class="pre">t</span></code> is a scalar, and there are two options for the ndarray <code class="docutils literal notranslate"><span class="pre">y</span></code>:
+It can either have shape (n,); then <code class="docutils literal notranslate"><span class="pre">fun</span></code> must return array_like with
+shape (n,). Alternatively it can have shape (n, k); then <code class="docutils literal notranslate"><span class="pre">fun</span></code>
+must return an array_like with shape (n, k), i.e. each column
+corresponds to a single column in <code class="docutils literal notranslate"><span class="pre">y</span></code>. The choice between the two
+options is determined by <cite>vectorized</cite> argument (see below).</p>
+</dd>
+<dt><strong>t0</strong><span class="classifier">float</span></dt><dd><p>Initial time.</p>
+</dd>
+<dt><strong>y0</strong><span class="classifier">array_like, shape (n,)</span></dt><dd><p>Initial state.</p>
+</dd>
+<dt><strong>t_bound</strong><span class="classifier">float</span></dt><dd><p>Boundary time - the integration won’t continue beyond it. It also
+determines the direction of the integration.</p>
+</dd>
+<dt><strong>first_step</strong><span class="classifier">float or None, optional</span></dt><dd><p>Initial step size. Default is <code class="docutils literal notranslate"><span class="pre">None</span></code> which means that the algorithm
+should choose.</p>
+</dd>
+<dt><strong>max_step</strong><span class="classifier">float, optional</span></dt><dd><p>Maximum allowed step size. Default is np.inf, i.e. the step size is not
+bounded and determined solely by the solver.</p>
+</dd>
+<dt><strong>rtol, atol</strong><span class="classifier">float and array_like, optional</span></dt><dd><p>Relative and absolute tolerances. The solver keeps the local error
+estimates less than <code class="docutils literal notranslate"><span class="pre">atol</span> <span class="pre">+</span> <span class="pre">rtol</span> <span class="pre">*</span> <span class="pre">abs(y)</span></code>. Here <cite>rtol</cite> controls a
+relative accuracy (number of correct digits), while <cite>atol</cite> controls
+absolute accuracy (number of correct decimal places). To achieve the
+desired <cite>rtol</cite>, set <cite>atol</cite> to be smaller than the smallest value that
+can be expected from <code class="docutils literal notranslate"><span class="pre">rtol</span> <span class="pre">*</span> <span class="pre">abs(y)</span></code> so that <cite>rtol</cite> dominates the
+allowable error. If <cite>atol</cite> is larger than <code class="docutils literal notranslate"><span class="pre">rtol</span> <span class="pre">*</span> <span class="pre">abs(y)</span></code> the
+number of correct digits is not guaranteed. Conversely, to achieve the
+desired <cite>atol</cite> set <cite>rtol</cite> such that <code class="docutils literal notranslate"><span class="pre">rtol</span> <span class="pre">*</span> <span class="pre">abs(y)</span></code> is always smaller
+than <cite>atol</cite>. If components of y have different scales, it might be
+beneficial to set different <cite>atol</cite> values for different components by
+passing array_like with shape (n,) for <cite>atol</cite>. Default values are
+1e-3 for <cite>rtol</cite> and 1e-6 for <cite>atol</cite>.</p>
+</dd>
+<dt><strong>vectorized</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether <cite>fun</cite> is implemented in a vectorized fashion. Default is False.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>n</strong><span class="classifier">int</span></dt><dd><p>Number of equations.</p>
+</dd>
+<dt><strong>status</strong><span class="classifier">string</span></dt><dd><p>Current status of the solver: ‘running’, ‘finished’ or ‘failed’.</p>
+</dd>
+<dt><strong>t_bound</strong><span class="classifier">float</span></dt><dd><p>Boundary time.</p>
+</dd>
+<dt><strong>direction</strong><span class="classifier">float</span></dt><dd><p>Integration direction: +1 or -1.</p>
+</dd>
+<dt><strong>t</strong><span class="classifier">float</span></dt><dd><p>Current time.</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">ndarray</span></dt><dd><p>Current state.</p>
+</dd>
+<dt><strong>t_old</strong><span class="classifier">float</span></dt><dd><p>Previous time. None if no steps were made yet.</p>
+</dd>
+<dt><strong>step_size</strong><span class="classifier">float</span></dt><dd><p>Size of the last successful step. None if no steps were made yet.</p>
+</dd>
+<dt><strong>nfev</strong><span class="classifier">int</span></dt><dd><p>Number evaluations of the system’s right-hand side.</p>
+</dd>
+<dt><strong>njev</strong><span class="classifier">int</span></dt><dd><p>Number of evaluations of the Jacobian. Is always 0 for this solver
+as it does not use the Jacobian.</p>
+</dd>
+<dt><strong>nlu</strong><span class="classifier">int</span></dt><dd><p>Number of LU decompositions. Is always 0 for this solver.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="rc6e508233a2b-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">1</a><span class="fn-bracket">]</span></span>
+<p>E. Hairer, S. P. Norsett G. Wanner, “Solving Ordinary Differential
+Equations I: Nonstiff Problems”, Sec. II.</p>
+</div>
+<div class="citation" id="rc6e508233a2b-2" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id10">2</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="http://www.unige.ch/~hairer/software.html">Page with original Fortran code of DOP853</a>.</p>
+</div>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.DOP853.n_stages">
+<span class="sig-name descname"><span class="pre">n_stages</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.DOP853.n_stages" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.DOP853.order">
+<span class="sig-name descname"><span class="pre">order</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.DOP853.order" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.DOP853.error_estimator_order">
+<span class="sig-name descname"><span class="pre">error_estimator_order</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">7</span></em><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.DOP853.error_estimator_order" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.DOP853.A">
+<span class="sig-name descname"><span class="pre">A</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.DOP853.A" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.DOP853.B">
+<span class="sig-name descname"><span class="pre">B</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.DOP853.B" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.DOP853.C">
+<span class="sig-name descname"><span class="pre">C</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.DOP853.C" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.DOP853.E3">
+<span class="sig-name descname"><span class="pre">E3</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.DOP853.E3" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.DOP853.E5">
+<span class="sig-name descname"><span class="pre">E5</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.DOP853.E5" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.DOP853.D">
+<span class="sig-name descname"><span class="pre">D</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.DOP853.D" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.DOP853.A_EXTRA">
+<span class="sig-name descname"><span class="pre">A_EXTRA</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.DOP853.A_EXTRA" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.DOP853.C_EXTRA">
+<span class="sig-name descname"><span class="pre">C_EXTRA</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.DOP853.C_EXTRA" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.DOP853.K_extended">
+<span class="sig-name descname"><span class="pre">K_extended</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.DOP853.K_extended" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.DOP853.K">
+<span class="sig-name descname"><span class="pre">K</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.DOP853.K" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.DOP853._estimate_error">
+<span class="sig-name descname"><span class="pre">_estimate_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">K</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.DOP853._estimate_error" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.DOP853._estimate_error_norm">
+<span class="sig-name descname"><span class="pre">_estimate_error_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">K</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.DOP853._estimate_error_norm" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.DOP853._dense_output_impl">
+<span class="sig-name descname"><span class="pre">_dense_output_impl</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.DOP853._dense_output_impl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RkDenseOutput">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nexoclom2.particle_tracking.rk_scipy.</span></span><span class="sig-name descname"><span class="pre">RkDenseOutput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_old</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_old</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RkDenseOutput" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">nexoclom2.particle_tracking.base.DenseOutput</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RkDenseOutput.h">
+<span class="sig-name descname"><span class="pre">h</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RkDenseOutput.h" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RkDenseOutput.Q">
+<span class="sig-name descname"><span class="pre">Q</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RkDenseOutput.Q" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RkDenseOutput.order">
+<span class="sig-name descname"><span class="pre">order</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RkDenseOutput.order" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RkDenseOutput.y_old">
+<span class="sig-name descname"><span class="pre">y_old</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RkDenseOutput.y_old" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.RkDenseOutput._call_impl">
+<span class="sig-name descname"><span class="pre">_call_impl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.RkDenseOutput._call_impl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.Dop853DenseOutput">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nexoclom2.particle_tracking.rk_scipy.</span></span><span class="sig-name descname"><span class="pre">Dop853DenseOutput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_old</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_old</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.Dop853DenseOutput" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">nexoclom2.particle_tracking.base.DenseOutput</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.Dop853DenseOutput.h">
+<span class="sig-name descname"><span class="pre">h</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.Dop853DenseOutput.h" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.Dop853DenseOutput.F">
+<span class="sig-name descname"><span class="pre">F</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.Dop853DenseOutput.F" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.Dop853DenseOutput.y_old">
+<span class="sig-name descname"><span class="pre">y_old</span></span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.Dop853DenseOutput.y_old" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.particle_tracking.rk_scipy.Dop853DenseOutput._call_impl">
+<span class="sig-name descname"><span class="pre">_call_impl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.particle_tracking.rk_scipy.Dop853DenseOutput._call_impl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../rk5_integrator/index.html" class="btn btn-neutral float-left" title="nexoclom2.particle_tracking.rk5_integrator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../starting_point/index.html" class="btn btn-neutral float-right" title="nexoclom2.particle_tracking.starting_point" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Matthew Burger.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

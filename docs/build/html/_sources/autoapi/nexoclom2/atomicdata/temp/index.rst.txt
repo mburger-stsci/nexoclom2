@@ -1,0 +1,136 @@
+nexoclom2.atomicdata.temp
+=========================
+
+.. py:module:: nexoclom2.atomicdata.temp
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   nexoclom2.atomicdata.temp.var_names_old
+   nexoclom2.atomicdata.temp.jupiter
+   nexoclom2.atomicdata.temp.var_names_new
+   nexoclom2.atomicdata.temp.x
+   nexoclom2.atomicdata.temp.y
+   nexoclom2.atomicdata.temp.z
+   nexoclom2.atomicdata.temp.n_e
+   nexoclom2.atomicdata.temp.rho
+   nexoclom2.atomicdata.temp.r
+   nexoclom2.atomicdata.temp.lon
+   nexoclom2.atomicdata.temp.lat
+   nexoclom2.atomicdata.temp.rho_lat
+   nexoclom2.atomicdata.temp.interp
+   nexoclom2.atomicdata.temp.frameinfo
+   nexoclom2.atomicdata.temp.rho_g
+   nexoclom2.atomicdata.temp.lat_g
+   nexoclom2.atomicdata.temp.rho_lat_g
+   nexoclom2.atomicdata.temp.n_e_grid
+   nexoclom2.atomicdata.temp.n_e_interp
+   nexoclom2.atomicdata.temp.config
+   nexoclom2.atomicdata.temp.sav_file
+   nexoclom2.atomicdata.temp.data_idl
+   nexoclom2.atomicdata.temp.x
+   nexoclom2.atomicdata.temp.y
+   nexoclom2.atomicdata.temp.z
+   nexoclom2.atomicdata.temp.xyz
+   nexoclom2.atomicdata.temp.n_e
+   nexoclom2.atomicdata.temp.rho_g
+   nexoclom2.atomicdata.temp.lat_g
+   nexoclom2.atomicdata.temp.lon_g
+   nexoclom2.atomicdata.temp.x_grid
+   nexoclom2.atomicdata.temp.y_grid
+   nexoclom2.atomicdata.temp.z_grid
+   nexoclom2.atomicdata.temp.xyz_grid
+   nexoclom2.atomicdata.temp.nec_grid_1d
+   nexoclom2.atomicdata.temp.nec_grid_3d
+
+
+Module Contents
+---------------
+
+.. py:data:: var_names_old
+   :value: ('X', 'Y', 'Z', 'NEL', 'NEH', 'NSP', 'NS2P', 'NS3P', 'NOP', 'NO2P', 'NOPH', 'NHP', 'NNAP',...
+
+
+.. py:data:: jupiter
+
+.. py:data:: var_names_new
+
+.. py:data:: x
+
+.. py:data:: y
+
+.. py:data:: z
+
+.. py:data:: n_e
+
+.. py:data:: rho
+
+.. py:data:: r
+
+.. py:data:: lon
+
+.. py:data:: lat
+
+.. py:data:: rho_lat
+   :value: []
+
+
+.. py:data:: interp
+
+.. py:data:: frameinfo
+
+.. py:data:: rho_g
+
+.. py:data:: lat_g
+
+.. py:data:: rho_lat_g
+   :value: []
+
+
+.. py:data:: n_e_grid
+
+.. py:data:: n_e_interp
+
+.. py:data:: config
+
+.. py:data:: sav_file
+
+.. py:data:: data_idl
+   :value: None
+
+
+.. py:data:: x
+
+.. py:data:: y
+
+.. py:data:: z
+
+.. py:data:: xyz
+   :value: []
+
+
+.. py:data:: n_e
+
+.. py:data:: rho_g
+
+.. py:data:: lat_g
+
+.. py:data:: lon_g
+
+.. py:data:: x_grid
+
+.. py:data:: y_grid
+
+.. py:data:: z_grid
+
+.. py:data:: xyz_grid
+   :value: []
+
+
+.. py:data:: nec_grid_1d
+
+.. py:data:: nec_grid_3d
+

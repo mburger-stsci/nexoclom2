@@ -1,0 +1,29 @@
+# Welcome to nexoclom2's documentation!
+**NEXOCLOM2** is the Neutral EXosphere and CLOud Model, Version 2. The high
+level goals and requirements for NEXOCLOM2 can be found in the 
+[Requirements Document](nexoclom2/NEXOCLOM_Requirements_Document)
+
+:::{note}
+This project is under active development.
+:::
+
+```{toctree}
+:depth: 2
+:caption: Contents:
+nexoclom2/NEXOCLOM_Requirements_Document.md
+nexoclom2/install.md
+nexoclom2/TestCases.md
+api.md
+```
+
+```{autoclass}:: NexoclomConfig
+:noindex:
+:toctree: generated
+```
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

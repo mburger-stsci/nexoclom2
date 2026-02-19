@@ -1,0 +1,49 @@
+nexoclom2.data_simulation.ModelImage
+====================================
+
+.. py:module:: nexoclom2.data_simulation.ModelImage
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.data_simulation.ModelImage.ModelImage
+
+
+Module Contents
+---------------
+
+.. py:class:: ModelImage(output, params, overwrite=False, chunksize=1000000)
+
+   Bases: :py:obj:`nexoclom2.data_simulation.ModelResult.ModelResult`
+
+
+   .. py:attribute:: dimensions
+
+
+   .. py:attribute:: yrange
+
+
+   .. py:attribute:: zrange
+
+
+   .. py:attribute:: subobs_longitude
+
+
+   .. py:attribute:: subobs_latitude
+
+
+   .. py:attribute:: packet_image
+
+
+   .. py:attribute:: Apix
+
+
+   .. py:attribute:: rotation
+
+
+   .. py:attribute:: centers
+
+

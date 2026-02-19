@@ -1,0 +1,19 @@
+nexoclom2.particle_tracking.surface_interaction
+===============================================
+
+.. py:module:: nexoclom2.particle_tracking.surface_interaction
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.surface_interaction.surface_interaction
+
+
+Module Contents
+---------------
+
+.. py:function:: surface_interaction(step, output)
+

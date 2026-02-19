@@ -1,0 +1,124 @@
+:py:mod:`nexoclom2.solarsystem.PlanetGeometry`
+==============================================
+
+.. py:module:: nexoclom2.solarsystem.PlanetGeometry
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   nexoclom2.solarsystem.PlanetGeometry.PlanetGeometry
+
+
+
+
+.. py:class:: PlanetGeometry(object, *args)
+
+
+   
+   Base class for planetary geometry
+
+   May want to use this for some common methods.
+
+   :Parameters:
+
+       **modeltime** : astropy Quantity
+           End time for the model taken from inputs.geometry.modeltime (for a
+           GeometryTime object or 0*u.s for a GeometryNoTime object. Used for
+           planets
+
+       **runtime** : astropy Quantity
+           Taken from inputs.options.runtime. Used for planets
+
+       **n_epochs** : int
+           Number of time steps to compute orbits. Used for planets.
+
+       **planet_geometry** : PlanetGeometry
+           Used for moons. Takes basic info already popluated for the planet
+
+
+
+
+
+
+
+
+
+
+
+
+   :Attributes:
+
+       **type** : 'planet' or 'moon'
+           ..
+
+       **planet** : str
+           ..
+
+       **moon** : str
+           ..
+
+       **endtime** : astropy Quantity
+           endtime for the simulation. Taken from modeltime parameter.
+
+       **starttime** : astropy Quantity
+           endtime - runtime. Not included for constant stepsize simulations
+
+       **epochs** : ndarray of astropy Quantities
+           Times at which to compute orbits.
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:method:: __str__()
+
+      
+      Return str(self).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: __repr__()
+
+      
+      Return repr(self).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

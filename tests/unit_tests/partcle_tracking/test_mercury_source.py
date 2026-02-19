@@ -8,11 +8,14 @@ quantity_support()
 
 
 def test_mercury_source():
+    if not os.path.exists('figures'):
+        os.makedirs('figures')
+        
     overwrite = True
-    params = (('Mercury', 'constant'), )
-              # ('Sun', 'constant'),
-              # ('Mercury', 'variable'),
-              # ('Sun', 'variable'))
+    params = (('Mercury', 'constant'),
+              ('Sun', 'constant'),
+              ('Mercury', 'variable'),
+              ('Sun', 'variable'))
     # speeds = (2.*u.km/u.s, 4.*u.km/u.s)
     speeds = (4.*u.km/u.s, )
     trueanom = np.linspace(0, 360, 4, endpoint=False)*u.deg
@@ -21,9 +24,10 @@ def test_mercury_source():
     for taa in trueanom:
         for speed in speeds:
             for center, integrator in params:
-                inputfile = os.path.join(os.path.dirname(path), 'tests',
-                                         'test_data', 'inputfiles',
-                                         f'Mercury_{center}_{integrator}_notime.input')
+                # inputfile = os.path.join(os.path.dirname(path), 'tests',
+                #                          'test_data', 'inputfiles',
+                #                          f'Mercury_{center}_{integrator}_notime.input')
+                inputfile =  f'Mercury_{center}_{integrator}_notime.input'
                 inputs = Input(inputfile)
                 
                 # inputs.forces.radpres = False
@@ -95,13 +99,6 @@ def test_mercury_source():
                                f'v{int(speed.value)}_taa{int(taa.value):03d}.png')
                 plt.savefig(f'figures/{figure_file}')
                 plt.close()
-                
-                from inspect import currentframe, getframeinfo
-                frameinfo = getframeinfo(currentframe())
-                print(frameinfo.filename, frameinfo.lineno)
-                from IPython import embed; embed()
-                import sys; sys.exit()
-                
                 
 
 if __name__ == '__main__':

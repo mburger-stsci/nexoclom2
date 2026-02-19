@@ -1,0 +1,204 @@
+SSObject_old
+============
+
+.. py:module:: SSObject_old
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   SSObject_old.SSObject
+
+
+Module Contents
+---------------
+
+.. py:class:: SSObject(obj: str)
+
+   
+   Physical data for solar system bodies.
+
+   Object containing all the necessary physical data for solar system objects.
+   Data is stored in a table included with the package. A separate table
+   contains the NAIF IDs. If the object is not found in the data table, returns
+   an object with just the object name, type = Unknown, and if possible the
+   NAIF ID.
+
+   :Parameters:
+
+       **obj** : str
+           Name of the solar system object to gather data for.
+
+   :Attributes:
+
+       **object** : str
+           Name of solar system body.
+
+       **orbits** : str
+           Object the body orbits.
+
+       **radius** : distance quantity
+           Object radius in km.
+
+       **mass** : mass quantity
+           Object mass in kg
+
+       **a** : distance quantity
+           Object semi-major axis in km for Sun and moons; au for planets
+
+       **e** : float
+           Orbital eccentricity
+
+       **tilt** : angle quantity
+           Tilt of rotation axis relative to ecliptic in degrees
+
+       **rotperiod** : time quantity
+           Siderial rotational period in hours
+
+       **orbperiod** : time quantity
+           Sideral orbital period (days)
+
+       **GM** : Quantity
+           Mass time gravitational constant in m\ :sup:`3` s\ :sup:`2`.
+
+       **satellites** : list of str or None
+           List of satellites of the body
+
+       **type** : {'Star', 'Planet', or 'Moon'}
+           ..
+
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   References for physical data (Last Verified TBD):
+
+   **TO DO**
+
+   * Verify data and cite references
+
+   * Support for objects not included in the predefined table. Extract
+   information from the SPICE kernels if possible.
+
+   NAIF IDS found at JPL's `Navigation and Ancillary Information
+   Facility <https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/req/naif_ids.html>`_.
+
+
+   .. rubric:: Examples
+
+   >>> from nexoclom2.solarsystem import SSObject
+   >>> juipiter = SSObject('Jupiter')
+   >>> print(jupiter)
+   Object: Jupiter
+   Type = Planet
+   Orbits Sun
+   Satellites: Io, Europa, Ganymede, Callisto
+   Radius = 71492.00 km
+   Mass = 1.90e+27 kg
+   a = 5.20 AU
+   Eccentricity = 0.05
+   Tilt = 3.08 deg
+   Rotation Period = 9.93 h
+   Orbital Period = 4333.00 d
+   GM = -1.27e+17 m3 / s2
+   NAIFID = 599
+   >>> print(len(jupiter))
+   5
+   >>> hst = SSObject('HST')
+   >>> print(hst)
+   Object: Hst
+   Type = Unknown
+   NAIFID = -48
+   >>> print(jupiter == hst)
+   False
+
+   :Authors: Matthew Burger
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: endtime
+      :value: None
+
+
+
+   .. py:attribute:: starttime
+      :value: None
+
+
+
+   .. py:attribute:: object
+
+
+   .. py:method:: __eq__(other)
+
+
+   .. py:method:: __len__()
+
+      
+      Returns number of satellites + 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: __repr__()
+
+
+   .. py:method:: __str__()
+
+
+   .. py:method:: set_up_geometry_for_model(geometry, runtime)
+
+      
+      Sets up functions to give information needed for model converted to proper units
+      :param geometry: Taken from inputs.geometry
+      :type geometry: GeometryTime, GeometryNoTime
+      :param runtime: From inputs.options.runtime
+      :type runtime: astropy Quantity
+
+      .. attribute:: ..
+
+         !! processed by numpydoc !!
+
+
+
+   .. py:method:: _taa_of_t(t)
+
+
+   .. py:method:: _r_of_taa(taa)
+
+
+   .. py:method:: _r_of_t(t)
+
+
+   .. py:method:: _drdt_of_t(t)
+
+
+   .. py:method:: moon_subsolar_longitude(t, lon0)
+
+

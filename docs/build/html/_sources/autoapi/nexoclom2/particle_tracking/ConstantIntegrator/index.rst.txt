@@ -1,0 +1,42 @@
+nexoclom2.particle_tracking.ConstantIntegrator
+==============================================
+
+.. py:module:: nexoclom2.particle_tracking.ConstantIntegrator
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.ConstantIntegrator.ConstantIntegrator
+
+
+Module Contents
+---------------
+
+.. py:class:: ConstantIntegrator(output, state, method='rk5')
+
+   
+   Constant step size integrator
+   :param output: nexoclom2 Output clas
+   :type output: Output
+
+   :Returns:
+
+       Final state of the system
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+

@@ -1,0 +1,286 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nexoclom2.atomicdata.atom &mdash; nexoclom2 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/stsci.css?v=d876f643" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/stsci.css?v=d876f643" />
+
+  
+      <script src="../../../../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="nexoclom2.atomicdata.charge_exchange" href="../charge_exchange/index.html" />
+    <link rel="prev" title="nexoclom2.atomicdata" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> nexoclom2
+            
+            <img src="../../../../_static/stsci_pri_combo_mark_white.png" class="logo" />
+          </a>
+
+          
+            
+            
+          
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+  
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/NEXOCLOM_Requirements_Document.html">NEXOCLOM Goals and Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/TestCases.html">NEXOCLOM Test Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/inputfiles.html">Input File Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/planet_distance.html">Solar System Geometries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/coordinate_systems.html">Planetary Coordinate Systems and System Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/surface_interaction.html">Interactions between incident atoms and surfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/lossrates.html">Neutral Loss Rates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/integrator.html">Runge-Kutta Integrator &amp; The Equations of Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/atomicdata.html">Atomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/particle_tracking.html">Particle Tracking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/references.html">References</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../Geometry/index.html">Geometry</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">nexoclom2</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#attributes">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../GeometryTime/index.html">GeometryTime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../FlatSpeedDist/index.html">FlatSpeedDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../RadialAngDist/index.html">RadialAngDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../GeometryNoTime/index.html">GeometryNoTime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../SurfMapSurfInt/index.html">SurfMapSurfInt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../UniformSpatDist/index.html">UniformSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../SurfMapSpatDist/index.html">SurfMapSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ConstantSurfInt/index.html">ConstantSurfInt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../IsotropicAngDist/index.html">IsotropicAngDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../SurfSpotSpatDist/index.html">SurfSpotSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reformat_gvalues/index.html">reformat_gvalues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../SputteringFluxDist/index.html">SputteringFluxDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../MaxwellianFluxDist/index.html">MaxwellianFluxDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../GoldenSpiralSpatDist/index.html">GoldenSpiralSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../TemperatureDependentSurfInt/index.html">TemperatureDependentSurfInt</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">nexoclom2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">nexoclom2</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">nexoclom2.atomicdata</a></li>
+      <li class="breadcrumb-item active">nexoclom2.atomicdata.atom</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/autoapi/nexoclom2/atomicdata/atom/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-nexoclom2.atomicdata.atom">
+<span id="nexoclom2-atomicdata-atom"></span><h1>nexoclom2.atomicdata.atom<a class="headerlink" href="#module-nexoclom2.atomicdata.atom" title="Link to this heading">¶</a></h1>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nexoclom2.atomicdata.atom.Atom" title="nexoclom2.atomicdata.atom.Atom"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Atom</span></code></a></p></td>
+<td><p>Class containing all useful atomic data for a neutral or ionic species.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="nexoclom2.atomicdata.atom.Atom">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nexoclom2.atomicdata.atom.</span></span><span class="sig-name descname"><span class="pre">Atom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">species</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.atomicdata.atom.Atom" title="Link to this definition">¶</a></dt>
+<dd><p>Class containing all useful atomic data for a neutral or ionic species.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>species: str</strong></dt><dd><p>Atomic species. Charge is indicated by the number of ‘+’ or ‘-’
+appended to the chemical symbol</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>charge: int</strong></dt><dd><p>Electric charge</p>
+</dd>
+<dt><strong>symbol: str</strong></dt><dd><p>Chemical symbol</p>
+</dd>
+<dt><strong>name: str</strong></dt><dd></dd>
+<dt><strong>number: int</strong></dt><dd></dd>
+<dt><strong>mass: astropy Quantity</strong></dt><dd></dd>
+<dt><strong>gvalues: nexoclom2 gValue object</strong></dt><dd></dd>
+<dt><strong>photo_refpt: astropy Quantity</strong></dt><dd><p>Reference point for the photoionziation rate (generally 1 AU)</p>
+</dd>
+<dt><strong>photo_rate: astropy Quantity</strong></dt><dd><p>Photoionization rate at the reference point</p>
+</dd>
+<dt><strong>photo_reactions: list</strong></dt><dd><p>List of tuples containing each photoreaction included and its rate at
+the reference point</p>
+</dd>
+<dt><strong>wavelengths: tuple</strong></dt><dd><p>List of wavelengths for which there are photon scattering rate
+coefficients (<em>g</em>-values) or electron impact excitation rate
+coefficients.</p>
+</dd>
+<dt><strong>_atom: Element</strong></dt><dd><p>Object from
+<a class="reference external" href="https://periodictable.readthedocs.io/en/latest/periodictable">periodictable</a>
+saved in case there is additional infomation the user might need.</p>
+</dd>
+<dt><strong>eimp_ionization: nexoclom2 EimpIonizationCoef object</strong></dt><dd></dd>
+<dt><strong>eimp_emission: nexoclom2 EimpEmissionCoef object</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.atomicdata.atom.Atom._atom">
+<span class="sig-name descname"><span class="pre">_atom</span></span><a class="headerlink" href="#nexoclom2.atomicdata.atom.Atom._atom" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.atomicdata.atom.Atom.charge">
+<span class="sig-name descname"><span class="pre">charge</span></span><a class="headerlink" href="#nexoclom2.atomicdata.atom.Atom.charge" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.atomicdata.atom.Atom.symbol">
+<span class="sig-name descname"><span class="pre">symbol</span></span><a class="headerlink" href="#nexoclom2.atomicdata.atom.Atom.symbol" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.atomicdata.atom.Atom.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#nexoclom2.atomicdata.atom.Atom.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.atomicdata.atom.Atom.number">
+<span class="sig-name descname"><span class="pre">number</span></span><a class="headerlink" href="#nexoclom2.atomicdata.atom.Atom.number" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.atomicdata.atom.Atom.mass">
+<span class="sig-name descname"><span class="pre">mass</span></span><a class="headerlink" href="#nexoclom2.atomicdata.atom.Atom.mass" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.atomicdata.atom.Atom.gvalues">
+<span class="sig-name descname"><span class="pre">gvalues</span></span><a class="headerlink" href="#nexoclom2.atomicdata.atom.Atom.gvalues" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.atomicdata.atom.Atom.photo_refpt">
+<span class="sig-name descname"><span class="pre">photo_refpt</span></span><a class="headerlink" href="#nexoclom2.atomicdata.atom.Atom.photo_refpt" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.atomicdata.atom.Atom.eimp_ionization">
+<span class="sig-name descname"><span class="pre">eimp_ionization</span></span><a class="headerlink" href="#nexoclom2.atomicdata.atom.Atom.eimp_ionization" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.atomicdata.atom.Atom.eimp_emission">
+<span class="sig-name descname"><span class="pre">eimp_emission</span></span><a class="headerlink" href="#nexoclom2.atomicdata.atom.Atom.eimp_emission" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.atomicdata.atom.Atom.wavelengths">
+<span class="sig-name descname"><span class="pre">wavelengths</span></span><a class="headerlink" href="#nexoclom2.atomicdata.atom.Atom.wavelengths" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.atomicdata.atom.Atom.charge_exchange">
+<span class="sig-name descname"><span class="pre">charge_exchange</span></span><a class="headerlink" href="#nexoclom2.atomicdata.atom.Atom.charge_exchange" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.atomicdata.atom.Atom.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.atomicdata.atom.Atom.__str__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.atomicdata.atom.Atom.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.atomicdata.atom.Atom.__repr__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.atomicdata.atom.Atom.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.atomicdata.atom.Atom.__eq__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="nexoclom2.atomicdata" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../charge_exchange/index.html" class="btn btn-neutral float-right" title="nexoclom2.atomicdata.charge_exchange" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Matthew Burger.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

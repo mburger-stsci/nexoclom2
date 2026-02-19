@@ -1,0 +1,406 @@
+nexoclom2.initial_state
+=======================
+
+.. py:module:: nexoclom2.initial_state
+
+.. autoapi-nested-parse::
+
+   
+   nexoclom2.initial_state package
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/nexoclom2/initial_state/Forces/index
+   /autoapi/nexoclom2/initial_state/Input/index
+   /autoapi/nexoclom2/initial_state/InputClass/index
+   /autoapi/nexoclom2/initial_state/LossInformation/index
+   /autoapi/nexoclom2/initial_state/Options/index
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.initial_state.InputClass
+   nexoclom2.initial_state.Forces
+   nexoclom2.initial_state.LossInformation
+   nexoclom2.initial_state.Options
+
+
+Package Contents
+----------------
+
+.. py:class:: InputClass(sparam: (dict, tinydb.table.Document))
+
+   
+   Base class for Input subclasses.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:method:: __eq__(other)
+
+
+   .. py:method:: _check_value(value, rng, include_min=True, include_max=True)
+
+      
+      Verify a value is in the proper range
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: __str__()
+
+
+   .. py:method:: __repr__()
+
+
+   .. py:method:: pdf(v)
+
+
+   .. py:method:: support()
+
+
+   .. py:method:: cdf(x)
+
+      
+      Cumulative Distribution Function
+
+      pdf must be defined in the distribution if you want to use the cdf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: generate1d(n_packets, randgen=None)
+
+      
+      Compute random deviates from arbitrary 1D distribution.
+      f_x does not need to integrate to 1. The function normalizes the
+      distribution. Uses Transformation method (Numerical Recipes, 7.3.2)
+
+
+      :Parameters:
+
+          **n_packets** : int
+              The number of random deviates to compute
+
+          **randgen** : numpy.random._generator.Generator
+              ..
+
+
+
+      :Returns:
+
+          numpy array of length num chosen from the distribution f_x.
+              ..
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: generate_sphere(n_packets, randgen)
+
+      
+      Create random deviates (longitude, latitude) from a distribution on a sphere
+
+      Uses the rejection mechanism to choose random points on the surface
+      according to a specified distribution. Note that the distribution needs
+      to be defined in longitude and sin(latitude) for proper determination on
+      a sphere. Also, the probability distribution function (pdf) in the
+      distribution class must vary between 0 and 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: query()
+
+      
+      Find matching records in the database
+
+
+
+
+
+      :Returns:
+
+          Tuple of matching doc_ids.
+              ..
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: Forces(fparam: (dict, tinydb.table.Document))
+
+   Bases: :py:obj:`nexoclom2.initial_state.InputClass.InputClass`
+
+
+   
+   Specify what forces to include in the model simulation
+
+   Specify whether to include gravitational and radiation pressure forces.
+   Default is to include both. See :ref:`forces` for more information.
+
+   :Parameters:
+
+       **fparams** : dict, tinydb.table.Document
+           keys, values for indicating what forces to include. If a tinydb
+           Document, no checks are performed since it is assumed to be a record
+           from the database
+
+   :Attributes:
+
+       **gravity** : bool, default = True
+           ..
+
+       **radpres** : bool, default = True
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: __name__
+      :value: 'Forces'
+
+
+
+.. py:class:: LossInformation(lparam: (dict, tinydb.table.Document), center=None, startpt=None)
+
+   Bases: :py:obj:`nexoclom2.initial_state.InputClass.InputClass`
+
+
+   
+   Determines how loss should be calculated.
+
+   Configures the loss rates due to processes other than collisions with the
+   surface. See :ref:`lossinfo` for more information.
+
+   :Parameters:
+
+       **lparam** : dict
+           ..
+
+   :Attributes:
+
+       **constant_lifetime: astropy Time or False**
+           Constant lifetime in seconds to use everywhere in the system.
+
+       **photoionization: bool**
+           Determines whether to include photoionization.
+
+       **photoionization_lifetime: astropy Time quantity**
+           If 0, uses the measured photoionization rate. If >0, sets the
+           photoionization lifetime to that value.
+
+       **photo_factor: float**
+           Factor by which to modify photo-loss rate.
+
+       **electron_impact: bool**
+           Determines whether to include electron impact processes.
+
+       **eimp_factor: float**
+           Factor by which to modify electron impact rate.
+
+       **charge_exchange: bool**
+           Determines whether to include charge exchange.
+
+       **chx_factor: float**
+           Factor by which to modify charge exchange rate
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: __name__
+      :value: 'LossInformation'
+
+
+
+.. py:class:: Options(options)
+
+   Bases: :py:obj:`nexoclom2.initial_state.InputClass.InputClass`
+
+
+   
+   Sets general run options
+
+   See ref:`options` for more information.
+
+   :Parameters:
+
+       **options** : dict, TinyDB Document
+           Key, value for defining the options
+
+   :Attributes:
+
+       **runtime** : astropy quantity
+           Total runtime for the simulation in seconds
+
+       **species** : str
+           ..
+
+       **outer_edge** : float, Default = 10**30 (infinite)
+           Outer edge of simulation in central body radii
+
+       **step_size** : astropy quantity, Default = 0 sec
+           Time step. If 0, uses adaptive step size integrator.
+
+       **resolution** : float, Default = 10**-5
+           Precision necessary in adaptive step size integrator. Not used with
+           constant step size integrator.
+
+       **start_together** : bool, optional, Default = False
+           If step_size = 0, tells integrator to start all packets at the same
+           time. Good for seeing cloud evolution and particle trajectories
+
+       **random_seed** : int >= 0, None, Default = None
+           seed for random generator
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: __name__
+      :value: 'Options'
+
+
+

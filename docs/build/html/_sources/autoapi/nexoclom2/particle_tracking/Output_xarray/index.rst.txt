@@ -1,0 +1,130 @@
+:py:mod:`nexoclom2.particle_tracking.Output_xarray`
+===================================================
+
+.. py:module:: nexoclom2.particle_tracking.Output_xarray
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.Output_xarray.Output
+
+
+
+
+.. py:class:: Output(inputs, n_packets: (int, float), compress=True, seed=None)
+
+
+
+   Class to store compute particle trajectories and store the results.
+
+
+   :Parameters:
+
+       **inputs** : Input
+           ..
+
+       **n_packets** : int
+           ..
+
+       **compress** : bool, Default=True
+           ..
+
+       **seed** : int
+           ..
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   The user will not generally call this directly but will instead use
+   ``inputs.run()``.
+
+
+
+   :Attributes:
+
+       **inputs** : Input
+           The inputs used in this model run.
+
+       **n_packets** : int, float
+           Total number of packets to run
+
+       **compress** : Bool
+           If True removes packets with frac=0 from the saved output, Default = True
+
+       **seed** : int
+           Seed for random number generator. Default = None
+
+       **initial_state** : xarray DataArray
+           Initial state relative to startpoint with standard units. Columns are
+           time (s), x (km), y (km), z (km), r (km), vx (km/s), vy (km/s),
+           (km/s), v (km/s), frac, longitude (rad), latitude (rad),
+           local_time (hr), altitude (rad), azimuth (rad)
+
+       **starting_point** : xarray DataArray
+           Initial state relative to central object with model units. Columns are
+           time (s), x (R_p), y (R_p), z(R_p), vx (R_p/s), vy (R_p/s), vz (R_p/s)
+           frac
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:method:: source_distribution() -> (xarray.DataArray, xarray.DataArray)
+
+
+      Determine starting state of each packet.
+      :returns: * **initial_state** (*xarray DataArray*) -- Initial state relative to startpoint with standard units. Columns are
+                  time (s), x (km), y (km), z (km), r (km), vx (km/s), vy (km/s),
+                  (km/s), v (km/s), frac, longitude (rad), latitude (rad),
+                  local_time (hr), altitude (rad), azimuth (rad)
+                * **starting_point** (*xarray DataArray*) -- Initial state relative to central object with model units. Columns are
+                  time (s), x (R_p), y (R_p), z(R_p), vx (R_p/s), vy (R_p/s), vz (R_p/s)
+                  frac
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: moon_to_planet_coords(starting_point)
+
+
+      Rotate packets to starting point around planet and
+      convert to planet-centered coordinates
+
+
+
+      :Returns:
+
+          Coordinates in planet-centered coordinate system rotated to proper
+              ..
+
+          starting location.
+              ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: save()

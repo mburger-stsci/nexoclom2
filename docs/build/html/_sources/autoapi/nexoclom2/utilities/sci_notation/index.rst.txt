@@ -1,0 +1,19 @@
+nexoclom2.utilities.sci_notation
+================================
+
+.. py:module:: nexoclom2.utilities.sci_notation
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   nexoclom2.utilities.sci_notation.sci_note
+
+
+Module Contents
+---------------
+
+.. py:function:: sci_note(x, pos)
+

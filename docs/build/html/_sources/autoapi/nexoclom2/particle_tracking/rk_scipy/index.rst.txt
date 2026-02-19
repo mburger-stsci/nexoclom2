@@ -1,0 +1,764 @@
+nexoclom2.particle_tracking.rk_scipy
+====================================
+
+.. py:module:: nexoclom2.particle_tracking.rk_scipy
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.rk_scipy.SAFETY
+   nexoclom2.particle_tracking.rk_scipy.MIN_FACTOR
+   nexoclom2.particle_tracking.rk_scipy.MAX_FACTOR
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.rk_scipy.RungeKutta
+   nexoclom2.particle_tracking.rk_scipy.RK23
+   nexoclom2.particle_tracking.rk_scipy.RK45
+   nexoclom2.particle_tracking.rk_scipy.DOP853
+   nexoclom2.particle_tracking.rk_scipy.RkDenseOutput
+   nexoclom2.particle_tracking.rk_scipy.Dop853DenseOutput
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.rk_scipy.rk_step
+
+
+Module Contents
+---------------
+
+.. py:data:: SAFETY
+   :value: 0.9
+
+
+.. py:data:: MIN_FACTOR
+   :value: 0.2
+
+
+.. py:data:: MAX_FACTOR
+   :value: 10
+
+
+.. py:function:: rk_step(fun, t, y, f, h, A, B, C, K)
+
+   
+   Perform a single Runge-Kutta step.
+
+   This function computes a prediction of an explicit Runge-Kutta method and
+   also estimates the error of a less accurate method.
+
+   Notation for Butcher tableau is as in [R4e8f1c391965-1]_.
+
+   :Parameters:
+
+       **fun** : callable
+           Right-hand side of the system.
+
+       **t** : float
+           Current time.
+
+       **y** : ndarray, shape (n,)
+           Current state.
+
+       **f** : ndarray, shape (n,)
+           Current value of the derivative, i.e., ``fun(x, y)``.
+
+       **h** : float
+           Step to use.
+
+       **A** : ndarray, shape (n_stages, n_stages)
+           Coefficients for combining previous RK stages to compute the next
+           stage. For explicit methods the coefficients at and above the main
+           diagonal are zeros.
+
+       **B** : ndarray, shape (n_stages,)
+           Coefficients for combining RK stages for computing the final
+           prediction.
+
+       **C** : ndarray, shape (n_stages,)
+           Coefficients for incrementing time for consecutive RK stages.
+           The value for the first stage is always zero.
+
+       **K** : ndarray, shape (n_stages + 1, n)
+           Storage array for putting RK stages here. Stages are stored in rows.
+           The last row is a linear combination of the previous rows with
+           coefficients
+
+
+
+   :Returns:
+
+       **y_new** : ndarray, shape (n,)
+           Solution at t + h computed with a higher accuracy.
+
+       **f_new** : ndarray, shape (n,)
+           Derivative ``fun(t + h, y_new)``.
+
+
+
+
+
+
+
+
+
+   .. rubric:: References
+
+   .. [R4e8f1c391965-1] E. Hairer, S. P. Norsett G. Wanner, "Solving Ordinary Differential
+          Equations I: Nonstiff Problems", Sec. II.4.
+
+   .. only:: latex
+
+      [R4e8f1c391965-1]_
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:class:: RungeKutta(fun, t0, y0, t_bound, max_step=np.inf, rtol=0.001, atol=1e-06, vectorized=False, first_step=None, **extraneous)
+
+   Bases: :py:obj:`nexoclom2.particle_tracking.base.OdeSolver`
+
+
+   
+   Base class for explicit Runge-Kutta methods.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: C
+      :type:  numpy.ndarray
+      :value: NotImplemented
+
+
+
+   .. py:attribute:: A
+      :type:  numpy.ndarray
+      :value: NotImplemented
+
+
+
+   .. py:attribute:: B
+      :type:  numpy.ndarray
+      :value: NotImplemented
+
+
+
+   .. py:attribute:: E
+      :type:  numpy.ndarray
+      :value: NotImplemented
+
+
+
+   .. py:attribute:: P
+      :type:  numpy.ndarray
+      :value: NotImplemented
+
+
+
+   .. py:attribute:: order
+      :type:  int
+      :value: NotImplemented
+
+
+
+   .. py:attribute:: error_estimator_order
+      :type:  int
+      :value: NotImplemented
+
+
+
+   .. py:attribute:: n_stages
+      :type:  int
+      :value: NotImplemented
+
+
+
+   .. py:attribute:: y_old
+      :value: None
+
+
+
+   .. py:attribute:: max_step
+
+
+   .. py:attribute:: f
+
+
+   .. py:attribute:: K
+
+
+   .. py:attribute:: error_exponent
+
+
+   .. py:attribute:: h_previous
+      :value: None
+
+
+
+   .. py:method:: _estimate_error(K, h)
+
+
+   .. py:method:: _estimate_error_norm(K, h, scale)
+
+
+   .. py:method:: _step_impl()
+
+
+   .. py:method:: _dense_output_impl()
+
+
+.. py:class:: RK23(fun, t0, y0, t_bound, max_step=np.inf, rtol=0.001, atol=1e-06, vectorized=False, first_step=None, **extraneous)
+
+   Bases: :py:obj:`RungeKutta`
+
+
+   
+   Explicit Runge-Kutta method of order 3(2).
+
+   This uses the Bogacki-Shampine pair of formulas [Rb6a33f4a3b5e-1]_. The error is controlled
+   assuming accuracy of the second-order method, but steps are taken using the
+   third-order accurate formula (local extrapolation is done). A cubic Hermite
+   polynomial is used for the dense output.
+
+   Can be applied in the complex domain.
+
+   :Parameters:
+
+       **fun** : callable
+           Right-hand side of the system: the time derivative of the state ``y``
+           at time ``t``. The calling signature is ``fun(t, y)``, where ``t`` is a
+           scalar and ``y`` is an ndarray with ``len(y) = len(y0)``. ``fun`` must
+           return an array of the same shape as ``y``. See `vectorized` for more
+           information.
+
+       **t0** : float
+           Initial time.
+
+       **y0** : array_like, shape (n,)
+           Initial state.
+
+       **t_bound** : float
+           Boundary time - the integration won't continue beyond it. It also
+           determines the direction of the integration.
+
+       **first_step** : float or None, optional
+           Initial step size. Default is ``None`` which means that the algorithm
+           should choose.
+
+       **max_step** : float, optional
+           Maximum allowed step size. Default is np.inf, i.e., the step size is not
+           bounded and determined solely by the solver.
+
+       **rtol, atol** : float and array_like, optional
+           Relative and absolute tolerances. The solver keeps the local error
+           estimates less than ``atol + rtol * abs(y)``. Here `rtol` controls a
+           relative accuracy (number of correct digits), while `atol` controls
+           absolute accuracy (number of correct decimal places). To achieve the
+           desired `rtol`, set `atol` to be smaller than the smallest value that
+           can be expected from ``rtol * abs(y)`` so that `rtol` dominates the
+           allowable error. If `atol` is larger than ``rtol * abs(y)`` the
+           number of correct digits is not guaranteed. Conversely, to achieve the
+           desired `atol` set `rtol` such that ``rtol * abs(y)`` is always smaller
+           than `atol`. If components of y have different scales, it might be
+           beneficial to set different `atol` values for different components by
+           passing array_like with shape (n,) for `atol`. Default values are
+           1e-3 for `rtol` and 1e-6 for `atol`.
+
+       **vectorized** : bool, optional
+           Whether `fun` may be called in a vectorized fashion. False (default)
+           is recommended for this solver.
+
+           If ``vectorized`` is False, `fun` will always be called with ``y`` of
+           shape ``(n,)``, where ``n = len(y0)``.
+
+           If ``vectorized`` is True, `fun` may be called with ``y`` of shape
+           ``(n, k)``, where ``k`` is an integer. In this case, `fun` must behave
+           such that ``fun(t, y)[:, i] == fun(t, y[:, i])`` (i.e. each column of
+           the returned array is the time derivative of the state corresponding
+           with a column of ``y``).
+
+           Setting ``vectorized=True`` allows for faster finite difference
+           approximation of the Jacobian by methods 'Radau' and 'BDF', but
+           will result in slower execution for this solver.
+
+   :Attributes:
+
+       **n** : int
+           Number of equations.
+
+       **status** : string
+           Current status of the solver: 'running', 'finished' or 'failed'.
+
+       **t_bound** : float
+           Boundary time.
+
+       **direction** : float
+           Integration direction: +1 or -1.
+
+       **t** : float
+           Current time.
+
+       **y** : ndarray
+           Current state.
+
+       **t_old** : float
+           Previous time. None if no steps were made yet.
+
+       **step_size** : float
+           Size of the last successful step. None if no steps were made yet.
+
+       **nfev** : int
+           Number evaluations of the system's right-hand side.
+
+       **njev** : int
+           Number of evaluations of the Jacobian.
+           Is always 0 for this solver as it does not use the Jacobian.
+
+       **nlu** : int
+           Number of LU decompositions. Is always 0 for this solver.
+
+
+
+
+
+
+
+
+
+
+
+   .. rubric:: References
+
+   .. [Rb6a33f4a3b5e-1] P. Bogacki, L.F. Shampine, "A 3(2) Pair of Runge-Kutta Formulas",
+          Appl. Math. Lett. Vol. 2, No. 4. pp. 321-325, 1989.
+
+   .. only:: latex
+
+      [Rb6a33f4a3b5e-1]_
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: order
+      :value: 3
+
+
+
+   .. py:attribute:: error_estimator_order
+      :value: 2
+
+
+
+   .. py:attribute:: n_stages
+      :value: 3
+
+
+
+   .. py:attribute:: C
+
+
+   .. py:attribute:: A
+
+
+   .. py:attribute:: B
+
+
+   .. py:attribute:: E
+
+
+   .. py:attribute:: P
+
+
+.. py:class:: RK45(fun, t0, y0, t_bound, max_step=np.inf, rtol=0.001, atol=1e-06, vectorized=False, first_step=None, **extraneous)
+
+   Bases: :py:obj:`RungeKutta`
+
+
+   
+   Explicit Runge-Kutta method of order 5(4).
+
+   This uses the Dormand-Prince pair of formulas [Rfa208770a3c6-1]_. The error is controlled
+   assuming accuracy of the fourth-order method accuracy, but steps are taken
+   using the fifth-order accurate formula (local extrapolation is done).
+   A quartic interpolation polynomial is used for the dense output [Rfa208770a3c6-2]_.
+
+   Can be applied in the complex domain.
+
+   :Parameters:
+
+       **fun** : callable
+           Right-hand side of the system. The calling signature is ``fun(t, y)``.
+           Here ``t`` is a scalar, and there are two options for the ndarray ``y``:
+           It can either have shape (n,); then ``fun`` must return array_like with
+           shape (n,). Alternatively it can have shape (n, k); then ``fun``
+           must return an array_like with shape (n, k), i.e., each column
+           corresponds to a single column in ``y``. The choice between the two
+           options is determined by `vectorized` argument (see below).
+
+       **t0** : float
+           Initial time.
+
+       **y0** : array_like, shape (n,)
+           Initial state.
+
+       **t_bound** : float
+           Boundary time - the integration won't continue beyond it. It also
+           determines the direction of the integration.
+
+       **first_step** : float or None, optional
+           Initial step size. Default is ``None`` which means that the algorithm
+           should choose.
+
+       **max_step** : float, optional
+           Maximum allowed step size. Default is np.inf, i.e., the step size is not
+           bounded and determined solely by the solver.
+
+       **rtol, atol** : float and array_like, optional
+           Relative and absolute tolerances. The solver keeps the local error
+           estimates less than ``atol + rtol * abs(y)``. Here `rtol` controls a
+           relative accuracy (number of correct digits), while `atol` controls
+           absolute accuracy (number of correct decimal places). To achieve the
+           desired `rtol`, set `atol` to be smaller than the smallest value that
+           can be expected from ``rtol * abs(y)`` so that `rtol` dominates the
+           allowable error. If `atol` is larger than ``rtol * abs(y)`` the
+           number of correct digits is not guaranteed. Conversely, to achieve the
+           desired `atol` set `rtol` such that ``rtol * abs(y)`` is always smaller
+           than `atol`. If components of y have different scales, it might be
+           beneficial to set different `atol` values for different components by
+           passing array_like with shape (n,) for `atol`. Default values are
+           1e-3 for `rtol` and 1e-6 for `atol`.
+
+       **vectorized** : bool, optional
+           Whether `fun` is implemented in a vectorized fashion. Default is False.
+
+   :Attributes:
+
+       **n** : int
+           Number of equations.
+
+       **status** : string
+           Current status of the solver: 'running', 'finished' or 'failed'.
+
+       **t_bound** : float
+           Boundary time.
+
+       **direction** : float
+           Integration direction: +1 or -1.
+
+       **t** : float
+           Current time.
+
+       **y** : ndarray
+           Current state.
+
+       **t_old** : float
+           Previous time. None if no steps were made yet.
+
+       **step_size** : float
+           Size of the last successful step. None if no steps were made yet.
+
+       **nfev** : int
+           Number evaluations of the system's right-hand side.
+
+       **njev** : int
+           Number of evaluations of the Jacobian.
+           Is always 0 for this solver as it does not use the Jacobian.
+
+       **nlu** : int
+           Number of LU decompositions. Is always 0 for this solver.
+
+
+
+
+
+
+
+
+
+
+
+   .. rubric:: References
+
+   .. [Rfa208770a3c6-1] J. R. Dormand, P. J. Prince, "A family of embedded Runge-Kutta
+          formulae", Journal of Computational and Applied Mathematics, Vol. 6,
+          No. 1, pp. 19-26, 1980.
+   .. [Rfa208770a3c6-2] L. W. Shampine, "Some Practical Runge-Kutta Formulas", Mathematics
+          of Computation,, Vol. 46, No. 173, pp. 135-150, 1986.
+
+   .. only:: latex
+
+      [Rfa208770a3c6-1]_, [Rfa208770a3c6-2]_
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: order
+      :value: 5
+
+
+
+   .. py:attribute:: error_estimator_order
+      :value: 4
+
+
+
+   .. py:attribute:: n_stages
+      :value: 6
+
+
+
+   .. py:attribute:: C
+
+
+   .. py:attribute:: A
+
+
+   .. py:attribute:: B
+
+
+   .. py:attribute:: E
+
+
+   .. py:attribute:: P
+
+
+.. py:class:: DOP853(fun, t0, y0, t_bound, max_step=np.inf, rtol=0.001, atol=1e-06, vectorized=False, first_step=None, **extraneous)
+
+   Bases: :py:obj:`RungeKutta`
+
+
+   
+   Explicit Runge-Kutta method of order 8.
+
+   This is a Python implementation of "DOP853" algorithm originally written
+   in Fortran [Rc6e508233a2b-1]_, [Rc6e508233a2b-2]_. Note that this is not a literal translation, but
+   the algorithmic core and coefficients are the same.
+
+   Can be applied in the complex domain.
+
+   :Parameters:
+
+       **fun** : callable
+           Right-hand side of the system. The calling signature is ``fun(t, y)``.
+           Here, ``t`` is a scalar, and there are two options for the ndarray ``y``:
+           It can either have shape (n,); then ``fun`` must return array_like with
+           shape (n,). Alternatively it can have shape (n, k); then ``fun``
+           must return an array_like with shape (n, k), i.e. each column
+           corresponds to a single column in ``y``. The choice between the two
+           options is determined by `vectorized` argument (see below).
+
+       **t0** : float
+           Initial time.
+
+       **y0** : array_like, shape (n,)
+           Initial state.
+
+       **t_bound** : float
+           Boundary time - the integration won't continue beyond it. It also
+           determines the direction of the integration.
+
+       **first_step** : float or None, optional
+           Initial step size. Default is ``None`` which means that the algorithm
+           should choose.
+
+       **max_step** : float, optional
+           Maximum allowed step size. Default is np.inf, i.e. the step size is not
+           bounded and determined solely by the solver.
+
+       **rtol, atol** : float and array_like, optional
+           Relative and absolute tolerances. The solver keeps the local error
+           estimates less than ``atol + rtol * abs(y)``. Here `rtol` controls a
+           relative accuracy (number of correct digits), while `atol` controls
+           absolute accuracy (number of correct decimal places). To achieve the
+           desired `rtol`, set `atol` to be smaller than the smallest value that
+           can be expected from ``rtol * abs(y)`` so that `rtol` dominates the
+           allowable error. If `atol` is larger than ``rtol * abs(y)`` the
+           number of correct digits is not guaranteed. Conversely, to achieve the
+           desired `atol` set `rtol` such that ``rtol * abs(y)`` is always smaller
+           than `atol`. If components of y have different scales, it might be
+           beneficial to set different `atol` values for different components by
+           passing array_like with shape (n,) for `atol`. Default values are
+           1e-3 for `rtol` and 1e-6 for `atol`.
+
+       **vectorized** : bool, optional
+           Whether `fun` is implemented in a vectorized fashion. Default is False.
+
+   :Attributes:
+
+       **n** : int
+           Number of equations.
+
+       **status** : string
+           Current status of the solver: 'running', 'finished' or 'failed'.
+
+       **t_bound** : float
+           Boundary time.
+
+       **direction** : float
+           Integration direction: +1 or -1.
+
+       **t** : float
+           Current time.
+
+       **y** : ndarray
+           Current state.
+
+       **t_old** : float
+           Previous time. None if no steps were made yet.
+
+       **step_size** : float
+           Size of the last successful step. None if no steps were made yet.
+
+       **nfev** : int
+           Number evaluations of the system's right-hand side.
+
+       **njev** : int
+           Number of evaluations of the Jacobian. Is always 0 for this solver
+           as it does not use the Jacobian.
+
+       **nlu** : int
+           Number of LU decompositions. Is always 0 for this solver.
+
+
+
+
+
+
+
+
+
+
+
+   .. rubric:: References
+
+   .. [Rc6e508233a2b-1] E. Hairer, S. P. Norsett G. Wanner, "Solving Ordinary Differential
+          Equations I: Nonstiff Problems", Sec. II.
+   .. [Rc6e508233a2b-2] `Page with original Fortran code of DOP853
+           <http://www.unige.ch/~hairer/software.html>`_.
+
+   .. only:: latex
+
+      [Rc6e508233a2b-1]_, [Rc6e508233a2b-2]_
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: n_stages
+
+
+   .. py:attribute:: order
+      :value: 8
+
+
+
+   .. py:attribute:: error_estimator_order
+      :value: 7
+
+
+
+   .. py:attribute:: A
+
+
+   .. py:attribute:: B
+
+
+   .. py:attribute:: C
+
+
+   .. py:attribute:: E3
+
+
+   .. py:attribute:: E5
+
+
+   .. py:attribute:: D
+
+
+   .. py:attribute:: A_EXTRA
+
+
+   .. py:attribute:: C_EXTRA
+
+
+   .. py:attribute:: K_extended
+
+
+   .. py:attribute:: K
+
+
+   .. py:method:: _estimate_error(K, h)
+
+
+   .. py:method:: _estimate_error_norm(K, h, scale)
+
+
+   .. py:method:: _dense_output_impl()
+
+
+.. py:class:: RkDenseOutput(t_old, t, y_old, Q)
+
+   Bases: :py:obj:`nexoclom2.particle_tracking.base.DenseOutput`
+
+
+   .. py:attribute:: h
+
+
+   .. py:attribute:: Q
+
+
+   .. py:attribute:: order
+
+
+   .. py:attribute:: y_old
+
+
+   .. py:method:: _call_impl(t)
+
+
+.. py:class:: Dop853DenseOutput(t_old, t, y_old, F)
+
+   Bases: :py:obj:`nexoclom2.particle_tracking.base.DenseOutput`
+
+
+   .. py:attribute:: h
+
+
+   .. py:attribute:: F
+
+
+   .. py:attribute:: y_old
+
+
+   .. py:method:: _call_impl(t)
+
+

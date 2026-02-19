@@ -1,0 +1,108 @@
+Geometry
+========
+
+.. py:module:: Geometry
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   Geometry.Geometry
+
+
+Module Contents
+---------------
+
+.. py:class:: Geometry(gparam: (dict, tinydb.table.Document))
+
+   Bases: :py:obj:`nexoclom2.initial_state.InputClass.InputClass`
+
+
+   
+   Solar System geometry information
+
+   Base class for Geometry inputs. This is not intended to be called by the
+   user. Sets parameters used jointly by GeometryTime and GeometryNoTime.
+
+   Parameters set here
+
+   * center
+   * startpoint
+   * included
+
+   See :ref:`geometry` for more information.
+
+   :Parameters:
+
+       **gparam** : dict
+           keys, values for defining system geometry.
+
+   :Attributes:
+
+       **__name__** : 'Geometry'
+           ..
+
+       **type** : 'geometry_base'
+           ..
+
+       **center** : str
+           Central body for the model
+
+       **startpoint** : str
+           Object from which packets are ejected.
+
+       **include** : tuple of str
+           Objects included in calculations.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: __name__
+      :value: 'Geometry'
+
+
+
+   .. py:method:: __repr__()
+
+
+   .. py:method:: __str__()
+
+      
+      Override of superclass __str__
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: __eq__(other)
+
+

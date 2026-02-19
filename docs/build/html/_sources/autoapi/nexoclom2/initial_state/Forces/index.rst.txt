@@ -1,0 +1,63 @@
+nexoclom2.initial_state.Forces
+==============================
+
+.. py:module:: nexoclom2.initial_state.Forces
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.initial_state.Forces.Forces
+
+
+Module Contents
+---------------
+
+.. py:class:: Forces(fparam: (dict, tinydb.table.Document))
+
+   Bases: :py:obj:`nexoclom2.initial_state.InputClass.InputClass`
+
+
+   
+   Specify what forces to include in the model simulation
+
+   Specify whether to include gravitational and radiation pressure forces.
+   Default is to include both. See :ref:`forces` for more information.
+
+   :Parameters:
+
+       **fparams** : dict, tinydb.table.Document
+           keys, values for indicating what forces to include. If a tinydb
+           Document, no checks are performed since it is assumed to be a record
+           from the database
+
+   :Attributes:
+
+       **gravity** : bool, default = True
+           ..
+
+       **radpres** : bool, default = True
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: __name__
+      :value: 'Forces'
+
+
+

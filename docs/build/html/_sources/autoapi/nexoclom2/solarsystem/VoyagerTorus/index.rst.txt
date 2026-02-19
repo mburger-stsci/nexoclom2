@@ -1,0 +1,50 @@
+nexoclom2.solarsystem.VoyagerTorus
+==================================
+
+.. py:module:: nexoclom2.solarsystem.VoyagerTorus
+
+.. autoapi-nested-parse::
+
+   Extracts the Voyager Io Torus model from the IDL save file
+
+   Not intended to be run by users.
+
+   ..
+       !! processed by numpydoc !!
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   nexoclom2.solarsystem.VoyagerTorus.jupiter
+   nexoclom2.solarsystem.VoyagerTorus.data
+   nexoclom2.solarsystem.VoyagerTorus.plasma_idl
+   nexoclom2.solarsystem.VoyagerTorus.keys
+   nexoclom2.solarsystem.VoyagerTorus.ions
+   nexoclom2.solarsystem.VoyagerTorus.plasma
+   nexoclom2.solarsystem.VoyagerTorus.voyagerfile
+
+
+Module Contents
+---------------
+
+.. py:data:: jupiter
+
+.. py:data:: data
+   :value: None
+
+
+.. py:data:: plasma_idl
+
+.. py:data:: keys
+   :value: ('L', 'n_e', 'T_e', 'H_e', 'ions', 'n_i', 'T_i', 'H_i')
+
+
+.. py:data:: ions
+
+.. py:data:: plasma
+
+.. py:data:: voyagerfile
+

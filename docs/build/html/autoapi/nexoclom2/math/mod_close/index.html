@@ -1,0 +1,241 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nexoclom2.math.mod_close &mdash; nexoclom2 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/stsci.css?v=d876f643" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/stsci.css?v=d876f643" />
+
+  
+      <script src="../../../../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="nexoclom2.math.rotation_matrix" href="../rotation_matrix/index.html" />
+    <link rel="prev" title="nexoclom2.math.ks_test" href="../ks_test/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> nexoclom2
+            
+            <img src="../../../../_static/stsci_pri_combo_mark_white.png" class="logo" />
+          </a>
+
+          
+            
+            
+          
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+  
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/NEXOCLOM_Requirements_Document.html">NEXOCLOM Goals and Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/TestCases.html">NEXOCLOM Test Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/inputfiles.html">Input File Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/planet_distance.html">Solar System Geometries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/coordinate_systems.html">Planetary Coordinate Systems and System Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/surface_interaction.html">Interactions between incident atoms and surfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/lossrates.html">Neutral Loss Rates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/integrator.html">Runge-Kutta Integrator &amp; The Equations of Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/atomicdata.html">Atomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/particle_tracking.html">Particle Tracking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/references.html">References</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../Geometry/index.html">Geometry</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">nexoclom2</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#attributes">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../GeometryTime/index.html">GeometryTime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../FlatSpeedDist/index.html">FlatSpeedDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../RadialAngDist/index.html">RadialAngDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../GeometryNoTime/index.html">GeometryNoTime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../SurfMapSurfInt/index.html">SurfMapSurfInt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../UniformSpatDist/index.html">UniformSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../SurfMapSpatDist/index.html">SurfMapSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ConstantSurfInt/index.html">ConstantSurfInt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../IsotropicAngDist/index.html">IsotropicAngDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../SurfSpotSpatDist/index.html">SurfSpotSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reformat_gvalues/index.html">reformat_gvalues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../SputteringFluxDist/index.html">SputteringFluxDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../MaxwellianFluxDist/index.html">MaxwellianFluxDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../GoldenSpiralSpatDist/index.html">GoldenSpiralSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../TemperatureDependentSurfInt/index.html">TemperatureDependentSurfInt</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">nexoclom2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">nexoclom2</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">nexoclom2.math</a></li>
+      <li class="breadcrumb-item active">nexoclom2.math.mod_close</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/autoapi/nexoclom2/math/mod_close/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-nexoclom2.math.mod_close">
+<span id="nexoclom2-math-mod-close"></span><h1>nexoclom2.math.mod_close<a class="headerlink" href="#module-nexoclom2.math.mod_close" title="Link to this heading">¶</a></h1>
+<p>Determines whether two values are close in a modular system</p>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nexoclom2.math.mod_close.mod_close" title="nexoclom2.math.mod_close.mod_close"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mod_close</span></code></a>(a, b[, period, atol])</p></td>
+<td><p>Wrapper for np.isclose for values close to the periodic boundary</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="nexoclom2.math.mod_close.mod_close">
+<span class="sig-prename descclassname"><span class="pre">nexoclom2.math.mod_close.</span></span><span class="sig-name descname"><span class="pre">mod_close</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span> <span class="pre">*</span> <span class="pre">np.pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.math.mod_close.mod_close" title="Link to this definition">¶</a></dt>
+<dd><p>Wrapper for np.isclose for values close to the periodic boundary
+Decision Chart</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>A</p></th>
+<th class="head"><p>B</p></th>
+<th class="head"><p>Comparison</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>low</p></td>
+<td><p>low</p></td>
+<td><p><img class="math" src="../../../../_images/math/ef6cdcc8ab6c2ad9dd29392ccf62532bcd0a0a5f.png" alt="|A - B| \leq \delta"/></p></td>
+</tr>
+<tr class="row-odd"><td><p>low</p></td>
+<td><p>mid</p></td>
+<td><p><img class="math" src="../../../../_images/math/ef6cdcc8ab6c2ad9dd29392ccf62532bcd0a0a5f.png" alt="|A - B| \leq \delta"/></p></td>
+</tr>
+<tr class="row-even"><td><p>low</p></td>
+<td><p>high</p></td>
+<td><p><img class="math" src="../../../../_images/math/a7b656b649b8b8838f35249bf8a6a68c93d529be.png" alt="|(A + P) - B| \leq \delta"/></p></td>
+</tr>
+<tr class="row-odd"><td><p>mid</p></td>
+<td><p>low</p></td>
+<td><p><img class="math" src="../../../../_images/math/ef6cdcc8ab6c2ad9dd29392ccf62532bcd0a0a5f.png" alt="|A - B| \leq \delta"/></p></td>
+</tr>
+<tr class="row-even"><td><p>mid</p></td>
+<td><p>mid</p></td>
+<td><p><img class="math" src="../../../../_images/math/ef6cdcc8ab6c2ad9dd29392ccf62532bcd0a0a5f.png" alt="|A - B| \leq \delta"/></p></td>
+</tr>
+<tr class="row-odd"><td><p>mid</p></td>
+<td><p>high</p></td>
+<td><p><img class="math" src="../../../../_images/math/ef6cdcc8ab6c2ad9dd29392ccf62532bcd0a0a5f.png" alt="|A - B| \leq \delta"/></p></td>
+</tr>
+<tr class="row-even"><td><p>high</p></td>
+<td><p>low</p></td>
+<td><p><img class="math" src="../../../../_images/math/18740a9646c0b0b22ce96f795d7d8e51b69fc18f.png" alt="|A - (B - P)| \leq \delta"/></p></td>
+</tr>
+<tr class="row-odd"><td><p>high</p></td>
+<td><p>mid</p></td>
+<td><p><img class="math" src="../../../../_images/math/ef6cdcc8ab6c2ad9dd29392ccf62532bcd0a0a5f.png" alt="|A - B| \leq \delta"/></p></td>
+</tr>
+<tr class="row-even"><td><p>high</p></td>
+<td><p>high</p></td>
+<td><p><img class="math" src="../../../../_images/math/ef6cdcc8ab6c2ad9dd29392ccf62532bcd0a0a5f.png" alt="|A - B| \leq \delta"/></p></td>
+</tr>
+</tbody>
+</table>
+<p>where low = <img class="math" src="../../../../_images/math/b1e73463d6c276e5c2e4f38ede1707b50cf092dd.png" alt="x \leq \delta"/>, mid = <img class="math" src="../../../../_images/math/b0459d2f3132ee3a09f14dd1b70ffa194303e451.png" alt="\delta \leq x &lt; P-\delta"/> and
+high = <img class="math" src="../../../../_images/math/676200a6e6875ffc9a17540c9950e4d894fb9a07.png" alt="x \geq P - \delta"/>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>int</em><em>, </em><em>float</em>) – Inputs to compare. Must be single valued.</p></li>
+<li><p><strong>b</strong> (<em>int</em><em>, </em><em>float</em>) – Inputs to compare. Must be single valued.</p></li>
+<li><p><strong>period</strong> (<em>float</em><em>, </em><em>Default = 2π</em>)</p></li>
+<li><p><strong>atol</strong> (<em>float</em>) – The absolute tolerance parameter</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Bool</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Uses <a class="reference external" href="https://docutils.sourceforge.io/rst.html">numpy.isclose()</a> with
+default relative tolerance and abolute tolerance defined by <cite>atol</cite> parameter.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../ks_test/index.html" class="btn btn-neutral float-left" title="nexoclom2.math.ks_test" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../rotation_matrix/index.html" class="btn btn-neutral float-right" title="nexoclom2.math.rotation_matrix" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Matthew Burger.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

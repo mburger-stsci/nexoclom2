@@ -1,0 +1,134 @@
+nexoclom2.initial_state.Input
+=============================
+
+.. py:module:: nexoclom2.initial_state.Input
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.initial_state.Input.Input
+
+
+Module Contents
+---------------
+
+.. py:class:: Input(infile: str)
+
+   
+   Class defining all input parameters for a NEXOCLOM2 model run.
+
+
+   :Parameters:
+
+       **infile** : str
+           plain text file containing model input parameters. See inputfiles for
+           a description of the input file format
+
+   :Attributes:
+
+       **geometry** : Geometry
+           ..
+
+       **forces** : Forces
+           ..
+
+       **surfaceinteraction** : ConstantSurfaceInteraction, etc
+           ..
+
+       **spatialdist** : UniformSpatialDist, etc.
+           ..
+
+       **speeddist** : GaussianSpeedDist, etc.
+           ..
+
+       **angulardist** : RadialAngularDist, IsotropicAngularDist
+           ..
+
+       **lossinfo** : LossInformation
+           ..
+
+       **options** : Options
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: _inputfile
+
+
+   .. py:attribute:: _classes
+      :value: ['geometry', 'surfaceinteraction', 'forces', 'spatialdist', 'speeddist', 'angulardist',...
+
+
+
+   .. py:attribute:: config
+
+
+   .. py:attribute:: forces
+
+
+   .. py:attribute:: lossinfo
+
+
+   .. py:attribute:: options
+
+
+   .. py:method:: __str__()
+
+
+   .. py:method:: __repr__()
+
+
+   .. py:method:: __eq__(other)
+
+
+   .. py:method:: _read_params()
+
+
+   .. py:method:: search()
+
+      
+      This method allows users to search for inputs without having to
+      instantiate the database themselves.
+
+
+
+
+
+      :Returns:
+
+          Database document ID associated with inputs
+              ..
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: make_savefile(doc_id)
+
+

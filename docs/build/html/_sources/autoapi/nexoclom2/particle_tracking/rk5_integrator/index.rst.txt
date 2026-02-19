@@ -1,0 +1,133 @@
+nexoclom2.particle_tracking.rk5_integrator
+==========================================
+
+.. py:module:: nexoclom2.particle_tracking.rk5_integrator
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.rk5_integrator.c
+   nexoclom2.particle_tracking.rk5_integrator.b
+   nexoclom2.particle_tracking.rk5_integrator.bs
+   nexoclom2.particle_tracking.rk5_integrator.bd
+   nexoclom2.particle_tracking.rk5_integrator.a
+   nexoclom2.particle_tracking.rk5_integrator.C
+   nexoclom2.particle_tracking.rk5_integrator.A
+   nexoclom2.particle_tracking.rk5_integrator.B
+   nexoclom2.particle_tracking.rk5_integrator.E
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.rk5_integrator.Delta
+   nexoclom2.particle_tracking.rk5_integrator.rk5Integrator
+
+
+Module Contents
+---------------
+
+.. py:data:: c
+
+.. py:data:: b
+
+.. py:data:: bs
+
+.. py:data:: bd
+
+.. py:data:: a
+
+.. py:data:: C
+
+.. py:data:: A
+
+.. py:data:: B
+
+.. py:data:: E
+
+.. py:class:: Delta(prev)
+
+   .. py:attribute:: X
+
+
+   .. py:attribute:: V
+
+
+   .. py:attribute:: frac
+
+
+   .. py:method:: __len__()
+
+
+   .. py:method:: max()
+
+
+.. py:class:: rk5Integrator
+
+   
+   Runge Kutta integrator
+
+   Can run with either constant or variable step size.
+
+   Equations of motion:
+
+   t_n+1 = t+n + h
+   x_n+1 = x_n + h*v_n
+   v_n+1 = v_n + j_a_n
+   frac_n+1 = frac_n**(h/tau_n)
+
+   :Parameters:
+
+       **output** : Output
+           nexoclom2 Output clas
+
+
+
+   :Returns:
+
+       Final state of the system
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:method:: step(prev_step, output, h)
+
+      
+      Perform a single rk5 step.
+
+      See Numerical Recipes, 3rd edition, chapter 17.2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

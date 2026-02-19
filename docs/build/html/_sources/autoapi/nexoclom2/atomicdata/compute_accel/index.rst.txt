@@ -1,0 +1,51 @@
+nexoclom2.atomicdata.compute_accel
+==================================
+
+.. py:module:: nexoclom2.atomicdata.compute_accel
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   nexoclom2.atomicdata.compute_accel.compute_accel
+
+
+Module Contents
+---------------
+
+.. py:function:: compute_accel(packets, output)
+
+   
+   Compute acceleration due to gravity and radiation pressure
+
+
+   :Parameters:
+
+       **packets: nexoclom2 Packets object**
+           See :ref:`Packets <_packets>`
+
+       **output: nexoclom2 Output object**
+           See
+
+
+
+   :Returns:
+
+       Numpy array with 3 components of the acceleration.
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+

@@ -1,0 +1,42 @@
+:py:mod:`nexoclom2.solarsystem.planet_geometry`
+===============================================
+
+.. py:module:: nexoclom2.solarsystem.planet_geometry
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   nexoclom2.solarsystem.planet_geometry.planet_geometry
+
+
+
+.. py:function:: planet_geometry(planet: str, modeltime) -> dict
+
+   
+   Returns a planet's true anomaly angle and the orbital phase of its moons.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+

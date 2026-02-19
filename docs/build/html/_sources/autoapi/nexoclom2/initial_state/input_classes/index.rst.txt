@@ -1,0 +1,107 @@
+:py:mod:`nexoclom2.initial_state.input_classes`
+===============================================
+
+.. py:module:: nexoclom2.initial_state.input_classes
+
+.. autoapi-nested-parse::
+
+   Classes for different required NEXOCLOM2 parameter sets
+
+   ..
+       !! processed by numpydoc !!
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   nexoclom2.initial_state.input_classes.Geometry
+
+
+
+
+.. py:class:: Geometry
+
+
+   
+   Solar System geometry information
+
+   Defines the position of the central object and satellites relative to
+   the Sun and one another. See :ref:`geometry` for more information.
+
+   :Parameters:
+
+       **gparams** : dict
+           keys, values for defining system geometry.
+
+
+
+
+
+
+
+
+
+
+
+
+   :Attributes:
+
+       **planet** : str
+           Central body for the model
+
+       **startpoint** : str
+           Object from which packets are ejected.
+
+       **included** : list of str
+           Objects included in calculations.
+
+       **time** : astropy.Time
+           Model simulation time.
+
+       **phi** : astropy quantity
+           Orbital phase angle for each included satellite.
+
+       **subsolarpoint** : tupple of astropy quantities
+           Longitude and latitude of the sub-solar point on the planet.
+
+       **taa** : astropy quantity
+           The planet's true anomaly angle
+
+       **dtaa** : astropy quantity
+           Tolerance for true anomaly differences in model searches.
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:method:: __int__(gparam: dict)
+
+
+   .. py:method:: __eq__(other)
+
+      
+      Return self==value.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

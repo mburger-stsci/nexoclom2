@@ -1,0 +1,70 @@
+nexoclom2.atomicdata.constantloss
+=================================
+
+.. py:module:: nexoclom2.atomicdata.constantloss
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.atomicdata.constantloss.ConstantLoss
+
+
+Module Contents
+---------------
+
+.. py:class:: ConstantLoss(lossinfo)
+
+   
+   Return constant ionization loss rate
+
+
+   :Parameters:
+
+       **lossinfo** : nexoclom2 LossInfo object
+           See `LossInfo <_lossinfo>`_
+
+   :Attributes:
+
+       **lossrate: astropy Quantity**
+           Ionization rate in s\ :sup:`-1`.
+
+   .. rubric:: Methods
+
+
+
+   ==========  ==========
+   **rate()**  Returns self.lossrate
+   ==========  ==========
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: lossrate
+
+
+   .. py:method:: rate(*args)
+
+
+   .. py:method:: __eq__(other)
+
+
+   .. py:method:: __str__()
+
+
+   .. py:method:: __repr__()
+
+

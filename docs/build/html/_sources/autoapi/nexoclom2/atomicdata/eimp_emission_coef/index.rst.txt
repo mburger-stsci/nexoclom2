@@ -1,0 +1,109 @@
+nexoclom2.atomicdata.eimp_emission_coef
+=======================================
+
+.. py:module:: nexoclom2.atomicdata.eimp_emission_coef
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.atomicdata.eimp_emission_coef.EImpEmissionCoef
+
+
+Module Contents
+---------------
+
+.. py:class:: EImpEmissionCoef(species)
+
+   
+   Loads and computes electron impact emission rate coefficients.
+
+
+   :Parameters:
+
+       **species: nexoclom2 Atom**
+           ..
+
+       **wavelength: astropy Quantity**
+           Approximate wavelength to be simulated.
+
+
+   .. rubric:: Methods
+
+
+
+   ========================  ==========
+     **ratecoef(n_e, T_e)**  Returns rate coefficients as function of input ``n_e`` and ``T_e``.
+   **wavelengths(species)**  *Class Method* Returns the wavelengths for which emission rate coefficients have been included.
+   ========================  ==========
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   The emission wavelengths do not need to be exact. The rate coefficients are
+   returned for the emission line closest to that inputted. Therefore, it is
+   not necessary to specify vacuum versus air wavelength.
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: species
+
+
+   .. py:method:: __repr__()
+
+
+   .. py:method:: __str__()
+
+
+   .. py:method:: ratecoef(electrons, wavelength)
+
+      
+      Returns the electron impact excitation coefficient as a function
+      electron density and temperature
+
+
+      :Parameters:
+
+          **n_e: astropy Quantity array**
+              Electron density. Must be in a unit convertable to cm\ :sup:`-3`
+
+          **T_e: astropy Quantity array**
+              Electron temperature. Must be the same length as ``n_e`` and
+              in a unit convertable to eV (K is acceptable).
+
+
+
+      :Returns:
+
+          Electron impact excitation rate coefficient in units of
+              ..
+
+          cm\ :sup:`3` s\ :sup:`-1`
+              ..
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

@@ -1,0 +1,33 @@
+nexoclom2.atomicdata.extract_chX_coefs
+======================================
+
+.. py:module:: nexoclom2.atomicdata.extract_chX_coefs
+
+.. autoapi-nested-parse::
+
+   Extract and save ion-neutral charge exchange rate coefficients
+
+   This in noy intended to be run by users and is included here for documentation.
+
+   ..
+       !! processed by numpydoc !!
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   nexoclom2.atomicdata.extract_chX_coefs.species
+   nexoclom2.atomicdata.extract_chX_coefs.chx
+
+
+Module Contents
+---------------
+
+.. py:data:: species
+   :value: ('Na', 'S', 'O')
+
+
+.. py:data:: chx
+

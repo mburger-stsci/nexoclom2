@@ -1,0 +1,22 @@
+nexoclom2.particle_tracking.starting_point
+==========================================
+
+.. py:module:: nexoclom2.particle_tracking.starting_point
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.starting_point.StartingPoint
+
+
+Module Contents
+---------------
+
+.. py:class:: StartingPoint(output, iteration=None, n_packets=None, existing=False)
+
+   .. py:method:: __len__()
+
+

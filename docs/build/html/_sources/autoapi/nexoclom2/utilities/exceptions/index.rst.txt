@@ -1,0 +1,122 @@
+nexoclom2.utilities.exceptions
+==============================
+
+.. py:module:: nexoclom2.utilities.exceptions
+
+.. autoapi-nested-parse::
+
+   Exceptions used in nexoclom
+
+   ..
+       !! processed by numpydoc !!
+
+
+Exceptions
+----------
+
+.. autoapisummary::
+
+   nexoclom2.utilities.exceptions.InputfileError
+   nexoclom2.utilities.exceptions.ConfigfileError
+   nexoclom2.utilities.exceptions.OutOfRangeError
+
+
+Module Contents
+---------------
+
+.. py:exception:: InputfileError(expression, message)
+
+   Bases: :py:obj:`Exception`
+
+
+   
+   Raised when a required parameter is not included
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: expression
+
+
+   .. py:attribute:: message
+
+
+.. py:exception:: ConfigfileError(configfile, message)
+
+   Bases: :py:obj:`Exception`
+
+
+   
+   Raised when there is a configuration file problem
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: expression
+
+
+   .. py:attribute:: message
+
+
+.. py:exception:: OutOfRangeError(expression, param, rng, include_min=True, include_max=True)
+
+   Bases: :py:obj:`Exception`
+
+
+   
+   Raised when an value in an input file is out of specified range
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: expression
+
+
+   .. py:method:: format_number(num_)
+
+

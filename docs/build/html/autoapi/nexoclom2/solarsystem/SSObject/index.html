@@ -1,0 +1,291 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nexoclom2.solarsystem.SSObject &mdash; nexoclom2 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/stsci.css?v=d876f643" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/stsci.css?v=d876f643" />
+
+  
+      <script src="../../../../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="nexoclom2.solarsystem.SSObject_bak" href="../SSObject_bak/index.html" />
+    <link rel="prev" title="nexoclom2.solarsystem.IoTorus_bak" href="../IoTorus_bak/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> nexoclom2
+            
+            <img src="../../../../_static/stsci_pri_combo_mark_white.png" class="logo" />
+          </a>
+
+          
+            
+            
+          
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+  
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/NEXOCLOM_Requirements_Document.html">NEXOCLOM Goals and Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/TestCases.html">NEXOCLOM Test Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/inputfiles.html">Input File Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/planet_distance.html">Solar System Geometries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/coordinate_systems.html">Planetary Coordinate Systems and System Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/surface_interaction.html">Interactions between incident atoms and surfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/lossrates.html">Neutral Loss Rates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/integrator.html">Runge-Kutta Integrator &amp; The Equations of Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/atomicdata.html">Atomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/particle_tracking.html">Particle Tracking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/references.html">References</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../Geometry/index.html">Geometry</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">nexoclom2</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#attributes">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../GeometryTime/index.html">GeometryTime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../FlatSpeedDist/index.html">FlatSpeedDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../RadialAngDist/index.html">RadialAngDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../GeometryNoTime/index.html">GeometryNoTime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../SurfMapSurfInt/index.html">SurfMapSurfInt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../UniformSpatDist/index.html">UniformSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../SurfMapSpatDist/index.html">SurfMapSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ConstantSurfInt/index.html">ConstantSurfInt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../IsotropicAngDist/index.html">IsotropicAngDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../SurfSpotSpatDist/index.html">SurfSpotSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reformat_gvalues/index.html">reformat_gvalues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../SputteringFluxDist/index.html">SputteringFluxDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../MaxwellianFluxDist/index.html">MaxwellianFluxDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../GoldenSpiralSpatDist/index.html">GoldenSpiralSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../TemperatureDependentSurfInt/index.html">TemperatureDependentSurfInt</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">nexoclom2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">nexoclom2</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">nexoclom2.solarsystem</a></li>
+      <li class="breadcrumb-item active">nexoclom2.solarsystem.SSObject</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/autoapi/nexoclom2/solarsystem/SSObject/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-nexoclom2.solarsystem.SSObject">
+<span id="nexoclom2-solarsystem-ssobject"></span><h1>nexoclom2.solarsystem.SSObject<a class="headerlink" href="#module-nexoclom2.solarsystem.SSObject" title="Link to this heading">¶</a></h1>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nexoclom2.solarsystem.SSObject.SSObject" title="nexoclom2.solarsystem.SSObject.SSObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SSObject</span></code></a></p></td>
+<td><p>Physical data for solar system bodies.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="nexoclom2.solarsystem.SSObject.SSObject">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nexoclom2.solarsystem.SSObject.</span></span><span class="sig-name descname"><span class="pre">SSObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.solarsystem.SSObject.SSObject" title="Link to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Physical data for solar system bodies.</dt><dd><p>Object containing all the necessary physical data for solar system objects.
+Data is stored in a table included with the package. A separate table
+contains the NAIF IDs. If the object is not found in the data table, returns
+an object with just the object name, type = Unknown, and if possible the
+NAIF ID.</p>
+</dd>
+</dl>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>obj</strong><span class="classifier">str</span></dt><dd><p>Name of the solar system object to gather data for.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>object: str</strong></dt><dd><blockquote>
+<div><p>Name of solar system body. Source: input parameter</p>
+</div></blockquote>
+<dl class="simple">
+<dt>orbits: str</dt><dd><p>Object the body orbits. Source: PlanetaryConstants.csv</p>
+</dd>
+<dt>radius<span class="classifier">distance quantity</span></dt><dd><p>Object radius. Source: SPICE</p>
+</dd>
+<dt>unit: astropy unit</dt><dd><p>Named: R_&lt;object&gt;</p>
+</dd>
+<dt>GM: Quantity</dt><dd><p>Mass times gravitational constant. Source: SPICE</p>
+</dd>
+<dt>mass: mass quantity</dt><dd><p>Object mass in kg. Source: GM from SPICE</p>
+</dd>
+<dt>a: distance quantity</dt><dd><p>Object semi-major axis. Source: SPICE</p>
+</dd>
+<dt>e: float</dt><dd><p>Orbital eccentricity. For planets: Source SPICE. For moons: Set to 0.
+This only affects calculations when a modeltime is not specified and
+is a small affect.</p>
+</dd>
+<dt>tilt: angle quantity</dt><dd><p>Tilt of rotation axis relative to ecliptic in degrees.
+Source: PlanetaryConstants.csv</p>
+</dd>
+<dt>rotperiod: time quantity</dt><dd><p>Siderial rotational period in hours. Source: PlanetaryConstants.csv</p>
+</dd>
+<dt>orbperiod: time quantity</dt><dd><p>Sideral orbital period. Source: SPICE</p>
+</dd>
+<dt>orbvel: velocity quantity</dt><dd><p>:math:<a href="#id1"><span class="problematic" id="id2">`</span></a>v_{orb} =</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>rac{2 pi a}{orbperiod}`</strong></dt><dd><dl class="simple">
+<dt>satellites: list of str or None</dt><dd><p>List of satellites of the body. Source: PlanetaryConstants.csv</p>
+</dd>
+<dt>type<span class="classifier">{‘Star’, ‘Planet’, or ‘Moon’}</span></dt><dd><p>Source: PlanetaryConstants.csv</p>
+</dd>
+<dt>naifid<span class="classifier">int</span></dt><dd><p>Source: naifids.csv</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">nexoclom2.solarsystem</span><span class="w"> </span><span class="kn">import</span> <span class="n">SSObject</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jupiter</span> <span class="o">=</span> <span class="n">SSObject</span><span class="p">(</span><span class="s1">&#39;Jupiter&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">jupiter</span><span class="p">)</span>
+<span class="go">Object: Jupiter</span>
+<span class="go">Type = Planet</span>
+<span class="go">Orbits Sun</span>
+<span class="go">Satellites: Io, Europa, Ganymede, Callisto</span>
+<span class="go">Radius = 71492.00 km</span>
+<span class="go">Mass = 1.90e+27 kg</span>
+<span class="go">a = 5.20 AU</span>
+<span class="go">Eccentricity = 0.05</span>
+<span class="go">Tilt = 3.08 deg</span>
+<span class="go">Rotation Period = 9.93 h</span>
+<span class="go">Orbital Period = 4333.00 d</span>
+<span class="go">GM = -1.27e+17 m3 / s2</span>
+<span class="go">NAIFID = 599</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">jupiter</span><span class="p">))</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hst</span> <span class="o">=</span> <span class="n">SSObject</span><span class="p">(</span><span class="s1">&#39;HST&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">hst</span><span class="p">)</span>
+<span class="go">Object: Hst</span>
+<span class="go">Type = Unknown</span>
+<span class="go">NAIFID = -48</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">jupiter</span> <span class="o">==</span> <span class="n">hst</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Authors<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Matthew Burger</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.solarsystem.SSObject.SSObject.object">
+<span class="sig-name descname"><span class="pre">object</span></span><a class="headerlink" href="#nexoclom2.solarsystem.SSObject.SSObject.object" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.solarsystem.SSObject.SSObject.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.solarsystem.SSObject.SSObject.__eq__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.solarsystem.SSObject.SSObject.__len__">
+<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.solarsystem.SSObject.SSObject.__len__" title="Link to this definition">¶</a></dt>
+<dd><p>Returns number of satellites + 1</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.solarsystem.SSObject.SSObject.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.solarsystem.SSObject.SSObject.__repr__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.solarsystem.SSObject.SSObject.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.solarsystem.SSObject.SSObject.__str__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../IoTorus_bak/index.html" class="btn btn-neutral float-left" title="nexoclom2.solarsystem.IoTorus_bak" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../SSObject_bak/index.html" class="btn btn-neutral float-right" title="nexoclom2.solarsystem.SSObject_bak" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Matthew Burger.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+nexoclom2.initial_state.LossInformation
+=======================================
+
+.. py:module:: nexoclom2.initial_state.LossInformation
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.initial_state.LossInformation.LossInformation
+
+
+Module Contents
+---------------
+
+.. py:class:: LossInformation(lparam: (dict, tinydb.table.Document), center=None, startpt=None)
+
+   Bases: :py:obj:`nexoclom2.initial_state.InputClass.InputClass`
+
+
+   
+   Determines how loss should be calculated.
+
+   Configures the loss rates due to processes other than collisions with the
+   surface. See :ref:`lossinfo` for more information.
+
+   :Parameters:
+
+       **lparam** : dict
+           ..
+
+   :Attributes:
+
+       **constant_lifetime: astropy Time or False**
+           Constant lifetime in seconds to use everywhere in the system.
+
+       **photoionization: bool**
+           Determines whether to include photoionization.
+
+       **photoionization_lifetime: astropy Time quantity**
+           If 0, uses the measured photoionization rate. If >0, sets the
+           photoionization lifetime to that value.
+
+       **photo_factor: float**
+           Factor by which to modify photo-loss rate.
+
+       **electron_impact: bool**
+           Determines whether to include electron impact processes.
+
+       **eimp_factor: float**
+           Factor by which to modify electron impact rate.
+
+       **charge_exchange: bool**
+           Determines whether to include charge exchange.
+
+       **chx_factor: float**
+           Factor by which to modify charge exchange rate
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: __name__
+      :value: 'LossInformation'
+
+
+

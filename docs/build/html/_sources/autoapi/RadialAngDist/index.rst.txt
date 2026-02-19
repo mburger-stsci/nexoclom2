@@ -1,0 +1,61 @@
+RadialAngDist
+=============
+
+.. py:module:: RadialAngDist
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   RadialAngDist.RadialAngDist
+
+
+Module Contents
+---------------
+
+.. py:class:: RadialAngDist(sparam=None)
+
+   Bases: :py:obj:`nexoclom2.initial_state.InputClass.InputClass`
+
+
+   
+   Angular distribution with all particles ejected radially from the surface
+
+   * altitude set to 90º
+   * azimuth set to 0º
+
+   :Parameters:
+
+       **sparam** : None, TinyDB Document
+           ..
+
+   :Attributes:
+
+       **None**
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: __name__
+      :value: 'RadialAngDist'
+
+
+
+   .. py:method:: choose_points(n_packets, randgen=None)
+
+

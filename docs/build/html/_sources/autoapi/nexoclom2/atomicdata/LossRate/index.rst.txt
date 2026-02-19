@@ -1,0 +1,62 @@
+nexoclom2.atomicdata.lossrate
+=============================
+
+.. py:module:: nexoclom2.atomicdata.lossrate
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   nexoclom2.atomicdata.lossrate.lossrate
+
+
+Module Contents
+---------------
+
+.. py:function:: lossrate(packets, output)
+
+   
+   Calculate the loss rates due to photons, electron impacts, and charge-exchange
+   with optional constant loss rate.
+
+
+   :Parameters:
+
+       **packets: nexoclom2 Packets object**
+           ..
+
+       **output: nexoclom2 Output object**
+           ..
+
+
+
+   :Returns:
+
+       Ionization rate
+           ..
+
+
+
+
+
+
+
+   .. seealso::
+
+
+       :obj:`nexoclom2.particle_tracking.packets.Packets`
+           ..
+       :obj:`nexoclom2.particle_tracking.Output.Output`
+           ..
+
+   .. rubric:: Notes
+
+   Charge exchange is not included yet.
+
+
+
+   ..
+       !! processed by numpydoc !!
+

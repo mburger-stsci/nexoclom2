@@ -1,0 +1,117 @@
+:py:mod:`nexoclom2.initial_state.GeometryNoTime`
+================================================
+
+.. py:module:: nexoclom2.initial_state.GeometryNoTime
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   nexoclom2.initial_state.GeometryNoTime.GeometryNoTime
+
+
+
+
+.. py:class:: GeometryNoTime(gparam)
+
+
+   Bases: :py:obj:`nexoclom2.initial_state.Geometry`
+
+   
+   Geometry Without Time Class
+
+
+   :Parameters:
+
+       **gparams** : dict
+           keys, values for defining system geometry.
+
+
+
+
+
+
+
+
+
+
+
+
+   :Attributes:
+
+       **planet** : str
+           Central body for the model
+
+       **startpoint** : str
+           Object from which packets are ejected.
+
+       **included** : list of str
+           Objects included in calculations.
+
+       **phi** : dict
+           Orbital phase angle for each included satellite.
+
+       **subsolarpoint** : tuple of astropy quantities
+           Longitude and latitude of the sub-solar point on the planet.
+
+       **taa** : astropy quantity
+           The planet's true anomaly angle
+
+       **dtaa** : astropy quantity
+           Tolerance for true anomaly differences in model searches.
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:method:: __eq__(other)
+
+      
+      Return self==value.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: __str__()
+
+      
+      Override of superclass __str__
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

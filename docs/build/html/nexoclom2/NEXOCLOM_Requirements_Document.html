@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXOCLOM Goals and Requirements &mdash; nexoclom2 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/stsci.css?v=d876f643" />
+      <link rel="stylesheet" type="text/css" href="../_static/stsci.css?v=d876f643" />
+
+  
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Installation" href="install.html" />
+    <link rel="prev" title="NEXOCLOM2 documentation" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> nexoclom2
+            
+            <img src="../_static/stsci_pri_combo_mark_white.png" class="logo" />
+          </a>
+
+          
+            
+            
+          
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+  
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">NEXOCLOM Goals and Requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#statement-of-purpose">Statement of Purpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#high-level-requirements">High Level Requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#utilities">Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#input-output">Input/Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#physics">Physics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#solar-system-module">Solar System Module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#test-requirements">Test Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TestCases.html">NEXOCLOM Test Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputfiles.html">Input File Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="planet_distance.html">Solar System Geometries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coordinate_systems.html">Planetary Coordinate Systems and System Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="surface_interaction.html">Interactions between incident atoms and surfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lossrates.html">Neutral Loss Rates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrator.html">Runge-Kutta Integrator &amp; The Equations of Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atomicdata.html">Atomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="particle_tracking.html">Particle Tracking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nexoclom2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">NEXOCLOM Goals and Requirements</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/nexoclom2/NEXOCLOM_Requirements_Document.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="nexoclom-goals-and-requirements">
+<h1>NEXOCLOM Goals and Requirements<a class="headerlink" href="#nexoclom-goals-and-requirements" title="Link to this heading">¶</a></h1>
+<section id="statement-of-purpose">
+<h2>Statement of Purpose<a class="headerlink" href="#statement-of-purpose" title="Link to this heading">¶</a></h2>
+<p>The Neutral EXOsphere and CLoud Model is a numerical model for simulating
+collisionless exospheres and neutral clouds around astronomical bodies. These
+bodies may be planets (in this solar system or around other stars), satellites
+of planets, or small bodies. The exosphere may be surface-bounded or start at a
+pre-defined (possibly spatially or time variable) exobase above the surface.
+Users can use predefined or custom initial spatial and energy distributions from
+the surface or exobase. Inputs to the model are defined in a plain-text <code class="docutils literal notranslate"><span class="pre">.input</span></code>
+file. The documentation species the structure of the <code class="docutils literal notranslate"><span class="pre">.input</span></code> file, which
+parameters are required, and default value for optional parameters.</p>
+<p>A full test suite with unit, integration, and regression tests is implemented to
+ensure that physical processes are implemented correctly, changes in the code do
+not change or break functionality, and that saved results can be retrieved
+correctly.</p>
+</section>
+<section id="high-level-requirements">
+<h2>High Level Requirements<a class="headerlink" href="#high-level-requirements" title="Link to this heading">¶</a></h2>
+<section id="utilities">
+<h3>Utilities<a class="headerlink" href="#utilities" title="Link to this heading">¶</a></h3>
+<p><strong>Configuration</strong></p>
+<ol class="arabic simple">
+<li><p>Configuration file is a text file containing a set of <code class="docutils literal notranslate"><span class="pre">key</span> <span class="pre">=</span> <span class="pre">value</span></code> pairs.</p></li>
+<li><p>Filename is set by an environment variable.</p></li>
+<li><p>Required variable: <code class="docutils literal notranslate"><span class="pre">savepath</span></code> = path to directory where data is saved</p></li>
+<li><p>Optional variable: <code class="docutils literal notranslate"><span class="pre">database</span></code> = Name of the TinyDB file containing the
+outputs database. Default = <code class="docutils literal notranslate"><span class="pre">thesolarsystemmb.db</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">user</span></code> is required if it is not set by the operating system (e.g. with
+Windows)</p></li>
+</ol>
+<p><strong>Database Operations</strong></p>
+<ul class="simple">
+<li><p>sets the path to the database correctly</p></li>
+<li><p>Format as a TinyDB record</p>
+<ul>
+<li><p>Strip the input classes into dict with only floats, strings, ints,
+bools, and dicts.</p></li>
+<li><p>One-to-one mapping between class and cleaned up version</p></li>
+</ul>
+</li>
+<li><p>Search</p>
+<ul>
+<li><p>Builds a query only retrieves records that match the inputs.</p></li>
+</ul>
+</li>
+<li><p>insert</p>
+<ul>
+<li><p>Only inserts records that aren’t currently in the table. This won’t be
+100% foolproof since there could be multiple processes accessing the
+database, but that’s acceptable.</p></li>
+<li><p>Table containing outputs information that can point back to doc_ids of
+the individual input classes</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="input-output">
+<h3>Input/Output<a class="headerlink" href="#input-output" title="Link to this heading">¶</a></h3>
+<p><em><strong>System geometry</strong></em></p>
+<ol class="arabic simple">
+<li><p>Specify the system geometry either with a time stamp or specifying true
+anomaly angle, central meridian longitude, etc.</p></li>
+<li><p>Central object (e.g., planet or Sun) for the simulation is fixed</p></li>
+<li><p>StartPoint is either the central object or a satellite of the central object</p></li>
+<li><p>For the constant step size model, all objects are assumed to be fixed. This
+is because each packet has to be launched in the same system configuration
+(especially the loss environment). Will need to give a demonstration/more
+complete explanation of why this must be true.</p></li>
+</ol>
+<p><em><strong>Energy distributions</strong></em></p>
+<ol class="arabic simple">
+<li><p>Support for user defined sources either as a probability distribution or
+user-defined function</p></li>
+</ol>
+<p><em><strong>Spatial distributions</strong></em></p>
+<ol class="arabic simple">
+<li><p>Support for surface maps in either solar-fixed or body-fixed coordinates</p></li>
+</ol>
+<p><em><strong>Saved results</strong></em></p>
+<ol class="arabic simple">
+<li><p>Initial conditions specified by plain text input file in the form
+<code class="docutils literal notranslate"><span class="pre">parameter</span> <span class="pre">=</span> <span class="pre">value</span></code> or as a JSON file.</p></li>
+<li><p>Inputs will be saved in a NoSQL database</p></li>
+<li><p>When the database is queried only outputs consistent with the queried inputs
+are returned.</p></li>
+</ol>
+<ul class="simple">
+<li><p>Some input parameters may involve a comparison (e.g., 5º &lt;= TAA &lt; 6º)</p></li>
+</ul>
+<ol class="arabic simple" start="4">
+<li><p>Outputs need to be saved in a format that can be used by packages that allow
+for larger than memory datasets.</p></li>
+<li><p>There should be a way to include customized source distributions specified by
+the user.</p></li>
+</ol>
+<ul class="simple">
+<li><p>When doing fitted models, don’t need any of the inputs like packets or Input</p></li>
+</ul>
+</section>
+<section id="physics">
+<h3>Physics<a class="headerlink" href="#physics" title="Link to this heading">¶</a></h3>
+<p><strong>Forces</strong></p>
+<ul class="simple">
+<li><p>Gravity</p></li>
+<li><p>Radiation pressure</p></li>
+</ul>
+<p><strong>Loss processes</strong></p>
+<p><em><strong>Coordinate systems</strong></em></p>
+<ul class="simple">
+<li><p>Solar-fixed</p>
+<ul>
+<li><p><img class="math" src="../_images/math/86594f45d61540da9356006a3dfda1e72893fdc2.png" alt="\hat{\mathbf{x}}"/> in planet’s (starting point’s) equatorial plane toward
+Sun. If the object’s tilt is included this will not necessarily point
+directly at the Sun.</p></li>
+<li><p><img class="math" src="../_images/math/afdafb8ad0bb46514231046f54b575c0e367ac16.png" alt="\hat{\mathbf{y}}"/> in planet’s (starting point’s) equatorial plane duskward</p></li>
+<li><p><img class="math" src="../_images/math/48c39e5d894c4374c1cc1cae7a07f9202d99f1f1.png" alt="\hat{\mathbf{z}}"/> points along spin axis;
+<img class="math" src="../_images/math/6c5f05ffcec27d3c523acd855f4244ffab87c2ca.png" alt="\hat{\mathbf{x}} \times \hat{mathbf{y}}"/></p></li>
+<li><p>longitude: angle from <img class="math" src="../_images/math/9498ea2edb193386d491e2e57ac0f175aa5d5e91.png" alt="+\hat{x}"/> axis to projection of position vector
+on XY plane. Increases in counter-clockwise direction</p>
+<ul>
+<li><p>0º = sub-solar point; 90º = dusk point, 180º = midnight, 270º = dawn</p></li>
+</ul>
+</li>
+<li><p>Local time increases counter-clockwise from 0h (midnight).
+<img class="math" src="../_images/math/5c4899d7bac179f47b408602732894fabb67ddd3.png" alt="local\_time = ((latitude + 180^\circ) \times \frac{24}{360^\circ}) \mod 24"/></p></li>
+<li><p>Latitude ranges from -90º (south pole) to 90º (north pole)</p></li>
+</ul>
+</li>
+<li><p>body-fixed</p>
+<ul>
+<li><p>TBD</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="solar-system-module">
+<h3>Solar System Module<a class="headerlink" href="#solar-system-module" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>SSObject class</p>
+<ul>
+<li><p>Objects that contain all the physical data for solar system objects needed
+by the nexoclom2</p></li>
+<li><p>Required data</p>
+<ul>
+<li><p>Object name</p></li>
+<li><p>object type (star, planet, moon). Not really important.</p></li>
+<li><p>What the object orbits (central object to be used for simulations that
+extend outside the Hill sphere</p></li>
+<li><p>Names of satellites</p></li>
+<li><p>radius</p></li>
+<li><p>mass</p></li>
+<li><p>GM (for gravitational acceleration)</p></li>
+<li><p>semi-major axis</p></li>
+<li><p>eccentricity</p></li>
+<li><p>axis tilt</p></li>
+<li><p>rotational period</p></li>
+<li><p>orbital period</p></li>
+<li><p>NAIF ID</p></li>
+</ul>
+</li>
+<li><p>Quantities with units stored as astropy quanitites</p></li>
+<li><p>Data is pre-determined and stored in a text file included with the
+nexoclom2 package.</p></li>
+<li><p>Sources for data need to be included (listed in the datafile).</p></li>
+<li><p>If object not found, return object with unknown quantities as None</p></li>
+</ul>
+</li>
+<li><p>Function or class to object geometry relative to the Sun for a solar
+system object.</p>
+<ul>
+<li><p>Can be determined either from a time stamp using SPICE kernels or from a
+specified planet true anomaly angle (TAA) or satellite orbital position.</p></li>
+<li><p>Necessary quantities</p>
+<ul>
+<li><p>Distance from Sun</p></li>
+<li><p>Radial velocity relative to Sun</p></li>
+<li><p>Object-Sun vector taking into account planet’s tilt.</p></li>
+</ul>
+</li>
+<li><p>Additional functions needed to access SPICE kernels.</p></li>
+</ul>
+</li>
+<li><p>Possible future work</p>
+<ul>
+<li><p>Extended to include information about exoplanet systems.</p></li>
+<li><p>Extract data from spice kernels when possible, especially for objects
+that aren’t in the included table.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="test-requirements">
+<h2>Test Requirements<a class="headerlink" href="#test-requirements" title="Link to this heading">¶</a></h2>
+<p><strong>NexoclomConfig</strong></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="NEXOCLOM2 documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="install.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Matthew Burger.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

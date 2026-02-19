@@ -1,0 +1,238 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atomic Data &mdash; nexoclom2 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/stsci.css?v=d876f643" />
+      <link rel="stylesheet" type="text/css" href="../_static/stsci.css?v=d876f643" />
+
+  
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Particle Tracking" href="particle_tracking.html" />
+    <link rel="prev" title="Runge-Kutta Integrator &amp; The Equations of Motion" href="integrator.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> nexoclom2
+            
+            <img src="../_static/stsci_pri_combo_mark_white.png" class="logo" />
+          </a>
+
+          
+            
+            
+          
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+  
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="NEXOCLOM_Requirements_Document.html">NEXOCLOM Goals and Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TestCases.html">NEXOCLOM Test Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputfiles.html">Input File Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="planet_distance.html">Solar System Geometries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coordinate_systems.html">Planetary Coordinate Systems and System Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="surface_interaction.html">Interactions between incident atoms and surfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lossrates.html">Neutral Loss Rates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrator.html">Runge-Kutta Integrator &amp; The Equations of Motion</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Atomic Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#atom">Atom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ionization">Ionization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#photoionization">Photoionization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#electron-impact-ionization">Electron Impact Ionization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#charge-exchange">Charge Exchange</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#routines">Routines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="particle_tracking.html">Particle Tracking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nexoclom2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Atomic Data</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/nexoclom2/atomicdata.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="atomic-data">
+<h1>Atomic Data<a class="headerlink" href="#atomic-data" title="Link to this heading">¶</a></h1>
+<section id="atom">
+<h2>Atom<a class="headerlink" href="#atom" title="Link to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Atom</span></code> class is intended to store all the atomic data for different species
+used in NEXOCLOM2. This includes the specific neutral species being simulated,
+but also magnetosopheric ions that ionize and induce emissions in the neutral
+species. Currently, relevant <em>g</em>-values, electron impact excitation rate
+coefficients, and electron impact ionization rate coefficients are available
+through the <code class="docutils literal notranslate"><span class="pre">Atom</span></code> class.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Charge exchange coefficients have not yet been included.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Atom class cannot currently handle molecular species.</p>
+</div>
+</section>
+<section id="ionization">
+<h2>Ionization<a class="headerlink" href="#ionization" title="Link to this heading">¶</a></h2>
+<section id="photoionization">
+<h3>Photoionization<a class="headerlink" href="#photoionization" title="Link to this heading">¶</a></h3>
+<p>Loss due to ionization is customized in the input file with the <code class="docutils literal notranslate"><span class="pre">lossinfo</span></code>
+object. Three loss mechanisms can be specified: a constant lifetime,
+photoinization, and electron impact ionization (currently only implemented
+at Jupiter). Charge exchange will be added in the future. All three mechanisms
+can be included. The rates of each included mechanism are summed.</p>
+<p>The photoionization rate, <img class="math" src="../_images/math/ea484f5d8bc5101e3a277de93c2391396822c197.png" alt="\nu_{PI}(r)"/>, is a function of distance
+<img class="math" src="../_images/math/79a3d439d28652c547386f39b555d90d3aaf102d.png" alt="r"/>from the Sun according to</p>
+<div class="math">
+<p><img src="../_images/math/ef05c5985e04d45e8a9725e4808716a7161393a6.png" alt="\nu_{PI}(r) = \nu_{PI}(r_0) \left(\frac{r_0}{r}\right)^2"/></p>
+</div><p>where <img class="math" src="../_images/math/64c0302aec5a46d87da520fd4ecb5452e6f5cb1a.png" alt="\nu_{PI}(r_0)"/> is the photoioniation rate at the reference point
+distance from the Sun <img class="math" src="../_images/math/02c849aad7960bc828467cc5933f8fe020201c4b.png" alt="r_0"/> (1 AU in <a class="reference internal" href="references.html#huebner2015" id="id1"><span>[Huebner2015]</span></a>). The photoionization
+rate is zero when an atom is in the geometric shadow of a planet or moon.</p>
+<p>Photoionization and photodissocation rates are taken from <a class="reference internal" href="references.html#huebner2015" id="id2"><span>[Huebner2015]</span></a>,
+although see the caveats in <span id="id3">[Killen2018]</span> regarding the Na photoionzaion rate.
+Atomic species with photoionization rates available are H, He, C, N, O, N, Mg,
+S, Cl, K, and Ca. Molecular species with photoionization and or photodissociation
+rates included are H<sub>2</sub>, CH<sub>4</sub>, NH<sub>3</sub>, OH, H<sub>2</sub>O,
+N<sub>2</sub>, O<sub>2</sub> , CO<sub>2</sub> , and SO<sub>2</sub> , although as
+noted above, the Atom class cannot currently handle molecular species.</p>
+</section>
+<section id="electron-impact-ionization">
+<span id="eimp-ionization"></span><h3>Electron Impact Ionization<a class="headerlink" href="#electron-impact-ionization" title="Link to this heading">¶</a></h3>
+<p>The electron impact ionization rate, <img class="math" src="../_images/math/aecc04d31e064bff4f6f0e80c5e0d8bbfd1fd72f.png" alt="\nu_{EII}(n_e, T_e)"/> is a function
+of electron density (<img class="math" src="../_images/math/13af008a4fd5becfa43736ebf9a15c461fa2efae.png" alt="n_e"/>) and temperature (<img class="math" src="../_images/math/a0828774159ba5b4c0027330b9c60d2b3284384b.png" alt="T_e"/>):</p>
+<div class="math">
+<p><img src="../_images/math/e92ff8d84d800b285217004abdc1977af3fc06ff.png" alt="\nu_{EII}(n_e, T_e) = \kappa(T_e) n_e"/></p>
+</div><p>where <img class="math" src="../_images/math/59f01155462a3fa2fd04f61857116a9f655395e0.png" alt="\kappa(T_e)"/> is the electron impact ionization rate coefficient.</p>
+<p>In general, electron impact ionization cross sections are reported, not the
+rate coefficients. The rate coefficient as function of electron temperature
+is found by
+convolving the ionization cross sections over the electron speed distribution
+function, assumed here to be thermal (Maxwellian flux):</p>
+<div class="math">
+<p><img src="../_images/math/f5e0d9d6c7e77c580919d0ee8cbec7b72cb9b522.png" alt="f(v; T_e) = 4 \pi \left(\frac{m_e}{2\pi k_b T_e}\right)^{3/2} v^3
+    e^{-\frac{m_e v^2}{2 k_b T_e}}"/></p>
+</div><p>where <img class="math" src="../_images/math/639ca49c42b7bbd7231dca2000d6160c70969b3b.png" alt="f(v)"/> is the probability of an electron having speed
+:math`v`, <img class="math" src="../_images/math/b95070f004fb198bf38186002f2cae83c434d8a3.png" alt="m_e"/> is the electron mass, :math`k_b` is
+Boltzmann’s constant, and <img class="math" src="../_images/math/a0828774159ba5b4c0027330b9c60d2b3284384b.png" alt="T_e"/> is the electron temperature.</p>
+<p>The rate coefficient <img class="math" src="../_images/math/59f01155462a3fa2fd04f61857116a9f655395e0.png" alt="\kappa(T_e)"/> is given by:</p>
+<div class="math">
+<p><img src="../_images/math/b4ad13fb6605b35111363582fa343b8d91ed784d.png" alt="\kappa(T_e) = \int_0^\infty f(v; T_e) \sigma(v) dv"/></p>
+</div><p>The integral is computed numerically for a range of electron temperatures.</p>
+<p>Electron impact ionization cross sections and rate coefficients for Na and O are
+taken
+from <span id="id4">[Johnston1995]</span> and <span id="id5">[Johnson2005]</span>, respectively, and shown in Figure X.</p>
+<img alt="../_images/ElectronImpactIonization.png" src="../_images/ElectronImpactIonization.png" />
+</section>
+<section id="charge-exchange">
+<h3>Charge Exchange<a class="headerlink" href="#charge-exchange" title="Link to this heading">¶</a></h3>
+<p>Charge exchange between ions and neutral atoms has not yet been implemented.</p>
+</section>
+</section>
+<section id="routines">
+<h2>Routines<a class="headerlink" href="#routines" title="Link to this heading">¶</a></h2>
+<p>This is an incomplete list of classes and functions available in the atomic data
+module. It is limited to the routines a user might need or want to use, excluding
+more behind the scenes classes. The API reference includes all classes and
+functions.</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">nexoclom2.atomicdata.atom.Atom</span></code>(species)</p></td>
+<td><p>Class containing all useful atomic data for a neutral or ionic species.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">nexoclom2.atomicdata.gvalues.gValue</span></code>(species)</p></td>
+<td><p>Class to compute g-values and radiation acceleration</p></td>
+</tr>
+</tbody>
+</table>
+<div role="list" class="citation-list">
+<div class="citation" id="huebner2015" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Huebner2015<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>)</span>
+<p>Huebner and Mukherjee, Photoionization and photodissociation
+rates in solar and blackbody radiation fields, Planetary and Space Science, 106,
+11-45, 2015, <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S003206331400381X?via%3Dihub">10.1016/j.pss.2014.11.022</a></p>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="integrator.html" class="btn btn-neutral float-left" title="Runge-Kutta Integrator &amp; The Equations of Motion" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="particle_tracking.html" class="btn btn-neutral float-right" title="Particle Tracking" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Matthew Burger.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

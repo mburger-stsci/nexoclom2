@@ -1,0 +1,164 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solar System Geometries &mdash; nexoclom2 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/stsci.css?v=d876f643" />
+      <link rel="stylesheet" type="text/css" href="../_static/stsci.css?v=d876f643" />
+
+  
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Planetary Coordinate Systems and System Geometry" href="coordinate_systems.html" />
+    <link rel="prev" title="Input File Format" href="inputfiles.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> nexoclom2
+            
+            <img src="../_static/stsci_pri_combo_mark_white.png" class="logo" />
+          </a>
+
+          
+            
+            
+          
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+  
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="NEXOCLOM_Requirements_Document.html">NEXOCLOM Goals and Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TestCases.html">NEXOCLOM Test Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputfiles.html">Input File Format</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Solar System Geometries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#computing-distance-and-radial-velocity-of-a-planet-relative-to-the-sun">Computing Distance and Radial Velocity of a Planet Relative to the Sun</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="coordinate_systems.html">Planetary Coordinate Systems and System Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="surface_interaction.html">Interactions between incident atoms and surfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lossrates.html">Neutral Loss Rates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrator.html">Runge-Kutta Integrator &amp; The Equations of Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atomicdata.html">Atomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="particle_tracking.html">Particle Tracking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nexoclom2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Solar System Geometries</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/nexoclom2/planet_distance.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="solar-system-geometries">
+<span id="planetdistance"></span><h1>Solar System Geometries<a class="headerlink" href="#solar-system-geometries" title="Link to this heading">¶</a></h1>
+<p>The positions of each body relative to another is handled with the <code class="docutils literal notranslate"><span class="pre">SSObject</span></code>
+object combined with a <code class="docutils literal notranslate"><span class="pre">Geometry</span></code> object.</p>
+<p>Sun frame: x-axis points toward perihelion, y-axis points toward TAA=90º,
+z-axis points along planet rotational axis. Origin = Solar center</p>
+<p>Planet frame: x-axis points toward Sun, y-axis points toward dusk, z-axis
+points along rotational axis. Origin = Planet center.</p>
+<p>Moon frame: x-axis points toward Sun, y-axis points toward dusk, z-axis
+points along rotational axis. Origin = Moon center.</p>
+<section id="computing-distance-and-radial-velocity-of-a-planet-relative-to-the-sun">
+<h2>Computing Distance and Radial Velocity of a Planet Relative to the Sun<a class="headerlink" href="#computing-distance-and-radial-velocity-of-a-planet-relative-to-the-sun" title="Link to this heading">¶</a></h2>
+<p>The distance from the central body as a function of true anomaly is given by:</p>
+<div class="math">
+<p><img src="../_images/math/b3157857f42c9d8102222214fdc99dcd54bb6074.png" alt="r = a \frac{1 - e^2}{1 + e \cos \nu}"/></p>
+</div><p>where <em>r</em> is the distance from the central body, <em>a</em> is the semi-major axis of
+the orbit, <em>e</em> is the eccentriciy, and <em>ν</em> is the true anomaly.</p>
+<p>To calculate the <img class="math" src="../_images/math/46694cb41896b56f9b08243e964e43d8b3a65d14.png" alt="dr/dt"/>, the radial velocity relative to the central
+body, it is necessary to determine the mean anomaly from the true anomaly as
+the true anomaly does not increase at a constant rate. The mean anomaly, <em>M</em> does
+increase at a constant rate. The mean anomaly as a function of time is simply</p>
+<div class="math">
+<p><img src="../_images/math/29dc06fef3a40de3730de4c6ed3198bfff8c9c95.png" alt="M(t) = 2\pi \frac{t}{P}"/></p>
+</div><p>where <em>P</em> is the planet’s orbital period. The true anomaly can be approximated
+from the mean anomaly with:G</p>
+<div class="math">
+<p><img src="../_images/math/73db52aff5dfeb8c12157e712dd82a98647cf04f.png" alt="\nu = M + (2e - \frac{1}{4}e^3) \sin M + \frac{5}{4}e^2 \sin 2M +
+\frac{13/12} e^3 \sin 3M + \mathcal{O}(e^4)"/></p>
+</div><p>This allows one to compute <img class="math" src="../_images/math/46694cb41896b56f9b08243e964e43d8b3a65d14.png" alt="dr/dt"/> using the equation for <em>r</em> above.</p>
+<p>A comparison of distance and radial velocity relative to the Sun computed
+using the above equations and retrieved from
+<a class="reference external" href="https://astroquery.readthedocs.io/en/latest/jplhorizons/jplhorizons.html">JPL Horizons</a>
+for Mercury, Earth, Jupiter and Saturn are shown here:</p>
+<img alt="nexoclom2/distance_and_velocity_Mercury.png" src="nexoclom2/distance_and_velocity_Mercury.png" />
+<img alt="nexoclom2/distance_and_velocity_Earth.png" src="nexoclom2/distance_and_velocity_Earth.png" />
+<img alt="nexoclom2/distance_and_velocity_Jupiter.png" src="nexoclom2/distance_and_velocity_Jupiter.png" />
+<img alt="nexoclom2/distance_and_velocity_Saturn.png" src="nexoclom2/distance_and_velocity_Saturn.png" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="inputfiles.html" class="btn btn-neutral float-left" title="Input File Format" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="coordinate_systems.html" class="btn btn-neutral float-right" title="Planetary Coordinate Systems and System Geometry" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Matthew Burger.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

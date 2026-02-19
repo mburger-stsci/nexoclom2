@@ -1,0 +1,31 @@
+nexoclom2.atomicdata.photoloss
+==============================
+
+.. py:module:: nexoclom2.atomicdata.photoloss
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.atomicdata.photoloss.PhotoLoss
+
+
+Module Contents
+---------------
+
+.. py:class:: PhotoLoss(lossinfo, species: nexoclom2.atomicdata.atom.Atom)
+
+   .. py:method:: rate(packets, output)
+
+
+   .. py:method:: __eq__(other)
+
+
+   .. py:method:: __str__()
+
+
+   .. py:method:: __repr__()
+
+

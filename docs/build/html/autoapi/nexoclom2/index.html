@@ -1,0 +1,763 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nexoclom2 &mdash; nexoclom2 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/stsci.css?v=d876f643" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/stsci.css?v=d876f643" />
+
+  
+      <script src="../../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="nexoclom2.atomicdata" href="atomicdata/index.html" />
+    <link rel="prev" title="Geometry" href="../Geometry/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> nexoclom2
+            
+            <img src="../../_static/stsci_pri_combo_mark_white.png" class="logo" />
+          </a>
+
+          
+            
+            
+          
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+  
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../nexoclom2/NEXOCLOM_Requirements_Document.html">NEXOCLOM Goals and Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nexoclom2/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nexoclom2/TestCases.html">NEXOCLOM Test Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nexoclom2/inputfiles.html">Input File Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nexoclom2/planet_distance.html">Solar System Geometries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nexoclom2/coordinate_systems.html">Planetary Coordinate Systems and System Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nexoclom2/surface_interaction.html">Interactions between incident atoms and surfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nexoclom2/lossrates.html">Neutral Loss Rates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nexoclom2/integrator.html">Runge-Kutta Integrator &amp; The Equations of Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nexoclom2/atomicdata.html">Atomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nexoclom2/particle_tracking.html">Particle Tracking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nexoclom2/references.html">References</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Geometry/index.html">Geometry</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">nexoclom2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#attributes">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#package-contents">Package Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../GeometryTime/index.html">GeometryTime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../FlatSpeedDist/index.html">FlatSpeedDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../RadialAngDist/index.html">RadialAngDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../GeometryNoTime/index.html">GeometryNoTime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../SurfMapSurfInt/index.html">SurfMapSurfInt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../UniformSpatDist/index.html">UniformSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../SurfMapSpatDist/index.html">SurfMapSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ConstantSurfInt/index.html">ConstantSurfInt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../IsotropicAngDist/index.html">IsotropicAngDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../SurfSpotSpatDist/index.html">SurfSpotSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reformat_gvalues/index.html">reformat_gvalues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../SputteringFluxDist/index.html">SputteringFluxDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../MaxwellianFluxDist/index.html">MaxwellianFluxDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../GoldenSpiralSpatDist/index.html">GoldenSpiralSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../TemperatureDependentSurfInt/index.html">TemperatureDependentSurfInt</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">nexoclom2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">API Reference</a></li>
+      <li class="breadcrumb-item active">nexoclom2</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/autoapi/nexoclom2/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-nexoclom2">
+<span id="nexoclom2"></span><h1>nexoclom2<a class="headerlink" href="#module-nexoclom2" title="Link to this heading">¶</a></h1>
+<p>NEXOCLOM2: Neutral EXosphere and CLoud Model v2</p>
+<p>Documentation will be online at readthedocs.org</p>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="atomicdata/index.html">nexoclom2.atomicdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/index.html">nexoclom2.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_simulation/index.html">nexoclom2.data_simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initial_state/index.html">nexoclom2.initial_state</a></li>
+<li class="toctree-l1"><a class="reference internal" href="math/index.html">nexoclom2.math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="particle_tracking/index.html">nexoclom2.particle_tracking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solarsystem/index.html">nexoclom2.solarsystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities/index.html">nexoclom2.utilities</a></li>
+</ul>
+</div>
+</section>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nexoclom2.path" title="nexoclom2.path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">path</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nexoclom2.config" title="nexoclom2.config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">config</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nexoclom2.__name__" title="nexoclom2.__name__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__name__</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nexoclom2.__author__" title="nexoclom2.__author__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__author__</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nexoclom2.__email__" title="nexoclom2.__email__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__email__</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nexoclom2.__version__" title="nexoclom2.__version__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__version__</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nexoclom2.Input" title="nexoclom2.Input"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Input</span></code></a></p></td>
+<td><p>Class defining all input parameters for a NEXOCLOM2 model run.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nexoclom2.Output" title="nexoclom2.Output"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Output</span></code></a></p></td>
+<td><p>Class to store compute particle trajectories and store the results.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nexoclom2.ModelImage" title="nexoclom2.ModelImage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelImage</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nexoclom2.SSObject" title="nexoclom2.SSObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SSObject</span></code></a></p></td>
+<td><p>Physical data for solar system bodies.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nexoclom2.NexoclomConfig" title="nexoclom2.NexoclomConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NexoclomConfig</span></code></a></p></td>
+<td><p>Configuration object based on the nexoclom2 configuration file.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="package-contents">
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Link to this heading">¶</a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="nexoclom2.path">
+<span class="sig-prename descclassname"><span class="pre">nexoclom2.</span></span><span class="sig-name descname"><span class="pre">path</span></span><a class="headerlink" href="#nexoclom2.path" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nexoclom2.Input">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nexoclom2.</span></span><span class="sig-name descname"><span class="pre">Input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">infile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.Input" title="Link to this definition">¶</a></dt>
+<dd><p>Class defining all input parameters for a NEXOCLOM2 model run.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>infile</strong><span class="classifier">str</span></dt><dd><p>plain text file containing model input parameters. See inputfiles for
+a description of the input file format</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>geometry</strong><span class="classifier">Geometry</span></dt><dd></dd>
+<dt><strong>forces</strong><span class="classifier">Forces</span></dt><dd></dd>
+<dt><strong>surfaceinteraction</strong><span class="classifier">ConstantSurfaceInteraction, etc</span></dt><dd></dd>
+<dt><strong>spatialdist</strong><span class="classifier">UniformSpatialDist, etc.</span></dt><dd></dd>
+<dt><strong>speeddist</strong><span class="classifier">GaussianSpeedDist, etc.</span></dt><dd></dd>
+<dt><strong>angulardist</strong><span class="classifier">RadialAngularDist, IsotropicAngularDist</span></dt><dd></dd>
+<dt><strong>lossinfo</strong><span class="classifier">LossInformation</span></dt><dd></dd>
+<dt><strong>options</strong><span class="classifier">Options</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.Input._inputfile">
+<span class="sig-name descname"><span class="pre">_inputfile</span></span><a class="headerlink" href="#nexoclom2.Input._inputfile" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.Input._classes">
+<span class="sig-name descname"><span class="pre">_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['geometry',</span> <span class="pre">'surfaceinteraction',</span> <span class="pre">'forces',</span> <span class="pre">'spatialdist',</span> <span class="pre">'speeddist',</span> <span class="pre">'angulardist',...</span></em><a class="headerlink" href="#nexoclom2.Input._classes" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.Input.config">
+<span class="sig-name descname"><span class="pre">config</span></span><a class="headerlink" href="#nexoclom2.Input.config" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.Input.forces">
+<span class="sig-name descname"><span class="pre">forces</span></span><a class="headerlink" href="#nexoclom2.Input.forces" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.Input.lossinfo">
+<span class="sig-name descname"><span class="pre">lossinfo</span></span><a class="headerlink" href="#nexoclom2.Input.lossinfo" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.Input.options">
+<span class="sig-name descname"><span class="pre">options</span></span><a class="headerlink" href="#nexoclom2.Input.options" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.Input.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.Input.__str__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.Input.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.Input.__repr__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.Input.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.Input.__eq__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.Input._read_params">
+<span class="sig-name descname"><span class="pre">_read_params</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.Input._read_params" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.Input.search">
+<span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.Input.search" title="Link to this definition">¶</a></dt>
+<dd><p>This method allows users to search for inputs without having to
+instantiate the database themselves.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>Database document ID associated with inputs</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.Input.make_savefile">
+<span class="sig-name descname"><span class="pre">make_savefile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.Input.make_savefile" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nexoclom2.Output">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nexoclom2.</span></span><span class="sig-name descname"><span class="pre">Output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_packets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iterations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compress</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.Output" title="Link to this definition">¶</a></dt>
+<dd><p>Class to store compute particle trajectories and store the results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>inputs</strong><span class="classifier">Input</span></dt><dd></dd>
+<dt><strong>n_packets</strong><span class="classifier">int</span></dt><dd></dd>
+<dt><strong>compress</strong><span class="classifier">bool, Default=True</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>inputs: Input</strong></dt><dd><p>The inputs used in this model run.</p>
+</dd>
+<dt><strong>n_packets: int, float</strong></dt><dd><p>Total number of packets to run</p>
+</dd>
+<dt><strong>compress: Bool</strong></dt><dd><p>If True removes packets with frac=0 from the saved output, Default = True</p>
+</dd>
+<dt><strong>starting_point: ndarray</strong></dt><dd><p>Initial state relative to startpoint with standard units. Columns are
+time (s), x (km), y (km), z (km), r (km), vx (km/s), vy (km/s),
+(km/s), v (km/s), frac, longitude (rad), latitude (rad),
+local_time (hr), altitude (rad), azimuth (rad)</p>
+</dd>
+<dt><strong>final_state: ndarray</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The user will not generally call this directly but will instead use
+<code class="docutils literal notranslate"><span class="pre">inputs.run()</span></code>.</p>
+<p>All calculations will be done in units of s, km, km/s, rad and converted
+to more appropriate units at the end.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.Output.inputs">
+<span class="sig-name descname"><span class="pre">inputs</span></span><a class="headerlink" href="#nexoclom2.Output.inputs" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.Output.compress">
+<span class="sig-name descname"><span class="pre">compress</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#nexoclom2.Output.compress" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.Output.randgen">
+<span class="sig-name descname"><span class="pre">randgen</span></span><a class="headerlink" href="#nexoclom2.Output.randgen" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.Output.center">
+<span class="sig-name descname"><span class="pre">center</span></span><a class="headerlink" href="#nexoclom2.Output.center" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.Output.startpoint">
+<span class="sig-name descname"><span class="pre">startpoint</span></span><a class="headerlink" href="#nexoclom2.Output.startpoint" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.Output.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><a class="headerlink" href="#nexoclom2.Output.objects" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.Output.positions">
+<span class="sig-name descname"><span class="pre">positions</span></span><a class="headerlink" href="#nexoclom2.Output.positions" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.Output.unit">
+<span class="sig-name descname"><span class="pre">unit</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#nexoclom2.Output.unit" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.Output.species">
+<span class="sig-name descname"><span class="pre">species</span></span><a class="headerlink" href="#nexoclom2.Output.species" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.Output.initialize_objects">
+<span class="sig-name descname"><span class="pre">initialize_objects</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.Output.initialize_objects" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.Output._remove">
+<span class="sig-name descname"><span class="pre">_remove</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.Output._remove" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.Output._start_outputfile">
+<span class="sig-name descname"><span class="pre">_start_outputfile</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.Output._start_outputfile" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.Output._save_starting_point">
+<span class="sig-name descname"><span class="pre">_save_starting_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">starting_point</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.Output._save_starting_point" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.Output.save_final_state">
+<span class="sig-name descname"><span class="pre">save_final_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">final_state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.Output.save_final_state" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.Output.starting_point">
+<span class="sig-name descname"><span class="pre">starting_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iteration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_packets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.Output.starting_point" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>iteration</strong></dt><dd></dd>
+<dt><strong>n_packets</strong></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>StartingPoint</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>If iteration and n_packets are both given, iteration number takes
+precedence.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.Output.initial_state">
+<span class="sig-name descname"><span class="pre">initial_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iteration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_packets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.Output.initial_state" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.Output.to_planet_coords">
+<span class="sig-name descname"><span class="pre">to_planet_coords</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.Output.to_planet_coords" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.Output.final_state">
+<span class="sig-name descname"><span class="pre">final_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">which</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_planet_coords</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.Output.final_state" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nexoclom2.ModelImage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nexoclom2.</span></span><span class="sig-name descname"><span class="pre">ModelImage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunksize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.ModelImage" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="data_simulation/ModelResult/index.html#nexoclom2.data_simulation.ModelResult.ModelResult" title="nexoclom2.data_simulation.ModelResult.ModelResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nexoclom2.data_simulation.ModelResult.ModelResult</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.ModelImage.dimensions">
+<span class="sig-name descname"><span class="pre">dimensions</span></span><a class="headerlink" href="#nexoclom2.ModelImage.dimensions" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.ModelImage.yrange">
+<span class="sig-name descname"><span class="pre">yrange</span></span><a class="headerlink" href="#nexoclom2.ModelImage.yrange" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.ModelImage.zrange">
+<span class="sig-name descname"><span class="pre">zrange</span></span><a class="headerlink" href="#nexoclom2.ModelImage.zrange" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.ModelImage.subobs_longitude">
+<span class="sig-name descname"><span class="pre">subobs_longitude</span></span><a class="headerlink" href="#nexoclom2.ModelImage.subobs_longitude" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.ModelImage.subobs_latitude">
+<span class="sig-name descname"><span class="pre">subobs_latitude</span></span><a class="headerlink" href="#nexoclom2.ModelImage.subobs_latitude" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.ModelImage.packet_image">
+<span class="sig-name descname"><span class="pre">packet_image</span></span><a class="headerlink" href="#nexoclom2.ModelImage.packet_image" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.ModelImage.Apix">
+<span class="sig-name descname"><span class="pre">Apix</span></span><a class="headerlink" href="#nexoclom2.ModelImage.Apix" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.ModelImage.rotation">
+<span class="sig-name descname"><span class="pre">rotation</span></span><a class="headerlink" href="#nexoclom2.ModelImage.rotation" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.ModelImage.centers">
+<span class="sig-name descname"><span class="pre">centers</span></span><a class="headerlink" href="#nexoclom2.ModelImage.centers" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nexoclom2.SSObject">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nexoclom2.</span></span><span class="sig-name descname"><span class="pre">SSObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.SSObject" title="Link to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Physical data for solar system bodies.</dt><dd><p>Object containing all the necessary physical data for solar system objects.
+Data is stored in a table included with the package. A separate table
+contains the NAIF IDs. If the object is not found in the data table, returns
+an object with just the object name, type = Unknown, and if possible the
+NAIF ID.</p>
+</dd>
+</dl>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>obj</strong><span class="classifier">str</span></dt><dd><p>Name of the solar system object to gather data for.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>object: str</strong></dt><dd><blockquote>
+<div><p>Name of solar system body. Source: input parameter</p>
+</div></blockquote>
+<dl class="simple">
+<dt>orbits: str</dt><dd><p>Object the body orbits. Source: PlanetaryConstants.csv</p>
+</dd>
+<dt>radius<span class="classifier">distance quantity</span></dt><dd><p>Object radius. Source: SPICE</p>
+</dd>
+<dt>unit: astropy unit</dt><dd><p>Named: R_&lt;object&gt;</p>
+</dd>
+<dt>GM: Quantity</dt><dd><p>Mass times gravitational constant. Source: SPICE</p>
+</dd>
+<dt>mass: mass quantity</dt><dd><p>Object mass in kg. Source: GM from SPICE</p>
+</dd>
+<dt>a: distance quantity</dt><dd><p>Object semi-major axis. Source: SPICE</p>
+</dd>
+<dt>e: float</dt><dd><p>Orbital eccentricity. For planets: Source SPICE. For moons: Set to 0.
+This only affects calculations when a modeltime is not specified and
+is a small affect.</p>
+</dd>
+<dt>tilt: angle quantity</dt><dd><p>Tilt of rotation axis relative to ecliptic in degrees.
+Source: PlanetaryConstants.csv</p>
+</dd>
+<dt>rotperiod: time quantity</dt><dd><p>Siderial rotational period in hours. Source: PlanetaryConstants.csv</p>
+</dd>
+<dt>orbperiod: time quantity</dt><dd><p>Sideral orbital period. Source: SPICE</p>
+</dd>
+<dt>orbvel: velocity quantity</dt><dd><p>:math:<a href="#id1"><span class="problematic" id="id2">`</span></a>v_{orb} =</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>rac{2 pi a}{orbperiod}`</strong></dt><dd><dl class="simple">
+<dt>satellites: list of str or None</dt><dd><p>List of satellites of the body. Source: PlanetaryConstants.csv</p>
+</dd>
+<dt>type<span class="classifier">{‘Star’, ‘Planet’, or ‘Moon’}</span></dt><dd><p>Source: PlanetaryConstants.csv</p>
+</dd>
+<dt>naifid<span class="classifier">int</span></dt><dd><p>Source: naifids.csv</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">nexoclom2.solarsystem</span><span class="w"> </span><span class="kn">import</span> <span class="n">SSObject</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jupiter</span> <span class="o">=</span> <span class="n">SSObject</span><span class="p">(</span><span class="s1">&#39;Jupiter&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">jupiter</span><span class="p">)</span>
+<span class="go">Object: Jupiter</span>
+<span class="go">Type = Planet</span>
+<span class="go">Orbits Sun</span>
+<span class="go">Satellites: Io, Europa, Ganymede, Callisto</span>
+<span class="go">Radius = 71492.00 km</span>
+<span class="go">Mass = 1.90e+27 kg</span>
+<span class="go">a = 5.20 AU</span>
+<span class="go">Eccentricity = 0.05</span>
+<span class="go">Tilt = 3.08 deg</span>
+<span class="go">Rotation Period = 9.93 h</span>
+<span class="go">Orbital Period = 4333.00 d</span>
+<span class="go">GM = -1.27e+17 m3 / s2</span>
+<span class="go">NAIFID = 599</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">jupiter</span><span class="p">))</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hst</span> <span class="o">=</span> <span class="n">SSObject</span><span class="p">(</span><span class="s1">&#39;HST&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">hst</span><span class="p">)</span>
+<span class="go">Object: Hst</span>
+<span class="go">Type = Unknown</span>
+<span class="go">NAIFID = -48</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">jupiter</span> <span class="o">==</span> <span class="n">hst</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Authors<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Matthew Burger</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.SSObject.object">
+<span class="sig-name descname"><span class="pre">object</span></span><a class="headerlink" href="#nexoclom2.SSObject.object" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.SSObject.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.SSObject.__eq__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.SSObject.__len__">
+<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.SSObject.__len__" title="Link to this definition">¶</a></dt>
+<dd><p>Returns number of satellites + 1</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.SSObject.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.SSObject.__repr__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.SSObject.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.SSObject.__str__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nexoclom2.NexoclomConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nexoclom2.</span></span><span class="sig-name descname"><span class="pre">NexoclomConfig</span></span><a class="headerlink" href="#nexoclom2.NexoclomConfig" title="Link to this definition">¶</a></dt>
+<dd><p>Configuration object based on the nexoclom2 configuration file.</p>
+<p>The <cite>NEXCOCLOMCONFIG</cite> environment variable must be set. This is automatically
+set to <code class="docutils literal notranslate"><span class="pre">$HOME/.nexoclom</span></code> when the nexoclom2 Python environment is activated,
+although the user is free to change it.</p>
+<p>Each line in the nexoclom configuration file should be in the form
+<code class="docutils literal notranslate"><span class="pre">key</span> <span class="pre">=</span> <span class="pre">value</span></code> where the keys are highlighed below. Configuration
+settings for nexoclom2 extensions (such as for working with speficic
+instrument data) can also be placed here. All lines in the file with the
+proper format are included in the returned object.</p>
+<p><code class="docutils literal notranslate"><span class="pre">savepath</span></code>: Top-level path on disk where all model output is saved (Required)</p>
+<p><code class="docutils literal notranslate"><span class="pre">database</span></code>: Name of the TinyDB database file (Optional). Defaults to
+<code class="docutils literal notranslate"><span class="pre">thesolarsystemmb.db</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">user</span></code>: username (Required if not set as an environment variable).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>None</strong></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>configfile: str</strong></dt><dd><p>Name of configuration file used.</p>
+</dd>
+<dt><strong>savepath: str</strong></dt><dd><p>Top-level path on disk where all model output is saved.</p>
+</dd>
+<dt><strong>database: str</strong></dt><dd><p>Name of the TinyDB database file modelresults are cataloged in.</p>
+</dd>
+<dt><strong>user: str</strong></dt><dd><p>User’s username on the system.</p>
+</dd>
+<dt><strong>other: str</strong></dt><dd><p>Other configuration settings can be included.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>ConfigfileError</dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">NEXOCLOMCONFIG</span></code> environment variable not set or a required
+parameter in the configuration file is not given</p>
+</dd>
+<dt>FileNotFoundError</dt><dd><p>If the configuration file is not found</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="utilities/exceptions/index.html#nexoclom2.utilities.exceptions.ConfigfileError" title="nexoclom2.utilities.exceptions.ConfigfileError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nexoclom2.utilities.exceptions.ConfigfileError</span></code></a></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<p>For a configuration file in <code class="docutils literal notranslate"><span class="pre">$HOME/.nexoclom</span></code> containing the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">savepath</span> <span class="o">=</span> <span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="n">mburger</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">ModelData</span>
+<span class="n">database</span> <span class="o">=</span> <span class="n">thesolarsystemmb</span><span class="o">.</span><span class="n">db</span>
+<span class="n">mesdatapath</span> <span class="o">=</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">mburger</span><span class="o">/</span><span class="n">Work</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">MESSENGER</span><span class="o">/</span><span class="n">UVVS</span>
+<span class="n">mesdatabase</span> <span class="o">=</span> <span class="n">messengeruvvsdb</span>
+</pre></div>
+</div>
+<p>In Python:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">NexoclomConfig</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="go">configfile = /Users/mburger/.nexoclom2_dev</span>
+<span class="go">savepath = /Volumes/nexoclom_output/modeloutputs2_dev</span>
+<span class="go">database = thesolarsystemmb_dev.db</span>
+<span class="go">user = mburger</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Authors<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Matthew Burger</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.NexoclomConfig.configfile">
+<span class="sig-name descname"><span class="pre">configfile</span></span><a class="headerlink" href="#nexoclom2.NexoclomConfig.configfile" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.NexoclomConfig.database">
+<span class="sig-name descname"><span class="pre">database</span></span><a class="headerlink" href="#nexoclom2.NexoclomConfig.database" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.NexoclomConfig.user">
+<span class="sig-name descname"><span class="pre">user</span></span><a class="headerlink" href="#nexoclom2.NexoclomConfig.user" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.NexoclomConfig.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.NexoclomConfig.__str__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.NexoclomConfig.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.NexoclomConfig.__repr__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nexoclom2.config">
+<span class="sig-prename descclassname"><span class="pre">nexoclom2.</span></span><span class="sig-name descname"><span class="pre">config</span></span><a class="headerlink" href="#nexoclom2.config" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nexoclom2.__name__">
+<span class="sig-prename descclassname"><span class="pre">nexoclom2.</span></span><span class="sig-name descname"><span class="pre">__name__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'nexoclom2'</span></em><a class="headerlink" href="#nexoclom2.__name__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nexoclom2.__author__">
+<span class="sig-prename descclassname"><span class="pre">nexoclom2.</span></span><span class="sig-name descname"><span class="pre">__author__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Matthew</span> <span class="pre">Burger'</span></em><a class="headerlink" href="#nexoclom2.__author__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nexoclom2.__email__">
+<span class="sig-prename descclassname"><span class="pre">nexoclom2.</span></span><span class="sig-name descname"><span class="pre">__email__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'mburger&#64;stsci.edu'</span></em><a class="headerlink" href="#nexoclom2.__email__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nexoclom2.__version__">
+<span class="sig-prename descclassname"><span class="pre">nexoclom2.</span></span><span class="sig-name descname"><span class="pre">__version__</span></span><a class="headerlink" href="#nexoclom2.__version__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Geometry/index.html" class="btn btn-neutral float-left" title="Geometry" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="atomicdata/index.html" class="btn btn-neutral float-right" title="nexoclom2.atomicdata" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Matthew Burger.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

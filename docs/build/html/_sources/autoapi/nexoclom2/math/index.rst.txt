@@ -1,0 +1,156 @@
+nexoclom2.math
+==============
+
+.. py:module:: nexoclom2.math
+
+.. autoapi-nested-parse::
+
+   
+   nexoclom.math package
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/nexoclom2/math/histogram/index
+   /autoapi/nexoclom2/math/ks_test/index
+   /autoapi/nexoclom2/math/mod_close/index
+   /autoapi/nexoclom2/math/rotation_matrix/index
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.math.Histogram
+   nexoclom2.math.Histogram2d
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   nexoclom2.math.rotation_matrix
+
+
+Package Contents
+----------------
+
+.. py:class:: Histogram(a, bins=10, range=None, weights=None, density=None)
+
+   
+   Wrapper for np.histogram that makes the x-axis the center of each bin.
+   Returns a class with everything self-contained.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: histogram
+
+
+   .. py:attribute:: dx
+
+
+   .. py:attribute:: x
+
+
+   .. py:method:: __repr__()
+
+
+   .. py:method:: __str__()
+
+
+.. py:class:: Histogram2d(ptsx, ptsy, bins=10, range=None, weights=None, density=None)
+
+   
+   Wrapper for np.histogram2d that makes the x,y axes the centers of each bin.
+   Returns a class with everything self-contained.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: histogram
+
+
+   .. py:attribute:: x
+
+
+   .. py:attribute:: y
+
+
+.. py:function:: rotation_matrix(theta, axis)
+
+   
+   Compute the rotation matrix for a rotation of theta about axis.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+

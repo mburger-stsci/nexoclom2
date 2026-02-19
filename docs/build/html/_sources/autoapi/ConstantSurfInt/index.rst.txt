@@ -1,0 +1,65 @@
+ConstantSurfInt
+===============
+
+.. py:module:: ConstantSurfInt
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   ConstantSurfInt.ConstantSurfInt
+
+
+Module Contents
+---------------
+
+.. py:class:: ConstantSurfInt(sparam: (dict, tinydb.table.Document))
+
+   Bases: :py:obj:`nexoclom2.initial_state.InputClass.InputClass`
+
+
+   
+   Surface interaction with constant sticking coefficient and accommodation factor
+
+   Parameters that can to be set
+
+   * stickcoef
+   * accomfactor
+
+   See :ref:`surfaceinteractions` for more information.
+
+   :param sparams: keys, values for defining surface interactions.
+   :type sparams: dict
+
+   :Attributes:
+
+       **stickcoef** : float
+           Sticking coefficient between 0 (no sticking) and 1 (complete sticking).
+           Default = 1.
+
+       **accomfactor** : float
+           Accommodation factor between 0 (elastic scattering) and 1 (complete
+           accommodation to surface temperature). Required if stickcoef < 1.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: __name__
+      :value: 'ConstantSurfInt'
+
+
+

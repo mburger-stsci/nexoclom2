@@ -1,0 +1,41 @@
+reformat_gvalues
+================
+
+.. py:module:: reformat_gvalues
+
+.. autoapi-nested-parse::
+
+   Used once to convert gvalue text files to csv and ecsv
+
+   ..
+       !! processed by numpydoc !!
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   reformat_gvalues.species
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   reformat_gvalues.reformat_gvalues
+   reformat_gvalues.gvalue_csv_to_ecsv
+
+
+Module Contents
+---------------
+
+.. py:function:: reformat_gvalues(species)
+
+.. py:function:: gvalue_csv_to_ecsv(species)
+
+.. py:data:: species
+   :value: ['Al', 'Ca', 'CaII', 'H', 'He', 'K', 'Mg', 'MgII', 'Mn', 'Na', 'O', 'S']
+
+

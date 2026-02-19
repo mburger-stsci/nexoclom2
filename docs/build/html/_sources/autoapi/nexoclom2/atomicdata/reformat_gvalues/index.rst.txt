@@ -1,0 +1,38 @@
+nexoclom2.atomicdata.reformat_gvalues
+=====================================
+
+.. py:module:: nexoclom2.atomicdata.reformat_gvalues
+
+.. autoapi-nested-parse::
+
+   Used once to convert gvalue text files to csv
+
+   ..
+       !! processed by numpydoc !!
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   nexoclom2.atomicdata.reformat_gvalues.species
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   nexoclom2.atomicdata.reformat_gvalues.reformat_gvalues
+
+
+Module Contents
+---------------
+
+.. py:function:: reformat_gvalues(species)
+
+.. py:data:: species
+   :value: ['Al', 'Ca', 'CaII', 'H', 'He', 'K', 'Mg', 'MgII', 'Mn', 'Na', 'O', 'S']
+
+

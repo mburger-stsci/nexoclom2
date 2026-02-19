@@ -1,0 +1,113 @@
+GoldenSpiralSpatDist
+====================
+
+.. py:module:: GoldenSpiralSpatDist
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   GoldenSpiralSpatDist.golden_pts
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   GoldenSpiralSpatDist.GoldenSpiralSpatDist
+
+
+Module Contents
+---------------
+
+.. py:data:: golden_pts
+
+.. py:class:: GoldenSpiralSpatDist(sparam)
+
+   Bases: :py:obj:`nexoclom2.initial_state.InputClass.InputClass`
+
+
+   
+   Choose points roughly equally spaced on a sphere.
+
+   This uses the astropy.coordinates.golden_spiral_grid to choose the points
+
+   Parameters that can be set:
+
+   * exobase
+
+   :Parameters:
+
+       **sparam: dict**
+           Key, value for defining the distribution
+
+   :Attributes:
+
+       **exobase: float**
+           Distance from starting object's center from which to eject particles.
+           Measured relative to starting object's radius. Default: 1.0
+
+       **frame: str**
+           Defaults to SOLAR. It is possible to change this, but there isn't much
+           reason to.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: __name__
+      :value: 'TwoDRegularSpatDist'
+
+
+
+   .. py:attribute:: frame
+      :value: 'SOLAR'
+
+
+
+   .. py:method:: choose_points(npackets)
+
+      
+
+
+
+      :Parameters:
+
+          **npackets**
+              ..
+
+
+
+      :Returns:
+
+          dictionary with longitude and latitude.
+              ..
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
