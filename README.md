@@ -18,46 +18,54 @@ change soon.
            $HOME/anaconda3 and does not need sysadmin privileges.
    3. Verify it works: Open a new terminal window and start `ipython`. You should
 see something like this:
-```
-(base) [sunra m🍔 /~/]$ ipython
-Python 3.13.1 | packaged by conda-forge | (main, Jan  8 2025, 09:15:59) [Clang 18.1.8 ]
-Type 'copyright', 'credits' or 'license' for more information
-IPython 9.9.0 -- An enhanced Interactive Python. Type '?' for help.
-Tip: Use `object?` to see the help on `object`, `object??` to view its source
 
-In [1]: 
-```
+    ```
+    (base) [sunra m🍔 /~/]$ ipython
+    Python 3.13.1 | packaged by conda-forge | (main, Jan  8 2025, 09:15:59) [Clang 18.1.8 ]
+    Type 'copyright', 'credits' or 'license' for more information
+    IPython 9.9.0 -- An enhanced Interactive Python. Type '?' for help.
+    Tip: Use `object?` to see the help on `object`, `object??` to view its source
+
+    In [1]: 
+    ```
+   
 * NOTE: I think Anaconda python likes the bash shell, but there
 are probably ways around that. 
 
 2. Download the file [nexoclom2_environment.yml](https://stsci.box.com/s/bvb6vj0z05l4uzmm92uy8u43hdnywx8s "nexoclom_environment.yml")
 
 3. Create the conda environment:
+
     ```
     (base) [sunra m🍔 /~/]$ conda env create -f nexoclom2_environment.yml
     ```
+   
 4. To use this environment run:
+
     ```
     (base) [sunra m🍔 /~/]$ conda activate nexoclom2
     ```
       
-None of this will work if the correct environment is not active. You will 
-know it's active because your prompt will change and `python` will point to a 
-different executable:
+    None of this will work if the correct environment is not active. You will 
+    know it's active because your prompt will change and `python` will point to a 
+    different executable:
+
     ```
     (nexoclom2) [sunra m🍔 /~/]$ which python
     /Users/mburger/anaconda/envs/nexoclom2/bin/python
     ```
 
-5. To turn it off run:
+5. To turn it off run.
+
     ```
     (nexoclom2) [sunra m🍔 /~/]$ conda deactivate
     ```
 
-6. Create the .nexoclom file: 
+6. Create the .nexoclom file.
 
-In your home directory create a file called `.nexoclom2` with the following 
-lines:
+    In your home directory create a file called `.nexoclom2` with the following 
+    lines.
+
     ```
     savepath = <full path to saved output>/modeloutput
     database = thesolarsystemmb.db
@@ -68,12 +76,14 @@ lines:
     [Matthew Burger](mailto:mburger@stsci.edu))
 
 8. Put the file in the `messengerdir` directory and untar it.
+
     ```
     (nexoclom) [sunra m🍔 /~/]$ tar -xvzf Level2.tar.gz
     ```
    The directory structure should be `<messengerdir>/Level2/`
 
 9. Install nexoclom2 and MESSENGERuvvs
+
     ```
     pip install git+https://github.com/mburger-stsci/nexoclom2.git
     pip install git+https://github.com/mburger-stsci/MESSENGERuvvs.git
