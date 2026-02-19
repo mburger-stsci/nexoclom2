@@ -1,0 +1,18 @@
+geometry.center = Moon
+geometry.StartPoint = Moon
+geometry.modeltime = 2024-10-10T00:00:00
+
+# Full surface
+SpatialDist.type = uniform
+spatialdist.exobase = 1.4
+
+speeddist.type = flat
+speeddist.vmin = 1.
+speeddist.vmax = 6.
+
+angulardist.type = radial
+
+options.runtime = 36000
+options.species = Na
+options.outer_edge = 10
+options.random_seed = 1234

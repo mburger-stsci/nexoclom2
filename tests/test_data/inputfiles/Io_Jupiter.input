@@ -1,0 +1,20 @@
+geometry.center = Jupiter
+geometry.StartPoint = Io
+geometry.modeltime = 2024-10-09 03:06:10.795 # phi = 0
+geometry.include = Jupiter, Io, Europa
+
+# Full surface
+SpatialDist.type = uniform
+spatialdist.exobase = 1.4
+
+speeddist.type = flat
+speeddist.vmin = 4.
+speeddist.vmax = 4.
+
+angulardist.type = radial
+
+options.runtime = 36000
+options.species = Na
+options.outer_edge = 10
+options.edge_origin = center
+options.random_seed = 1234

@@ -1,0 +1,14 @@
+speeddist.type = flat
+speeddist.vmin = 4.
+speeddist.vmax = 4.
+---
+speeddist.type = flat
+speeddist.vmin = 1.
+speeddist.vmax = 4.
+---
+speeddist.type = maxwellian
+speeddist.temperature = 50000
+---
+speeddist.type = maxwellian
+speeddist.temperature = 1200
+---

@@ -1,0 +1,20 @@
+# 0
+options.runtime = 10800.
+options.species = Na
+options.resolution = 1e-4
+---
+# 1
+options.runtime = 18000
+options.species = Na
+options.outer_edge = 30
+options.step_size = 0
+options.resolution = 1e-4
+---
+# 2: constant step size
+options.runtime = 18000
+options.species = Ca
+options.outer_edge = 30
+options.step_size = 30
+options.fitted = False
+options.resolution = 1e-4
+---

@@ -1,0 +1,8 @@
+# 0 center with 1 satellite, start at satellite; timestamp
+geometry.center = Jupiter
+geometry.StartPoint = Io
+geometry.modeltime = 2022-03-08T19:53:21
+---
+# 1 center no satellites, no time
+geometry.center = Mercury
+geometry.modeltime = 2022-03-08T19:53:21

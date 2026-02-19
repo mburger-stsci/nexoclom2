@@ -1,0 +1,18 @@
+geometry.center = Mercury
+geometry.startpoint = Mercury
+geometry.modeltime = 2024-09-09 15:36:56.477  # taa = 0
+
+# Full surface
+SpatialDist.type = uniform
+
+speeddist.type = flat
+speeddist.vmin = 0
+speeddist.vmax = 10
+
+angulardist.type = radial
+
+options.runtime =  50000
+options.species = Na
+options.outer_edge = 20
+options.step_size = 30
+options.random_seed = 1234

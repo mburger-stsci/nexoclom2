@@ -1,0 +1,11 @@
+# Constant sticking coefficient
+surfaceinteraction.stickcoef = 1.
+---
+# Constant sticking coefficient with accomodation factor
+surfaceinteraction.stickcoef = 0.5
+surfaceinteraction.accomfactor = 0.5
+---
+# Constant sticking coefficient with accomodation factor
+surfaceinteraction.stickcoef = 0.5
+surfaceinteraction.accomfactor = 0.3
+---

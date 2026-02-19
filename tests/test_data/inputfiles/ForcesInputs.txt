@@ -1,0 +1,10 @@
+# Both
+forces.gravity = True
+forces.radpres = True
+---
+# gravity
+forces.radpres = False
+---
+# radpres
+forces.gravity = False
+---

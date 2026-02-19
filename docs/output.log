@@ -1,0 +1,1106 @@
+Running Sphinx v8.1.3
+loading translations [en]... done
+loading pickled environment... The configuration has changed (1 option: 'mathjax3_config')
+done
+[AutoAPI] Reading files... [  1%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/__init__.py
+[AutoAPI] Reading files... [  3%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/data_simulation/ModelImage.py
+[AutoAPI] Reading files... [  4%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/data_simulation/__init__.py
+[AutoAPI] Reading files... [  6%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/data_simulation/ModelResult.py
+[AutoAPI] Reading files... [  7%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/derriv.py
+[AutoAPI] Reading files... [  8%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/VariableIntegrator_new.py
+[AutoAPI] Reading files... [ 10%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/bs_integrator.py
+[AutoAPI] Reading files... [ 11%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/starting_point.py
+[AutoAPI] Reading files... [ 12%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/Output_old.py
+[AutoAPI] Reading files... [ 14%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/rk5.py
+[AutoAPI] Reading files... [ 15%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/__init__.py
+[AutoAPI] Reading files... [ 17%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/rk5_attempt.py
+[AutoAPI] Reading files... [ 18%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/rk_scipy.py
+[AutoAPI] Reading files... [ 19%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/final_state.py
+[AutoAPI] Reading files... [ 21%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/rk5_integrator.py
+[AutoAPI] Reading files... [ 22%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/Output.py
+[AutoAPI] Reading files... [ 24%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/VariableIntegrator.py
+[AutoAPI] Reading files... [ 25%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/state_vectors.py
+[AutoAPI] Reading files... [ 26%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/equations_of_motion.py
+[AutoAPI] Reading files... [ 28%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/packets.py
+[AutoAPI] Reading files... [ 29%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/ConstantIntegrator.py
+[AutoAPI] Reading files... [ 31%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/Options.py
+[AutoAPI] Reading files... [ 32%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/InputClass.py
+[AutoAPI] Reading files... [ 33%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/__init__.py
+[AutoAPI] Reading files... [ 35%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/Forces.py
+[AutoAPI] Reading files... [ 36%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/Input.py
+[AutoAPI] Reading files... [ 38%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/LossInformation.py
+[AutoAPI] Reading files... [ 39%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpeedDists/SputteringFluxDist.py
+[AutoAPI] Reading files... [ 40%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpeedDists/FlatSpeedDist.py
+[AutoAPI] Reading files... [ 42%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpeedDists/MaxwellianFluxDist.py
+[AutoAPI] Reading files... [ 43%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/AngularDists/IsotropicAngDist.py
+[AutoAPI] Reading files... [ 44%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/AngularDists/RadialAngDist.py
+[AutoAPI] Reading files... [ 46%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/geometry/GeometryNoTime.py
+[AutoAPI] Reading files... [ 47%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/geometry/GeometryTime.py
+[AutoAPI] Reading files... [ 49%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/geometry/Geometry.py
+[AutoAPI] Reading files... [ 50%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpatialDists/TwoDRegularSpatDist.py
+[AutoAPI] Reading files... [ 51%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpatialDists/SurfSpotSpatDist.py
+[AutoAPI] Reading files... [ 53%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpatialDists/UniformSpatDist.py
+[AutoAPI] Reading files... [ 54%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpatialDists/SurfMapSpatDist.py
+[AutoAPI] Reading files... [ 56%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SurfaceInteraction/ConstantSurfInt.py
+[AutoAPI] Reading files... [ 57%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SurfaceInteraction/SurfMapSurfInt.py
+[AutoAPI] Reading files... [ 58%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SurfaceInteraction/TemperatureDependentSurfInt.py
+[AutoAPI] Reading files... [ 60%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/math/histogram.py
+[AutoAPI] Reading files... [ 61%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/math/__init__.py
+[AutoAPI] Reading files... [ 62%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/math/ks_test.py
+[AutoAPI] Reading files... [ 64%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/math/rotation_matrix.py
+[AutoAPI] Reading files... [ 65%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/math/mod_close.py
+[AutoAPI] Reading files... [ 67%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/utilities/__init__.py
+[AutoAPI] Reading files... [ 68%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/utilities/NexoclomConfig.py
+[AutoAPI] Reading files... [ 69%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/utilities/exceptions.py
+[AutoAPI] Reading files... [ 71%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/utilities/database_operations.py
+[AutoAPI] Reading files... [ 72%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/solarsystem/SSObject.py
+[AutoAPI] Reading files... [ 74%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/solarsystem/__init__.py
+[AutoAPI] Reading files... [ 75%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/solarsystem/IoTorus.py
+[AutoAPI] Reading files... [ 76%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/solarsystem/VoyagerTorus.py
+[AutoAPI] Reading files... [ 78%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/solarsystem/load_kernels.py
+[AutoAPI] Reading files... [ 79%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/data/__init__.py
+[AutoAPI] Reading files... [ 81%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/data/gvalues/reformat_gvalues.py
+[AutoAPI] Reading files... [ 82%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/electron_impact_loss.py
+[AutoAPI] Reading files... [ 83%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/eimp_emission_coef.py
+[AutoAPI] Reading files... [ 85%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/LossRate.py
+[AutoAPI] Reading files... [ 86%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/load_eimp_ionzation_rate_coefs.py
+[AutoAPI] Reading files... [ 88%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/load_emission_rate_coefs.py
+[AutoAPI] Reading files... [ 89%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/read_torus.py
+[AutoAPI] Reading files... [ 90%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/__init__.py
+[AutoAPI] Reading files... [ 92%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/eimp_ionization_coef.py
+[AutoAPI] Reading files... [ 93%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/photoloss.py
+[AutoAPI] Reading files... [ 94%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/constantloss.py
+[AutoAPI] Reading files... [ 96%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/gvalues.py
+[AutoAPI] Reading files... [ 97%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/compute_accel.py
+[AutoAPI] Reading files... [ 99%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/atom.py
+[AutoAPI] Reading files... [100%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/reformat_gvalues.py
+
+WARNING: Cannot resolve cyclic import: nexoclom2, nexoclom2 [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of unknown module nexoclom2.initial_state.AngularDists.IsotropicAngDist in nexoclom2.initial_state.Input [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of unknown module nexoclom2.initial_state.geometry.Geometry in nexoclom2.initial_state [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of unknown module nexoclom2.initial_state.geometry.GeometryTime in nexoclom2.initial_state [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of unknown module nexoclom2.initial_state.geometry.GeometryNoTime in nexoclom2.initial_state [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of unknown module nexoclom2.initial_state.SurfaceInteraction.ConstantSurfInt in nexoclom2.initial_state [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of unknown module nexoclom2.initial_state.SpatialDists.UniformSpatDist in nexoclom2.initial_state [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of unknown module nexoclom2.initial_state.SpatialDists.TwoDRegularSpatDist in nexoclom2.initial_state [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of unknown module nexoclom2.initial_state.SpeedDists.MaxwellianFluxDist in nexoclom2.initial_state [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of unknown module nexoclom2.initial_state.SpeedDists.FlatSpeedDist in nexoclom2.initial_state [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of unknown module nexoclom2.initial_state.SpeedDists.SputteringFluxDist in nexoclom2.initial_state [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of unknown module nexoclom2.initial_state.AngularDists.RadialAngDist in nexoclom2.initial_state [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of unknown module nexoclom2.initial_state.AngularDists.IsotropicAngDist in nexoclom2.initial_state [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of unknown module nexoclom2.atomicdata.atomicmass in nexoclom2.atomicdata [autoapi.python_import_resolution]
+WARNING: Cannot resolve cyclic import: nexoclom2, nexoclom2.initial_state.Input, nexoclom2.initial_state, nexoclom2.initial_state.Options, nexoclom2.atomicdata, nexoclom2.atomicdata.gvalues, nexoclom2.atomicdata [autoapi.python_import_resolution]
+WARNING: Cannot resolve cyclic import: nexoclom2, nexoclom2.initial_state.Input, nexoclom2.initial_state, nexoclom2.initial_state.Options, nexoclom2.atomicdata, nexoclom2.atomicdata.gvalues, nexoclom2 [autoapi.python_import_resolution]
+WARNING: Cannot resolve cyclic import: nexoclom2, nexoclom2.initial_state.Input, nexoclom2.initial_state, nexoclom2.initial_state.Options, nexoclom2.atomicdata, nexoclom2.atomicdata.LossRate, nexoclom2.atomicdata.photoloss, nexoclom2.atomicdata.atom, nexoclom2 [autoapi.python_import_resolution]
+WARNING: Cannot resolve cyclic import: nexoclom2, nexoclom2.initial_state.Input, nexoclom2.initial_state, nexoclom2.initial_state.Options, nexoclom2.atomicdata, nexoclom2.atomicdata.LossRate, nexoclom2.atomicdata.photoloss, nexoclom2.atomicdata.atom, nexoclom2.atomicdata.eimp_emission_coef, nexoclom2 [autoapi.python_import_resolution]
+WARNING: Cannot resolve cyclic import: nexoclom2, nexoclom2.initial_state.Input, nexoclom2.initial_state, nexoclom2.initial_state.Options, nexoclom2.atomicdata, nexoclom2.atomicdata.LossRate, nexoclom2.atomicdata.photoloss, nexoclom2.atomicdata.atom, nexoclom2.atomicdata.eimp_ionization_coef, nexoclom2 [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of nexoclom2.atomicdata.atomicmass in nexoclom2.initial_state.Options [autoapi.python_import_resolution]
+WARNING: Cannot resolve cyclic import: nexoclom2, nexoclom2.data_simulation.ModelImage, nexoclom2.solarsystem.SSObject, nexoclom2 [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of unknown module nexoclom2.particle_tracking.Integrator in nexoclom2.particle_tracking.VariableIntegrator_new [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of unknown module nexoclom2.particle_tracking.Integrator in nexoclom2.particle_tracking.Output_old [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of unknown module nexoclom2.particle_tracking.base in nexoclom2.particle_tracking.rk_scipy [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of unknown module nexoclom2.particle_tracking.base in nexoclom2.particle_tracking.rk_scipy [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of unknown module nexoclom2.particle_tracking.common in nexoclom2.particle_tracking.rk_scipy [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of unknown module nexoclom2.particle_tracking.common in nexoclom2.particle_tracking.rk_scipy [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of unknown module nexoclom2.particle_tracking.common in nexoclom2.particle_tracking.rk_scipy [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of unknown module nexoclom2.particle_tracking.common in nexoclom2.particle_tracking.rk_scipy [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of unknown module nexoclom2.particle_tracking.common in nexoclom2.particle_tracking.rk_scipy [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of unknown module nexoclom2.particle_tracking.common in nexoclom2.particle_tracking.rk_scipy [autoapi.python_import_resolution]
+WARNING: Cannot resolve import of nexoclom2.particle_tracking.dop853_coefficients in nexoclom2.particle_tracking.rk_scipy [autoapi.python_import_resolution]
+[AutoAPI] Mapping Data... [  1%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/__init__.py
+[AutoAPI] Mapping Data... [  3%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/data_simulation/ModelImage.py
+[AutoAPI] Mapping Data... [  4%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/data_simulation/__init__.py
+[AutoAPI] Mapping Data... [  6%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/data_simulation/ModelResult.py
+[AutoAPI] Mapping Data... [  7%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/derriv.py
+[AutoAPI] Mapping Data... [  8%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/VariableIntegrator_new.py
+[AutoAPI] Mapping Data... [ 10%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/bs_integrator.py
+[AutoAPI] Mapping Data... [ 11%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/starting_point.py
+/Users/mburger/anaconda3/envs/nexoclom2_dev/lib/python3.13/site-packages/numpydoc/docscrape.py:384: UserWarning: potentially wrong underline length... 
+Attributes 
+------- in 
+Determine start state of each packet
+Parameters...
+  if not self._is_at_section():
+[AutoAPI] Mapping Data... [ 12%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/Output_old.py
+[AutoAPI] Mapping Data... [ 14%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/rk5.py
+[AutoAPI] Mapping Data... [ 15%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/__init__.py
+[AutoAPI] Mapping Data... [ 17%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/rk5_attempt.py
+[AutoAPI] Mapping Data... [ 18%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/rk_scipy.py
+[AutoAPI] Mapping Data... [ 19%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/final_state.py
+[AutoAPI] Mapping Data... [ 21%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/rk5_integrator.py
+[AutoAPI] Mapping Data... [ 22%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/Output.py
+[AutoAPI] Mapping Data... [ 24%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/VariableIntegrator.py
+[AutoAPI] Mapping Data... [ 25%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/state_vectors.py
+[AutoAPI] Mapping Data... [ 26%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/equations_of_motion.py
+[AutoAPI] Mapping Data... [ 28%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/packets.py
+[AutoAPI] Mapping Data... [ 29%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/ConstantIntegrator.py
+[AutoAPI] Mapping Data... [ 31%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/Options.py
+[AutoAPI] Mapping Data... [ 32%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/InputClass.py
+[AutoAPI] Mapping Data... [ 33%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/__init__.py
+[AutoAPI] Mapping Data... [ 35%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/Forces.py
+[AutoAPI] Mapping Data... [ 36%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/Input.py
+[AutoAPI] Mapping Data... [ 38%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/LossInformation.py
+[AutoAPI] Mapping Data... [ 39%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpeedDists/SputteringFluxDist.py
+[AutoAPI] Mapping Data... [ 40%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpeedDists/FlatSpeedDist.py
+[AutoAPI] Mapping Data... [ 42%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpeedDists/MaxwellianFluxDist.py
+[AutoAPI] Mapping Data... [ 43%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/AngularDists/IsotropicAngDist.py
+[AutoAPI] Mapping Data... [ 44%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/AngularDists/RadialAngDist.py
+[AutoAPI] Mapping Data... [ 46%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/geometry/GeometryNoTime.py
+[AutoAPI] Mapping Data... [ 47%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/geometry/GeometryTime.py
+[AutoAPI] Mapping Data... [ 49%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/geometry/Geometry.py
+[AutoAPI] Mapping Data... [ 50%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpatialDists/TwoDRegularSpatDist.py
+[AutoAPI] Mapping Data... [ 51%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpatialDists/SurfSpotSpatDist.py
+[AutoAPI] Mapping Data... [ 53%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpatialDists/UniformSpatDist.py
+[AutoAPI] Mapping Data... [ 54%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpatialDists/SurfMapSpatDist.py
+[AutoAPI] Mapping Data... [ 56%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SurfaceInteraction/ConstantSurfInt.py
+/Users/mburger/anaconda3/envs/nexoclom2_dev/lib/python3.13/site-packages/numpydoc/docscrape.py:203: UserWarning: potentially wrong underline length... 
+Parameters 
+--------- in 
+Surface interaction with constant sticking coefficient and accommodation factor
+...
+  while not self._is_at_section() and not self._doc.eof():
+[AutoAPI] Mapping Data... [ 57%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SurfaceInteraction/SurfMapSurfInt.py
+[AutoAPI] Mapping Data... [ 58%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SurfaceInteraction/TemperatureDependentSurfInt.py
+[AutoAPI] Mapping Data... [ 60%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/math/histogram.py
+[AutoAPI] Mapping Data... [ 61%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/math/__init__.py
+[AutoAPI] Mapping Data... [ 62%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/math/ks_test.py
+[AutoAPI] Mapping Data... [ 64%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/math/rotation_matrix.py
+[AutoAPI] Mapping Data... [ 65%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/math/mod_close.py
+/Users/mburger/anaconda3/envs/nexoclom2_dev/lib/python3.13/site-packages/numpydoc/docscrape.py:203: UserWarning: potentially wrong underline length... 
+Parameters 
+--------- in 
+Wrapper for np.isclose for values close to the periodic boundary
+Decision Chart...
+  while not self._is_at_section() and not self._doc.eof():
+[AutoAPI] Mapping Data... [ 67%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/utilities/__init__.py
+[AutoAPI] Mapping Data... [ 68%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/utilities/NexoclomConfig.py
+[AutoAPI] Mapping Data... [ 69%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/utilities/exceptions.py
+[AutoAPI] Mapping Data... [ 71%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/utilities/database_operations.py
+[AutoAPI] Mapping Data... [ 72%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/solarsystem/SSObject.py
+[AutoAPI] Mapping Data... [ 74%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/solarsystem/__init__.py
+[AutoAPI] Mapping Data... [ 75%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/solarsystem/IoTorus.py
+[AutoAPI] Mapping Data... [ 76%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/solarsystem/VoyagerTorus.py
+[AutoAPI] Mapping Data... [ 78%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/solarsystem/load_kernels.py
+[AutoAPI] Mapping Data... [ 79%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/data/__init__.py
+[AutoAPI] Mapping Data... [ 81%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/data/gvalues/reformat_gvalues.py
+[AutoAPI] Mapping Data... [ 82%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/electron_impact_loss.py
+[AutoAPI] Mapping Data... [ 83%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/eimp_emission_coef.py
+[AutoAPI] Mapping Data... [ 85%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/LossRate.py
+[AutoAPI] Mapping Data... [ 86%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/load_eimp_ionzation_rate_coefs.py
+[AutoAPI] Mapping Data... [ 88%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/load_emission_rate_coefs.py
+[AutoAPI] Mapping Data... [ 89%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/read_torus.py
+[AutoAPI] Mapping Data... [ 90%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/__init__.py
+[AutoAPI] Mapping Data... [ 92%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/eimp_ionization_coef.py
+[AutoAPI] Mapping Data... [ 93%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/photoloss.py
+[AutoAPI] Mapping Data... [ 94%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/constantloss.py
+[AutoAPI] Mapping Data... [ 96%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/gvalues.py
+[AutoAPI] Mapping Data... [ 97%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/compute_accel.py
+[AutoAPI] Mapping Data... [ 99%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/atom.py
+[AutoAPI] Mapping Data... [100%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/reformat_gvalues.py
+
+[AutoAPI] Rendering Data... [  1%] Geometry
+[AutoAPI] Rendering Data... [  3%] nexoclom2
+[AutoAPI] Rendering Data... [  4%] GeometryTime
+[AutoAPI] Rendering Data... [  6%] FlatSpeedDist
+[AutoAPI] Rendering Data... [  7%] RadialAngDist
+[AutoAPI] Rendering Data... [  8%] GeometryNoTime
+[AutoAPI] Rendering Data... [ 10%] SurfMapSurfInt
+[AutoAPI] Rendering Data... [ 11%] nexoclom2.math
+[AutoAPI] Rendering Data... [ 12%] nexoclom2.data
+[AutoAPI] Rendering Data... [ 14%] UniformSpatDist
+[AutoAPI] Rendering Data... [ 15%] SurfMapSpatDist
+[AutoAPI] Rendering Data... [ 17%] ConstantSurfInt
+[AutoAPI] Rendering Data... [ 18%] IsotropicAngDist
+[AutoAPI] Rendering Data... [ 19%] SurfSpotSpatDist
+[AutoAPI] Rendering Data... [ 21%] reformat_gvalues
+[AutoAPI] Rendering Data... [ 22%] SputteringFluxDist
+[AutoAPI] Rendering Data... [ 24%] MaxwellianFluxDist
+[AutoAPI] Rendering Data... [ 25%] TwoDRegularSpatDist
+[AutoAPI] Rendering Data... [ 26%] nexoclom2.utilities
+[AutoAPI] Rendering Data... [ 28%] nexoclom2.atomicdata
+[AutoAPI] Rendering Data... [ 29%] nexoclom2.solarsystem
+[AutoAPI] Rendering Data... [ 31%] nexoclom2.math.ks_test
+[AutoAPI] Rendering Data... [ 32%] nexoclom2.initial_state
+[AutoAPI] Rendering Data... [ 33%] nexoclom2.math.histogram
+[AutoAPI] Rendering Data... [ 35%] nexoclom2.math.mod_close
+[AutoAPI] Rendering Data... [ 36%] nexoclom2.data_simulation
+[AutoAPI] Rendering Data... [ 38%] nexoclom2.atomicdata.atom
+[AutoAPI] Rendering Data... [ 39%] nexoclom2.particle_tracking
+[AutoAPI] Rendering Data... [ 40%] TemperatureDependentSurfInt
+[AutoAPI] Rendering Data... [ 42%] nexoclom2.atomicdata.gvalues
+[AutoAPI] Rendering Data... [ 43%] nexoclom2.initial_state.Input
+[AutoAPI] Rendering Data... [ 44%] nexoclom2.solarsystem.IoTorus
+[AutoAPI] Rendering Data... [ 46%] nexoclom2.atomicdata.LossRate
+[AutoAPI] Rendering Data... [ 47%] nexoclom2.initial_state.Forces
+[AutoAPI] Rendering Data... [ 49%] nexoclom2.math.rotation_matrix
+[AutoAPI] Rendering Data... [ 50%] nexoclom2.utilities.exceptions
+[AutoAPI] Rendering Data... [ 51%] nexoclom2.solarsystem.SSObject
+[AutoAPI] Rendering Data... [ 53%] nexoclom2.atomicdata.photoloss
+[AutoAPI] Rendering Data... [ 54%] nexoclom2.particle_tracking.rk5
+[AutoAPI] Rendering Data... [ 56%] nexoclom2.initial_state.Options
+[AutoAPI] Rendering Data... [ 57%] nexoclom2.atomicdata.read_torus
+[AutoAPI] Rendering Data... [ 58%] nexoclom2.atomicdata.constantloss
+[AutoAPI] Rendering Data... [ 60%] nexoclom2.particle_tracking.derriv
+[AutoAPI] Rendering Data... [ 61%] nexoclom2.particle_tracking.Output
+[AutoAPI] Rendering Data... [ 62%] nexoclom2.initial_state.InputClass
+[AutoAPI] Rendering Data... [ 64%] nexoclom2.utilities.NexoclomConfig
+[AutoAPI] Rendering Data... [ 65%] nexoclom2.solarsystem.VoyagerTorus
+[AutoAPI] Rendering Data... [ 67%] nexoclom2.solarsystem.load_kernels
+[AutoAPI] Rendering Data... [ 68%] nexoclom2.atomicdata.compute_accel
+[AutoAPI] Rendering Data... [ 69%] nexoclom2.particle_tracking.packets
+[AutoAPI] Rendering Data... [ 71%] nexoclom2.data_simulation.ModelImage
+[AutoAPI] Rendering Data... [ 72%] nexoclom2.particle_tracking.rk_scipy
+[AutoAPI] Rendering Data... [ 74%] nexoclom2.data_simulation.ModelResult
+[AutoAPI] Rendering Data... [ 75%] nexoclom2.atomicdata.reformat_gvalues
+[AutoAPI] Rendering Data... [ 76%] nexoclom2.particle_tracking.Output_old
+[AutoAPI] Rendering Data... [ 78%] nexoclom2.particle_tracking.rk5_attempt
+[AutoAPI] Rendering Data... [ 79%] nexoclom2.particle_tracking.final_state
+[AutoAPI] Rendering Data... [ 81%] nexoclom2.initial_state.LossInformation
+[AutoAPI] Rendering Data... [ 82%] nexoclom2.utilities.database_operations
+[AutoAPI] Rendering Data... [ 83%] nexoclom2.atomicdata.eimp_emission_coef
+[AutoAPI] Rendering Data... [ 85%] nexoclom2.particle_tracking.bs_integrator
+[AutoAPI] Rendering Data... [ 86%] nexoclom2.particle_tracking.state_vectors
+[AutoAPI] Rendering Data... [ 88%] nexoclom2.atomicdata.electron_impact_loss
+[AutoAPI] Rendering Data... [ 89%] nexoclom2.atomicdata.eimp_ionization_coef
+[AutoAPI] Rendering Data... [ 90%] nexoclom2.particle_tracking.starting_point
+[AutoAPI] Rendering Data... [ 92%] nexoclom2.particle_tracking.rk5_integrator
+[AutoAPI] Rendering Data... [ 93%] nexoclom2.atomicdata.load_emission_rate_coefs
+[AutoAPI] Rendering Data... [ 94%] nexoclom2.particle_tracking.VariableIntegrator
+[AutoAPI] Rendering Data... [ 96%] nexoclom2.particle_tracking.ConstantIntegrator
+[AutoAPI] Rendering Data... [ 97%] nexoclom2.particle_tracking.equations_of_motion
+[AutoAPI] Rendering Data... [ 99%] nexoclom2.particle_tracking.VariableIntegrator_new
+[AutoAPI] Rendering Data... [100%] nexoclom2.atomicdata.load_eimp_ionzation_rate_coefs
+
+[autosummary] generating autosummary for: apidocs/modules.rst, apidocs/nexoclom2.atomicdata.rst, apidocs/nexoclom2.data.rst, apidocs/nexoclom2.data_simulation.rst, apidocs/nexoclom2.initial_state.rst, apidocs/nexoclom2.math.rst, apidocs/nexoclom2.particle_tracking.rst, apidocs/nexoclom2.rst, apidocs/nexoclom2.solarsystem.rst, apidocs/nexoclom2.utilities.rst, ..., index.rst, nexoclom2/NEXOCLOM_Requirements_Document.md, nexoclom2/TestCases.md, nexoclom2/coordinate_systems.rst, nexoclom2/inputfiles.rst, nexoclom2/install.md, nexoclom2/integrator.rst, nexoclom2/lossrates.rst, nexoclom2/planet_distance.rst, nexoclom2/surface_interaction.rst
+WARNING: Failed to import nexoclom2.particle_tracking.
+Possible hints:
+* ModuleNotFoundError: No module named 'nexoclom2.atomicdata.atomicmass'
+* KeyError: 'nexoclom2'
+WARNING: Failed to import nexoclom2.atomicdata.
+Possible hints:
+* ModuleNotFoundError: No module named 'nexoclom2.atomicdata.atomicmass'
+* KeyError: 'nexoclom2'
+WARNING: Failed to import nexoclom2.data_simulation.
+Possible hints:
+* ModuleNotFoundError: No module named 'nexoclom2.atomicdata.atomicmass'
+* KeyError: 'nexoclom2'
+WARNING: Failed to import nexoclom2.initial_state.Input.
+Possible hints:
+* ModuleNotFoundError: No module named 'nexoclom2.atomicdata.atomicmass'
+* KeyError: 'nexoclom2'
+WARNING: Failed to import nexoclom2.initial_state.
+Possible hints:
+* ModuleNotFoundError: No module named 'nexoclom2.atomicdata.atomicmass'
+* KeyError: 'nexoclom2'
+WARNING: Failed to import nexoclom2.
+Possible hints:
+* ModuleNotFoundError: No module named 'nexoclom2.atomicdata.atomicmass'
+* KeyError: 'nexoclom2'
+WARNING: Failed to import nexoclom2.data.
+Possible hints:
+* ModuleNotFoundError: No module named 'nexoclom2.atomicdata.atomicmass'
+* KeyError: 'nexoclom2'
+myst v4.0.0: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions={'dollarmath', 'amsmath', 'colon_fence'}, disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=0, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 74 source files that are out of date
+updating environment: 0 added, 75 changed, 5 removed
+reading sources... [  1%] apidocs/nexoclom2.atomicdata
+reading sources... [  3%] autoapi/ConstantSurfInt/index
+reading sources... [  4%] autoapi/FlatSpeedDist/index
+reading sources... [  5%] autoapi/Geometry/index
+reading sources... [  7%] autoapi/GeometryNoTime/index
+reading sources... [  8%] autoapi/GeometryTime/index
+reading sources... [  9%] autoapi/IsotropicAngDist/index
+reading sources... [ 11%] autoapi/MaxwellianFluxDist/index
+reading sources... [ 12%] autoapi/RadialAngDist/index
+reading sources... [ 13%] autoapi/SputteringFluxDist/index
+reading sources... [ 15%] autoapi/SurfMapSpatDist/index
+reading sources... [ 16%] autoapi/SurfMapSurfInt/index
+reading sources... [ 17%] autoapi/SurfSpotSpatDist/index
+reading sources... [ 19%] autoapi/TemperatureDependentSurfInt/index
+reading sources... [ 20%] autoapi/TwoDRegularSpatDist/index
+reading sources... [ 21%] autoapi/UniformSpatDist/index
+reading sources... [ 23%] autoapi/index
+reading sources... [ 24%] autoapi/nexoclom2/atomicdata/LossRate/index
+reading sources... [ 25%] autoapi/nexoclom2/atomicdata/atom/index
+reading sources... [ 27%] autoapi/nexoclom2/atomicdata/compute_accel/index
+reading sources... [ 28%] autoapi/nexoclom2/atomicdata/constantloss/index
+reading sources... [ 29%] autoapi/nexoclom2/atomicdata/eimp_emission_coef/index
+reading sources... [ 31%] autoapi/nexoclom2/atomicdata/eimp_ionization_coef/index
+reading sources... [ 32%] autoapi/nexoclom2/atomicdata/electron_impact_loss/index
+reading sources... [ 33%] autoapi/nexoclom2/atomicdata/gvalues/index
+reading sources... [ 35%] autoapi/nexoclom2/atomicdata/index
+reading sources... [ 36%] autoapi/nexoclom2/atomicdata/load_eimp_ionzation_rate_coefs/index
+reading sources... [ 37%] autoapi/nexoclom2/atomicdata/load_emission_rate_coefs/index
+reading sources... [ 39%] autoapi/nexoclom2/atomicdata/photoloss/index
+reading sources... [ 40%] autoapi/nexoclom2/atomicdata/read_torus/index
+reading sources... [ 41%] autoapi/nexoclom2/atomicdata/reformat_gvalues/index
+reading sources... [ 43%] autoapi/nexoclom2/data/index
+reading sources... [ 44%] autoapi/nexoclom2/data_simulation/ModelImage/index
+reading sources... [ 45%] autoapi/nexoclom2/data_simulation/ModelResult/index
+reading sources... [ 47%] autoapi/nexoclom2/data_simulation/index
+reading sources... [ 48%] autoapi/nexoclom2/index
+reading sources... [ 49%] autoapi/nexoclom2/initial_state/Forces/index
+reading sources... [ 51%] autoapi/nexoclom2/initial_state/Input/index
+reading sources... [ 52%] autoapi/nexoclom2/initial_state/InputClass/index
+reading sources... [ 53%] autoapi/nexoclom2/initial_state/LossInformation/index
+reading sources... [ 55%] autoapi/nexoclom2/initial_state/Options/index
+reading sources... [ 56%] autoapi/nexoclom2/initial_state/index
+reading sources... [ 57%] autoapi/nexoclom2/math/histogram/index
+reading sources... [ 59%] autoapi/nexoclom2/math/index
+reading sources... [ 60%] autoapi/nexoclom2/math/ks_test/index
+reading sources... [ 61%] autoapi/nexoclom2/math/mod_close/index
+reading sources... [ 63%] autoapi/nexoclom2/math/rotation_matrix/index
+reading sources... [ 64%] autoapi/nexoclom2/particle_tracking/ConstantIntegrator/index
+reading sources... [ 65%] autoapi/nexoclom2/particle_tracking/Output/index
+reading sources... [ 67%] autoapi/nexoclom2/particle_tracking/Output_old/index
+reading sources... [ 68%] autoapi/nexoclom2/particle_tracking/VariableIntegrator/index
+reading sources... [ 69%] autoapi/nexoclom2/particle_tracking/VariableIntegrator_new/index
+reading sources... [ 71%] autoapi/nexoclom2/particle_tracking/bs_integrator/index
+reading sources... [ 72%] autoapi/nexoclom2/particle_tracking/derriv/index
+reading sources... [ 73%] autoapi/nexoclom2/particle_tracking/equations_of_motion/index
+reading sources... [ 75%] autoapi/nexoclom2/particle_tracking/final_state/index
+reading sources... [ 76%] autoapi/nexoclom2/particle_tracking/index
+reading sources... [ 77%] autoapi/nexoclom2/particle_tracking/packets/index
+reading sources... [ 79%] autoapi/nexoclom2/particle_tracking/rk5/index
+reading sources... [ 80%] autoapi/nexoclom2/particle_tracking/rk5_attempt/index
+reading sources... [ 81%] autoapi/nexoclom2/particle_tracking/rk5_integrator/index
+reading sources... [ 83%] autoapi/nexoclom2/particle_tracking/rk_scipy/index
+reading sources... [ 84%] autoapi/nexoclom2/particle_tracking/starting_point/index
+reading sources... [ 85%] autoapi/nexoclom2/particle_tracking/state_vectors/index
+reading sources... [ 87%] autoapi/nexoclom2/solarsystem/IoTorus/index
+reading sources... [ 88%] autoapi/nexoclom2/solarsystem/SSObject/index
+reading sources... [ 89%] autoapi/nexoclom2/solarsystem/VoyagerTorus/index
+reading sources... [ 91%] autoapi/nexoclom2/solarsystem/index
+reading sources... [ 92%] autoapi/nexoclom2/solarsystem/load_kernels/index
+reading sources... [ 93%] autoapi/nexoclom2/utilities/NexoclomConfig/index
+reading sources... [ 95%] autoapi/nexoclom2/utilities/database_operations/index
+reading sources... [ 96%] autoapi/nexoclom2/utilities/exceptions/index
+reading sources... [ 97%] autoapi/nexoclom2/utilities/index
+reading sources... [ 99%] autoapi/reformat_gvalues/index
+reading sources... [100%] index
+[AutoAPI] Adding AutoAPI TOCTree [autoapi/index] to index.rst
+
+WARNING: autodoc: failed to import module 'atomicdata' from module 'nexoclom2'; the following exception was raised:
+No module named 'nexoclom2.atomicdata.atomicmass' [autodoc.import_object]
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/atomicdata/LossRate/index.rst:4: WARNING: duplicate object description of nexoclom2.atomicdata.LossRate, other instance in autoapi/nexoclom2/atomicdata/index, use :no-index: for one of them
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/atomicdata/index.rst:199: WARNING: duplicate object description of nexoclom2.atomicdata.LossRate, other instance in autoapi/nexoclom2/atomicdata/LossRate/index, use :no-index: for one of them
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/index.rst:436: CRITICAL: Unexpected section title or transition.
+
+**** [docutils]
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/index.rst:449: WARNING: Bullet list ends without a blank line; unexpected unindent. [docutils]
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/index.rst:459: WARNING: Bullet list ends without a blank line; unexpected unindent. [docutils]
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/index.rst:541: ERROR: Unexpected indentation. [docutils]
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/initial_state/Forces/index.rst:4: WARNING: duplicate object description of nexoclom2.initial_state.Forces, other instance in autoapi/nexoclom2/initial_state/index, use :no-index: for one of them
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/initial_state/InputClass/index.rst:4: WARNING: duplicate object description of nexoclom2.initial_state.InputClass, other instance in autoapi/nexoclom2/initial_state/index, use :no-index: for one of them
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/initial_state/LossInformation/index.rst:4: WARNING: duplicate object description of nexoclom2.initial_state.LossInformation, other instance in autoapi/nexoclom2/initial_state/index, use :no-index: for one of them
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/initial_state/Options/index.rst:4: WARNING: duplicate object description of nexoclom2.initial_state.Options, other instance in autoapi/nexoclom2/initial_state/index, use :no-index: for one of them
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/initial_state/index.rst:57: WARNING: duplicate object description of nexoclom2.initial_state.InputClass, other instance in autoapi/nexoclom2/initial_state/InputClass/index, use :no-index: for one of them
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/initial_state/index.rst:304: WARNING: duplicate object description of nexoclom2.initial_state.Forces, other instance in autoapi/nexoclom2/initial_state/Forces/index, use :no-index: for one of them
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/initial_state/index.rst:350: WARNING: duplicate object description of nexoclom2.initial_state.LossInformation, other instance in autoapi/nexoclom2/initial_state/LossInformation/index, use :no-index: for one of them
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/initial_state/index.rst:404: WARNING: duplicate object description of nexoclom2.initial_state.Options, other instance in autoapi/nexoclom2/initial_state/Options/index, use :no-index: for one of them
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/math/index.rst:134: WARNING: duplicate object description of nexoclom2.math.rotation_matrix, other instance in autoapi/nexoclom2/math/rotation_matrix/index, use :no-index: for one of them
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/math/rotation_matrix/index.rst:4: WARNING: duplicate object description of nexoclom2.math.rotation_matrix, other instance in autoapi/nexoclom2/math/index, use :no-index: for one of them
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/particle_tracking/ConstantIntegrator/index.rst:4: WARNING: duplicate object description of nexoclom2.particle_tracking.ConstantIntegrator, other instance in autoapi/nexoclom2/particle_tracking/index, use :no-index: for one of them
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/particle_tracking/Output_old/index.rst:104: ERROR: Unexpected indentation. [docutils]
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/particle_tracking/Output_old/index.rst:106: WARNING: Block quote ends without a blank line; unexpected unindent. [docutils]
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/particle_tracking/VariableIntegrator/index.rst:4: WARNING: duplicate object description of nexoclom2.particle_tracking.VariableIntegrator, other instance in autoapi/nexoclom2/particle_tracking/index, use :no-index: for one of them
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/particle_tracking/index.rst:66: WARNING: duplicate object description of nexoclom2.particle_tracking.ConstantIntegrator, other instance in autoapi/nexoclom2/particle_tracking/ConstantIntegrator/index, use :no-index: for one of them
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/particle_tracking/index.rst:91: WARNING: duplicate object description of nexoclom2.particle_tracking.VariableIntegrator, other instance in autoapi/nexoclom2/particle_tracking/VariableIntegrator/index, use :no-index: for one of them
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/solarsystem/IoTorus/index.rst:4: WARNING: duplicate object description of nexoclom2.solarsystem.IoTorus, other instance in autoapi/nexoclom2/solarsystem/index, use :no-index: for one of them
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/solarsystem/SSObject/index.rst:4: WARNING: duplicate object description of nexoclom2.solarsystem.SSObject, other instance in autoapi/nexoclom2/solarsystem/index, use :no-index: for one of them
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/solarsystem/SSObject/index.rst:78: CRITICAL: Unexpected section title or transition.
+
+**** [docutils]
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/solarsystem/SSObject/index.rst:91: WARNING: Bullet list ends without a blank line; unexpected unindent. [docutils]
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/solarsystem/SSObject/index.rst:101: WARNING: Bullet list ends without a blank line; unexpected unindent. [docutils]
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/solarsystem/SSObject/index.rst:183: ERROR: Unexpected indentation. [docutils]
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/solarsystem/index.rst:54: WARNING: duplicate object description of nexoclom2.solarsystem.SSObject, other instance in autoapi/nexoclom2/solarsystem/SSObject/index, use :no-index: for one of them
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/solarsystem/index.rst:114: CRITICAL: Unexpected section title or transition.
+
+**** [docutils]
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/solarsystem/index.rst:127: WARNING: Bullet list ends without a blank line; unexpected unindent. [docutils]
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/solarsystem/index.rst:137: WARNING: Bullet list ends without a blank line; unexpected unindent. [docutils]
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/solarsystem/index.rst:219: ERROR: Unexpected indentation. [docutils]
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/solarsystem/index.rst:265: WARNING: duplicate object description of nexoclom2.solarsystem.IoTorus, other instance in autoapi/nexoclom2/solarsystem/IoTorus/index, use :no-index: for one of them
+WARNING: autodoc: failed to import class 'atomicdata.atom.Atom' from module 'nexoclom2'; the following exception was raised:
+No module named 'nexoclom2.atomicdata.atomicmass' [autodoc.import_object]
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/apidocs/modules.rst: WARNING: document isn't included in any toctree
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/nexoclom2/lossrates.rst: WARNING: document isn't included in any toctree
+done
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/build/html/_static/basic.css
+Writing evaluated template result to /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/build/html/_static/language_data.js
+Writing evaluated template result to /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/build/html/_static/documentation_options.js
+Writing evaluated template result to /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/build/html/_static/js/versions.js
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [  1%] apidocs/nexoclom2
+writing output... [  3%] apidocs/nexoclom2.atomicdata
+writing output... [  4%] autoapi/ConstantSurfInt/index
+writing output... [  5%] autoapi/FlatSpeedDist/index
+writing output... [  7%] autoapi/Geometry/index
+writing output... [  8%] autoapi/GeometryNoTime/index
+writing output... [  9%] autoapi/GeometryTime/index
+writing output... [ 11%] autoapi/IsotropicAngDist/index
+writing output... [ 12%] autoapi/MaxwellianFluxDist/index
+writing output... [ 13%] autoapi/RadialAngDist/index
+writing output... [ 14%] autoapi/SputteringFluxDist/index
+writing output... [ 16%] autoapi/SurfMapSpatDist/index
+writing output... [ 17%] autoapi/SurfMapSurfInt/index
+writing output... [ 18%] autoapi/SurfSpotSpatDist/index
+writing output... [ 20%] autoapi/TemperatureDependentSurfInt/index
+writing output... [ 21%] autoapi/TwoDRegularSpatDist/index
+writing output... [ 22%] autoapi/UniformSpatDist/index
+writing output... [ 24%] autoapi/index
+writing output... [ 25%] autoapi/nexoclom2/atomicdata/LossRate/index
+writing output... [ 26%] autoapi/nexoclom2/atomicdata/atom/index
+writing output... [ 28%] autoapi/nexoclom2/atomicdata/compute_accel/index
+writing output... [ 29%] autoapi/nexoclom2/atomicdata/constantloss/index
+writing output... [ 30%] autoapi/nexoclom2/atomicdata/eimp_emission_coef/index
+writing output... [ 32%] autoapi/nexoclom2/atomicdata/eimp_ionization_coef/index
+writing output... [ 33%] autoapi/nexoclom2/atomicdata/electron_impact_loss/index
+writing output... [ 34%] autoapi/nexoclom2/atomicdata/gvalues/index
+writing output... [ 36%] autoapi/nexoclom2/atomicdata/index
+writing output... [ 37%] autoapi/nexoclom2/atomicdata/load_eimp_ionzation_rate_coefs/index
+writing output... [ 38%] autoapi/nexoclom2/atomicdata/load_emission_rate_coefs/index
+writing output... [ 39%] autoapi/nexoclom2/atomicdata/photoloss/index
+writing output... [ 41%] autoapi/nexoclom2/atomicdata/read_torus/index
+writing output... [ 42%] autoapi/nexoclom2/atomicdata/reformat_gvalues/index
+writing output... [ 43%] autoapi/nexoclom2/data/index
+writing output... [ 45%] autoapi/nexoclom2/data_simulation/ModelImage/index
+writing output... [ 46%] autoapi/nexoclom2/data_simulation/ModelResult/index
+writing output... [ 47%] autoapi/nexoclom2/data_simulation/index
+writing output... [ 49%] autoapi/nexoclom2/index
+writing output... [ 50%] autoapi/nexoclom2/initial_state/Forces/index
+writing output... [ 51%] autoapi/nexoclom2/initial_state/Input/index
+writing output... [ 53%] autoapi/nexoclom2/initial_state/InputClass/index
+writing output... [ 54%] autoapi/nexoclom2/initial_state/LossInformation/index
+writing output... [ 55%] autoapi/nexoclom2/initial_state/Options/index
+writing output... [ 57%] autoapi/nexoclom2/initial_state/index
+writing output... [ 58%] autoapi/nexoclom2/math/histogram/index
+writing output... [ 59%] autoapi/nexoclom2/math/index
+writing output... [ 61%] autoapi/nexoclom2/math/ks_test/index
+writing output... [ 62%] autoapi/nexoclom2/math/mod_close/index
+writing output... [ 63%] autoapi/nexoclom2/math/rotation_matrix/index
+writing output... [ 64%] autoapi/nexoclom2/particle_tracking/ConstantIntegrator/index
+writing output... [ 66%] autoapi/nexoclom2/particle_tracking/Output/index
+writing output... [ 67%] autoapi/nexoclom2/particle_tracking/Output_old/index
+writing output... [ 68%] autoapi/nexoclom2/particle_tracking/VariableIntegrator/index
+writing output... [ 70%] autoapi/nexoclom2/particle_tracking/VariableIntegrator_new/index
+writing output... [ 71%] autoapi/nexoclom2/particle_tracking/bs_integrator/index
+writing output... [ 72%] autoapi/nexoclom2/particle_tracking/derriv/index
+writing output... [ 74%] autoapi/nexoclom2/particle_tracking/equations_of_motion/index
+writing output... [ 75%] autoapi/nexoclom2/particle_tracking/final_state/index
+writing output... [ 76%] autoapi/nexoclom2/particle_tracking/index
+writing output... [ 78%] autoapi/nexoclom2/particle_tracking/packets/index
+writing output... [ 79%] autoapi/nexoclom2/particle_tracking/rk5/index
+writing output... [ 80%] autoapi/nexoclom2/particle_tracking/rk5_attempt/index
+writing output... [ 82%] autoapi/nexoclom2/particle_tracking/rk5_integrator/index
+writing output... [ 83%] autoapi/nexoclom2/particle_tracking/rk_scipy/index
+writing output... [ 84%] autoapi/nexoclom2/particle_tracking/starting_point/index
+writing output... [ 86%] autoapi/nexoclom2/particle_tracking/state_vectors/index
+writing output... [ 87%] autoapi/nexoclom2/solarsystem/IoTorus/index
+writing output... [ 88%] autoapi/nexoclom2/solarsystem/SSObject/index
+writing output... [ 89%] autoapi/nexoclom2/solarsystem/VoyagerTorus/index
+writing output... [ 91%] autoapi/nexoclom2/solarsystem/index
+writing output... [ 92%] autoapi/nexoclom2/solarsystem/load_kernels/index
+writing output... [ 93%] autoapi/nexoclom2/utilities/NexoclomConfig/index
+writing output... [ 95%] autoapi/nexoclom2/utilities/database_operations/index
+writing output... [ 96%] autoapi/nexoclom2/utilities/exceptions/index
+writing output... [ 97%] autoapi/nexoclom2/utilities/index
+writing output... [ 99%] autoapi/reformat_gvalues/index
+writing output... [100%] index
+
+WARNING: inline latex '\\begin{eqnarray*}\nf(v) & \\propto & v^2 \\exp(-v^2/v_{th}^2)\nv_{th}^2 & = & 2Tk_B/m\n\\end{eqnarray*}': latex exited with error
+[stdout]
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=latex)
+ restricted \write18 enabled.
+entering extended mode
+(./math.tex
+LaTeX2e <2022-11-01> patch level 1
+L3 programming layer <2023-03-30>
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/size12.clo))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/anyfontsize/anyfontsize.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/tools/bm.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-dvips.def)
+No file math.aux.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd)
+! Extra alignment tab has been changed to \cr.
+<template> \egroup \endtemplate 
+                                
+l.15 v_{th}^2 & = &
+                    2Tk_B/m
+
+! LaTeX Error: Too many columns in eqnarray environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.16 \end{eqnarray*}
+                    
+[1] (./math.aux) )
+(see the transcript file for additional information)
+Output written on math.dvi (1 page, 600 bytes).
+Transcript written on math.log.
+
+WARNING: inline latex '\\begin{eqnarray*}\nF(v) & \\propto & v f(v) \\\\\n     & \\propto & v^3 \\exp(-v^2/v_{th}^2)\n\\end{eqnarray*}': latex exited with error
+[stdout]
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=latex)
+ restricted \write18 enabled.
+entering extended mode
+(./math.tex
+LaTeX2e <2022-11-01> patch level 1
+L3 programming layer <2023-03-30>
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/size12.clo))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/anyfontsize/anyfontsize.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/tools/bm.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-dvips.def)
+(./math.aux) (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd)
+! Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing } inserted.
+<inserted text> 
+                }
+l.17 \end{eqnarray*}\end{split}
+                               
+! You can't use `\halign' in math mode.
+\eqnarray ... \let \\\@eqncr $$\everycr {}\halign 
+                                                  to\displaywidth \bgroup \h...
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing number, treated as zero.
+<to be read again> 
+                   \bgroup 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \bgroup 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing } inserted.
+<inserted text> 
+                }
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing $ inserted.
+<inserted text> 
+                $
+l.17 \end{eqnarray*}\end{split}
+                               
+! You can't use `macro parameter character #' in math mode.
+\eqnarray ...g $\displaystyle \tabskip \z@skip {##
+                                                  }$\@eqnsel &\global \@eqcn...
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing { inserted.
+<inserted text> 
+                {
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing { inserted.
+<inserted text> 
+                {
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing $ inserted.
+<inserted text> 
+                $
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing } inserted.
+<inserted text> 
+                }
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing } inserted.
+<inserted text> 
+                }
+l.17 \end{eqnarray*}\end{split}
+                               
+! You can't use `macro parameter character #' in restricted horizontal mode.
+\eqnarray ...e \hskip \tw@ \arraycolsep \hfil ${##
+                                                  }$\hfil &\global \@eqcnt \...
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing { inserted.
+<inserted text> 
+                {
+l.17 \end{eqnarray*}\end{split}
+                               
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing } inserted.
+<inserted text> 
+                }
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing $ inserted.
+<inserted text> 
+                $
+l.17 \end{eqnarray*}\end{split}
+                               
+! You can't use `macro parameter character #' in math mode.
+\eqnarray ... \tw@ \arraycolsep $\displaystyle {##
+                                                  }$\hfil \tabskip \@centeri...
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing { inserted.
+<inserted text> 
+                {
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing $ inserted.
+<inserted text> 
+                $
+l.17 \end{eqnarray*}\end{split}
+                               
+! You can't use `macro parameter character #' in restricted horizontal mode.
+\eqnarray ...nt \thr@@ \hb@xt@ \z@ \bgroup \hss ##
+                                                  \egroup \tabskip \z@skip \cr 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.17 \end{eqnarray*}\end{split}
+                               
+
+! LaTeX Error: Too many columns in eqnarray environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.17 \end{eqnarray*}\end{split}
+                               
+
+! LaTeX Error: \begin{split} on input line 17 ended by \end{eqnarray*}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing $ inserted.
+<inserted text> 
+                $
+l.17 \end{eqnarray*}\end{split}
+                               
+! Display math should end with $$.
+<to be read again> 
+                   \endgroup 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing } inserted.
+<inserted text> 
+                }
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing { inserted.
+<inserted text> 
+                {
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing } inserted.
+<inserted text> 
+                }
+l.17 \end{eqnarray*}\end{split}
+                               
+
+! LaTeX Error: \begin{equation*} on input line 13 ended by \end{split}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing $ inserted.
+<inserted text> 
+                $
+l.17 \end{eqnarray*}\end{split}
+                               
+! Misplaced alignment tab character &.
+\math@cr@@@ ->\ifst@rred \nonumber \fi &
+                                        \relax \make@display@tag \ifst@rred ...
+l.17 \end{eqnarray*}\end{split}
+                               
+! Misplaced \cr.
+\math@cr@@@ ...fi \global \advance \row@ \@ne \cr 
+                                                  
+l.17 \end{eqnarray*}\end{split}
+                               
+! Extra }, or forgotten $.
+\gmeasure@ ...savetaglength@ \crcr #1\math@cr@@@ }
+                                                  }\restorecounters@ \if@fle...
+l.17 \end{eqnarray*}\end{split}
+                               
+! Extra }, or forgotten $.
+\gmeasure@ ...avetaglength@ \crcr #1\math@cr@@@ }}
+                                                  \restorecounters@ \if@fleq...
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing $ inserted.
+<inserted text> 
+                $
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing } inserted.
+<inserted text> 
+                }
+l.17 \end{eqnarray*}\end{split}
+                               
+
+Overfull \hbox (17.62482pt too wide) in paragraph at lines 17--17
+[]$[]$ 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.17 \end{eqnarray*}\end{split}
+                               
+! Display math should end with $$.
+<to be read again> 
+                   \endgroup 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Argument of \split has an extra }.
+<inserted text> 
+                \par 
+l.17 \end{eqnarray*}\end{split}
+                               
+Runaway argument?
+\collect@body \gather@split \begin {eqnarray*} F(v) 
+! Paragraph ended before \split was complete.
+<to be read again> 
+                   \par 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing $ inserted.
+<inserted text> 
+                $
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing } inserted.
+<inserted text> 
+                }
+l.17 \end{eqnarray*}\end{split}
+                               
+! Extra }, or forgotten $.
+<recently read> }
+                 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing number, treated as zero.
+<to be read again> 
+                   \relax 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing $ inserted.
+<inserted text> 
+                $
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing $ inserted.
+<inserted text> 
+                $
+l.17 \end{eqnarray*}\end{split}
+                               
+! Extra }, or forgotten $.
+<template> }
+            }\place@tag@gather \endtemplate 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Extra }, or forgotten $.
+<template> }}
+             \place@tag@gather \endtemplate 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing $ inserted.
+<inserted text> 
+                $
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing } inserted.
+<inserted text> 
+                }
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing } inserted.
+<inserted text> 
+                }
+l.17 \end{eqnarray*}\end{split}
+                               
+! Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing number, treated as zero.
+<to be read again> 
+                   \relax 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing $ inserted.
+<inserted text> 
+                $
+l.17 \end{eqnarray*}\end{split}
+                               
+! Extra }, or forgotten $.
+<template> }
+            }\place@tag@gather \endtemplate 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Extra }, or forgotten $.
+<template> }}
+             \place@tag@gather \endtemplate 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing $ inserted.
+<inserted text> 
+                $
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing } inserted.
+<inserted text> 
+                }
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing } inserted.
+<inserted text> 
+                }
+l.17 \end{eqnarray*}\end{split}
+                               
+! Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing number, treated as zero.
+<to be read again> 
+                   \relax 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Extra alignment tab has been changed to \cr.
+<template> }}\place@tag@gather \endtemplate 
+                                            
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing number, treated as zero.
+<to be read again> 
+                   \relax 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.17 \end{eqnarray*}\end{split}
+                               
+
+Overfull \hbox (80.16864pt too wide) in alignment at lines 17--17
+[] []
+
+! LaTeX Error: \begin{document} ended by \end{eqnarray*}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.17 \end{eqnarray*}\end{split}
+                               
+! Missing $ inserted.
+<inserted text> 
+                $
+l.17 \end{eqnarray*}\end{split}
+                               
+! Display math should end with $$.
+<to be read again> 
+                   \endgroup 
+l.17 \end{eqnarray*}\end{split}
+                               
+! Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.17 \end{eqnarray*}\end{split}
+                               
+! Misplaced \crcr.
+\endsplit ->\crcr 
+                  \egroup \egroup \iftagsleft@ \@xp \lendsplit@ \else \@xp \...
+l.17 \end{eqnarray*}\end{split}
+                               
+! Too many }'s.
+\endsplit ->\crcr \egroup 
+                          \egroup \iftagsleft@ \@xp \lendsplit@ \else \@xp \...
+l.17 \end{eqnarray*}\end{split}
+                               
+! Too many }'s.
+\endsplit ->\crcr \egroup \egroup 
+                                  \iftagsleft@ \@xp \lendsplit@ \else \@xp \...
+l.17 \end{eqnarray*}\end{split}
+                               
+
+! LaTeX Error: \begin{document} ended by \end{split}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.17 \end{eqnarray*}\end{split}
+                               
+! Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.17 \end{eqnarray*}\end{split}
+                               
+
+! LaTeX Error: Bad math environment delimiter.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.18 \end{equation*}
+                    
+! Misplaced \cr.
+\math@cr@@@ ->\cr 
+                  
+l.18 \end{equation*}
+                    
+! Misplaced \noalign.
+\math@cr@@ ... \iffalse }\fi \math@cr@@@ \noalign 
+                                                  {\vskip #1\relax }
+l.18 \end{equation*}
+                    
+! Misplaced \noalign.
+\black@ #1->\noalign 
+                     {\ifdim #1>\displaywidth \dimen@ \prevdepth \nointerlin...
+l.18 \end{equation*}
+                    
+! Too many }'s.
+\endmathdisplay@a ...r \black@ \totwidth@ \egroup 
+                                                  \egroup 
+l.18 \end{equation*}
+                    
+! Too many }'s.
+\endmathdisplay@a ...@ \totwidth@ \egroup \egroup 
+                                                  
+l.18 \end{equation*}
+                    
+
+! LaTeX Error: \begin{document} ended by \end{equation*}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.18 \end{equation*}
+                    
+! Missing $ inserted.
+<inserted text> 
+                $
+l.18 \end{equation*}
+                    
+! Display math should end with $$.
+<to be read again> 
+                   \endgroup 
+l.18 \end{equation*}
+                    
+! Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.18 \end{equation*}
+                    
+[1] (./math.aux) )
+(see the transcript file for additional information)
+Output written on math.dvi (1 page, 744 bytes).
+Transcript written on math.log.
+
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/UniformSpatDist/index.rst:36: WARNING: undefined label: 'spatialdist' [ref.ref]
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/initial_state/Forces/index.rst:26: WARNING: undefined label: 'forces' [ref.ref]
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/autoapi/nexoclom2/initial_state/index.rst:312: WARNING: undefined label: 'forces' [ref.ref]
+generating indices... genindex py-modindex done
+writing additional pages... search done
+dumping search index in English (code: en)... done
+dumping object inventory... done
+
+====================== slowest reading durations =======================
+0.057 autoapi/nexoclom2/particle_tracking/rk_scipy/index
+0.048 autoapi/nexoclom2/index
+0.029 autoapi/nexoclom2/atomicdata/index
+0.026 autoapi/nexoclom2/initial_state/index
+0.016 autoapi/nexoclom2/solarsystem/index
+build succeeded, 82 warnings.
+
+The HTML pages are in build/html.

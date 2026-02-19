@@ -1,0 +1,4 @@
+# Radial
+angulardist.type = radial
+---
+angulardist.type = isotropic

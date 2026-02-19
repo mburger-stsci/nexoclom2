@@ -1,0 +1,17 @@
+species,wavelength,resscat,eimp
+Na,5892,True,False
+Na,5898,True,False
+O,1302,True,True
+O,1304,True,True
+O,1305,True,True
+O,1306,True,True
+O,1356,False,True
+O,1359,False,True
+O,6302,False,True
+O,6366,False,True
+S,1807,True,False
+S,1820,True,False
+S,1826,True,False
+S,7727,False,True
+S+,6718,False,True
+S+,6733,False,True

@@ -1,0 +1,24 @@
+name: nexoclom2
+channels:
+  - conda-forge
+  - http://ssb.stsci.edu/astroconda
+  - defaults
+dependencies:
+  - python=3.13
+  - poetry
+  - pip
+  - pipx
+  - python-dotenv
+  - git
+  - pylint
+  - sphinx-autodoc2
+  - sphinx-autoapi
+  - pytest
+  - pytest-cov
+  - numpydoc
+  - myst-parser
+  - hypothesis
+  - pip:
+    - sphinx
+    - stsci_rtd_theme
+    - python-semantic-release

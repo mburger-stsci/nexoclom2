@@ -1,0 +1,18 @@
+geometry.center = Sun
+geometry.startpoint = Mercury
+geometry.include = Sun, Mercury
+geometry.phi = 1.0471975511965976
+
+spatialdist.type = uniform
+
+speeddist.type = flat
+speeddist.vmin = 4
+speeddist.vmax = 4
+
+angulardist.type = radial
+
+lossinformation.constant_lifetime = 1e30
+
+options.runtime = 100000
+options.species = Na
+options.start_together = False

@@ -1,0 +1,14 @@
+# Full surface
+SpatialDist.type = uniform
+---
+# Limited region from surface
+SpatialDist.type = uniform
+SpatialDist.exobase = 1.1
+SpatialDist.longitude = 0, 360
+SpatialDist.latitude = -45, 45
+---
+# Equatorial ejection
+SpatialDist.type = uniform
+SpatialDist.exobase = 1.1
+SpatialDist.latitude = 0, 0
+---

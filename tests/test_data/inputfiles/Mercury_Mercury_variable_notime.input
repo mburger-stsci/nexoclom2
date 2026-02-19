@@ -1,0 +1,17 @@
+geometry.center = Mercury
+geometry.startpoint = Mercury
+geometry.taa = 0
+
+# Full surface
+SpatialDist.type = uniform
+
+speeddist.type = flat
+speeddist.vmin = 0
+speeddist.vmax = 10
+
+angulardist.type = radial
+
+options.runtime =  50000
+options.species = Na
+options.outer_edge = 20
+options.random_seed = 1234

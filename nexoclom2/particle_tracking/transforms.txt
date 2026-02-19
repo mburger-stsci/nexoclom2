@@ -1,0 +1,45 @@
+    These were in InputClass.py but need to be moved to deal with
+    coordinate transformations correctly.
+
+
+    def lonlat_to_xyz(self, longitude, latitude, type):
+        """ Convert from longitude and latitude to cartesian coordinates
+        Starting at a planet
+        0 deg longitude = subsolar pt. = (1, 0, 0)
+        90 deg longitude = dusk pt. = (0, 1, 0)
+        270 deg longitude = dawn pt. = (0, -1, 0)
+
+        Starting at a moon
+        0 deg longitude  subsolar pt = (1, 0, 0)
+        90 deg longitude = dawn pt. = (0, -1, 0)
+        270 deg longitude = dusk pt. = (0, 1, 0)
+
+        Returns
+        -------
+        np.ndarray of x, y, z normalized to the unit sphere
+        """
+        match type:
+            case 'Sun':
+                sign = 1
+            case 'Planet':
+                sign = 1
+            case 'Moon':
+                sign = -1
+            case default:
+                assert False
+
+        x0 = np.cos(longitude) * np.cos(latitude)
+        y0 = sign * np.sin(longitude) * np.cos(latitude)
+        z0 = np.sin(latitude)
+        return np.array([x0, y0, z0])
+
+    def longitude_to_localtime(self, lon):
+        return (lon * 24*u.hr/(2*np.pi*u.rad) + 36*u.hr) % (24*u.hr)
+
+    def xyz_to_lonlat(self, x, y, z):
+        # print('Not tested')
+        longitude = (np.arctan2(y, x) + 2*np.pi*u.rad) % (2*np.pi * u.rad)
+        latitude = np.arcsin(z/np.sqrt(x**2 + y**2 + z**2))
+        local_time = self.longitude_to_localtime(longitude)
+
+        return longitude, latitude, local_time

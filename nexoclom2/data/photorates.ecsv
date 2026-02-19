@@ -1,0 +1,78 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: species, datatype: string}
+# - {name: reaction, datatype: string}
+# - {name: rate, unit: 1/s, datatype: float64}
+# meta: !!omap
+# - comments: [Reference = Huebner & Mukherjee 2015, 
+#              datatype = Rate Coeficient, 
+#              reaction_type = Photo,
+#              unit = s**-1, 
+#              ref_distance = 1.0, 
+#              Data contains columns for quiet Sun. 
+#              Most of these values come from the website http://phidrates.space.swri.edu.
+#              Still trying to sort everything out regarding these values., \enddata]
+# - __serialized_columns__:
+#     rate:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: 1/s}
+#       value: !astropy.table.SerializedColumn {name: rate}
+# schema: astropy-2.0
+species reaction rate
+H "H, photon -> H+, e" 7.26e-08
+He "He, photon -> He+, e" 5.64e-08
+C "C, photon -> C+, e" 5.63e-07
+N "N, photon -> N+, e" 2.31e-07
+O "O, photon -> O+, e" 2.44e-07
+Na "Na, photon -> Na+, e" 7.26e-06
+Ca "Ca, photon -> Ca+, e" 6.95e-05
+Mg "Mg, photon -> Mg+, e" 6.49e-07
+S "S, photon -> S+, e" 1.37e-06
+Cl "Cl, photon -> Cl+, e" 1.41e-06
+K "K, photon -> K+, e" 2.7e-05
+CH_4 "CH_4, photon -> CH_3, H" 2.64e-07
+CH_4 "CH_4, photon -> CH_2, H_2" 3.96e-06
+CH_4 "CH_4, photon -> CH, H_2, H" 6.39e-07
+CH_4 "CH_4, photon -> CH_2, H, H" 2.14e-06
+CH_4 "CH_4, photon -> CH_4+, e" 3.58e-07
+CH_4 "CH_4, photon -> H, CH_3+, e" 1.98e-07
+CH_4 "CH_4, photon -> H_2, CH_2+, e" 2.08e-08
+CH_4 "CH_4, photon -> CH_3, H+, e" 9.12e-09
+CH_4 "CH_4, photon -> H_2, H, CH+, e" 4.21e-09
+CO_2 "CO_2, photon -> CO, O" 1.22e-06
+CO_2 "CO_2, photon -> CO_2+, e" 6.55e-07
+CO_2 "CO_2, photon -> CO, O+, e" 6.38e-08
+CO_2 "CO_2, photon -> O, CO+, e" 5.02e-08
+CO_2 "CO_2, photon -> O_2, C+, e" 2.89e-08
+H_2 "H_2, photon -> H, H" 8.24e-08
+H_2 "H_2, photon -> H_2+, e" 5.41e-08
+H_2 "H_2, photon -> H, H+, e" 9.52e-09
+H_2O "H_2O, photon -> OH, H" 1.03e-05
+H_2O "H_2O, photon -> H_2, O" 5.97e-07
+H_2O "H_2O, photon -> H, H, O" 7.54e-07
+H_2O "H_2O, photon -> H_2O+, e" 3.31e-07
+H_2O "H_2O, photon -> H, OH+, e" 5.54e-08
+H_2O "H_2O, photon -> H_2, O+, e" 5.85e-09
+H_2O "H_2O, photon -> OH, H+, e" 1.31e-08
+NH_3 "NH_3, photon -> NH_2, H" 0.00017
+NH_3 "NH_3, photon -> NH, H_2" 3.95e-06
+NH_3 "NH_3, photon -> NH, H, H" 1.99e-06
+NH_3 "NH_3, photon -> NH_3+, e" 6.1e-07
+NH_3 "NH_3, photon -> H, NH_2+, e" 1.77e-07
+NH_3 "NH_3, photon -> H_2, NH+, e" 6.92e-09
+NH_3 "NH_3, photon -> H_2, H, N+, e" 3.25e-09
+NH_3 "NH_3, photon -> NH_2, H+, e" 3.33e-09
+O_2 "O_2, photon -> O, O" 4.23e-06
+O_2 "O_2, photon -> O_2+, e" 4.67e-07
+O_2 "O_2, photon -> O, O+, e" 1.1e-07
+OH "OH, photon -> O, H" 1.98e-05
+OH "OH, photon -> OH+, e" 2.43e-07
+SO_2 "SO_2, photon -> SO, O" 0.000159
+SO_2 "SO_2, photon -> S+, O_2, e" 5.09e-05
+SO_2 "SO_2, photon -> SO_2+, e" 1.06e-06
+SO "SO, photon -> S, O" 0.000616
+SO "SO, photon -> SO+, e" 8.62e-07
+N_2 "N_2, photon -> N, N" 6.61e-07
+N_2 "N_2, photon -> N_2+, e" 3.52e-07
+N_2 "N_2, photon -> N, N+, e" 1.5e-08

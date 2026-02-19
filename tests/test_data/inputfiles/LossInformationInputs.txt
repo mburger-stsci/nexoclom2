@@ -1,0 +1,10 @@
+# constant lifetime
+loss_infomation.constant_lifetime = 3600
+---
+# defaults
+---
+# changing factors
+loss_information.photo_factor = 2.
+loss_information.eimp_factor = 2.
+loss_information.chx_factor = 2.
+---

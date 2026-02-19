@@ -1,0 +1,201 @@
+*******************************************************************************
+ Revised: April 12, 2021                 Earth                              399
+ 
+ GEOPHYSICAL PROPERTIES (revised May 9, 2022):
+  Vol. Mean Radius (km)    = 6371.01+-0.02   Mass x10^24 (kg)= 5.97219+-0.0006
+  Equ. radius, km          = 6378.137        Mass layers:
+  Polar axis, km           = 6356.752          Atmos         = 5.1   x 10^18 kg
+  Flattening               = 1/298.257223563   oceans        = 1.4   x 10^21 kg
+  Density, g/cm^3          = 5.51              crust         = 2.6   x 10^22 kg
+  J2 (IERS 2010)           = 0.00108262545     mantle        = 4.043 x 10^24 kg
+  g_p, m/s^2  (polar)      = 9.8321863685      outer core    = 1.835 x 10^24 kg
+  g_e, m/s^2  (equatorial) = 9.7803267715      inner core    = 9.675 x 10^22 kg
+  g_o, m/s^2               = 9.82022         Fluid core rad  = 3480 km
+  GM, km^3/s^2             = 398600.435436   Inner core rad  = 1215 km
+  GM 1-sigma, km^3/s^2     =      0.0014     Escape velocity = 11.186 km/s
+  Rot. Rate (rad/s)        = 0.00007292115   Surface area:
+  Mean sidereal day, hr    = 23.9344695944     land          = 1.48 x 10^8 km
+  Mean solar day 2000.0, s = 86400.002         sea           = 3.62 x 10^8 km
+  Mean solar day 1820.0, s = 86400.0         Love no., k2    = 0.299
+  Moment of inertia        = 0.3308          Atm. pressure   = 1.0 bar
+  Mean surface temp (Ts), K= 287.6           Volume, km^3    = 1.08321 x 10^12
+  Mean effect. temp (Te), K= 255             Magnetic moment = 0.61 gauss Rp^3
+  Geometric albedo         = 0.367           Vis. mag. V(1,0)= -3.86
+  Solar Constant (W/m^2)   = 1367.6 (mean), 1414 (perihelion), 1322 (aphelion)
+ HELIOCENTRIC ORBIT CHARACTERISTICS:
+  Obliquity to orbit, deg  = 23.4392911  Sidereal orb period  = 1.0000174 y
+  Orbital speed, km/s      = 29.79       Sidereal orb period  = 365.25636 d
+  Mean daily motion, deg/d = 0.9856474   Hill's sphere radius = 234.9       
+*******************************************************************************
+
+
+*******************************************************************************
+Ephemeris / WWW_USER Wed Sep 25 09:54:30 2024 Pasadena, USA      / Horizons    
+*******************************************************************************
+Target body name: Earth (399)                     {source: DE441}
+Center body name: Mars Barycenter (4)             {source: DE441}
+Center-site name: BODYCENTRIC
+*******************************************************************************
+Start time      : A.D. 2022-Jan-01 00:00:00.0000 UT      
+Stop  time      : A.D. 2022-Jan-03 00:00:00.0000 UT      
+Step-size       : 60 minutes
+*******************************************************************************
+Target pole/equ : ITRF93 (high precision)         {East-longitude positive}
+Target radii    : 6378.137, 6378.137, 6356.752 km {Equator_a, b, pole_c}       
+Center geodetic : 0.0, 0.0, 0.0                   {E-lon(deg),Lat(deg),Alt(km)}
+Center cylindric: 0.0, 0.0, 0.0                   {E-lon(deg),Dxy(km),Dz(km)}
+Center pole/equ : ICRF
+Center radii    : undefined                                                    
+Target primary  : Sun
+Vis. interferer : None
+Rel. light bend : Sun, MARS                       {source: mar097}
+Rel. lght bnd GM: 1.3271E+11, 4.2828E+04 km^3/s^2                              
+Atmos refraction: NO (AIRLESS)
+RA format       : HMS
+Time format     : CAL 
+Calendar mode   : Mixed Julian/Gregorian
+EOP file        : eop.240924.p241218                                           
+EOP coverage    : DATA-BASED 1962-JAN-20 TO 2024-SEP-24. PREDICTS-> 2024-DEC-17
+Units conversion: 1 au= 149597870.700 km, c= 299792.458 km/s, 1 day= 86400.0 s 
+Table cut-offs 1: Elevation (-90.0deg=NO ),Airmass     n.a.    , Daylight (NO )
+Table cut-offs 2: Solar elongation (  0.0,180.0=NO ),Local Hour Angle( 0.0=NO )
+Table cut-offs 3: RA/DEC angular rate (     0.0=NO )                           
+Table format    : Comma Separated Values (spreadsheet)
+****************************************************************************************
+ Date__(UT)__HR:MN, , , SunSub-LON, SunSub-LAT,                r,       rdot,  Tru_Anom,
+****************************************************************************************
+$$SOE
+ 2022-Jan-01 00:00, , , 185.692132, -23.160042,   0.983355736534, -0.0201717,  357.7837,
+ 2022-Jan-01 01:00, , , 170.696624, -23.156671,   0.983355254244, -0.0199102,  357.8129,
+ 2022-Jan-01 02:00, , , 155.701113, -23.153285,   0.983354778240, -0.0196493,  357.8421,
+ 2022-Jan-01 03:00, , , 140.705599, -23.149887,   0.983354308509, -0.0193889,  357.8712,
+ 2022-Jan-01 04:00, , , 125.710084, -23.146475,   0.983353845039, -0.0191290,  357.9002,
+ 2022-Jan-01 05:00, , , 110.714566, -23.143050,   0.983353387817, -0.0188696,  357.9291,
+ 2022-Jan-01 06:00, , ,  95.719046, -23.139611,   0.983352936833, -0.0186107,  357.9579,
+ 2022-Jan-01 07:00, , ,  80.723524, -23.136159,   0.983352492073, -0.0183522,  357.9867,
+ 2022-Jan-01 08:00, , ,  65.727999, -23.132694,   0.983352053528, -0.0180942,  358.0154,
+ 2022-Jan-01 09:00, , ,  50.732472, -23.129215,   0.983351621186, -0.0178367,  358.0440,
+ 2022-Jan-01 10:00, , ,  35.736942, -23.125723,   0.983351195037, -0.0175796,  358.0726,
+ 2022-Jan-01 11:00, , ,  20.741411, -23.122218,   0.983350775070, -0.0173229,  358.1011,
+ 2022-Jan-01 12:00, , ,   5.745876, -23.118699,   0.983350361276, -0.0170666,  358.1295,
+ 2022-Jan-01 13:00, , , 350.750340, -23.115167,   0.983349953645, -0.0168107,  358.1579,
+ 2022-Jan-01 14:00, , , 335.754801, -23.111622,   0.983349552168, -0.0165551,  358.1862,
+ 2022-Jan-01 15:00, , , 320.759259, -23.108063,   0.983349156836, -0.0163000,  358.2144,
+ 2022-Jan-01 16:00, , , 305.763715, -23.104491,   0.983348767640, -0.0160452,  358.2426,
+ 2022-Jan-01 17:00, , , 290.768169, -23.100906,   0.983348384572, -0.0157907,  358.2708,
+ 2022-Jan-01 18:00, , , 275.772620, -23.097307,   0.983348007625, -0.0155365,  358.2988,
+ 2022-Jan-01 19:00, , , 260.777069, -23.093695,   0.983347636790, -0.0152827,  358.3269,
+ 2022-Jan-01 20:00, , , 245.781515, -23.090070,   0.983347272060, -0.0150291,  358.3549,
+ 2022-Jan-01 21:00, , , 230.785959, -23.086431,   0.983346913430, -0.0147758,  358.3828,
+ 2022-Jan-01 22:00, , , 215.790400, -23.082779,   0.983346560891, -0.0145228,  358.4107,
+ 2022-Jan-01 23:00, , , 200.794839, -23.079114,   0.983346214439, -0.0142700,  358.4385,
+ 2022-Jan-02 00:00, , , 185.799275, -23.075436,   0.983345874067, -0.0140175,  358.4663,
+ 2022-Jan-02 01:00, , , 170.803708, -23.071744,   0.983345539769, -0.0137652,  358.4941,
+ 2022-Jan-02 02:00, , , 155.808140, -23.068039,   0.983345211541, -0.0135130,  358.5218,
+ 2022-Jan-02 03:00, , , 140.812568, -23.064321,   0.983344889378, -0.0132611,  358.5495,
+ 2022-Jan-02 04:00, , , 125.816994, -23.060589,   0.983344573276, -0.0130094,  358.5772,
+ 2022-Jan-02 05:00, , , 110.821418, -23.056844,   0.983344263230, -0.0127578,  358.6048,
+ 2022-Jan-02 06:00, , ,  95.825838, -23.053086,   0.983343959237, -0.0125063,  358.6325,
+ 2022-Jan-02 07:00, , ,  80.830257, -23.049314,   0.983343661293, -0.0122550,  358.6600,
+ 2022-Jan-02 08:00, , ,  65.834672, -23.045529,   0.983343369396, -0.0120038,  358.6876,
+ 2022-Jan-02 09:00, , ,  50.839085, -23.041731,   0.983343083543, -0.0117527,  358.7151,
+ 2022-Jan-02 10:00, , ,  35.843496, -23.037920,   0.983342803731, -0.0115017,  358.7426,
+ 2022-Jan-02 11:00, , ,  20.847903, -23.034096,   0.983342529959, -0.0112508,  358.7701,
+ 2022-Jan-02 12:00, , ,   5.852308, -23.030258,   0.983342262226, -0.0109999,  358.7976,
+ 2022-Jan-02 13:00, , , 350.856711, -23.026407,   0.983342000530, -0.0107490,  358.8251,
+ 2022-Jan-02 14:00, , , 335.861110, -23.022542,   0.983341744870, -0.0104982,  358.8525,
+ 2022-Jan-02 15:00, , , 320.865507, -23.018665,   0.983341495246, -0.0102474,  358.8800,
+ 2022-Jan-02 16:00, , , 305.869902, -23.014774,   0.983341251657, -0.0099966,  358.9074,
+ 2022-Jan-02 17:00, , , 290.874293, -23.010870,   0.983341014105, -0.0097458,  358.9349,
+ 2022-Jan-02 18:00, , , 275.878682, -23.006952,   0.983340782590, -0.0094949,  358.9623,
+ 2022-Jan-02 19:00, , , 260.883068, -23.003022,   0.983340557112, -0.0092440,  358.9897,
+ 2022-Jan-02 20:00, , , 245.887452, -22.999078,   0.983340337673, -0.0089930,  359.0172,
+ 2022-Jan-02 21:00, , , 230.891832, -22.995121,   0.983340124274, -0.0087420,  359.0446,
+ 2022-Jan-02 22:00, , , 215.896210, -22.991151,   0.983339916919, -0.0084908,  359.0720,
+ 2022-Jan-02 23:00, , , 200.900585, -22.987167,   0.983339715608, -0.0082396,  359.0995,
+ 2022-Jan-03 00:00, , , 185.904958, -22.983170,   0.983339520346, -0.0079882,  359.1269,
+$$EOE
+****************************************************************************************
+Column meaning:
+ 
+TIME
+
+  Times PRIOR to 1962 are UT1, a mean-solar time closely related to the
+prior but now-deprecated GMT. Times AFTER 1962 are in UTC, the current
+civil or "wall-clock" time-scale. UTC is kept within 0.9 seconds of UT1
+using integer leap-seconds for 1972 and later years.
+
+  Conversion from the internal Barycentric Dynamical Time (TDB) of solar
+system dynamics to the non-uniform civil UT time-scale requested for output
+has not been determined for UTC times after the next July or January 1st.
+Therefore, the last known leap-second is used as a constant over future
+intervals.
+
+  Time tags refer to the UT time-scale conversion from TDB on Earth
+regardless of observer location within the solar system, although clock
+rates may differ due to the local gravity field and no analog to "UT"
+may be defined for that location.
+
+  Any 'b' symbol in the 1st-column denotes a B.C. date. First-column blank
+(" ") denotes an A.D. date.
+ 
+CALENDAR SYSTEM
+
+  Mixed calendar mode was active such that calendar dates after AD 1582-Oct-15
+(if any) are in the modern Gregorian system. Dates prior to 1582-Oct-5 (if any)
+are in the Julian calendar system, which is automatically extended for dates
+prior to its adoption on 45-Jan-1 BC.  The Julian calendar is useful for
+matching historical dates. The Gregorian calendar more accurately corresponds
+to the Earth's orbital motion and seasons. A "Gregorian-only" calendar mode is
+available if such physical events are the primary interest.
+
+  NOTE: "n.a." in output means quantity "not available" at the print-time.
+ 
+ 'SunSub-LON, SunSub-LAT,' =
+   Apparent sub-solar longitude and latitude of the Sun on the target. The
+apparent planetodetic longitude and latitude of the center of the target disc
+as seen from the Sun, as seen by the observer at print-time. This is NOT
+exactly the same as the "sub-solar" (nearest) point for a non-spherical target
+shape (since the center of the disc seen from the Sun might not be the closest
+point to the Sun), but is very close if not a highly irregular body shape.
+Light travel-time from Sun to target and from target to observer is taken into
+account.  Latitude is the angle between the equatorial plane and the line
+perpendicular to the reference ellipsoid of the body. The reference ellipsoid
+is an oblate spheroid with a single flatness coefficient in which the y-axis
+body radius is taken to be the same value as the x-axis radius.  Positive
+longitude is to the EAST for this target. Cartographic system is given in the
+header.  Units: DEGREES DEGREES
+ 
+ 'r,       rdot,' =
+   The Sun's apparent range ("r", light-time aberrated) and range-rate ("rdot")
+relative to the target center, as seen by the observer. A positive "rdot" means
+the target center was moving away from the Sun, negative means moving toward
+the Sun.  Units: AU and KM/S
+ 
+ 'Tru_Anom,' =
+   Apparent true anomaly angle of the targets' heliocentric orbit position;
+the angle in the targets' instantaneous orbit plane from the orbital periapse
+direction to the target, measured positively in the direction of motion.
+The position of the target is taken to be at the moment light seen by the
+observer at print-time would have left the center of the object. That is,
+the heliocentric position of the target used to compute the true anomaly is
+one down-leg light-time prior to the print-time. Units: DEGREES
+
+Computations by ...
+
+    Solar System Dynamics Group, Horizons On-Line Ephemeris System
+    4800 Oak Grove Drive, Jet Propulsion Laboratory
+    Pasadena, CA  91109   USA
+
+    General site: https://ssd.jpl.nasa.gov/
+    Mailing list: https://ssd.jpl.nasa.gov/email_list.html
+    System news : https://ssd.jpl.nasa.gov/horizons/news.html
+    User Guide  : https://ssd.jpl.nasa.gov/horizons/manual.html
+    Connect     : browser        https://ssd.jpl.nasa.gov/horizons/app.html#/x
+                  API            https://ssd-api.jpl.nasa.gov/doc/horizons.html
+                  command-line   telnet ssd.jpl.nasa.gov 6775
+                  e-mail/batch   https://ssd.jpl.nasa.gov/ftp/ssd/hrzn_batch.txt
+                  scripts        https://ssd.jpl.nasa.gov/ftp/ssd/SCRIPTS
+    Author      : Jon.D.Giorgini@jpl.nasa.gov
+
+****************************************************************************************
