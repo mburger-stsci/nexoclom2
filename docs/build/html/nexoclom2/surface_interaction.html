@@ -1,0 +1,254 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactions between incident atoms and surfaces &mdash; nexoclom2 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/stsci.css?v=d876f643" />
+      <link rel="stylesheet" type="text/css" href="../_static/stsci.css?v=d876f643" />
+
+  
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Neutral Loss Rates" href="lossrates.html" />
+    <link rel="prev" title="Planetary Coordinate Systems and System Geometry" href="coordinate_systems.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> nexoclom2
+            
+            <img src="../_static/stsci_pri_combo_mark_white.png" class="logo" />
+          </a>
+
+          
+            
+            
+          
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+  
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="NEXOCLOM_Requirements_Document.html">NEXOCLOM Goals and Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TestCases.html">NEXOCLOM Test Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputfiles.html">Input File Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="planet_distance.html">Solar System Geometries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coordinate_systems.html">Planetary Coordinate Systems and System Geometry</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Interactions between incident atoms and surfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lossrates.html">Neutral Loss Rates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrator.html">Runge-Kutta Integrator &amp; The Equations of Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atomicdata.html">Atomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="particle_tracking.html">Particle Tracking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nexoclom2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Interactions between incident atoms and surfaces</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/nexoclom2/surface_interaction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="interactions-between-incident-atoms-and-surfaces">
+<h1>Interactions between incident atoms and surfaces<a class="headerlink" href="#interactions-between-incident-atoms-and-surfaces" title="Link to this heading">¶</a></h1>
+<p>The locations and speeds of atoms that hit the surface are tracked. When a
+particle is beneath the surface at a time step, it is necessary to find where
+on the surface the particle hit.</p>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">r^2 &amp; = &amp; \sum (x_i - X_i)^2 \\
+R^2 &amp; = &amp; \sum (x'_i - X_i)^2</span>)</p>
+<p>latex exited with error
+[stdout]
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=latex)
+ restricted \write18 enabled.
+entering extended mode
+(./math.tex
+LaTeX2e &lt;2022-11-01&gt; patch level 1
+L3 programming layer &lt;2023-03-30&gt;
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/size12.clo))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/anyfontsize/anyfontsize.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/tools/bm.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-dvips.def)
+(./math.aux) (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd)
+! Extra alignment tab has been changed to \cr.
+&lt;template&gt; }$\hfill \endtemplate 
+                                 
+l.15 R^2 &amp; = &amp; \sum (x'_i - X_i)^2\end{split}
+                                             
+! Extra alignment tab has been changed to \cr.
+&lt;template&gt; }$\hfill \endtemplate 
+                                 
+l.15 R^2 &amp; = &amp; \sum (x'_i - X_i)^2\end{split}
+                                             
+! Extra alignment tab has been changed to \cr.
+&lt;template&gt; }$\hfill \endtemplate 
+                                 
+l.15 R^2 &amp; = &amp; \sum (x'_i - X_i)^2\end{split}
+                                             
+! Extra alignment tab has been changed to \cr.
+&lt;template&gt; }$\hfill \endtemplate 
+                                 
+l.15 R^2 &amp; = &amp; \sum (x'_i - X_i)^2\end{split}
+                                             
+[1] (./math.aux) )
+(see the transcript file for additional information)
+Output written on math.dvi (1 page, 752 bytes).
+Transcript written on math.log.
+</p>
+</aside>
+<p>where</p>
+<div class="math">
+<p><img src="../_images/math/b4131df89db85f12d96d021a37f8e05cb87d3fb5.png" alt="x'_i = x_i - v_i t"/></p>
+</div><p>where <img class="math" src="../_images/math/4852a703bd1971cc56d86f31451ab2b349ba2b70.png" alt="x_i, v_i"/> are the components of the position and velocity found
+in the model, <img class="math" src="../_images/math/688cc04e43316b3a654e3da48c80b7eca34d7ccc.png" alt="x'_i"/> are the components of the position where the
+particle hit the surface, :math::<cite>R’ is the radius of the object located at
+:math::`X_i</cite>, and <img class="math" src="../_images/math/907a4add6d5db5b7f197f7924f1371b8ac404fe6.png" alt="t"/> needs to be solved for. This problem
+can be reformulated as a quadratic equation in <img class="math" src="../_images/math/907a4add6d5db5b7f197f7924f1371b8ac404fe6.png" alt="t"/>:</p>
+<div class="math">
+<p><img src="../_images/math/2d26ebb69fddf99a94ef5641aac74bda4d51a6ec.png" alt="\sum(v_i^2) t^2 + \sum(x_i v_i)t - 2\sum x_i^2 - R^2 = 0"/></p>
+</div><p>which can be solved through the standard methods.</p>
+<p>The impact speed is determined from conservation of energy:</p>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">KE + PE &amp; = &amp; KE' + PE' \\
+\frac{\sum v_i^2}{2} + \frac{GM}{r} &amp; = &amp; \frac{\sum v_i^{'2}}{2} + \frac{GM}{R}</span>)</p>
+<p>latex exited with error
+[stdout]
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=latex)
+ restricted \write18 enabled.
+entering extended mode
+(./math.tex
+LaTeX2e &lt;2022-11-01&gt; patch level 1
+L3 programming layer &lt;2023-03-30&gt;
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/size12.clo))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/anyfontsize/anyfontsize.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/tools/bm.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-dvips.def)
+(./math.aux) (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd)
+! Extra alignment tab has been changed to \cr.
+&lt;template&gt; }$\hfill \endtemplate 
+                                 
+l.15 ...sum v_i^{'2}}{2} + \frac{GM}{R}\end{split}
+                                                  
+! Extra alignment tab has been changed to \cr.
+&lt;template&gt; }$\hfill \endtemplate 
+                                 
+l.15 ...sum v_i^{'2}}{2} + \frac{GM}{R}\end{split}
+                                                  
+! Extra alignment tab has been changed to \cr.
+&lt;template&gt; }$\hfill \endtemplate 
+                                 
+l.15 ...sum v_i^{'2}}{2} + \frac{GM}{R}\end{split}
+                                                  
+! Extra alignment tab has been changed to \cr.
+&lt;template&gt; }$\hfill \endtemplate 
+                                 
+l.15 ...sum v_i^{'2}}{2} + \frac{GM}{R}\end{split}
+                                                  
+[1] (./math.aux) )
+(see the transcript file for additional information)
+Output written on math.dvi (1 page, 940 bytes).
+Transcript written on math.log.
+</p>
+</aside>
+<p>where <img class="math" src="../_images/math/6a6a0663fda37e1888ad9bdd810745c76b7d8dd8.png" alt="KE = \frac{\sum v_i^2}{2}"/> is the kinetic energy per atom,
+<img class="math" src="../_images/math/b32e451c0144c92d379c5b2d424c69c686c1b878.png" alt="PE = \frac{GM}{r}"/> is the potential energy per atom, and <img class="math" src="../_images/math/1ebe654cc7b8f2a0d8100aa5825cf2b9021adbbc.png" alt="R"/> is the
+object radius. Solving for the updated velocity <img class="math" src="../_images/math/24c10c2ab2d74d5e54a79510bb4aee1ff71261b1.png" alt="v'"/> gives:</p>
+<div class="math">
+<p><img src="../_images/math/a8535f9bc2e0da8fc6b765850c135c5694623d16.png" alt="\sum v_i^{'2} = \sum v_i^2 + 2 G M \left(\frac{1}{r} - \frac{1}{R} \right)"/></p>
+</div></section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="coordinate_systems.html" class="btn btn-neutral float-left" title="Planetary Coordinate Systems and System Geometry" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lossrates.html" class="btn btn-neutral float-right" title="Neutral Loss Rates" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Matthew Burger.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

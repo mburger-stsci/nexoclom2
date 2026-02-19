@@ -1,0 +1,634 @@
+nexoclom2
+=========
+
+.. py:module:: nexoclom2
+
+.. autoapi-nested-parse::
+
+   
+   NEXOCLOM2: Neutral EXosphere and CLoud Model v2
+
+   Documentation will be online at readthedocs.org
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/nexoclom2/atomicdata/index
+   /autoapi/nexoclom2/data/index
+   /autoapi/nexoclom2/data_simulation/index
+   /autoapi/nexoclom2/initial_state/index
+   /autoapi/nexoclom2/math/index
+   /autoapi/nexoclom2/particle_tracking/index
+   /autoapi/nexoclom2/solarsystem/index
+   /autoapi/nexoclom2/utilities/index
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   nexoclom2.path
+   nexoclom2.config
+   nexoclom2.__name__
+   nexoclom2.__author__
+   nexoclom2.__email__
+   nexoclom2.__version__
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.Input
+   nexoclom2.Output
+   nexoclom2.ModelImage
+   nexoclom2.SSObject
+   nexoclom2.NexoclomConfig
+
+
+Package Contents
+----------------
+
+.. py:data:: path
+
+.. py:class:: Input(infile: str)
+
+   
+   Class defining all input parameters for a NEXOCLOM2 model run.
+
+
+   :Parameters:
+
+       **infile** : str
+           plain text file containing model input parameters. See inputfiles for
+           a description of the input file format
+
+   :Attributes:
+
+       **geometry** : Geometry
+           ..
+
+       **forces** : Forces
+           ..
+
+       **surfaceinteraction** : ConstantSurfaceInteraction, etc
+           ..
+
+       **spatialdist** : UniformSpatialDist, etc.
+           ..
+
+       **speeddist** : GaussianSpeedDist, etc.
+           ..
+
+       **angulardist** : RadialAngularDist, IsotropicAngularDist
+           ..
+
+       **lossinfo** : LossInformation
+           ..
+
+       **options** : Options
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: _inputfile
+
+
+   .. py:attribute:: _classes
+      :value: ['geometry', 'surfaceinteraction', 'forces', 'spatialdist', 'speeddist', 'angulardist',...
+
+
+
+   .. py:attribute:: config
+
+
+   .. py:attribute:: forces
+
+
+   .. py:attribute:: lossinfo
+
+
+   .. py:attribute:: options
+
+
+   .. py:method:: __str__()
+
+
+   .. py:method:: __repr__()
+
+
+   .. py:method:: __eq__(other)
+
+
+   .. py:method:: _read_params()
+
+
+   .. py:method:: search()
+
+      
+      This method allows users to search for inputs without having to
+      instantiate the database themselves.
+
+
+
+
+
+      :Returns:
+
+          Database document ID associated with inputs
+              ..
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: make_savefile(doc_id)
+
+
+.. py:class:: Output(inputs, n_packets=0, n_iterations=1, compress=True, overwrite=False)
+
+   
+   Class to store compute particle trajectories and store the results.
+
+
+   :Parameters:
+
+       **inputs** : Input
+           ..
+
+       **n_packets** : int
+           ..
+
+       **compress** : bool, Default=True
+           ..
+
+   :Attributes:
+
+       **inputs: Input**
+           The inputs used in this model run.
+
+       **n_packets: int, float**
+           Total number of packets to run
+
+       **compress: Bool**
+           If True removes packets with frac=0 from the saved output, Default = True
+
+       **starting_point: ndarray**
+           Initial state relative to startpoint with standard units. Columns are
+           time (s), x (km), y (km), z (km), r (km), vx (km/s), vy (km/s),
+           (km/s), v (km/s), frac, longitude (rad), latitude (rad),
+           local_time (hr), altitude (rad), azimuth (rad)
+
+       **final_state: ndarray**
+           ..
+
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   The user will not generally call this directly but will instead use
+   ``inputs.run()``.
+
+   All calculations will be done in units of s, km, km/s, rad and converted
+   to more appropriate units at the end.
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: inputs
+
+
+   .. py:attribute:: compress
+      :value: True
+
+
+
+   .. py:attribute:: randgen
+
+
+   .. py:attribute:: center
+
+
+   .. py:attribute:: startpoint
+
+
+   .. py:attribute:: objects
+
+
+   .. py:attribute:: positions
+
+
+   .. py:attribute:: unit
+      :value: None
+
+
+
+   .. py:attribute:: species
+
+
+   .. py:method:: initialize_objects()
+
+
+   .. py:method:: _remove()
+
+
+   .. py:method:: _start_outputfile()
+
+
+   .. py:method:: _save_starting_point(starting_point)
+
+
+   .. py:method:: save_final_state(final_state)
+
+
+   .. py:method:: starting_point(iteration=None, n_packets=None)
+
+      
+
+
+
+      :Parameters:
+
+          **iteration**
+              ..
+
+          **n_packets**
+              ..
+
+
+
+      :Returns:
+
+          StartingPoint
+              ..
+
+
+
+
+
+
+
+
+      .. rubric:: Notes
+
+      If iteration and n_packets are both given, iteration number takes
+      precedence.
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: initial_state(iteration=None, n_packets=None)
+
+
+   .. py:method:: to_planet_coords(time, X, V)
+
+
+   .. py:method:: final_state(which=None, to_planet_coords=False)
+
+
+.. py:class:: ModelImage(output, params, overwrite=False, chunksize=1000000)
+
+   Bases: :py:obj:`nexoclom2.data_simulation.ModelResult.ModelResult`
+
+
+   .. py:attribute:: dimensions
+
+
+   .. py:attribute:: yrange
+
+
+   .. py:attribute:: zrange
+
+
+   .. py:attribute:: subobs_longitude
+
+
+   .. py:attribute:: subobs_latitude
+
+
+   .. py:attribute:: packet_image
+
+
+   .. py:attribute:: Apix
+
+
+   .. py:attribute:: rotation
+
+
+   .. py:attribute:: centers
+
+
+.. py:class:: SSObject(obj: str)
+
+   
+   Physical data for solar system bodies.
+       Object containing all the necessary physical data for solar system objects.
+       Data is stored in a table included with the package. A separate table
+       contains the NAIF IDs. If the object is not found in the data table, returns
+       an object with just the object name, type = Unknown, and if possible the
+       NAIF ID.
+
+
+   :Parameters:
+
+       **obj** : str
+           Name of the solar system object to gather data for.
+
+   :Attributes:
+
+       **object: str**
+               Name of solar system body. Source: input parameter
+           orbits: str
+               Object the body orbits. Source: PlanetaryConstants.csv
+           radius : distance quantity
+               Object radius. Source: SPICE
+           unit: astropy unit
+               Named: R_<object>
+           GM: Quantity
+               Mass times gravitational constant. Source: SPICE
+           mass: mass quantity
+               Object mass in kg. Source: GM from SPICE
+           a: distance quantity
+               Object semi-major axis. Source: SPICE
+           e: float
+               Orbital eccentricity. For planets: Source SPICE. For moons: Set to 0.
+               This only affects calculations when a modeltime is not specified and
+               is a small affect.
+           tilt: angle quantity
+               Tilt of rotation axis relative to ecliptic in degrees.
+               Source: PlanetaryConstants.csv
+           rotperiod: time quantity
+               Siderial rotational period in hours. Source: PlanetaryConstants.csv
+           orbperiod: time quantity
+               Sideral orbital period. Source: SPICE
+           orbvel: velocity quantity
+               :math:`v_{orb} =
+
+       **rac{2 \pi a}{orbperiod}`**
+           satellites: list of str or None
+               List of satellites of the body. Source: PlanetaryConstants.csv
+           type : {'Star', 'Planet', or 'Moon'}
+               Source: PlanetaryConstants.csv
+           naifid : int
+               Source: naifids.csv
+
+
+
+
+
+
+
+
+
+
+
+
+   .. rubric:: Examples
+
+   >>> from nexoclom2.solarsystem import SSObject
+   >>> jupiter = SSObject('Jupiter')
+   >>> print(jupiter)
+   Object: Jupiter
+   Type = Planet
+   Orbits Sun
+   Satellites: Io, Europa, Ganymede, Callisto
+   Radius = 71492.00 km
+   Mass = 1.90e+27 kg
+   a = 5.20 AU
+   Eccentricity = 0.05
+   Tilt = 3.08 deg
+   Rotation Period = 9.93 h
+   Orbital Period = 4333.00 d
+   GM = -1.27e+17 m3 / s2
+   NAIFID = 599
+   >>> print(len(jupiter))
+   5
+   >>> hst = SSObject('HST')
+   >>> print(hst)
+   Object: Hst
+   Type = Unknown
+   NAIFID = -48
+   >>> print(jupiter == hst)
+   False
+
+   :Authors: Matthew Burger
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: object
+
+
+   .. py:method:: __eq__(other)
+
+
+   .. py:method:: __len__()
+
+      
+      Returns number of satellites + 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: __repr__()
+
+
+   .. py:method:: __str__()
+
+
+.. py:class:: NexoclomConfig
+
+   
+   Configuration object based on the nexoclom2 configuration file.
+
+   The `NEXCOCLOMCONFIG` environment variable must be set. This is automatically
+   set to ``$HOME/.nexoclom`` when the nexoclom2 Python environment is activated,
+   although the user is free to change it.
+
+   Each line in the nexoclom configuration file should be in the form
+   ``key = value`` where the keys are highlighed below. Configuration
+   settings for nexoclom2 extensions (such as for working with speficic
+   instrument data) can also be placed here. All lines in the file with the
+   proper format are included in the returned object.
+
+   ``savepath``: Top-level path on disk where all model output is saved (Required)
+
+   ``database``: Name of the TinyDB database file (Optional). Defaults to
+   ``thesolarsystemmb.db``.
+
+   ``user``: username (Required if not set as an environment variable).
+
+   :Parameters:
+
+       **None**
+           ..
+
+   :Attributes:
+
+       **configfile: str**
+           Name of configuration file used.
+
+       **savepath: str**
+           Top-level path on disk where all model output is saved.
+
+       **database: str**
+           Name of the TinyDB database file modelresults are cataloged in.
+
+       **user: str**
+           User's username on the system.
+
+       **other: str**
+           Other configuration settings can be included.
+
+
+
+
+
+
+   :Raises:
+
+       ConfigfileError
+           If ``NEXOCLOMCONFIG`` environment variable not set or a required
+           parameter in the configuration file is not given
+
+       FileNotFoundError
+           If the configuration file is not found
+
+
+
+   .. seealso::
+
+
+       :obj:`nexoclom2.utilities.exceptions.ConfigfileError`
+           ..
+
+
+
+   .. rubric:: Examples
+
+   For a configuration file in ``$HOME/.nexoclom`` containing the following::
+
+       savepath = /user/mburger/Data/ModelData
+       database = thesolarsystemmb.db
+       mesdatapath = /Users/mburger/Work/Data/MESSENGER/UVVS
+       mesdatabase = messengeruvvsdb
+
+   In Python:
+
+   >>> config = NexoclomConfig()
+   >>> print(config)
+   configfile = /Users/mburger/.nexoclom2_dev
+   savepath = /Volumes/nexoclom_output/modeloutputs2_dev
+   database = thesolarsystemmb_dev.db
+   user = mburger
+
+   :Authors: Matthew Burger
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: configfile
+
+
+   .. py:attribute:: database
+
+
+   .. py:attribute:: user
+
+
+   .. py:method:: __str__()
+
+
+   .. py:method:: __repr__()
+
+
+.. py:data:: config
+
+.. py:data:: __name__
+   :value: 'nexoclom2'
+
+
+.. py:data:: __author__
+   :value: 'Matthew Burger'
+
+
+.. py:data:: __email__
+   :value: 'mburger@stsci.edu'
+
+
+.. py:data:: __version__
+

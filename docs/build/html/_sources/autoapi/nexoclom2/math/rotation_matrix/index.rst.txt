@@ -1,0 +1,40 @@
+nexoclom2.math.rotation_matrix
+==============================
+
+.. py:module:: nexoclom2.math.rotation_matrix
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   nexoclom2.math.rotation_matrix.rotation_matrix
+
+
+Module Contents
+---------------
+
+.. py:function:: rotation_matrix(theta, axis)
+
+   
+   Compute the rotation matrix for a rotation of theta about axis.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+

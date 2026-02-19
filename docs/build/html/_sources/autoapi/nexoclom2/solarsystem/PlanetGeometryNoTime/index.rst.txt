@@ -1,0 +1,104 @@
+:py:mod:`nexoclom2.solarsystem.PlanetGeometryNoTime`
+====================================================
+
+.. py:module:: nexoclom2.solarsystem.PlanetGeometryNoTime
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   nexoclom2.solarsystem.PlanetGeometryNoTime.PlanetGeometryNoTime
+
+
+
+
+.. py:class:: PlanetGeometryNoTime(geometry)
+
+
+   
+   Planetary geometry computed based on true anomaly angle.
+
+   Given a planet and true anomaly angle, class contains the distance and
+   radial velocity of the planet relative to the Sun, computed assuming an
+   elliptical orbit for the planet. See :ref:`planetdistance` for details on
+   the calculation.
+
+   TAA does not need to be a function of time. Subsolar longitude and latitude
+   do need to be functions of time for correctly computing plasma state at
+   Jupiter.
+
+   :Parameters:
+
+       **geometry** : GeometryNoTime object
+           ..
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   subsolar_longitude is not calculated correctly for Mercury since it does not
+   take into account orbital motion. The calculation uses the sidereal rotational
+   period.
+
+   taa, r_sun, and drdt_sun are single-valued. subsolar_longitude and
+   subsolar_latitude are functions.
+
+
+
+   :Attributes:
+
+       **taa** : astropy Quantity
+           True anomaly angle (radians)
+
+       **r_sun** : astropy Quantity
+           Distance from Sun (au)
+
+       **drdt_sun** : astropy Quantity
+           Radial velocity relative to the Sun (R_planet/s)
+
+       **subsolar_longitude: function**
+           Lambda function that computes subsolar longitude as function of time
+           (radians)
+
+       **subsolar_latitude: function**
+           Lambda function that should compute subsolar latitude as function of time
+           but currently just returns a constant. (radians)
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:method:: __str__()
+
+      
+      Return str(self).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

@@ -1,0 +1,108 @@
+GeometryTime
+============
+
+.. py:module:: GeometryTime
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   GeometryTime.GeometryTime
+
+
+Module Contents
+---------------
+
+.. py:class:: GeometryTime(gparam)
+
+   Bases: :py:obj:`nexoclom2.initial_state.Geometry`
+
+
+   
+   Geometry with Time Class
+
+   Set the system geometry using a timestamp.
+
+   Parameters set here
+
+   * modeltime : must be in a format recognized by astrpy.time.Time
+
+   Parameters set by Geometry base class
+
+   * center object
+   * startpoint, Default = center
+   * included, Default = (center, startpoint)
+
+   See :ref:`geometry` for more information.
+
+   :Parameters:
+
+       **gparam** : dict
+           keys, values for defining system geometry.
+
+   :Attributes:
+
+       **__name__** : 'GeometryTime'
+           ..
+
+       **center** : str
+           Central body for the model
+
+       **startpoint** : str
+           Object from which packets are ejected.
+
+       **included** : list of str
+           Objects included in calculations.
+
+       **modeltime** : astropy.Time
+           Model simulation time.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: __name__
+      :value: 'GeometryTime'
+
+
+
+   .. py:method:: __str__()
+
+      
+      Override of superclass __str__
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: __eq__(other)
+
+

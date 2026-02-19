@@ -1,0 +1,77 @@
+nexoclom2.initial_state.Options
+===============================
+
+.. py:module:: nexoclom2.initial_state.Options
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.initial_state.Options.Options
+
+
+Module Contents
+---------------
+
+.. py:class:: Options(options)
+
+   Bases: :py:obj:`nexoclom2.initial_state.InputClass.InputClass`
+
+
+   
+   Sets general run options
+
+   See ref:`options` for more information.
+
+   :Parameters:
+
+       **options** : dict, TinyDB Document
+           Key, value for defining the options
+
+   :Attributes:
+
+       **runtime** : astropy quantity
+           Total runtime for the simulation in seconds
+
+       **species** : str
+           ..
+
+       **outer_edge** : float, Default = 10**30 (infinite)
+           Outer edge of simulation in central body radii
+
+       **step_size** : astropy quantity, Default = 0 sec
+           Time step. If 0, uses adaptive step size integrator.
+
+       **resolution** : float, Default = 10**-5
+           Precision necessary in adaptive step size integrator. Not used with
+           constant step size integrator.
+
+       **start_together** : bool, optional, Default = False
+           If step_size = 0, tells integrator to start all packets at the same
+           time. Good for seeing cloud evolution and particle trajectories
+
+       **random_seed** : int >= 0, None, Default = None
+           seed for random generator
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: __name__
+      :value: 'Options'
+
+
+

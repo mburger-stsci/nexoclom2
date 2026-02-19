@@ -1,0 +1,68 @@
+:py:mod:`nexoclom2.solarsystem.planet_distance`
+===============================================
+
+.. py:module:: nexoclom2.solarsystem.planet_distance
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   nexoclom2.solarsystem.planet_distance.planet_distance
+
+
+
+.. py:function:: planet_distance(planet_, taa=None, time=None)
+
+   
+   Determine distance and radial velocity of a planet relative to Sun.
+
+   Given a planet and either a TAA or a time, return distance from and
+   radial velocity relative to the Sun. If a time is given, the distance
+   and radial velocity are determined using the
+   `JPL Horizons python API <https://astroquery.readthedocs.io/en/latest/jplhorizons/jplhorizons.html>`_
+   Otherwise, the quantities are computed assuming an elliptical orbit for
+   the planet. See :ref:`planetdistance` for details on the calculation.
+
+   If a moon is given in place of a planet, returns r and dr/dt for the planet
+   the moon orbits.
+
+   :Parameters:
+
+       **planet** : SSObject, str
+           ..
+
+       **taa** : Astropy quantity, list of Astropy quantities
+           ..
+
+       **time** : Astropy Time object, list of Time objects
+           ..
+
+   :Returns:
+
+       Distance of planet from the Sun in AU, radial velocity of planet relative
+           ..
+
+       to the Sun in km/s.
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+

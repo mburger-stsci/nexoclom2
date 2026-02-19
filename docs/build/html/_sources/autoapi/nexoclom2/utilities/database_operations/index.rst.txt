@@ -1,0 +1,166 @@
+nexoclom2.utilities.database_operations
+=======================================
+
+.. py:module:: nexoclom2.utilities.database_operations
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.utilities.database_operations.DatabaseOperations
+
+
+Module Contents
+---------------
+
+.. py:class:: DatabaseOperations
+
+   
+   Manage the TinyDB database
+
+
+   :Parameters:
+
+       **None**
+           ..
+
+   :Attributes:
+
+       **dp_path** : str
+           Path to the database file as specified in the nexoclom configuration file.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: db_path
+
+
+   .. py:method:: reset_database()
+      :classmethod:
+
+
+
+   .. py:method:: make_acceptable(inputs) -> dict
+
+      
+      Takes a Python input-type class and converts it to a saveable format.
+
+      The input classes (Geometry, etc.) have objects that can not be stored in
+      the TinyDB format (cannot be converted to json). This function cleans
+      things up.
+
+
+
+
+      :Returns:
+
+          Dict object that can be inserted ito the database
+              ..
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: insert_inputs(inputs)
+
+      
+      Inserts inputs object into database
+      Adds the individual pieces of the inputs object into their respective
+      database tables and creates a unique record in the inputs table for the
+      complete set that will be associated with the saved outputs. There
+      should only be one savedfile for each unique set of inputs
+
+
+      :Parameters:
+
+          **inputs** : Input
+              ..
+
+          **kwargs**
+              kwargs contains pieces from the output that need to be saved such as
+              number of packets run and whether the output is compressed. More
+              items TDB.
+
+
+
+      :Returns:
+
+          Document id associated with the complete set of inputs
+              ..
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: search_inputs(inputs)
+
+
+   .. py:method:: delete_inputs(doc_id)
+
+
+   .. py:method:: return_table(tablename: str) -> (str, None)
+
+      
+      Retrieve all records for an input classes (inputs.geometry, etc.)
+
+
+      :Parameters:
+
+          **tablename** : str
+              ..
+
+
+
+      :Returns:
+
+          List of TinyDB Documents if there are any; None if not.
+              ..
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

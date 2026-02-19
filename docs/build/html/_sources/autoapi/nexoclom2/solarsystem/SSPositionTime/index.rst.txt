@@ -1,0 +1,83 @@
+nexoclom2.solarsystem.SSPositionTime
+====================================
+
+.. py:module:: nexoclom2.solarsystem.SSPositionTime
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   nexoclom2.solarsystem.SSPositionTime.pi
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.solarsystem.SSPositionTime.SSPositionTime
+
+
+Module Contents
+---------------
+
+.. py:data:: pi
+
+.. py:class:: SSPositionTime(ssobject, geometry, runtime, ntimes=1000)
+
+   Bases: :py:obj:`nexoclom2.solarsystem.SSPosition.SSPosition`
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   * subsolar_longitude and subsolar_latitude for moons refers to the planet's
+   subsolar longitude and latitude. If, for example running an Io model
+   centered at Io, need to know Jupiter's CML.
+
+   * SPICE aberation correction = 'LT+S'. The observer can be set in the
+   geometry inputs.
+
+   * Method for calculating sub-solar point = 'INTERCEPT/ELLIPSOID'
+
+   * Body-fixed latitude/longitude calculated using SPICE native IAU frames.
+
+   * Solar-fixed frames based on Jupiter-De-Spun-Sun (JUNO_JSS) frame (Bagenal &
+   Wilson 2016). These frame have z-axis aligned with spin vector, x-axis
+   directed toward the Sun, and y = z cross x.
+
+   NAIF IDS found at JPL's `Navigation and Ancillary Information
+   Facility <https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/req/naif_ids.html>`_.
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: endtime
+
+
+   .. py:attribute:: starttime
+
+
+   .. py:attribute:: abcor
+      :value: 'None'
+
+
+

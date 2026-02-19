@@ -1,0 +1,151 @@
+nexoclom2.solarsystem.SSObject
+==============================
+
+.. py:module:: nexoclom2.solarsystem.SSObject
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.solarsystem.SSObject.SSObject
+
+
+Module Contents
+---------------
+
+.. py:class:: SSObject(obj: str)
+
+   
+   Physical data for solar system bodies.
+       Object containing all the necessary physical data for solar system objects.
+       Data is stored in a table included with the package. A separate table
+       contains the NAIF IDs. If the object is not found in the data table, returns
+       an object with just the object name, type = Unknown, and if possible the
+       NAIF ID.
+
+
+   :Parameters:
+
+       **obj** : str
+           Name of the solar system object to gather data for.
+
+   :Attributes:
+
+       **object: str**
+               Name of solar system body. Source: input parameter
+           orbits: str
+               Object the body orbits. Source: PlanetaryConstants.csv
+           radius : distance quantity
+               Object radius. Source: SPICE
+           unit: astropy unit
+               Named: R_<object>
+           GM: Quantity
+               Mass times gravitational constant. Source: SPICE
+           mass: mass quantity
+               Object mass in kg. Source: GM from SPICE
+           a: distance quantity
+               Object semi-major axis. Source: SPICE
+           e: float
+               Orbital eccentricity. For planets: Source SPICE. For moons: Set to 0.
+               This only affects calculations when a modeltime is not specified and
+               is a small affect.
+           tilt: angle quantity
+               Tilt of rotation axis relative to ecliptic in degrees.
+               Source: PlanetaryConstants.csv
+           rotperiod: time quantity
+               Siderial rotational period in hours. Source: PlanetaryConstants.csv
+           orbperiod: time quantity
+               Sideral orbital period. Source: SPICE
+           orbvel: velocity quantity
+               :math:`v_{orb} =
+
+       **rac{2 \pi a}{orbperiod}`**
+           satellites: list of str or None
+               List of satellites of the body. Source: PlanetaryConstants.csv
+           type : {'Star', 'Planet', or 'Moon'}
+               Source: PlanetaryConstants.csv
+           naifid : int
+               Source: naifids.csv
+
+
+
+
+
+
+
+
+
+
+
+
+   .. rubric:: Examples
+
+   >>> from nexoclom2.solarsystem import SSObject
+   >>> jupiter = SSObject('Jupiter')
+   >>> print(jupiter)
+   Object: Jupiter
+   Type = Planet
+   Orbits Sun
+   Satellites: Io, Europa, Ganymede, Callisto
+   Radius = 71492.00 km
+   Mass = 1.90e+27 kg
+   a = 5.20 AU
+   Eccentricity = 0.05
+   Tilt = 3.08 deg
+   Rotation Period = 9.93 h
+   Orbital Period = 4333.00 d
+   GM = -1.27e+17 m3 / s2
+   NAIFID = 599
+   >>> print(len(jupiter))
+   5
+   >>> hst = SSObject('HST')
+   >>> print(hst)
+   Object: Hst
+   Type = Unknown
+   NAIFID = -48
+   >>> print(jupiter == hst)
+   False
+
+   :Authors: Matthew Burger
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: object
+
+
+   .. py:method:: __eq__(other)
+
+
+   .. py:method:: __len__()
+
+      
+      Returns number of satellites + 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: __repr__()
+
+
+   .. py:method:: __str__()
+
+

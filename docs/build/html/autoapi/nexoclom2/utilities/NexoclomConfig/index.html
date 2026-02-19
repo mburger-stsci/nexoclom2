@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nexoclom2.utilities.NexoclomConfig &mdash; nexoclom2 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/stsci.css?v=d876f643" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/stsci.css?v=d876f643" />
+
+  
+      <script src="../../../../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="nexoclom2.utilities.database_operations" href="../database_operations/index.html" />
+    <link rel="prev" title="nexoclom2.utilities" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> nexoclom2
+            
+            <img src="../../../../_static/stsci_pri_combo_mark_white.png" class="logo" />
+          </a>
+
+          
+            
+            
+          
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+  
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/NEXOCLOM_Requirements_Document.html">NEXOCLOM Goals and Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/TestCases.html">NEXOCLOM Test Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/inputfiles.html">Input File Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/planet_distance.html">Solar System Geometries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/coordinate_systems.html">Planetary Coordinate Systems and System Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/surface_interaction.html">Interactions between incident atoms and surfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/lossrates.html">Neutral Loss Rates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/integrator.html">Runge-Kutta Integrator &amp; The Equations of Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/atomicdata.html">Atomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/particle_tracking.html">Particle Tracking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nexoclom2/references.html">References</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../Geometry/index.html">Geometry</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">nexoclom2</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#attributes">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../GeometryTime/index.html">GeometryTime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../FlatSpeedDist/index.html">FlatSpeedDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../RadialAngDist/index.html">RadialAngDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../GeometryNoTime/index.html">GeometryNoTime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../SurfMapSurfInt/index.html">SurfMapSurfInt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../UniformSpatDist/index.html">UniformSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../SurfMapSpatDist/index.html">SurfMapSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ConstantSurfInt/index.html">ConstantSurfInt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../IsotropicAngDist/index.html">IsotropicAngDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../SurfSpotSpatDist/index.html">SurfSpotSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reformat_gvalues/index.html">reformat_gvalues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../SputteringFluxDist/index.html">SputteringFluxDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../MaxwellianFluxDist/index.html">MaxwellianFluxDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../GoldenSpiralSpatDist/index.html">GoldenSpiralSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../TemperatureDependentSurfInt/index.html">TemperatureDependentSurfInt</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">nexoclom2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">nexoclom2</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">nexoclom2.utilities</a></li>
+      <li class="breadcrumb-item active">nexoclom2.utilities.NexoclomConfig</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/autoapi/nexoclom2/utilities/NexoclomConfig/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-nexoclom2.utilities.NexoclomConfig">
+<span id="nexoclom2-utilities-nexoclomconfig"></span><h1>nexoclom2.utilities.NexoclomConfig<a class="headerlink" href="#module-nexoclom2.utilities.NexoclomConfig" title="Link to this heading">¶</a></h1>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nexoclom2.utilities.NexoclomConfig.NexoclomConfig" title="nexoclom2.utilities.NexoclomConfig.NexoclomConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NexoclomConfig</span></code></a></p></td>
+<td><p>Configuration object based on the nexoclom2 configuration file.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="nexoclom2.utilities.NexoclomConfig.NexoclomConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nexoclom2.utilities.NexoclomConfig.</span></span><span class="sig-name descname"><span class="pre">NexoclomConfig</span></span><a class="headerlink" href="#nexoclom2.utilities.NexoclomConfig.NexoclomConfig" title="Link to this definition">¶</a></dt>
+<dd><p>Configuration object based on the nexoclom2 configuration file.</p>
+<p>The <cite>NEXCOCLOMCONFIG</cite> environment variable must be set. This is automatically
+set to <code class="docutils literal notranslate"><span class="pre">$HOME/.nexoclom</span></code> when the nexoclom2 Python environment is activated,
+although the user is free to change it.</p>
+<p>Each line in the nexoclom configuration file should be in the form
+<code class="docutils literal notranslate"><span class="pre">key</span> <span class="pre">=</span> <span class="pre">value</span></code> where the keys are highlighed below. Configuration
+settings for nexoclom2 extensions (such as for working with speficic
+instrument data) can also be placed here. All lines in the file with the
+proper format are included in the returned object.</p>
+<p><code class="docutils literal notranslate"><span class="pre">savepath</span></code>: Top-level path on disk where all model output is saved (Required)</p>
+<p><code class="docutils literal notranslate"><span class="pre">database</span></code>: Name of the TinyDB database file (Optional). Defaults to
+<code class="docutils literal notranslate"><span class="pre">thesolarsystemmb.db</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">user</span></code>: username (Required if not set as an environment variable).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>None</strong></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>configfile: str</strong></dt><dd><p>Name of configuration file used.</p>
+</dd>
+<dt><strong>savepath: str</strong></dt><dd><p>Top-level path on disk where all model output is saved.</p>
+</dd>
+<dt><strong>database: str</strong></dt><dd><p>Name of the TinyDB database file modelresults are cataloged in.</p>
+</dd>
+<dt><strong>user: str</strong></dt><dd><p>User’s username on the system.</p>
+</dd>
+<dt><strong>other: str</strong></dt><dd><p>Other configuration settings can be included.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>ConfigfileError</dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">NEXOCLOMCONFIG</span></code> environment variable not set or a required
+parameter in the configuration file is not given</p>
+</dd>
+<dt>FileNotFoundError</dt><dd><p>If the configuration file is not found</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="../exceptions/index.html#nexoclom2.utilities.exceptions.ConfigfileError" title="nexoclom2.utilities.exceptions.ConfigfileError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nexoclom2.utilities.exceptions.ConfigfileError</span></code></a></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<p>For a configuration file in <code class="docutils literal notranslate"><span class="pre">$HOME/.nexoclom</span></code> containing the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">savepath</span> <span class="o">=</span> <span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="n">mburger</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">ModelData</span>
+<span class="n">database</span> <span class="o">=</span> <span class="n">thesolarsystemmb</span><span class="o">.</span><span class="n">db</span>
+<span class="n">mesdatapath</span> <span class="o">=</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">mburger</span><span class="o">/</span><span class="n">Work</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">MESSENGER</span><span class="o">/</span><span class="n">UVVS</span>
+<span class="n">mesdatabase</span> <span class="o">=</span> <span class="n">messengeruvvsdb</span>
+</pre></div>
+</div>
+<p>In Python:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">NexoclomConfig</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="go">configfile = /Users/mburger/.nexoclom2_dev</span>
+<span class="go">savepath = /Volumes/nexoclom_output/modeloutputs2_dev</span>
+<span class="go">database = thesolarsystemmb_dev.db</span>
+<span class="go">user = mburger</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Authors<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Matthew Burger</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.utilities.NexoclomConfig.NexoclomConfig.configfile">
+<span class="sig-name descname"><span class="pre">configfile</span></span><a class="headerlink" href="#nexoclom2.utilities.NexoclomConfig.NexoclomConfig.configfile" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.utilities.NexoclomConfig.NexoclomConfig.database">
+<span class="sig-name descname"><span class="pre">database</span></span><a class="headerlink" href="#nexoclom2.utilities.NexoclomConfig.NexoclomConfig.database" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nexoclom2.utilities.NexoclomConfig.NexoclomConfig.user">
+<span class="sig-name descname"><span class="pre">user</span></span><a class="headerlink" href="#nexoclom2.utilities.NexoclomConfig.NexoclomConfig.user" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.utilities.NexoclomConfig.NexoclomConfig.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.utilities.NexoclomConfig.NexoclomConfig.__str__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nexoclom2.utilities.NexoclomConfig.NexoclomConfig.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.utilities.NexoclomConfig.NexoclomConfig.__repr__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="nexoclom2.utilities" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../database_operations/index.html" class="btn btn-neutral float-right" title="nexoclom2.utilities.database_operations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Matthew Burger.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

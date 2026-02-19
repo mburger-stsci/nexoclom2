@@ -1,0 +1,184 @@
+UniformSpatDist
+===============
+
+.. py:module:: UniformSpatDist
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   UniformSpatDist.UniformSpatDist
+
+
+Module Contents
+---------------
+
+.. py:class:: UniformSpatDist(sparam: (dict, tinydb.table.Document))
+
+   Bases: :py:obj:`nexoclom2.initial_state.InputClass.InputClass`
+
+
+   
+   Defines a spatial distribution with uniform flux from the exobase.
+
+   Sets up an initial spatial distribution that ejects particles with constant
+   flux (in particles/cm^2/s) from the exobase. Limits can be placed on the
+   latitude/longitude range.
+
+   Parameters that can be set
+
+   * longitude
+   * latitude
+   * exobase
+   * frane
+
+   See :ref:`spatialdist` for more information.
+
+   :Parameters:
+
+       **sparam** : dict
+           Key, value for defining the distribution
+
+   :Attributes:
+
+       **longitude: tuple of astropy quantities**
+           longitude range packets are ejected from. Default: (0º, 360º)
+
+       **laitutde: tuple of astropy quantities**
+           latitude range packets are ejected from. Default: (-90º, 90º)
+
+       **exobase: float**
+           Distance from starting object's center from which to eject particles.
+           Measured relative to starting object's radius. Default: 1.0
+
+       **frame: str**
+           SPICE frame to use for latitude and longitude. Options are "IAU",
+           "SOLAR", and "SOLARFIXED". See :ref:`coordinate_systems` for more
+           information.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: __name__
+      :value: 'UniformSpatDist'
+
+
+
+   .. py:method:: pdf_longitude(lon)
+
+
+   .. py:method:: cdf_longitude(lon)
+
+
+   .. py:method:: support_longitude()
+
+      
+
+
+
+
+
+
+      :Returns:
+
+          tuple with valid range for the PDF
+              ..
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: pdf_latitude(lat)
+
+
+   .. py:method:: cdf_latitude(lat)
+
+
+   .. py:method:: support_latitude()
+
+      
+
+
+
+
+
+
+      :Returns:
+
+          tuple with valid range for the PDF
+              ..
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: choose_points(n_packets, randgen=None)
+
+      
+      Returns initial x, y, and z. For a moon, a rotation will be done later
+      to move packets into the proper orbital position
+
+
+      :Parameters:
+
+          **npack** : int
+              Number of packets to generate
+
+          **randgen** : numpy.random._generator.Generator
+              Optional. Default=None
+
+
+
+      :Returns:
+
+          dictionary with longitude and latitude.
+              ..
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

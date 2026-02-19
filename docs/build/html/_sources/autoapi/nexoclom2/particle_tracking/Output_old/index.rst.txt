@@ -1,0 +1,161 @@
+nexoclom2.particle_tracking.Output_old
+======================================
+
+.. py:module:: nexoclom2.particle_tracking.Output_old
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.Output_old.Output
+
+
+Module Contents
+---------------
+
+.. py:class:: Output(inputs, n_packets: (int, float), n_iterations=1, compress=True, overwrite=False)
+
+   
+   Class to store compute particle trajectories and store the results.
+
+
+   :Parameters:
+
+       **inputs** : Input
+           ..
+
+       **n_packets** : int
+           ..
+
+       **compress** : bool, Default=True
+           ..
+
+   :Attributes:
+
+       **inputs** : Input
+           The inputs used in this model run.
+
+       **n_packets** : int, float
+           Total number of packets to run
+
+       **compress** : Bool
+           If True removes packets with frac=0 from the saved output, Default = True
+
+       **starting_point** : ndarray
+           Initial state relative to startpoint with standard units. Columns are
+           time (s), x (km), y (km), z (km), r (km), vx (km/s), vy (km/s),
+           (km/s), v (km/s), frac, longitude (rad), latitude (rad),
+           local_time (hr), altitude (rad), azimuth (rad)
+
+       **initial_state**
+           Initial state relative to central object with model units. Columns are
+           time (s), x (R_p), y (R_p), z(R_p), vx (R_p/s), vy (R_p/s), vz (R_p/s)
+           frac
+
+       **final_state** : ndarray
+           ..
+
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   The user will not generally call this directly but will instead use
+   ``inputs.run()``.
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: inputs
+
+
+   .. py:attribute:: compress
+      :value: True
+
+
+
+   .. py:attribute:: randgen
+
+
+   .. py:attribute:: loss_information
+
+
+   .. py:attribute:: gvalues
+
+
+   .. py:method:: initialize_objects()
+
+
+   .. py:method:: source_distribution(n_packets)
+
+      
+      Determine starting state of each packet.
+      :returns: * **initial_state** (*xarray DataArray*) -- Initial state relative to central object with model units. Columns are
+                  time (s), x (R_p), y (R_p), z(R_p), vx (R_p/s), vy (R_p/s), vz (R_p/s)
+                  frac
+                * **starting_point** (*xarray DataArray*) -- Initial state relative to startpoint with standard units. Columns are
+                  time (s), x (km), y (km), z (km), r (km), vx (km/s), vy (km/s),
+                  (km/s), v (km/s), frac, longitude (rad), latitude (rad),
+                  local_time (hr), altitude (rad), azimuth (rad)
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: _object_to_center_coords(initial_state)
+
+      
+      Rotate packets to starting point around central object and
+      convert to center-centered coordinates
+
+
+
+
+
+      :Returns:
+
+          Coordinates in planet-centered coordinate system rotated to proper
+              ..
+
+          starting location.
+              ..
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: _make_savefile(doc_id)
+
+
+   .. py:method:: remove()
+
+
+   .. py:method:: starting_point()
+
+
+   .. py:method:: initial_state()
+
+
+   .. py:method:: final_state()
+
+

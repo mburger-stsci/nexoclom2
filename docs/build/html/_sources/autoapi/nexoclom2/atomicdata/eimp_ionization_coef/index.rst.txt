@@ -1,0 +1,64 @@
+nexoclom2.atomicdata.eimp_ionization_coef
+=========================================
+
+.. py:module:: nexoclom2.atomicdata.eimp_ionization_coef
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.atomicdata.eimp_ionization_coef.EimpIonizationCoef
+
+
+Module Contents
+---------------
+
+.. py:class:: EimpIonizationCoef(species)
+
+   
+   Loads and computes electron impact ionization rate coefficients
+
+
+   :Parameters:
+
+       **species** : nexoclom2 Atom
+           ..
+
+   :Attributes:
+
+       **T_e: astropy Quantity array**
+           ..
+
+       **kappa: astropy Quantity array**
+           Electron impact ionization rate coefficient as function of ``T_e``
+
+   .. rubric:: Methods
+
+
+
+   =================  ==========
+   **ratecoef(T_e)**  Returns rate coefficients as function of input ``T_e``.
+   =================  ==========
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: species
+
+
+   .. py:attribute:: ratecoef
+
+

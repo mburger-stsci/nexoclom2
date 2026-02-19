@@ -1,0 +1,113 @@
+:py:mod:`nexoclom2.initial_state.FlatDist`
+==========================================
+
+.. py:module:: nexoclom2.initial_state.FlatDist
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   nexoclom2.initial_state.FlatDist.FlatDistribution
+
+
+
+
+.. py:class:: FlatDistribution(sparam: dict)
+
+
+   Bases: :py:obj:`nexoclom2.initial_state.InputClass.InputClass`
+
+
+   Defines a distribution with constant speed probability between two values.
+
+
+   :Parameters:
+
+       **sparam** : dict
+           Key, value for defining the distribution
+
+
+
+
+
+
+
+
+
+
+
+
+   :Attributes:
+
+       **type** : 'flat'
+           ..
+
+       **v0, v1: astropy quantity**
+           Minimum and maximum speed values. Defaults to 0 km/s and 10 km/s
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:method:: pdf(v: (float, numpy.ndarray)) -> (float, numpy.ndarray)
+
+
+      Probability Distribution Function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: choose_points(n_packets, randgen=None)
+
+
+      Compute random deviates from arbitrary 1D distribution.
+      f_x does not need to integrate to 1. The function normalizes the
+      distribution. Uses Transformation method (Numerical Recipes, 7.3.2)
+
+
+      :Parameters:
+
+          **n_packets** : int
+              The number of random deviates to compute
+
+          **randgen** : numpy.random._generator.Generator
+              ..
+
+      :Returns:
+
+          numpy array of length num chosen from the distribution f_x.
+              ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!

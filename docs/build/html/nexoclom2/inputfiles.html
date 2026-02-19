@@ -1,0 +1,566 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Input File Format &mdash; nexoclom2 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/stsci.css?v=d876f643" />
+      <link rel="stylesheet" type="text/css" href="../_static/stsci.css?v=d876f643" />
+
+  
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Solar System Geometries" href="planet_distance.html" />
+    <link rel="prev" title="NEXOCLOM Test Cases" href="TestCases.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> nexoclom2
+            
+            <img src="../_static/stsci_pri_combo_mark_white.png" class="logo" />
+          </a>
+
+          
+            
+            
+          
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+  
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="NEXOCLOM_Requirements_Document.html">NEXOCLOM Goals and Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TestCases.html">NEXOCLOM Test Cases</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Input File Format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#geometry">Geometry</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#geometry-with-time-stamp">Geometry With Time Stamp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometry-without-time-stamp">Geometry Without Time Stamp</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#surfaceinteraction">SurfaceInteraction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#constant-sticking-coefficient">Constant Sticking Coefficient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#temperature-dependent-sticking-coefficient">Temperature Dependent Sticking Coefficient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sticking-coefficient-from-a-surface-map">Sticking Coefficient from a Surface Map</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#forces">Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spatialdist">SpatialDist</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#uniform-surface">Uniform Surface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#golden-spiral-spatial-distribution">Golden Spiral Spatial Distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spatial-distribution-from-a-surface-map">Spatial Distribution from a Surface Map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#surface-spot-spatial-distribution">Surface-Spot Spatial Distribution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#speeddist">SpeedDist</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gaussian-normal-distribution">Gaussian (Normal) distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#maxwellian-distribution">Maxwellian Distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sputtering-distribution">Sputtering Distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flat-distribution">Flat Distribution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#angulardist">AngularDist</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#radial-distribution">Radial Distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#isotropic-distribution">Isotropic Distribution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#loss-information">Loss Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#options">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="planet_distance.html">Solar System Geometries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coordinate_systems.html">Planetary Coordinate Systems and System Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="surface_interaction.html">Interactions between incident atoms and surfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lossrates.html">Neutral Loss Rates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrator.html">Runge-Kutta Integrator &amp; The Equations of Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atomicdata.html">Atomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="particle_tracking.html">Particle Tracking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nexoclom2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Input File Format</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/nexoclom2/inputfiles.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="input-file-format">
+<span id="inputfiles"></span><h1>Input File Format<a class="headerlink" href="#input-file-format" title="Link to this heading">¶</a></h1>
+<p>Input files are plain text files in the form:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">category</span><span class="o">.</span><span class="n">parameter</span> <span class="o">=</span> <span class="n">setting</span>
+</pre></div>
+</div>
+<p>Lines in the input file that can not be parsed in this manner are ignored.
+Comments can be entered with a “#”. Everything in a line
+after a comment character is ignored. There are currently eight categories
+that can be set: geometry, surface_interaction,
+forces, spatialdist, speeddist, angulardist, loss_information, and options. The required
+parameters for each category are not fixed; i.e., which parameters are needed
+depends somewhat on the settings chosen. Below, all possible parameters for
+each category are defined. Input files are case insensitive.</p>
+<section id="geometry">
+<span id="id1"></span><h2>Geometry<a class="headerlink" href="#geometry" title="Link to this heading">¶</a></h2>
+<p>The geometry can be defined either with a timestamp (i.e., determine the
+geometry values at a defined epoch), or without a timestamp (i.e., by
+specifying important values). If running the model from MESSENGERdata.model(),
+the geometry is determined from from the data and geometry settings in the
+input file are ignored.</p>
+<dl class="simple">
+<dt>geometry.center [Required]</dt><dd><p>Central object for the model.</p>
+</dd>
+<dt>geometry.startpoint [Optional]</dt><dd><p>Object from which packets are ejected. This must be an object in the
+planetary system (the planet or one of its moons). If the
+<code class="docutils literal notranslate"><span class="pre">geometry.planet</span> <span class="pre">==</span> <span class="pre">Sun</span></code>, the starting point must either be the Sun or
+a planet. Default = geometry.center</p>
+</dd>
+<dt>geometry.include [Optional]</dt><dd><p>Objects to include in calculations given as comma-separated list of
+bodies in the planetary system. For example, if
+<code class="docutils literal notranslate"><span class="pre">geometry.objects</span> <span class="pre">=</span> <span class="pre">Jupiter,</span> <span class="pre">Io</span></code>, the gravity effects of the other moons
+would not be included, nor would collisions with their surfaces.
+Default = geometry.planet, geometry.startpoint</p>
+</dd>
+</dl>
+<section id="geometry-with-time-stamp">
+<span id="geometrytime"></span><h3>Geometry With Time Stamp<a class="headerlink" href="#geometry-with-time-stamp" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>geometry.modeltime [Required]</dt><dd><p>Time at which the model is simulated (model end time) in a format that can be
+read by
+<a class="reference external" href="https://docs.astropy.org/en/stable/api/astropy.time.Time.html#astropy.time.Time">astropy.time.Time</a>
+(YYYY-MM-DD HH:MM:SS.S or YYYY-MM-DDTHH:MM:SS.S are best).
+The true anomaly angle, subsolar point, and orbital position of all objects
+are determined using the
+<a class="reference external" href="https://spiceypy.readthedocs.io/en/stable/">SpiceyPy</a> python wrapper for the
+<a class="reference external" href="https://naif.jpl.nasa.gov/naif/toolkit.html">SPICE</a> toolkit
+(<a class="reference external" href="https://doi.org/10.21105/joss.02050">Annex et al., (2020). SpiceyPy: a Pythonic Wrapper for the SPICE Toolkit. Journal of Open Source Software, 5(46), 2050</a>.</p>
+</dd>
+</dl>
+</section>
+<section id="geometry-without-time-stamp">
+<span id="geometrynotime"></span><h3>Geometry Without Time Stamp<a class="headerlink" href="#geometry-without-time-stamp" title="Link to this heading">¶</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The coordinate transformations for GeometryNoTime are not set up correctly
+at the moment.</p>
+</div>
+<dl class="simple">
+<dt>geometry.TAA [Optional]</dt><dd><p>Planet’s True Anomaly Angle in degrees. This is used to determine the
+planet’s distance and radial velocity relative to the Sun. Default = 0º</p>
+</dd>
+<dt>geometry.phi [Required if satellites are included in the simulation]</dt><dd><p>Orbital phase of each included satellite relative to the Sun in degrees given
+as a comma-separated list.
+Measured from 0º to 360º where 0º is superior conjunction and
+90º is over the planet’s dawn terminator. The number of values must be
+equal to the number of non-planet objects included.</p>
+</dd>
+<dt>geometry.subsolarpoint [Optional]</dt><dd><p>The sub-solar longitude and latitude over the planet’s surface in degrees
+given as comma-separated values. For Jupiter, use System-III central
+meridian longitude. Sub-solar latitude isn’t used for anything currently,
+but could in the future be used to include effects of the planetary system’s
+tilt relative to the Sun.</p>
+</dd>
+<dt>geometry.dtaa [Optional]</dt><dd><p>Tolerance for true anomaly differences in model searches in degrees.
+Default = 2º</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="surfaceinteraction">
+<span id="surfaceinteractions"></span><h2>SurfaceInteraction<a class="headerlink" href="#surfaceinteraction" title="Link to this heading">¶</a></h2>
+<p>The SurfaceInteraction class defines interactions between packets and body
+surfaces. The available parameters depend on the interactions desired.
+If no values are provided, 100% sticking is assumed.</p>
+<section id="constant-sticking-coefficient">
+<span id="constantsticking"></span><h3>Constant Sticking Coefficient<a class="headerlink" href="#constant-sticking-coefficient" title="Link to this heading">¶</a></h3>
+<p>surfaceinteracction.type [Default = constant]</p>
+<dl class="simple">
+<dt>surfaceinteraction.stickcoef [Default = 1]</dt><dd><p>Sticking coefficient to be used uniformly across the body’s surface.
+For complete surface sticking, set <code class="docutils literal notranslate"><span class="pre">surfaceinteraction.stickcoef</span> <span class="pre">=</span> <span class="pre">1.</span></code>.
+For no sticking (100% of packets are reemitted from the surface, set
+<code class="docutils literal notranslate"><span class="pre">surfaceinteraction.stickcoef</span> <span class="pre">=</span> <span class="pre">0</span></code>.</p>
+</dd>
+<dt>surfaceinteraction.accomfactor [Required if stickcoef &lt; 1]</dt><dd><p>Surface accommodation factor. 1 = Fully accommodated to local surface
+temperature. 0 = Elastic scattering.</p>
+</dd>
+</dl>
+</section>
+<section id="temperature-dependent-sticking-coefficient">
+<span id="tempdependsticking"></span><h3>Temperature Dependent Sticking Coefficient<a class="headerlink" href="#temperature-dependent-sticking-coefficient" title="Link to this heading">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This has not been implemented yet.</p>
+</div>
+<p>The sticking coefficient follows the functional form (Yakshinskiy &amp; Madey 2005):</p>
+<div class="math">
+<p><img src="../_images/math/53b3b319bbaed23cccd598ff58efda7b680e2667.png" alt="S(T) = A_0 e^{A_1 T} + A_2"/></p>
+</div><p>where the coefficients are species dependent. For Na,</p>
+<blockquote>
+<div><p>Surface accommodation factor. 1 = Fully accommodated to local surface
+temperature. 0 = Elastic reemission.</p>
+</div></blockquote>
+</section>
+<section id="sticking-coefficient-from-a-surface-map">
+<span id="surfacemapsticking"></span><h3>Sticking Coefficient from a Surface Map<a class="headerlink" href="#sticking-coefficient-from-a-surface-map" title="Link to this heading">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This has not been implemented yet.</p>
+</div>
+</section>
+</section>
+<section id="forces">
+<span id="id2"></span><h2>Forces<a class="headerlink" href="#forces" title="Link to this heading">¶</a></h2>
+<p>The Forces class determines which forces are included in the simulation.
+Currently, the model only includes gravity and radiation pressure. If
+no forces are set in the input file both are included by default.</p>
+<dl class="simple">
+<dt>forces.gravity [Optional]</dt><dd><p>Default = True</p>
+</dd>
+<dt>forces.radpres [Optional]</dt><dd><p>Default = True</p>
+</dd>
+</dl>
+</section>
+<section id="spatialdist">
+<span id="id3"></span><h2>SpatialDist<a class="headerlink" href="#spatialdist" title="Link to this heading">¶</a></h2>
+<p>The SpatialDist class specifies the initial spatial distribution of packets
+in the system. Currently, three spatial distribution types are defined, all of
+which place packets over the surface (or exobase) of <cite>geometry.StartingPoint</cite>.
+More distributions may defined upon request.</p>
+<p>Three coordinate systems (frames) are available for each body: the body-fixed
+IAU frame, a SOLAR frame with the <em>z</em>-axis aligned with the rotation axis and
+the <em>x</em>-axis directed toward the Sun, and a SOLARFIXED frame with the <em>x</em>-axis
+pointed directly at the Sun. These are described further at
+<a class="reference internal" href="coordinate_systems.html#coordinate-systems"><span class="std std-ref">Planetary Coordinate Systems and System Geometry</span></a>.</p>
+<section id="uniform-surface">
+<span id="uniformspatdist"></span><h3>Uniform Surface<a class="headerlink" href="#uniform-surface" title="Link to this heading">¶</a></h3>
+<p>Distribute packets randomly across a region of the surface or exobase with
+a uniform probability distribution.</p>
+<dl class="simple">
+<dt>spatialdist.type [Required]</dt><dd><p>Set <cite>spatialdist.type = uniform</cite>.</p>
+</dd>
+<dt>spatialdist.longitude [Optional]</dt><dd><p>Longitude range on the surface to place packets in degrees given as
+<em>long0, long1</em> where <img class="math" src="../_images/math/bc0734dcea2d4b78c19e475bb551f45b0abc7e6f.png" alt="0^\circ \leq long0,long1 \leq 360^\circ"/>.
+If <em>long0</em> &gt; <em>long1</em>, the region wraps around. Default = 0, 360</p>
+</dd>
+<dt>spatialdist.latitude [Optional]</dt><dd><p>Latitude range on the surface to place packets in degrees given as
+<em>lat0, lat1</em> where <img class="math" src="../_images/math/874cf1a23b53e7d65664180fa951d23b2ed203f5.png" alt="90^\circ \leq lat0 \leq lat1 \leq 90^\circ"/>.
+Default = -90, 90</p>
+</dd>
+<dt>spatialdist.exobase [Optional]</dt><dd><p>Location of the exobase in units of the starting point’s radius.
+Default = 1.</p>
+</dd>
+<dt>spatialdist.frame [Optional]</dt><dd><p>SPICE frame to use. Options are “IAU”, “SOLAR”, “SOLARFIXED”. The correct
+body is added to the name for use in the SPICE toolkit.
+Default = SOLAR.</p>
+</dd>
+</dl>
+<p>To eject all packets from a single point, set <em>long0 = long1</em> and
+<em>lat0 = lat1</em>; i.e., to eject all packets from the sub-solar point of a planet,
+set:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spatialdist</span><span class="o">.</span><span class="n">longitude</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">spatialdist</span><span class="o">.</span><span class="n">latitude</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">spatialdist</span><span class="o">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">SolarFixed</span>
+</pre></div>
+</div>
+</section>
+<section id="golden-spiral-spatial-distribution">
+<span id="goldenspiralspatdist"></span><h3>Golden Spiral Spatial Distribution<a class="headerlink" href="#golden-spiral-spatial-distribution" title="Link to this heading">¶</a></h3>
+<p>This approximates a regular grid of packets on a sphere using the
+<a class="reference external" href="https://docs.astropy.org/en/stable/coordinates/angles.html#on-a-grid">global spiral method</a> implemented in <cite>astropy.coordinates</cite>.</p>
+<dl class="simple">
+<dt>spatialdist.exobase [Optional]</dt><dd><p>Location of the exobase in units of the starting point’s radius.
+Default = 1.</p>
+</dd>
+</dl>
+</section>
+<section id="spatial-distribution-from-a-surface-map">
+<span id="surfacemapspatdist"></span><h3>Spatial Distribution from a Surface Map<a class="headerlink" href="#spatial-distribution-from-a-surface-map" title="Link to this heading">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This has not been set up yet.</p>
+</div>
+<p>Distribute packets according to a probability distribution given by a
+pre-defined surface map.</p>
+<dl>
+<dt>spatialdist.type [Required]</dt><dd><p>Set <cite>spatialdist.type = surface map</cite>.</p>
+</dd>
+<dt>spatialdist.mapfile [Optional]</dt><dd><p>Set this to a pickle or IDL savefile containing the map information, or
+set to ‘default’ to use the default surface composition map.</p>
+<p>The sourcemap is saved as a dictionary with the fields:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>longitude: longitude axis in degrees</p></li>
+<li><p>latitude: latitude axis in degrees</p></li>
+<li><p>abundance: surface abundance map</p></li>
+<li><p>coordinate_system: planet-fixed, solar-fixed, or moon-fixed</p></li>
+</ul>
+</div></blockquote>
+<p>If not given, the default, planet-fixed surface composition map is used.</p>
+</dd>
+<dt>spatialdist.exobase [Optional]</dt><dd><p>Location of the exobase in units of the starting point’s radius.
+Default = 1.</p>
+</dd>
+</dl>
+</section>
+<section id="surface-spot-spatial-distribution">
+<span id="surfacespotspatdist"></span><h3>Surface-Spot Spatial Distribution<a class="headerlink" href="#surface-spot-spatial-distribution" title="Link to this heading">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This has not been set up yet.</p>
+</div>
+<p>Distribute packets with a spatial distribution that drops off exponentially
+from a central point.</p>
+<dl class="simple">
+<dt>spatialdist.type [Required]</dt><dd><p>Set <cite>spatialdist.type = surface spot</cite>.</p>
+</dd>
+<dt>spatialdist.longitude [Required]</dt><dd><p>Longitude of the source center in degrees.</p>
+</dd>
+<dt>spatialdist.latitude [Required]</dt><dd><p>Latitude of the soruce center in degrees.</p>
+</dd>
+<dt>spatialdist.sigma [Required]</dt><dd><p>Angular e-folding width of the source in degrees.</p>
+</dd>
+<dt>spatialdist.exobase [Optional]</dt><dd><p>Location of the exobase in units of the starting point’s radius.
+Default = 1.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="speeddist">
+<span id="id4"></span><h2>SpeedDist<a class="headerlink" href="#speeddist" title="Link to this heading">¶</a></h2>
+<p>The SpeedDist class defines the one-dimensional initial speed distribution
+of the packets. Currently implemented speed distributions are
+Maxwellian, sputtering, and flat. More can be added upon request.</p>
+<section id="gaussian-normal-distribution">
+<span id="gaussianspeeddist"></span><h3>Gaussian (Normal) distribution<a class="headerlink" href="#gaussian-normal-distribution" title="Link to this heading">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This has not been set up yet.</p>
+</div>
+<p>Packets speeds are chosen from a normal distribution. See
+<a href="#id5"><span class="problematic" id="id6">`</span></a>numpy.random.normal
+for more information on the implementation.</p>
+<dl class="simple">
+<dt>speeddist.type [Required]</dt><dd><p>Set <cite>speeddist.type = gaussian</cite></p>
+</dd>
+<dt>speeddist.vprob [Required]</dt><dd><p>Mean speed of the distribution in km/s.</p>
+</dd>
+<dt>speeddist.sigma [Required]</dt><dd><p>Standard deviation of the distribution in km/s.</p>
+</dd>
+</dl>
+</section>
+<section id="maxwellian-distribution">
+<span id="maxwellianspeeddist"></span><h3>Maxwellian Distribution<a class="headerlink" href="#maxwellian-distribution" title="Link to this heading">¶</a></h3>
+<div class="math">
+<p><img src="../_images/math/c26829fd287bf47fcb796f00226941ab9faffeb4.png" alt="\begin{eqnarray*}
+f(v) &amp; \propto &amp; v^3 \exp(-v^2/v_{th}^2) \\
+v_{th}^2 &amp; = &amp; 2Tk_B/m
+\end{eqnarray*}"/></p>
+</div><dl class="simple">
+<dt>speeddist.type [Required]</dt><dd><p>Set <cite>speeddist.type = maxwellian</cite></p>
+</dd>
+<dt>speeddist.temperature [Required]</dt><dd><p>Temperature of the distribution in K. Set <cite>speeddist.temperature = 0</cite> to
+use a pre-defined surface temperature map (Not implemented yet).</p>
+</dd>
+</dl>
+</section>
+<section id="sputtering-distribution">
+<span id="sputterspeeddist"></span><h3>Sputtering Distribution<a class="headerlink" href="#sputtering-distribution" title="Link to this heading">¶</a></h3>
+<p>Packet speeds are chosen from a sputtering distribution in the form:</p>
+<div class="math">
+<p><img src="../_images/math/e7623585ba771913202278ceced90b8942bf5265.png" alt="\begin{eqnarray*}
+f(v) &amp; \propto &amp; \frac{v^{2\beta + 1}}{(v^2 + v_b^2)^\alpha} \\
+v_b &amp; = &amp; \left(\frac{2U}{m} \right)^{1/2}
+\end{eqnarray*}"/></p>
+</div><dl class="simple">
+<dt>speeddist.type [Required]</dt><dd><p>Set <cite>speeddist.type = sputtering</cite></p>
+</dd>
+<dt>speeddist.alpha [Required]</dt><dd><p><img class="math" src="../_images/math/2f5aa019312e1bbc969deab8dca8b00f76025404.png" alt="\alpha"/> parameter.</p>
+</dd>
+<dt>speeddist.beta [Required]</dt><dd><p><img class="math" src="../_images/math/7138dad9ac96835665b17f5817eacfcaa9b834c9.png" alt="\beta"/> parameter.</p>
+</dd>
+<dt>speeddist.U [Required]</dt><dd><p>Surface binding energy in eV.</p>
+</dd>
+</dl>
+</section>
+<section id="flat-distribution">
+<span id="flatspeeddist"></span><h3>Flat Distribution<a class="headerlink" href="#flat-distribution" title="Link to this heading">¶</a></h3>
+<p>Chooses the initial speed uniformly with <img class="math" src="../_images/math/8db7ddbce8b6f71e71d3b166e634ab3481524c83.png" alt="v_{min} \leq v &lt; v_{max}"/>.</p>
+<dl class="simple">
+<dt>speeddist.type [Required]</dt><dd><p>Set <cite>speeddist.type = flat</cite></p>
+</dd>
+<dt>speeddist.vmin [Optional]</dt><dd><p>Minimum speed in km/s. Default = 0 km/s</p>
+</dd>
+<dt>speeddist.vmax [Optional]</dt><dd><p>Maximum speed in km/s. Default = 10 km/s</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="angulardist">
+<span id="id7"></span><h2>AngularDist<a class="headerlink" href="#angulardist" title="Link to this heading">¶</a></h2>
+<p>The AngularDist class defines the initial angular distribution of packets.
+The options are radial and isotropic. More distributions can be added upon
+request. If not given, an isotropic distribution into the outward facing
+hemisphere is assumed.</p>
+<section id="radial-distribution">
+<span id="radialangulardist"></span><h3>Radial Distribution<a class="headerlink" href="#radial-distribution" title="Link to this heading">¶</a></h3>
+<p>Packets are ejected radially from the surface.</p>
+<dl class="simple">
+<dt>angulardist.type [Required]</dt><dd><p>Set <cite>angulardist.type = radial</cite>.</p>
+</dd>
+</dl>
+</section>
+<section id="isotropic-distribution">
+<span id="isotropicangulardist"></span><h3>Isotropic Distribution<a class="headerlink" href="#isotropic-distribution" title="Link to this heading">¶</a></h3>
+<p>Packets are ejected isotropically into the outward facing hemisphere (if the
+packets are starting from the surface) or the full hemisphere.
+<cite>angulardist.type</cite> is not given, an isotropic distribution is assumed and
+all other options are ignored (i.e., altitude and azimuth can not be specified).</p>
+<dl class="simple">
+<dt>angulardist.type [Optional]</dt><dd><p>Set <cite>angulardist.type = isotropic</cite>.</p>
+</dd>
+<dt>angulardist.altitude [Optional]</dt><dd><p>Used to limit the altitude range of the distribution. Given as a
+comma-separated list of <em>altmin, altmax</em> in degrees measured from the
+surface tangent to the surface normal.</p>
+</dd>
+<dt>angulardist.azimuth [Optional]</dt><dd><p>Used to limit the azimuth range of the distribution. Given as a
+comma-separated list of <em>az0, az1</em> in degrees. This should be measured with
+azimuth = 0 rad pointing to north, but I’m not sure if it actually works.
+Use of this option is not recommended.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="loss-information">
+<span id="lossinfo"></span><h2>Loss Information<a class="headerlink" href="#loss-information" title="Link to this heading">¶</a></h2>
+<p>The LossInformation class configures the processes responsible for loss not due
+to collisions with the surface. Three processes can be included: photoionization
+or dissociation, electron-impact ionization or dissociation, and charge exchange.
+The physical processes and determination of relevant plasma parameters are
+described at <a class="reference internal" href="lossrates.html#lossrates"><span class="std std-ref">Neutral Loss Rates</span></a>.</p>
+<dl class="simple">
+<dt>constant_lifetime [Optional]</dt><dd><p>Assigns a constant lifetime everywhere in the system. Default=False
+(constant not applied). If this is set, it provides an loss floor; i.e.,
+other loss mechanisms can still be included with the loss rates additive.</p>
+</dd>
+<dt>photoionization [Optional]</dt><dd><p>Set to True to include photoionization. Default = True</p>
+</dd>
+<dt>photo_lifetime [Optional]</dt><dd><p>If 0, then uses the calculated photoionzitaion rate. If &gt;0, sets the
+photoionization lifetime to that value in seconds. The photoionization rate
+is 1/photoionizaion lifetime. Default = 0</p>
+</dd>
+<dt>photo_factor [Optional]</dt><dd><p>Constant factor by which to modify the photoionization rate. Useful for
+testing the effect of changed photoionization rates. Default = 1</p>
+</dd>
+<dt>electron_impact [Optional]</dt><dd><p>Set to True to include loss due to electron impacts. Default = True for
+planets with known plasma parameters, False otherwise.</p>
+</dd>
+<dt>eimp_factor [Optional]</dt><dd><p>Constant factor by which to modify the electron impact loss rates.
+Default = 1</p>
+</dd>
+<dt>charge_exchange [Optional]</dt><dd><p>Set to True to include charge exchange. Default = True for planets with
+known plasma parameters, False otherwise.</p>
+</dd>
+<dt>chx_factor [Optional]</dt><dd><p>Constant factor by which to modify the charge exchange rates. Default = 1</p>
+</dd>
+</dl>
+</section>
+<section id="options">
+<span id="id8"></span><h2>Options<a class="headerlink" href="#options" title="Link to this heading">¶</a></h2>
+<p>The Options class sets runtime options that don’t fit into other categories.</p>
+<blockquote>
+<div><p>The total simulated runtime for the model. Generally chosen to be several
+times the lifetime of the species.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>options.runtime [Required]</dt><dd><p>Total simulation run time in seconds.</p>
+</dd>
+<dt>options.species [Required]</dt><dd><p>The species to be simulated.</p>
+</dd>
+<dt>options.outer_edge [Optional]</dt><dd><p>Distance from <em>geometry.startpoint</em> to simulate in object radii. Default =
+infinite; i.e., no outer edge is given to the simulation.</p>
+</dd>
+<dt>options.step_size [Optional]</dt><dd><p>Step size in seconds. If 0, uses the adaptive step size integrator. Otherwise
+it uses the constant step size integrator. Default = 0.</p>
+</dd>
+<dt>options.resolution [Optional]</dt><dd><p>Required precision for the adaptive step size integrator.
+Default = <img class="math" src="../_images/math/7b4e7f585c3645d15b2ebe5e0a9edab411e65a1e.png" alt="10^{-5}"/>.</p>
+</dd>
+<dt>options.start_together [Optional]</dt><dd><p>If using the adaptive step size integrator, <cite>options.start_together = True</cite>
+starts all packets at the same time. Otherwise, start times are
+randomly distributed between the start and end of the simulation.
+Default = False</p>
+</dd>
+<dt>options.random_seed [Optional]</dt><dd><p>Seed for the random number generator. Default = None</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="TestCases.html" class="btn btn-neutral float-left" title="NEXOCLOM Test Cases" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="planet_distance.html" class="btn btn-neutral float-right" title="Solar System Geometries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Matthew Burger.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

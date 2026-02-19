@@ -1,0 +1,122 @@
+:py:mod:`nexoclom2.initial_state.UniformSpatialDist`
+====================================================
+
+.. py:module:: nexoclom2.initial_state.UniformSpatialDist
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   nexoclom2.initial_state.UniformSpatialDist.UniformSpatialDist
+
+
+
+
+.. py:class:: UniformSpatialDist(sparam: (dict, tinydb.table.Document))
+
+
+   Bases: :py:obj:`nexoclom2.initial_state.InputClass.InputClass`
+
+
+   Defines a spatial distribution with uniform flux from the exobase.
+
+   Sets up an initial spatial distribution that ejects particles with constant
+   flux (in particles/cm^2/s) from the exobase. Limits can be placed on the
+   latitude/longitude range.
+
+   :Parameters:
+
+       **sparam** : dict
+           Key, value for defining the distribution
+
+
+
+
+
+
+
+
+
+
+
+
+   :Attributes:
+
+       **type** : 'uniform'
+           ..
+
+       **longitude** : tuple of astropy quantities
+           longitude range packets are ejected from. Default: (0 rad, 2π rad)
+
+       **laitutde** : tuple of astropy quantities
+           latitude range packets are ejected from. Default: (-π/2 rad, π/2 rad)
+
+       **exobase** : float
+           Distance from starting object's center from which to eject particles.
+           Measured relative to starting object's radius. Default: 1.0
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:method:: pdf(lon, sinlat)
+
+
+      Probability Distribution Function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: choose_points(n_packets, randgen=None) -> type(1 * u.km)
+
+
+      Returns initial x, y, and z. For a moon, a rotation will be done later
+      to move packets into the proper orbital position
+
+
+      :Parameters:
+
+          **npack** : int
+              Number of packets to generate
+
+          **randgen** : numpy.random._generator.Generator
+              Optional. Default=None
+
+      :Returns:
+
+          npack x 3 ndarray with x, y, and z positions
+              ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!

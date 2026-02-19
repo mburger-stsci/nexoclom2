@@ -1,0 +1,49 @@
+nexoclom2.particle_tracking.VariableIntegrator
+==============================================
+
+.. py:module:: nexoclom2.particle_tracking.VariableIntegrator
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.VariableIntegrator.VariableIntegrator
+
+
+Module Contents
+---------------
+
+.. py:class:: VariableIntegrator(output, state, method='rk5')
+
+   
+   Runge Kutta integrator
+
+   Can run with either constant or variable step size.
+
+   :Parameters:
+
+       **output** : Output
+           nexoclom2 Output clas
+
+
+
+   :Returns:
+
+       Final state of the system
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+

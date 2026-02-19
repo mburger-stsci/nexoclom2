@@ -1,0 +1,6 @@
+:py:mod:`nexoclom2.initial_state.SpatialDist`
+=============================================
+
+.. py:module:: nexoclom2.initial_state.SpatialDist
+
+

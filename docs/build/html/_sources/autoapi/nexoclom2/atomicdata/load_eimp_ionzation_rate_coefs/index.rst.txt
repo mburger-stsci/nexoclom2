@@ -1,0 +1,130 @@
+nexoclom2.atomicdata.load_eimp_ionzation_rate_coefs
+===================================================
+
+.. py:module:: nexoclom2.atomicdata.load_eimp_ionzation_rate_coefs
+
+.. autoapi-nested-parse::
+
+   Extract electron impact ionization cross sections and compute rate coefs
+
+   This in not intended to be run by users and is included here for documentation.
+
+   .. rubric:: References
+
+   Na: Johnston et al. (1995)
+   O, S: CHIANTI
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   nexoclom2.atomicdata.load_eimp_ionzation_rate_coefs.temperature
+   nexoclom2.atomicdata.load_eimp_ionzation_rate_coefs.ion_unit
+   nexoclom2.atomicdata.load_eimp_ionzation_rate_coefs.spec
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   nexoclom2.atomicdata.load_eimp_ionzation_rate_coefs.crosssection_to_rate
+   nexoclom2.atomicdata.load_eimp_ionzation_rate_coefs.save_rates
+
+
+Module Contents
+---------------
+
+.. py:data:: temperature
+
+.. py:data:: ion_unit
+   :value: None
+
+
+.. py:function:: crosssection_to_rate(temperature, energy, sigma)
+
+   
+   Convolve the electron impact ionization cross sections with
+   a Maxwellial flux distribution function
+
+   see :ref:`eimp-ionization` for more details.
+
+   :Parameters:
+
+       **temperature: astropy Quantity array**
+           Electron temperatures at which rate coefficient will be calculated
+
+       **energy: astropy Quantity array**
+           Energies at which cross sections have been measured or computed
+
+       **sigma: astropy Quantity array**
+           Electron impact ionization cross section as function of ``energy``
+
+
+
+   :Returns:
+
+       Electron impact ionization coefficient as function of electron temperature
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: save_rates(species)
+
+   
+   Save the electron impact cross sections and rate coefficients
+
+
+   :Parameters:
+
+       **species** : str
+           ..
+
+
+
+   :Returns:
+
+       Nothing, but saves a dict with cross sections (``sigma``), energies at
+           ..
+
+       which cross sections were measured (``E_sigma``), electron temperature
+           ..
+
+       (``T_e``), and electron impact ionization rate coefficient as function of
+           ..
+
+       electron temperature (``kappa``)
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:data:: spec
+

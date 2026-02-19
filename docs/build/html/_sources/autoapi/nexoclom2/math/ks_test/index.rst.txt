@@ -1,0 +1,25 @@
+nexoclom2.math.ks_test
+======================
+
+.. py:module:: nexoclom2.math.ks_test
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   nexoclom2.math.ks_test.Q_KS
+   nexoclom2.math.ks_test.ks_test
+   nexoclom2.math.ks_test.ks_d
+
+
+Module Contents
+---------------
+
+.. py:function:: Q_KS(z)
+
+.. py:function:: ks_test(test_data, speeddist)
+
+.. py:function:: ks_d(test_data, cdf)
+

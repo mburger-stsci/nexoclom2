@@ -1,0 +1,45 @@
+:py:mod:`nexoclom2.utilities.make_acceptable`
+=============================================
+
+.. py:module:: nexoclom2.utilities.make_acceptable
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   nexoclom2.utilities.make_acceptable.make_acceptable
+
+
+
+.. py:function:: make_acceptable(inputs)
+
+   
+   Takes a Python input-type class and converts it to a saveable format.
+
+   The input classes (Geometry, etc.) have objects that can not be stored in
+   the TinyDB format (cannot be converted to json). This function cleans
+   things up.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+

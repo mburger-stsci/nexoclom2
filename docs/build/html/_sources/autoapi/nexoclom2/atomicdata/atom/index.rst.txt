@@ -1,0 +1,135 @@
+nexoclom2.atomicdata.atom
+=========================
+
+.. py:module:: nexoclom2.atomicdata.atom
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.atomicdata.atom.Atom
+
+
+Module Contents
+---------------
+
+.. py:class:: Atom(species: str)
+
+   
+   Class containing all useful atomic data for a neutral or ionic species.
+
+
+   :Parameters:
+
+       **species: str**
+           Atomic species. Charge is indicated by the number of '+' or '-'
+           appended to the chemical symbol
+
+   :Attributes:
+
+       **charge: int**
+           Electric charge
+
+       **symbol: str**
+           Chemical symbol
+
+       **name: str**
+           ..
+
+       **number: int**
+           ..
+
+       **mass: astropy Quantity**
+           ..
+
+       **gvalues: nexoclom2 gValue object**
+           ..
+
+       **photo_refpt: astropy Quantity**
+           Reference point for the photoionziation rate (generally 1 AU)
+
+       **photo_rate: astropy Quantity**
+           Photoionization rate at the reference point
+
+       **photo_reactions: list**
+           List of tuples containing each photoreaction included and its rate at
+           the reference point
+
+       **wavelengths: tuple**
+           List of wavelengths for which there are photon scattering rate
+           coefficients (*g*-values) or electron impact excitation rate
+           coefficients.
+
+       **_atom: Element**
+           Object from
+           `periodictable <https://periodictable.readthedocs.io/en/latest/periodictable>`__
+           saved in case there is additional infomation the user might need.
+
+       **eimp_ionization: nexoclom2 EimpIonizationCoef object**
+           ..
+
+       **eimp_emission: nexoclom2 EimpEmissionCoef object**
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: _atom
+
+
+   .. py:attribute:: charge
+
+
+   .. py:attribute:: symbol
+
+
+   .. py:attribute:: name
+
+
+   .. py:attribute:: number
+
+
+   .. py:attribute:: mass
+
+
+   .. py:attribute:: gvalues
+
+
+   .. py:attribute:: photo_refpt
+
+
+   .. py:attribute:: eimp_ionization
+
+
+   .. py:attribute:: eimp_emission
+
+
+   .. py:attribute:: wavelengths
+
+
+   .. py:attribute:: charge_exchange
+
+
+   .. py:method:: __str__()
+
+
+   .. py:method:: __repr__()
+
+
+   .. py:method:: __eq__(other)
+
+

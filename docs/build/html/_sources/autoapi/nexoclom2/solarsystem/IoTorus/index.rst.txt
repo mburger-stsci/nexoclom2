@@ -1,0 +1,95 @@
+nexoclom2.solarsystem.IoTorus
+=============================
+
+.. py:module:: nexoclom2.solarsystem.IoTorus
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.solarsystem.IoTorus.IoTorus
+
+
+Module Contents
+---------------
+
+.. py:class:: IoTorus(source='Voyager')
+
+   .. py:attribute:: source
+      :value: 'Voyager'
+
+
+
+   .. py:attribute:: M
+
+
+   .. py:attribute:: n_e
+
+
+   .. py:attribute:: T_e
+
+
+   .. py:attribute:: H_e
+
+
+   .. py:attribute:: T_i
+
+
+   .. py:attribute:: ions
+
+
+   .. py:attribute:: n_i
+
+
+   .. py:attribute:: H_i
+
+
+   .. py:attribute:: planet
+
+
+   .. py:method:: xyz_to_Mzeta(x, y, z, cml)
+
+
+   .. py:method:: n_and_T(species, x, y, z, cml)
+
+
+   .. py:method:: distance_along_field_line(L, theta_c, theta_p)
+
+      
+      Calculate the distance along the dipole field line
+
+
+      :Parameters:
+
+          **L: astropy Quantity**
+              L (or modified L) - Field line through magnetic equator
+
+          **theta_c: astropy Quantity**
+              Angle from magnetic equator to centrifugal equator
+
+          **theta_p: astropy Quantity**
+              Angle from magnetic equator to packet
+
+
+
+      :Returns:
+
+          Distance along field line
+              ..
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

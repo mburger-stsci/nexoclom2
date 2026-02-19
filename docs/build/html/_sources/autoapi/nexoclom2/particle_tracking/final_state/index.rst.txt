@@ -1,0 +1,28 @@
+nexoclom2.particle_tracking.final_state
+=======================================
+
+.. py:module:: nexoclom2.particle_tracking.final_state
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.final_state.FinalState
+
+
+Module Contents
+---------------
+
+.. py:class:: FinalState(output, which=None)
+
+   .. py:method:: __getitem__(q)
+
+
+   .. py:method:: __len__()
+
+
+   .. py:method:: concatenate(new)
+
+

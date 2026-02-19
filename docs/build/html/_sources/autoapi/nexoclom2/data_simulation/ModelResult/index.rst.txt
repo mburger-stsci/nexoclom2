@@ -1,0 +1,43 @@
+nexoclom2.data_simulation.ModelResult
+=====================================
+
+.. py:module:: nexoclom2.data_simulation.ModelResult
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.data_simulation.ModelResult.ResultPacket
+   nexoclom2.data_simulation.ModelResult.ModelResult
+
+
+Module Contents
+---------------
+
+.. py:class:: ResultPacket(X)
+
+   .. py:attribute:: time
+
+
+   .. py:attribute:: X
+
+
+.. py:class:: ModelResult(output, params)
+
+   .. py:attribute:: species
+
+
+   .. py:attribute:: origin
+
+
+   .. py:attribute:: quantity
+
+
+   .. py:method:: radiance_per_atom(X, V, output)
+
+
+   .. py:method:: choose_wavelengths(wavelengths)
+
+

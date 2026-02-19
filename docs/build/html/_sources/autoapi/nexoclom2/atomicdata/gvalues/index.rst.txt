@@ -1,0 +1,165 @@
+nexoclom2.atomicdata.gvalues
+============================
+
+.. py:module:: nexoclom2.atomicdata.gvalues
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.atomicdata.gvalues.gValue
+
+
+Module Contents
+---------------
+
+.. py:class:: gValue(species)
+
+   
+   Class to compute g-values and radiation acceleration
+
+   The g-value is the product of the solar flux at the dopler-shifted
+   emission wavelength and the scattering probability per atom. See
+   `Killen, R.M. et al., Ap. J. Supp., 2022
+   <https://doi.org/10.3847/1538-4365/ac9eab>`_ for details on calculating
+   g-values for important species in Mercury's atmosphere.
+
+   These g-values have been calculated for this solarsystem at a reference
+   distance of 0.352 AU.
+
+   Methods are provided to return the *g*-values for each resonant wavelength
+   and radiation acceleration as functions of distance from the Sun and
+   radial velocity relative to the Sun.
+
+   Radiation acceleration :math:`a_r` is computed by:
+
+   .. math::
+       a_r = \sum_i g_i(v_r) \times \frac{h}{m \lambda_i}
+
+   where :math:`g_i` is *g* at wavelength :math:`\lambda_i`\ , :math:`h` is
+   Planck's constant, :math:`m` is the mass of the species in question, and the
+   sum is over all resonant wavelengths.
+
+   :Parameters:
+
+       **species** : str
+           atomic species
+
+   :Attributes:
+
+       **wavelengths** : astropy Quantity array
+           Wavelengths are rounded to the nearest Angstrom.
+
+       **velocity** : astropy Quantity array
+           Radial velocity relative to the Sun
+
+   .. rubric:: Methods
+
+
+
+   ============================  ==========
+     **gvalue(drdt, r=1*u.au)**  Dict with *g* as function of ``drdt`` and ``r`` for each resonant wavelength
+   **radaccel(drdt, r=1*u.au)**  Radiation acceleration as function of ``drdt`` at the reference distance from the Sun
+   ============================  ==========
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: species
+
+
+   .. py:method:: gvalue(drdt, r=1.0 * u.au)
+
+      
+      *g* as function of radial velocity and solar distance
+
+
+      :Parameters:
+
+          **drdt: astropy Quantity array**
+              Radial velocity relative to the Sun
+
+          **r: astropy Quantity array**
+              Distance from the Sun. Default = 1 AU
+
+
+
+      :Returns:
+
+          Dictionary with *g*-values at each point for each wavelength as function
+              ..
+
+          of ``drdt`` and ``r``
+              ..
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: radaccel(drdt, r=1.0 * u.au)
+
+      
+      radial acceleration as function of radial velocity and solar distance
+
+
+      :Parameters:
+
+          **drdt: astropy Quantity array**
+              Radial velocity relative to the Sun
+
+          **r: astropy Quantity array**
+              Distance from the Sun. Default = 1 AU
+
+
+
+      :Returns:
+
+          radiation acceleration at each point as function of ``drdt`` and ``r``
+              ..
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: __eq__(other)
+
+
+   .. py:method:: __repr__()
+
+
+   .. py:method:: __str__()
+
+

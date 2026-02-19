@@ -1,0 +1,60 @@
+nexoclom2.particle_tracking.derriv
+==================================
+
+.. py:module:: nexoclom2.particle_tracking.derriv
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.derriv.deriv
+
+
+Module Contents
+---------------
+
+.. py:class:: deriv(dt, points, output)
+
+   
+   Computes the derivatives of x, v, and t for use in the integrator.
+
+   Equations of motion:
+
+   dxdt = v
+   dvdt = a_grav + a_radpres
+   dfdt = -rate * e^(dt*rate)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: dXdt
+
+
+   .. py:attribute:: dVdt
+
+
+   .. py:attribute:: dfdt
+
+
+   .. py:method:: vmul(vec)
+
+
+   .. py:method:: cmul(const)
+
+

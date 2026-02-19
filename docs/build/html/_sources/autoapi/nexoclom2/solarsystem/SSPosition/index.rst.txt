@@ -1,0 +1,133 @@
+nexoclom2.solarsystem.SSPosition
+================================
+
+.. py:module:: nexoclom2.solarsystem.SSPosition
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.solarsystem.SSPosition.SSPosition
+
+
+Module Contents
+---------------
+
+.. py:class:: SSPosition(objname, geometry, runtime)
+
+   
+   Baseclass for Solar System Positions
+
+
+   :Parameters:
+
+       **ssobject: SSObject**
+           ..
+
+       **geometry: Geometry object**
+           ..
+
+       **runtime: time Quantity**
+           Total model simulation time
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: object
+
+
+   .. py:attribute:: runtime
+
+
+   .. py:attribute:: unit
+      :value: None
+
+
+
+   .. py:attribute:: taa
+
+
+   .. py:attribute:: phi
+
+
+   .. py:attribute:: x
+
+
+   .. py:attribute:: y
+
+
+   .. py:attribute:: z
+
+
+   .. py:attribute:: r
+
+
+   .. py:attribute:: vx
+
+
+   .. py:attribute:: vy
+
+
+   .. py:attribute:: vz
+
+
+   .. py:attribute:: v
+
+
+   .. py:attribute:: r_sun
+
+
+   .. py:attribute:: drdt_sun
+
+
+   .. py:attribute:: sun_dir_x
+
+
+   .. py:attribute:: sun_dir_y
+
+
+   .. py:attribute:: sun_dir_z
+
+
+   .. py:attribute:: subsolar_longitude
+
+
+   .. py:attribute:: subsolar_latitude
+
+
+   .. py:attribute:: X
+
+
+   .. py:attribute:: V
+
+
+   .. py:attribute:: sun_dir
+
+
+   .. py:attribute:: rotmat
+
+
+   .. py:method:: to_solar(pts, t)
+
+
+   .. py:method:: zeros(t)
+
+
+   .. py:method:: out_of_shadow(obj, packets)
+
+

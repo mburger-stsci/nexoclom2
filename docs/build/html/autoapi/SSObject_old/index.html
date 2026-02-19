@@ -1,0 +1,330 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SSObject_old &mdash; nexoclom2 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/stsci.css?v=d876f643" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/stsci.css?v=d876f643" />
+
+  
+      <script src="../../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="SSObject_new" href="../SSObject_new/index.html" />
+    <link rel="prev" title="LossRate_old" href="../LossRate_old/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> nexoclom2
+            
+            <img src="../../_static/stsci_pri_combo_mark_white.png" class="logo" />
+          </a>
+
+          
+            
+            
+          
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+  
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../nexoclom2/NEXOCLOM_Requirements_Document.html">NEXOCLOM Goals and Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nexoclom2/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nexoclom2/TestCases.html">NEXOCLOM Test Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nexoclom2/inputfiles.html">Input File Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nexoclom2/planet_distance.html">Solar System Geometries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nexoclom2/coordinate_systems.html">Planetary Coordinate Systems and System Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nexoclom2/surface_interaction.html">Interactions between incident atoms and surfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nexoclom2/integrator.html">Runge-Kutta Integrator &amp; The Equations of Motion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Geometry/index.html">Geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nexoclom2/index.html">nexoclom2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../atomicmass/index.html">atomicmass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../GeometryTime/index.html">GeometryTime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../LossRate_old/index.html">LossRate_old</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SSObject_old</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-contents">Module Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../SSObject_new/index.html">SSObject_new</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../FlatSpeedDist/index.html">FlatSpeedDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../RadialAngDist/index.html">RadialAngDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../GeometryNoTime/index.html">GeometryNoTime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../SurfMapSurfInt/index.html">SurfMapSurfInt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../SSObject_take3/index.html">SSObject_take3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../UniformSpatDist/index.html">UniformSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../SurfMapSpatDist/index.html">SurfMapSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ConstantSurfInt/index.html">ConstantSurfInt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../IsotropicAngDist/index.html">IsotropicAngDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../SurfSpotSpatDist/index.html">SurfSpotSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reformat_gvalues/index.html">reformat_gvalues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../SputteringFluxDist/index.html">SputteringFluxDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../MaxwellianFluxDist/index.html">MaxwellianFluxDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../TwoDRegularSpatDist/index.html">TwoDRegularSpatDist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../TemperatureDependentSurfInt/index.html">TemperatureDependentSurfInt</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">nexoclom2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">API Reference</a></li>
+      <li class="breadcrumb-item active">SSObject_old</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/autoapi/SSObject_old/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-SSObject_old">
+<span id="ssobject-old"></span><h1>SSObject_old<a class="headerlink" href="#module-SSObject_old" title="Link to this heading">¶</a></h1>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#SSObject_old.SSObject" title="SSObject_old.SSObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SSObject</span></code></a></p></td>
+<td><p>Physical data for solar system bodies.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="SSObject_old.SSObject">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SSObject_old.</span></span><span class="sig-name descname"><span class="pre">SSObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SSObject_old.SSObject" title="Link to this definition">¶</a></dt>
+<dd><p>Physical data for solar system bodies.</p>
+<p>Object containing all the necessary physical data for solar system objects.
+Data is stored in a table included with the package. A separate table
+contains the NAIF IDs. If the object is not found in the data table, returns
+an object with just the object name, type = Unknown, and if possible the
+NAIF ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>obj</strong><span class="classifier">str</span></dt><dd><p>Name of the solar system object to gather data for.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>object</strong><span class="classifier">str</span></dt><dd><p>Name of solar system body.</p>
+</dd>
+<dt><strong>orbits</strong><span class="classifier">str</span></dt><dd><p>Object the body orbits.</p>
+</dd>
+<dt><strong>radius</strong><span class="classifier">distance quantity</span></dt><dd><p>Object radius in km.</p>
+</dd>
+<dt><strong>mass</strong><span class="classifier">mass quantity</span></dt><dd><p>Object mass in kg</p>
+</dd>
+<dt><strong>a</strong><span class="classifier">distance quantity</span></dt><dd><p>Object semi-major axis in km for Sun and moons; au for planets</p>
+</dd>
+<dt><strong>e</strong><span class="classifier">float</span></dt><dd><p>Orbital eccentricity</p>
+</dd>
+<dt><strong>tilt</strong><span class="classifier">angle quantity</span></dt><dd><p>Tilt of rotation axis relative to ecliptic in degrees</p>
+</dd>
+<dt><strong>rotperiod</strong><span class="classifier">time quantity</span></dt><dd><p>Siderial rotational period in hours</p>
+</dd>
+<dt><strong>orbperiod</strong><span class="classifier">time quantity</span></dt><dd><p>Sideral orbital period (days)</p>
+</dd>
+<dt><strong>GM</strong><span class="classifier">Quantity</span></dt><dd><p>Mass time gravitational constant in m<sup>3</sup> s<sup>2</sup>.</p>
+</dd>
+<dt><strong>satellites</strong><span class="classifier">list of str or None</span></dt><dd><p>List of satellites of the body</p>
+</dd>
+<dt><strong>type</strong><span class="classifier">{‘Star’, ‘Planet’, or ‘Moon’}</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>References for physical data (Last Verified TBD):</p>
+<p><strong>TO DO</strong></p>
+<ul class="simple">
+<li><p>Verify data and cite references</p></li>
+<li><p>Support for objects not included in the predefined table. Extract</p></li>
+</ul>
+<p>information from the SPICE kernels if possible.</p>
+<p>NAIF IDS found at JPL’s <a class="reference external" href="https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/req/naif_ids.html">Navigation and Ancillary Information
+Facility</a>.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">nexoclom2.solarsystem</span><span class="w"> </span><span class="kn">import</span> <span class="n">SSObject</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">juipiter</span> <span class="o">=</span> <span class="n">SSObject</span><span class="p">(</span><span class="s1">&#39;Jupiter&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">jupiter</span><span class="p">)</span>
+<span class="go">Object: Jupiter</span>
+<span class="go">Type = Planet</span>
+<span class="go">Orbits Sun</span>
+<span class="go">Satellites: Io, Europa, Ganymede, Callisto</span>
+<span class="go">Radius = 71492.00 km</span>
+<span class="go">Mass = 1.90e+27 kg</span>
+<span class="go">a = 5.20 AU</span>
+<span class="go">Eccentricity = 0.05</span>
+<span class="go">Tilt = 3.08 deg</span>
+<span class="go">Rotation Period = 9.93 h</span>
+<span class="go">Orbital Period = 4333.00 d</span>
+<span class="go">GM = -1.27e+17 m3 / s2</span>
+<span class="go">NAIFID = 599</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">jupiter</span><span class="p">))</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hst</span> <span class="o">=</span> <span class="n">SSObject</span><span class="p">(</span><span class="s1">&#39;HST&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">hst</span><span class="p">)</span>
+<span class="go">Object: Hst</span>
+<span class="go">Type = Unknown</span>
+<span class="go">NAIFID = -48</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">jupiter</span> <span class="o">==</span> <span class="n">hst</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Authors<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Matthew Burger</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SSObject_old.SSObject.endtime">
+<span class="sig-name descname"><span class="pre">endtime</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#SSObject_old.SSObject.endtime" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SSObject_old.SSObject.starttime">
+<span class="sig-name descname"><span class="pre">starttime</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#SSObject_old.SSObject.starttime" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SSObject_old.SSObject.object">
+<span class="sig-name descname"><span class="pre">object</span></span><a class="headerlink" href="#SSObject_old.SSObject.object" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SSObject_old.SSObject.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SSObject_old.SSObject.__eq__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SSObject_old.SSObject.__len__">
+<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SSObject_old.SSObject.__len__" title="Link to this definition">¶</a></dt>
+<dd><p>Returns number of satellites + 1</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SSObject_old.SSObject.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SSObject_old.SSObject.__repr__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SSObject_old.SSObject.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SSObject_old.SSObject.__str__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SSObject_old.SSObject.set_up_geometry_for_model">
+<span class="sig-name descname"><span class="pre">set_up_geometry_for_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">runtime</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SSObject_old.SSObject.set_up_geometry_for_model" title="Link to this definition">¶</a></dt>
+<dd><p>Sets up functions to give information needed for model converted to proper units
+:param geometry: Taken from inputs.geometry
+:type geometry: GeometryTime, GeometryNoTime
+:param runtime: From inputs.options.runtime
+:type runtime: astropy Quantity</p>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">..</span></span></dt>
+<dd><p>!! processed by numpydoc !!</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SSObject_old.SSObject._taa_of_t">
+<span class="sig-name descname"><span class="pre">_taa_of_t</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SSObject_old.SSObject._taa_of_t" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SSObject_old.SSObject._r_of_taa">
+<span class="sig-name descname"><span class="pre">_r_of_taa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">taa</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SSObject_old.SSObject._r_of_taa" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SSObject_old.SSObject._r_of_t">
+<span class="sig-name descname"><span class="pre">_r_of_t</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SSObject_old.SSObject._r_of_t" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SSObject_old.SSObject._drdt_of_t">
+<span class="sig-name descname"><span class="pre">_drdt_of_t</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SSObject_old.SSObject._drdt_of_t" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SSObject_old.SSObject.moon_subsolar_longitude">
+<span class="sig-name descname"><span class="pre">moon_subsolar_longitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SSObject_old.SSObject.moon_subsolar_longitude" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../LossRate_old/index.html" class="btn btn-neutral float-left" title="LossRate_old" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../SSObject_new/index.html" class="btn btn-neutral float-right" title="SSObject_new" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Matthew Burger.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

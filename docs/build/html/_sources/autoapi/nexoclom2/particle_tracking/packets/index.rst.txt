@@ -1,0 +1,68 @@
+nexoclom2.particle_tracking.packets
+===================================
+
+.. py:module:: nexoclom2.particle_tracking.packets
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.packets.Packets
+
+
+Module Contents
+---------------
+
+.. py:class:: Packets(prev)
+
+   
+   Class to hold components needed for an rkstep
+
+   See Numerical Recipes, 3rd edition, chapter 17.2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: time
+
+
+   .. py:attribute:: X
+
+
+   .. py:attribute:: V
+
+
+   .. py:attribute:: frac
+
+
+   .. py:attribute:: accel
+
+
+   .. py:attribute:: ioniz
+
+
+   .. py:method:: __getitem__(q)
+
+
+   .. py:method:: __len__()
+
+
+   .. py:method:: add_deriv(d)
+
+

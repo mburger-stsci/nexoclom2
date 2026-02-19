@@ -1,0 +1,154 @@
+MaxwellianFluxDist
+==================
+
+.. py:module:: MaxwellianFluxDist
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   MaxwellianFluxDist.MaxwellianFluxDist
+
+
+Module Contents
+---------------
+
+.. py:class:: MaxwellianFluxDist(sparam: dict)
+
+   Bases: :py:obj:`nexoclom2.initial_state.InputClass.InputClass`
+
+
+   
+   Defines a Maxwellian flux distribution from the surface.
+
+   Sets up an initial flux distribution with a Maxwellian speed distribution.
+   see :ref:`maxwellianspeeddist` for more details.
+
+   :Parameters:
+
+       **sparam** : dict
+           Key, value for defining the distribution
+
+   :Attributes:
+
+       **temperature** : astropy quantity
+           ..
+
+       **species** : Atom
+           Particle being ejected
+
+       **v_th** : astropy quantity
+           Thermal speed
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: __name__
+      :value: 'MaxwellianFluxDist'
+
+
+
+   .. py:method:: pdf(v)
+
+      
+      Probability Distribution Function
+      Needs to be unitless
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: support()
+
+      
+
+
+
+
+
+
+      :Returns:
+
+          tuple with valid range for the PDF
+              ..
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: choose_points(n_packets, randgen=None)
+
+      
+      Compute random deviates from arbitrary 1D distribution.
+      f_x does not need to integrate to 1. The function normalizes the
+      distribution. Uses Transformation method (Numerical Recipes, 7.3.2)
+
+
+      :Parameters:
+
+          **n_packets** : int
+              The number of random deviates to compute
+
+          **randgen** : numpy.random._generator.Generator
+              ..
+
+
+
+      :Returns:
+
+          numpy array of length num chosen from the distribution f_x.
+              ..
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

@@ -1,0 +1,19 @@
+nexoclom2.atomicdata.read_torus
+===============================
+
+.. py:module:: nexoclom2.atomicdata.read_torus
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.atomicdata.read_torus.IoTorus
+
+
+Module Contents
+---------------
+
+.. py:class:: IoTorus(load_interpolator=False)
+

@@ -1,0 +1,327 @@
+nexoclom2.solarsystem
+=====================
+
+.. py:module:: nexoclom2.solarsystem
+
+.. autoapi-nested-parse::
+
+   
+   Classes and functions for working with solar system data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/nexoclom2/solarsystem/IoTorus/index
+   /autoapi/nexoclom2/solarsystem/IoTorus_bak/index
+   /autoapi/nexoclom2/solarsystem/SSObject/index
+   /autoapi/nexoclom2/solarsystem/SSObject_bak/index
+   /autoapi/nexoclom2/solarsystem/SSPosition/index
+   /autoapi/nexoclom2/solarsystem/SSPositionTime/index
+   /autoapi/nexoclom2/solarsystem/TorusImage/index
+   /autoapi/nexoclom2/solarsystem/VoyagerTorus/index
+   /autoapi/nexoclom2/solarsystem/load_kernels/index
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.solarsystem.SSObject
+   nexoclom2.solarsystem.SSPositionTime
+   nexoclom2.solarsystem.IoTorus
+
+
+Package Contents
+----------------
+
+.. py:class:: SSObject(obj: str)
+
+   
+   Physical data for solar system bodies.
+       Object containing all the necessary physical data for solar system objects.
+       Data is stored in a table included with the package. A separate table
+       contains the NAIF IDs. If the object is not found in the data table, returns
+       an object with just the object name, type = Unknown, and if possible the
+       NAIF ID.
+
+
+   :Parameters:
+
+       **obj** : str
+           Name of the solar system object to gather data for.
+
+   :Attributes:
+
+       **object: str**
+               Name of solar system body. Source: input parameter
+           orbits: str
+               Object the body orbits. Source: PlanetaryConstants.csv
+           radius : distance quantity
+               Object radius. Source: SPICE
+           unit: astropy unit
+               Named: R_<object>
+           GM: Quantity
+               Mass times gravitational constant. Source: SPICE
+           mass: mass quantity
+               Object mass in kg. Source: GM from SPICE
+           a: distance quantity
+               Object semi-major axis. Source: SPICE
+           e: float
+               Orbital eccentricity. For planets: Source SPICE. For moons: Set to 0.
+               This only affects calculations when a modeltime is not specified and
+               is a small affect.
+           tilt: angle quantity
+               Tilt of rotation axis relative to ecliptic in degrees.
+               Source: PlanetaryConstants.csv
+           rotperiod: time quantity
+               Siderial rotational period in hours. Source: PlanetaryConstants.csv
+           orbperiod: time quantity
+               Sideral orbital period. Source: SPICE
+           orbvel: velocity quantity
+               :math:`v_{orb} =
+
+       **rac{2 \pi a}{orbperiod}`**
+           satellites: list of str or None
+               List of satellites of the body. Source: PlanetaryConstants.csv
+           type : {'Star', 'Planet', or 'Moon'}
+               Source: PlanetaryConstants.csv
+           naifid : int
+               Source: naifids.csv
+
+
+
+
+
+
+
+
+
+
+
+
+   .. rubric:: Examples
+
+   >>> from nexoclom2.solarsystem import SSObject
+   >>> jupiter = SSObject('Jupiter')
+   >>> print(jupiter)
+   Object: Jupiter
+   Type = Planet
+   Orbits Sun
+   Satellites: Io, Europa, Ganymede, Callisto
+   Radius = 71492.00 km
+   Mass = 1.90e+27 kg
+   a = 5.20 AU
+   Eccentricity = 0.05
+   Tilt = 3.08 deg
+   Rotation Period = 9.93 h
+   Orbital Period = 4333.00 d
+   GM = -1.27e+17 m3 / s2
+   NAIFID = 599
+   >>> print(len(jupiter))
+   5
+   >>> hst = SSObject('HST')
+   >>> print(hst)
+   Object: Hst
+   Type = Unknown
+   NAIFID = -48
+   >>> print(jupiter == hst)
+   False
+
+   :Authors: Matthew Burger
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: object
+
+
+   .. py:method:: __eq__(other)
+
+
+   .. py:method:: __len__()
+
+      
+      Returns number of satellites + 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: __repr__()
+
+
+   .. py:method:: __str__()
+
+
+.. py:class:: SSPositionTime(ssobject, geometry, runtime, ntimes=1000)
+
+   Bases: :py:obj:`nexoclom2.solarsystem.SSPosition.SSPosition`
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   * subsolar_longitude and subsolar_latitude for moons refers to the planet's
+   subsolar longitude and latitude. If, for example running an Io model
+   centered at Io, need to know Jupiter's CML.
+
+   * SPICE aberation correction = 'LT+S'. The observer can be set in the
+   geometry inputs.
+
+   * Method for calculating sub-solar point = 'INTERCEPT/ELLIPSOID'
+
+   * Body-fixed latitude/longitude calculated using SPICE native IAU frames.
+
+   * Solar-fixed frames based on Jupiter-De-Spun-Sun (JUNO_JSS) frame (Bagenal &
+   Wilson 2016). These frame have z-axis aligned with spin vector, x-axis
+   directed toward the Sun, and y = z cross x.
+
+   NAIF IDS found at JPL's `Navigation and Ancillary Information
+   Facility <https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/req/naif_ids.html>`_.
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: endtime
+
+
+   .. py:attribute:: starttime
+
+
+   .. py:attribute:: abcor
+      :value: 'None'
+
+
+
+.. py:class:: IoTorus(source='Voyager')
+
+   .. py:attribute:: source
+      :value: 'Voyager'
+
+
+
+   .. py:attribute:: M
+
+
+   .. py:attribute:: n_e
+
+
+   .. py:attribute:: T_e
+
+
+   .. py:attribute:: H_e
+
+
+   .. py:attribute:: T_i
+
+
+   .. py:attribute:: ions
+
+
+   .. py:attribute:: n_i
+
+
+   .. py:attribute:: H_i
+
+
+   .. py:attribute:: planet
+
+
+   .. py:method:: xyz_to_Mzeta(x, y, z, cml)
+
+
+   .. py:method:: n_and_T(species, x, y, z, cml)
+
+
+   .. py:method:: distance_along_field_line(L, theta_c, theta_p)
+
+      
+      Calculate the distance along the dipole field line
+
+
+      :Parameters:
+
+          **L: astropy Quantity**
+              L (or modified L) - Field line through magnetic equator
+
+          **theta_c: astropy Quantity**
+              Angle from magnetic equator to centrifugal equator
+
+          **theta_p: astropy Quantity**
+              Angle from magnetic equator to packet
+
+
+
+      :Returns:
+
+          Distance along field line
+              ..
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

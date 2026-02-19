@@ -1,0 +1,198 @@
+nexoclom2.initial_state.InputClass
+==================================
+
+.. py:module:: nexoclom2.initial_state.InputClass
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.initial_state.InputClass.InputClass
+
+
+Module Contents
+---------------
+
+.. py:class:: InputClass(sparam: (dict, tinydb.table.Document))
+
+   
+   Base class for Input subclasses.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:method:: __eq__(other)
+
+
+   .. py:method:: _check_value(value, rng, include_min=True, include_max=True)
+
+      
+      Verify a value is in the proper range
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: __str__()
+
+
+   .. py:method:: __repr__()
+
+
+   .. py:method:: pdf(v)
+
+
+   .. py:method:: support()
+
+
+   .. py:method:: cdf(x)
+
+      
+      Cumulative Distribution Function
+
+      pdf must be defined in the distribution if you want to use the cdf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: generate1d(n_packets, randgen=None)
+
+      
+      Compute random deviates from arbitrary 1D distribution.
+      f_x does not need to integrate to 1. The function normalizes the
+      distribution. Uses Transformation method (Numerical Recipes, 7.3.2)
+
+
+      :Parameters:
+
+          **n_packets** : int
+              The number of random deviates to compute
+
+          **randgen** : numpy.random._generator.Generator
+              ..
+
+
+
+      :Returns:
+
+          numpy array of length num chosen from the distribution f_x.
+              ..
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: generate_sphere(n_packets, randgen)
+
+      
+      Create random deviates (longitude, latitude) from a distribution on a sphere
+
+      Uses the rejection mechanism to choose random points on the surface
+      according to a specified distribution. Note that the distribution needs
+      to be defined in longitude and sin(latitude) for proper determination on
+      a sphere. Also, the probability distribution function (pdf) in the
+      distribution class must vary between 0 and 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: query()
+
+      
+      Find matching records in the database
+
+
+
+
+
+      :Returns:
+
+          Tuple of matching doc_ids.
+              ..
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

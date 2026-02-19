@@ -1,0 +1,279 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Runge-Kutta Integrator &amp; The Equations of Motion &mdash; nexoclom2 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/stsci.css?v=d876f643" />
+      <link rel="stylesheet" type="text/css" href="../_static/stsci.css?v=d876f643" />
+
+  
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Atomic Data" href="atomicdata.html" />
+    <link rel="prev" title="Neutral Loss Rates" href="lossrates.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> nexoclom2
+            
+            <img src="../_static/stsci_pri_combo_mark_white.png" class="logo" />
+          </a>
+
+          
+            
+            
+          
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+  
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="NEXOCLOM_Requirements_Document.html">NEXOCLOM Goals and Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TestCases.html">NEXOCLOM Test Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputfiles.html">Input File Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="planet_distance.html">Solar System Geometries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coordinate_systems.html">Planetary Coordinate Systems and System Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="surface_interaction.html">Interactions between incident atoms and surfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lossrates.html">Neutral Loss Rates</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Runge-Kutta Integrator &amp; The Equations of Motion</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-equations-of-motion">The Equations of Motion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="atomicdata.html">Atomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="particle_tracking.html">Particle Tracking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nexoclom2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Runge-Kutta Integrator &amp; The Equations of Motion</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/nexoclom2/integrator.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="runge-kutta-integrator-the-equations-of-motion">
+<h1>Runge-Kutta Integrator &amp; The Equations of Motion<a class="headerlink" href="#runge-kutta-integrator-the-equations-of-motion" title="Link to this heading">¶</a></h1>
+<section id="the-equations-of-motion">
+<h2>The Equations of Motion<a class="headerlink" href="#the-equations-of-motion" title="Link to this heading">¶</a></h2>
+<p>Two forces act on atoms ejected into the exosphere: gravity from each object in
+the system and radiation pressure. The components of the gravitational force are
+given by:</p>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">F_i &amp; = &amp; \sum_p GM (x_i - x_{pi})/r_p^3 \\
+r_p &amp; = &amp; \sqrt\left(\sum_j (x_j - x_{pj})^2\right)</span>)</p>
+<p>latex exited with error
+[stdout]
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=latex)
+ restricted \write18 enabled.
+entering extended mode
+(./math.tex
+LaTeX2e &lt;2022-11-01&gt; patch level 1
+L3 programming layer &lt;2023-03-30&gt;
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/size12.clo))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/anyfontsize/anyfontsize.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/tools/bm.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-dvips.def)
+No file math.aux.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd)
+! Extra alignment tab has been changed to \cr.
+&lt;template&gt; }$\hfill \endtemplate 
+                                 
+l.15 ...(\sum_j (x_j - x_{pj})^2\right)\end{split}
+                                                  
+! Extra alignment tab has been changed to \cr.
+&lt;template&gt; }$\hfill \endtemplate 
+                                 
+l.15 ...(\sum_j (x_j - x_{pj})^2\right)\end{split}
+                                                  
+! Missing { inserted.
+&lt;to be read again&gt; 
+                   \left 
+l.15 ...(\sum_j (x_j - x_{pj})^2\right)\end{split}
+                                                  
+! Missing } inserted.
+&lt;inserted text&gt; 
+                }
+l.15 ...(\sum_j (x_j - x_{pj})^2\right)\end{split}
+                                                  
+! Extra alignment tab has been changed to \cr.
+&lt;template&gt; }$\hfill \endtemplate 
+                                 
+l.15 ...(\sum_j (x_j - x_{pj})^2\right)\end{split}
+                                                  
+! Extra alignment tab has been changed to \cr.
+&lt;template&gt; }$\hfill \endtemplate 
+                                 
+l.15 ...(\sum_j (x_j - x_{pj})^2\right)\end{split}
+                                                  
+! Missing { inserted.
+&lt;to be read again&gt; 
+                   \left 
+l.15 ...(\sum_j (x_j - x_{pj})^2\right)\end{split}
+                                                  
+! Missing } inserted.
+&lt;inserted text&gt; 
+                }
+l.15 ...(\sum_j (x_j - x_{pj})^2\right)\end{split}
+                                                  
+[1] (./math.aux) )
+(see the transcript file for additional information)
+Output written on math.dvi (1 page, 840 bytes).
+Transcript written on math.log.
+</p>
+</aside>
+<p>where in the first equation <img class="math" src="../_images/math/c67734af70861b2bd4dedf5c41c9aad231466f84.png" alt="x_i"/> are the components of the particle
+location and <img class="math" src="../_images/math/2f1a19de4cb00e6238a1a1dc566bb05bde210b93.png" alt="x_{pi}"/> are the components of object <img class="math" src="../_images/math/141bbefb74014fc5e43499901bf78607ae335583.png" alt="p"/> in the
+system and the sum is over all objcts included. The second equation gives the
+distances between each particle and object.</p>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">y_x(t) &amp; = &amp; x(t_0) + \frac{dx}{dt} t \\
+y_{vx}(t) &amp; = &amp; v_x(t_0) + \frac{d^2x}{dt} t \\
+f(t) &amp; = &amp; e^{-t \nu}</span>)</p>
+<p>latex exited with error
+[stdout]
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=latex)
+ restricted \write18 enabled.
+entering extended mode
+(./math.tex
+LaTeX2e &lt;2022-11-01&gt; patch level 1
+L3 programming layer &lt;2023-03-30&gt;
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/size12.clo))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/anyfontsize/anyfontsize.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/tools/bm.sty)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-dvips.def)
+(./math.aux) (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd)
+! Extra alignment tab has been changed to \cr.
+&lt;template&gt; }$\hfill \endtemplate 
+                                 
+l.16 f(t) &amp; = &amp; e^{-t \nu}\end{split}
+                                     
+! Extra alignment tab has been changed to \cr.
+&lt;template&gt; }$\hfill \endtemplate 
+                                 
+l.16 f(t) &amp; = &amp; e^{-t \nu}\end{split}
+                                     
+! Extra alignment tab has been changed to \cr.
+&lt;template&gt; }$\hfill \endtemplate 
+                                 
+l.16 f(t) &amp; = &amp; e^{-t \nu}\end{split}
+                                     
+! Extra alignment tab has been changed to \cr.
+&lt;template&gt; }$\hfill \endtemplate 
+                                 
+l.16 f(t) &amp; = &amp; e^{-t \nu}\end{split}
+                                     
+! Extra alignment tab has been changed to \cr.
+&lt;template&gt; }$\hfill \endtemplate 
+                                 
+l.16 f(t) &amp; = &amp; e^{-t \nu}\end{split}
+                                     
+! Extra alignment tab has been changed to \cr.
+&lt;template&gt; }$\hfill \endtemplate 
+                                 
+l.16 f(t) &amp; = &amp; e^{-t \nu}\end{split}
+                                     
+[1] (./math.aux) )
+(see the transcript file for additional information)
+Output written on math.dvi (1 page, 788 bytes).
+Transcript written on math.log.
+</p>
+</aside>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="lossrates.html" class="btn btn-neutral float-left" title="Neutral Loss Rates" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="atomicdata.html" class="btn btn-neutral float-right" title="Atomic Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Matthew Burger.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

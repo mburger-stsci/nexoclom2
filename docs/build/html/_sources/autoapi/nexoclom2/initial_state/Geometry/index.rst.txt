@@ -1,0 +1,130 @@
+:py:mod:`nexoclom2.initial_state.Geometry`
+==========================================
+
+.. py:module:: nexoclom2.initial_state.Geometry
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   nexoclom2.initial_state.Geometry.Geometry
+
+
+
+
+.. py:class:: Geometry(gparam: (dict, tinydb.table.Document))
+
+
+   Bases: :py:obj:`nexoclom2.initial_state.InputClass.InputClass`
+
+   
+   Solar System geometry information
+
+   Defines the position of the central object and satellites relative to
+   the Sun and one another. See :ref:`geometry` for more information.
+
+   :Parameters:
+
+       **gparams** : dict
+           keys, values for defining system geometry.
+
+
+
+
+
+
+
+
+
+
+
+
+   :Attributes:
+
+       **planet** : str
+           Central body for the model
+
+       **startpoint** : str
+           Object from which packets are ejected.
+
+       **included** : tuple of str
+           Objects included in calculations.
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:method:: __repr__()
+
+      
+      Return repr(self).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: __str__()
+
+      
+      Override of superclass __str__
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: __eq__(other)
+
+      
+      Return self==value.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

@@ -1,0 +1,44 @@
+nexoclom2.particle_tracking.bs_integrator
+=========================================
+
+.. py:module:: nexoclom2.particle_tracking.bs_integrator
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.bs_integrator.bsIntegrator
+
+
+Module Contents
+---------------
+
+.. py:class:: bsIntegrator
+
+   
+   Bulirsch-Stoer integrator
+
+   From Numerical Recipes, 3rd ed., Ch 17.3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:method:: step(prev_step, output, h)
+
+

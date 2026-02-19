@@ -1,0 +1,108 @@
+:py:mod:`nexoclom2.particle_tracking.Integrator_xarray`
+=======================================================
+
+.. py:module:: nexoclom2.particle_tracking.Integrator_xarray
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.Integrator_xarray.Integrator
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.Integrator_xarray.c
+   nexoclom2.particle_tracking.Integrator_xarray.b
+   nexoclom2.particle_tracking.Integrator_xarray.bs
+   nexoclom2.particle_tracking.Integrator_xarray.bd
+   nexoclom2.particle_tracking.Integrator_xarray.a
+
+
+.. py:data:: c
+
+   
+
+.. py:data:: b
+
+   
+
+.. py:data:: bs
+
+   
+
+.. py:data:: bd
+
+   
+
+.. py:data:: a
+
+   
+
+.. py:class:: Integrator(output)
+
+
+   
+   Runge Kutta integrator
+
+   Can run with either constant or variable step size.
+
+   :Parameters:
+
+       **output** : Output
+           nexoclom2 Output class
+
+   :Returns:
+
+       Final state of the system
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:method:: step(prev, h, output)
+
+      
+      Perform a single rk5 step.
+
+      See Numerical Recipes, 3rd edition, chapter 17.2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

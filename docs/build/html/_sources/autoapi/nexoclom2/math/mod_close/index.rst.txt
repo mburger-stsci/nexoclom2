@@ -1,0 +1,78 @@
+nexoclom2.math.mod_close
+========================
+
+.. py:module:: nexoclom2.math.mod_close
+
+.. autoapi-nested-parse::
+
+   Determines whether two values are close in a modular system
+
+   ..
+       !! processed by numpydoc !!
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   nexoclom2.math.mod_close.mod_close
+
+
+Module Contents
+---------------
+
+.. py:function:: mod_close(a, b, period=2 * np.pi, atol=1e-08)
+
+   
+   Wrapper for np.isclose for values close to the periodic boundary
+   Decision Chart
+
+   ==== ====    ==========
+   A    B       Comparison
+   ==== ====    ==========
+   low  low     :math:`|A - B| \leq \delta`
+   low  mid     :math:`|A - B| \leq \delta`
+   low  high    :math:`|(A + P) - B| \leq \delta`
+   mid  low     :math:`|A - B| \leq \delta`
+   mid  mid     :math:`|A - B| \leq \delta`
+   mid  high    :math:`|A - B| \leq \delta`
+   high low     :math:`|A - (B - P)| \leq \delta`
+   high mid     :math:`|A - B| \leq \delta`
+   high high    :math:`|A - B| \leq \delta`
+   ==== ====    ==========
+
+   where low = :math:`x \leq \delta`, mid = :math:`\delta \leq x < P-\delta` and
+   high = :math:`x \geq P - \delta`.
+
+   :param a: Inputs to compare. Must be single valued.
+   :type a: int, float
+   :param b: Inputs to compare. Must be single valued.
+   :type b: int, float
+   :param period:
+   :type period: float, Default = 2π
+   :param atol: The absolute tolerance parameter
+   :type atol: float
+
+   :Returns:
+
+       Bool
+           ..
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   Uses `numpy.isclose() <https://docutils.sourceforge.io/rst.html>`_ with
+   default relative tolerance and abolute tolerance defined by `atol` parameter.
+
+
+
+   ..
+       !! processed by numpydoc !!
+

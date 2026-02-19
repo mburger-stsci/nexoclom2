@@ -1,0 +1,170 @@
+nexoclom2.particle_tracking.Output
+==================================
+
+.. py:module:: nexoclom2.particle_tracking.Output
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.Output.Output
+
+
+Module Contents
+---------------
+
+.. py:class:: Output(inputs, n_packets=0, n_iterations=1, compress=True, overwrite=False)
+
+   
+   Class to store compute particle trajectories and store the results.
+
+
+   :Parameters:
+
+       **inputs** : Input
+           ..
+
+       **n_packets** : int
+           ..
+
+       **compress** : bool, Default=True
+           ..
+
+   :Attributes:
+
+       **inputs: Input**
+           The inputs used in this model run.
+
+       **n_packets: int, float**
+           Total number of packets to run
+
+       **compress: Bool**
+           If True removes packets with frac=0 from the saved output, Default = True
+
+       **starting_point: ndarray**
+           Initial state relative to startpoint with standard units. Columns are
+           time (s), x (km), y (km), z (km), r (km), vx (km/s), vy (km/s),
+           (km/s), v (km/s), frac, longitude (rad), latitude (rad),
+           local_time (hr), altitude (rad), azimuth (rad)
+
+       **final_state: ndarray**
+           ..
+
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   The user will not generally call this directly but will instead use
+   ``inputs.run()``.
+
+   All calculations will be done in units of s, km, km/s, rad and converted
+   to more appropriate units at the end.
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: inputs
+
+
+   .. py:attribute:: compress
+      :value: True
+
+
+
+   .. py:attribute:: randgen
+
+
+   .. py:attribute:: center
+
+
+   .. py:attribute:: startpoint
+
+
+   .. py:attribute:: objects
+
+
+   .. py:attribute:: positions
+
+
+   .. py:attribute:: unit
+      :value: None
+
+
+
+   .. py:attribute:: species
+
+
+   .. py:method:: initialize_objects()
+
+
+   .. py:method:: _remove()
+
+
+   .. py:method:: _start_outputfile()
+
+
+   .. py:method:: _save_starting_point(starting_point)
+
+
+   .. py:method:: save_final_state(final_state)
+
+
+   .. py:method:: starting_point(iteration=None, n_packets=None)
+
+      
+
+
+
+      :Parameters:
+
+          **iteration**
+              ..
+
+          **n_packets**
+              ..
+
+
+
+      :Returns:
+
+          StartingPoint
+              ..
+
+
+
+
+
+
+
+
+      .. rubric:: Notes
+
+      If iteration and n_packets are both given, iteration number takes
+      precedence.
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: initial_state(iteration=None, n_packets=None)
+
+
+   .. py:method:: to_planet_coords(time, X, V)
+
+
+   .. py:method:: final_state(which=None, to_planet_coords=False)
+
+

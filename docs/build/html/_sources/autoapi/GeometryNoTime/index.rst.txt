@@ -1,0 +1,118 @@
+GeometryNoTime
+==============
+
+.. py:module:: GeometryNoTime
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   GeometryNoTime.GeometryNoTime
+
+
+Module Contents
+---------------
+
+.. py:class:: GeometryNoTime(gparam)
+
+   Bases: :py:obj:`nexoclom2.initial_state.Geometry`
+
+
+   
+   Geometry Without Time Class
+
+   Set the system geometry manually.
+
+   Parameters set here
+
+   * phi: orbital phase/subsolar longitude for each satellite in degrees
+   * subsolarpoint
+   * taa: true anomaly in degrees, Default = 0
+   * dtaa: true anomaly tolerance in degrees, Default = 2º
+
+   Parameters set by Geometry base class
+
+   * center
+   * startpoint: Default = center
+   * included: Default = (center, startpoint)
+
+   See :ref:`geometry` for more information.
+
+   :Parameters:
+
+       **gparam** : dict
+           keys, values for defining system geometry.
+
+   :Attributes:
+
+       **center** : str
+           Central body for the model
+
+       **startpoint** : str
+           Object from which packets are ejected.
+
+       **included** : list of str
+           Objects included in calculations.
+
+       **phi** : dict
+           Orbital phase angle for each included satellite.
+
+       **subsolarpoint** : tuple of astropy quantities
+           Longitude and latitude of the sub-solar point on the center object.
+
+       **taa** : astropy quantity
+           The center object's true anomaly angle. If central object is a moon,
+           use planet's TAA
+
+       **dtaa** : astropy quantity
+           Tolerance for true anomaly differences in model searches.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: __name__
+      :value: 'GeometryNoTime'
+
+
+
+   .. py:method:: __str__()
+
+      
+      Override of superclass __str__
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: __eq__(other)
+
+

@@ -1,0 +1,58 @@
+nexoclom2.particle_tracking.compute_accel
+=========================================
+
+.. py:module:: nexoclom2.particle_tracking.compute_accel
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.compute_accel.compute_accel
+
+
+Module Contents
+---------------
+
+.. py:function:: compute_accel(packets, output)
+
+   
+   Compute acceleration due to gravity and radiation pressure
+
+
+   :Parameters:
+
+       **packets: nexoclom2 Packets object**
+           ..
+
+       **output: nexoclom2 Output object**
+           ..
+
+
+
+   :Returns:
+
+       Numpy array with 3 components of the acceleration.
+           ..
+
+
+
+
+
+
+
+   .. seealso::
+
+
+       :obj:`nexoclom2.particle_tracking.packets.Packets`
+           ..
+       :obj:`nexoclom2.particle_tracking.Output.Output`
+           ..
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+

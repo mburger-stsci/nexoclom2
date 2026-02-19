@@ -1,0 +1,83 @@
+:py:mod:`nexoclom2.solarsystem.PlanetGeometryTime`
+==================================================
+
+.. py:module:: nexoclom2.solarsystem.PlanetGeometryTime
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   nexoclom2.solarsystem.PlanetGeometryTime.PlanetGeometryTime
+
+
+
+
+.. py:class:: PlanetGeometryTime(geometry, runtime)
+
+
+   
+   Contains planetary geometry information needed by the model.
+
+   Given start and times, uses the
+   `JPL Horizons python API <https://astroquery.readthedocs.io/en/latest/jplhorizons/jplhorizons.html>`_
+   to compute the geometries of the planet and its moons for all times between
+   the beginning and end of the simulation.
+
+   Everything is returned dimensionless.
+
+   :Parameters:
+
+       **geometry** : GeometryTime object
+           Taken from inputs.geometry
+
+       **runtime** : astropy Quantity
+           Total run time for model. Taken from inputs.options.endtime
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   taa, r_sun, and drdt_sun are single-valued. subsolar_longitude and
+   subsolar_latitude are functions.
+
+
+
+   :Attributes:
+
+       **starttime** : astropy Time
+           ..
+
+       **endtime** : astropy Time
+           ..
+
+       **taa** : float
+           True anomaly angle at model endtime (radians)
+
+       **r_sun** : float
+           Distance from Sun at model endtime (au)
+
+       **drdt_sun** : float
+           Radial velocity relative to Sun at model endtime (R_planet/s)
+
+       **subsolar_longitude: function**
+           Lambda function that computes subsolar longitude as function of time (radians)
+
+       **subsolar_latitude: function**
+           Lambda function that should compute subsolar latitude as function of time
+           but currently just returns a constant. (radians)
+
+
+   ..
+       !! processed by numpydoc !!
+

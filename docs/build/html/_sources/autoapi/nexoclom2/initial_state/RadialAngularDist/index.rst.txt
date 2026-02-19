@@ -1,0 +1,53 @@
+:py:mod:`nexoclom2.initial_state.RadialAngularDist`
+===================================================
+
+.. py:module:: nexoclom2.initial_state.RadialAngularDist
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   nexoclom2.initial_state.RadialAngularDist.RadialAngularDist
+
+
+
+
+.. py:class:: RadialAngularDist(sparam=None)
+
+
+   Bases: :py:obj:`nexoclom2.initial_state.InputClass.InputClass`
+
+
+   Angular distribution with all particles ejected radialy from the surface
+
+
+   :Parameters:
+
+       **sparam** : None, TinyDB Document
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+   :Attributes:
+
+       **type** : 'radial'
+           ..
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:method:: choose_points(n_packets, randgen=None)

@@ -1,0 +1,51 @@
+nexoclom2.solarsystem.load_kernels
+==================================
+
+.. py:module:: nexoclom2.solarsystem.load_kernels
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.solarsystem.load_kernels.SpiceKernels
+
+
+Module Contents
+---------------
+
+.. py:class:: SpiceKernels(object)
+
+   .. py:attribute:: kernels
+      :value: []
+
+
+
+   .. py:method:: unload()
+
+
+   .. py:method:: load_kernels(kernels)
+
+      
+      Manually load a kernel or kernels
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

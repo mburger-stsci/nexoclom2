@@ -1,0 +1,47 @@
+:py:mod:`nexoclom2.initial_state.ConstantSurfaceInteraction`
+============================================================
+
+.. py:module:: nexoclom2.initial_state.ConstantSurfaceInteraction
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   nexoclom2.initial_state.ConstantSurfaceInteraction.ConstantSurfaceInteraction
+
+
+
+
+.. py:class:: ConstantSurfaceInteraction(sparam: (dict, tinydb.table.Document))
+
+
+   Bases: :py:obj:`nexoclom2.initial_state.InputClass.InputClass`
+
+   
+   Surface interaction with constant sticking coefficient and accomodation factor
+
+   :param sparams: keys, values for defining surface interactions.
+   :type sparams: dict
+
+   :Attributes:
+
+       **sticktype** : 'ConstantSurfaceInteraction'
+           ..
+
+       **stickcoef** : float
+           Sticking coefficient between 0 (no sticking) and 1 (complete sticking).
+           Default = 1.
+
+       **accomfactor** : float
+           Accommodation factor between 0 (elastic scattering) and 1 (complete
+           accommodation to surface temperature). Required if stickcoef < 1.
+
+
+   ..
+       !! processed by numpydoc !!
+

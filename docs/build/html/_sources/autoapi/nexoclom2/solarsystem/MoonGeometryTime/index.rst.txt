@@ -1,0 +1,137 @@
+:py:mod:`nexoclom2.solarsystem.MoonGeometryTime`
+================================================
+
+.. py:module:: nexoclom2.solarsystem.MoonGeometryTime
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   nexoclom2.solarsystem.MoonGeometryTime.MoonGeometryTime
+
+
+
+
+.. py:class:: MoonGeometryTime(moonname, geometry, runtime)
+
+
+   
+   Contains satellite geometry information needed by the model
+
+
+   :Parameters:
+
+       **moonname** : str
+           ..
+
+       **geometry** : GeometryTime object
+           ..
+
+       **runtime** : astropy Quantity
+           Taken from inputs.options.runtime
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   * For subplanet_longitude and subplanet_latitude, moons are assumed to be tidally
+   locked.
+
+   * The subsolar_longitude is taken to be the orbital position of the moon.
+
+   * The subsolar_longitude is taken to be the orbital position of the moon. Will
+   need to revisit this for a moon that isn't tidally locked.
+
+   * Could look at difference between subsolar longitude and subplanet longitudes
+
+   * HORIZONS has Earth's moon's subsolar longitude decreasing with time.
+     I've redefined it to be increasing for consistency with other planets.
+
+   .. warning::
+
+       This does not compute the velocity vectors of the satellites correctly.
+       I currently assume the motion is consistent with a circular orbit in
+       the x-y plane. I would like to include the off-axis component of the
+       radiation pressure.
+
+
+
+   :Attributes:
+
+       **starttime** : astropy Time
+           ..
+
+       **endtime** : astropy Time
+           ..
+
+       **subplanet_longitude** : function
+           Sub-planet longitude (radians)
+
+       **subplanet_latitude** : function
+           Sub-planet latitude (radians)
+
+       **r_planet** : function
+           Distance from planet (R_planet)
+
+       **x_planet, y_planet, z_planet** : function
+           Location of moon in model coordinates (R_planet)
+
+       **drdt_planet** : function
+           Radial velocity relative to planet (R_planet/s)
+
+       **dxdt_planet, dydt_planet, dzdt_planet** : function
+           Components of moon velocity vector (R_planet/s)
+
+       **subsolar_longitude** : function
+           Equal to the orbital phase. (radians)
+
+       **subsolar_latitude** : function
+           (radians)
+
+       **r_sun** : function
+           Distance from Sun (au)
+
+       **drdt_sun** : function
+           Radial velocity relative to Sun (R_planet/s)
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:method:: xyz_planet(times)
+
+      
+      Location of planet in model coordinates returned as xr.DataArray
+      :param times:
+
+      :Returns:
+
+          xr.DataArray with location of each packet at specified times. (R_planet)
+              ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

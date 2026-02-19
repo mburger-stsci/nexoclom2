@@ -1,0 +1,60 @@
+:py:mod:`nexoclom2.initial_state.SurfaceInteraction`
+====================================================
+
+.. py:module:: nexoclom2.initial_state.SurfaceInteraction
+
+.. autoapi-nested-parse::
+
+   Keep this for setting other surface interaction types.
+
+   ..
+       !! processed by numpydoc !!
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   nexoclom2.initial_state.SurfaceInteraction.SurfaceInteraction
+
+
+
+
+.. py:class:: SurfaceInteraction(sparam: (dict, tinydb.table.Document))
+
+
+   
+   Set parameters for surface interactions.
+
+   Set parameters for interactions between the surface and atoms that return
+   to the surface. See :ref:`surfaceinteractions` for more information.
+
+   :Parameters:
+
+       **sparams** : dict
+           keys, values for defining surface interactions.
+
+
+
+
+
+
+
+
+
+
+
+
+   :Attributes:
+
+       ****
+           ..
+
+
+   ..
+       !! processed by numpydoc !!
+

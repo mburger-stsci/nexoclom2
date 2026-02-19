@@ -1,0 +1,76 @@
+nexoclom2.particle_tracking.state_vectors
+=========================================
+
+.. py:module:: nexoclom2.particle_tracking.state_vectors
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.state_vectors.StateVector
+
+
+Module Contents
+---------------
+
+.. py:class:: StateVector(output, starting_point)
+
+   .. py:attribute:: time
+
+
+   .. py:attribute:: X
+
+
+   .. py:attribute:: V
+
+
+   .. py:attribute:: frac
+
+
+   .. py:attribute:: escaped
+
+
+   .. py:attribute:: hit
+
+
+   .. py:attribute:: ionized
+
+
+   .. py:attribute:: packet_number
+
+
+   .. py:attribute:: iteration
+
+
+   .. py:method:: __getitem__(q)
+
+
+   .. py:method:: __setitem__(q, new)
+
+
+   .. py:method:: __len__()
+
+
+   .. py:method:: surface_interaction(output)
+
+
+   .. py:method:: check_escape(output)
+
+
+   .. py:method:: vecmul(vec)
+
+
+   .. py:method:: constmul(const)
+
+
+   .. py:method:: __add__(other)
+
+
+   .. py:method:: __radd__(const)
+
+
+   .. py:method:: max()
+
+

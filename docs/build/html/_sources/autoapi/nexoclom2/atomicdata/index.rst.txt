@@ -1,0 +1,377 @@
+nexoclom2.atomicdata
+====================
+
+.. py:module:: nexoclom2.atomicdata
+
+.. autoapi-nested-parse::
+
+   
+   nexoclom2 routines for working with atomic data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/nexoclom2/atomicdata/atom/index
+   /autoapi/nexoclom2/atomicdata/charge_exchange/index
+   /autoapi/nexoclom2/atomicdata/eimp_emission_coef/index
+   /autoapi/nexoclom2/atomicdata/eimp_ionization_coef/index
+   /autoapi/nexoclom2/atomicdata/extract_chX_coefs/index
+   /autoapi/nexoclom2/atomicdata/extract_eimp_coefs/index
+   /autoapi/nexoclom2/atomicdata/gvalues/index
+   /autoapi/nexoclom2/atomicdata/lossrate/index
+   /autoapi/nexoclom2/atomicdata/reformat_gvalues/index
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.atomicdata.gValue
+   nexoclom2.atomicdata.Atom
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   nexoclom2.atomicdata.lossrate
+
+
+Package Contents
+----------------
+
+.. py:class:: gValue(species)
+
+   
+   Class to compute g-values and radiation acceleration
+
+   The g-value is the product of the solar flux at the dopler-shifted
+   emission wavelength and the scattering probability per atom. See
+   `Killen, R.M. et al., Ap. J. Supp., 2022
+   <https://doi.org/10.3847/1538-4365/ac9eab>`_ for details on calculating
+   g-values for important species in Mercury's atmosphere.
+
+   These g-values have been calculated for this solarsystem at a reference
+   distance of 0.352 AU.
+
+   Methods are provided to return the *g*-values for each resonant wavelength
+   and radiation acceleration as functions of distance from the Sun and
+   radial velocity relative to the Sun.
+
+   Radiation acceleration :math:`a_r` is computed by:
+
+   .. math::
+       a_r = \sum_i g_i(v_r) \times \frac{h}{m \lambda_i}
+
+   where :math:`g_i` is *g* at wavelength :math:`\lambda_i`\ , :math:`h` is
+   Planck's constant, :math:`m` is the mass of the species in question, and the
+   sum is over all resonant wavelengths.
+
+   :Parameters:
+
+       **species** : str
+           atomic species
+
+   :Attributes:
+
+       **wavelengths** : astropy Quantity array
+           Wavelengths are rounded to the nearest Angstrom.
+
+       **velocity** : astropy Quantity array
+           Radial velocity relative to the Sun
+
+   .. rubric:: Methods
+
+
+
+   ============================  ==========
+     **gvalue(drdt, r=1*u.au)**  Dict with *g* as function of ``drdt`` and ``r`` for each resonant wavelength
+   **radaccel(drdt, r=1*u.au)**  Radiation acceleration as function of ``drdt`` at the reference distance from the Sun
+   ============================  ==========
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: species
+
+
+   .. py:method:: gvalue(drdt, r=1.0 * u.au)
+
+      
+      *g* as function of radial velocity and solar distance
+
+
+      :Parameters:
+
+          **drdt: astropy Quantity array**
+              Radial velocity relative to the Sun
+
+          **r: astropy Quantity array**
+              Distance from the Sun. Default = 1 AU
+
+
+
+      :Returns:
+
+          Dictionary with *g*-values at each point for each wavelength as function
+              ..
+
+          of ``drdt`` and ``r``
+              ..
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: radaccel(drdt, r=1.0 * u.au)
+
+      
+      radial acceleration as function of radial velocity and solar distance
+
+
+      :Parameters:
+
+          **drdt: astropy Quantity array**
+              Radial velocity relative to the Sun
+
+          **r: astropy Quantity array**
+              Distance from the Sun. Default = 1 AU
+
+
+
+      :Returns:
+
+          radiation acceleration at each point as function of ``drdt`` and ``r``
+              ..
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: __eq__(other)
+
+
+   .. py:method:: __repr__()
+
+
+   .. py:method:: __str__()
+
+
+.. py:class:: Atom(species: str)
+
+   
+   Class containing all useful atomic data for a neutral or ionic species.
+
+
+   :Parameters:
+
+       **species: str**
+           Atomic species. Charge is indicated by the number of '+' or '-'
+           appended to the chemical symbol
+
+   :Attributes:
+
+       **charge: int**
+           Electric charge
+
+       **symbol: str**
+           Chemical symbol
+
+       **name: str**
+           ..
+
+       **number: int**
+           ..
+
+       **mass: astropy Quantity**
+           ..
+
+       **gvalues: nexoclom2 gValue object**
+           ..
+
+       **photo_refpt: astropy Quantity**
+           Reference point for the photoionziation rate (generally 1 AU)
+
+       **photo_rate: astropy Quantity**
+           Photoionization rate at the reference point
+
+       **photo_reactions: list**
+           List of tuples containing each photoreaction included and its rate at
+           the reference point
+
+       **wavelengths: tuple**
+           List of wavelengths for which there are photon scattering rate
+           coefficients (*g*-values) or electron impact excitation rate
+           coefficients.
+
+       **_atom: Element**
+           Object from
+           `periodictable <https://periodictable.readthedocs.io/en/latest/periodictable>`__
+           saved in case there is additional infomation the user might need.
+
+       **eimp_ionization: nexoclom2 EimpIonizationCoef object**
+           ..
+
+       **eimp_emission: nexoclom2 EimpEmissionCoef object**
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: _atom
+
+
+   .. py:attribute:: charge
+
+
+   .. py:attribute:: symbol
+
+
+   .. py:attribute:: name
+
+
+   .. py:attribute:: number
+
+
+   .. py:attribute:: mass
+
+
+   .. py:attribute:: gvalues
+
+
+   .. py:attribute:: photo_refpt
+
+
+   .. py:attribute:: eimp_ionization
+
+
+   .. py:attribute:: eimp_emission
+
+
+   .. py:attribute:: wavelengths
+
+
+   .. py:attribute:: charge_exchange
+
+
+   .. py:method:: __str__()
+
+
+   .. py:method:: __repr__()
+
+
+   .. py:method:: __eq__(other)
+
+
+.. py:function:: lossrate(packets, output)
+
+   
+   Calculate the loss rates due to photons, electron impacts, and charge-exchange
+   with optional constant loss rate.
+
+
+   :Parameters:
+
+       **packets: nexoclom2 Packets object**
+           ..
+
+       **output: nexoclom2 Output object**
+           ..
+
+
+
+   :Returns:
+
+       Ionization rate
+           ..
+
+
+
+
+
+
+
+   .. seealso::
+
+
+       :obj:`nexoclom2.particle_tracking.packets.Packets`
+           ..
+       :obj:`nexoclom2.particle_tracking.Output.Output`
+           ..
+
+   .. rubric:: Notes
+
+   Charge exchange is not included yet.
+
+
+
+   ..
+       !! processed by numpydoc !!
+

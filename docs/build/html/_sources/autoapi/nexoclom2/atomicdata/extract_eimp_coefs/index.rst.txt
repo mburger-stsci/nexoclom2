@@ -1,0 +1,49 @@
+nexoclom2.atomicdata.extract_eimp_coefs
+=======================================
+
+.. py:module:: nexoclom2.atomicdata.extract_eimp_coefs
+
+.. autoapi-nested-parse::
+
+   Extract and save electron impact rates from CHIANTI database
+
+   Extracts electron impact ionization rates and excitation coefficients for
+   electron densities and temperatures relevant to the Io torus.
+
+   This is not intended to be run by users and is included here for documentation.
+   ChiantiPy is not a dependency on nexoclom2 and must be installed by the user
+   for this to work.
+
+   ..
+       !! processed by numpydoc !!
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   nexoclom2.atomicdata.extract_eimp_coefs.n_e
+   nexoclom2.atomicdata.extract_eimp_coefs.temperature
+   nexoclom2.atomicdata.extract_eimp_coefs.species
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   nexoclom2.atomicdata.extract_eimp_coefs.compute_EImpCoef
+
+
+Module Contents
+---------------
+
+.. py:data:: n_e
+
+.. py:data:: temperature
+
+.. py:data:: species
+
+.. py:function:: compute_EImpCoef(sp, lines)
+

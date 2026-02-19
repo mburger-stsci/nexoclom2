@@ -1,0 +1,192 @@
+:py:mod:`nexoclom2.initial_state.MaxwellianFluxDist`
+====================================================
+
+.. py:module:: nexoclom2.initial_state.MaxwellianFluxDist
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   nexoclom2.initial_state.MaxwellianFluxDist.MaxwellianFluxDist
+
+
+
+
+.. py:class:: MaxwellianFluxDist(sparam: dict)
+
+
+   Bases: :py:obj:`nexoclom2.initial_state.InputClass.InputClass`
+
+
+   Defines a Maxwellian flux distribution from the surface.
+
+   Sets up an initial flux distribution with a Maxwellian speed distribution.
+
+   :Parameters:
+
+       **sparam** : dict
+           Key, value for defining the distribution
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   The Maxwellian speed distribution is defined as
+
+   .. math::
+       :nowrap:
+
+       \begin{eqnarray*}
+       f(v) & \propto & v^2 \exp(-v^2/v_{th}^2)
+       v_{th}^2 & = & 2Tk_B/m
+       \end{eqnarray*}
+
+   where :math:`v_{th}` is the thermal speed, :math:`T` is the temperature
+   of the distribution, :math:`m` is the mass of the ejected particles, and
+   :math:`k_B` is Boltzmann's constant. The flux through the surface is the
+
+   .. math::
+
+       \begin{eqnarray*}
+       F(v) & \propto & v f(v) \\
+            & \propto & v^3 \exp(-v^2/v_{th}^2)
+       \end{eqnarray*}
+
+
+
+   :Attributes:
+
+       **type** : 'maxwellian'
+           ..
+
+       **temperature** : astropy quantity
+           ..
+
+       **species** : str
+           Particle being ejected
+
+       **v_th** : astropy quantity
+           Thermal speed
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:method:: pdf(v: (float, numpy.ndarray)) -> (float, numpy.ndarray)
+
+
+      Probability Distribution Function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: cdf(v: (float, numpy.ndarray)) -> (float, numpy.ndarray)
+
+
+      Cumulative Distribution Function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: support()
+
+
+
+
+
+
+      :Returns:
+
+          tuple with valid range for the PDF
+              ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: choose_points(n_packets, randgen=None)
+
+
+      Compute random deviates from arbitrary 1D distribution.
+      f_x does not need to integrate to 1. The function normalizes the
+      distribution. Uses Transformation method (Numerical Recipes, 7.3.2)
+
+
+      :Parameters:
+
+          **n_packets** : int
+              The number of random deviates to compute
+
+          **randgen** : numpy.random._generator.Generator
+              ..
+
+      :Returns:
+
+          numpy array of length num chosen from the distribution f_x.
+              ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!

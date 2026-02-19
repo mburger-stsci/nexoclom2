@@ -1,0 +1,27 @@
+nexoclom2.particle_tracking.equations_of_motion
+===============================================
+
+.. py:module:: nexoclom2.particle_tracking.equations_of_motion
+
+.. autoapi-nested-parse::
+
+   Attempt to use scipy.integrate.solv_ip as the integrator.
+   This won't work because need to keep track of things hitting the surface, etc.
+
+   ..
+       !! processed by numpydoc !!
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.equations_of_motion.equations_of_motion
+
+
+Module Contents
+---------------
+
+.. py:function:: equations_of_motion(t, x, args)
+

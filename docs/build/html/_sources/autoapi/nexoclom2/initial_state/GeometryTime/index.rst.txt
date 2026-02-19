@@ -1,0 +1,85 @@
+:py:mod:`nexoclom2.initial_state.GeometryTime`
+==============================================
+
+.. py:module:: nexoclom2.initial_state.GeometryTime
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   nexoclom2.initial_state.GeometryTime.GeometryTime
+
+
+
+
+.. py:class:: GeometryTime(gparam)
+
+
+   Bases: :py:obj:`nexoclom2.initial_state.Geometry`
+
+   
+   Geometry with Time Class
+
+
+   :Parameters:
+
+       **gparams** : dict
+           keys, values for defining system geometry.
+
+
+
+
+
+
+
+
+
+
+
+
+   :Attributes:
+
+       **planet** : str
+           Central body for the model
+
+       **startpoint** : str
+           Object from which packets are ejected.
+
+       **included** : list of str
+           Objects included in calculations.
+
+       **modeltime** : astropy.Time
+           Model simulation time.
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:method:: __str__()
+
+      
+      Override of superclass __str__
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

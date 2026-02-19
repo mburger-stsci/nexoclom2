@@ -1,0 +1,43 @@
+GaussianSpeedDist
+=================
+
+.. py:module:: GaussianSpeedDist
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   GaussianSpeedDist.GaussianSpeedDist
+
+
+Module Contents
+---------------
+
+.. py:class:: GaussianSpeedDist(sparam: (dict, tinydb.table.Document))
+
+   Bases: :py:obj:`nexoclom2.initial_state.InputClass.InputClass`
+
+
+   
+   Defines a Gaussian speed distribution from the surface
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+

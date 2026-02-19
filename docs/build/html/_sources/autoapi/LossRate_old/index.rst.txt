@@ -1,0 +1,84 @@
+LossRate_old
+============
+
+.. py:module:: LossRate_old
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   LossRate_old.LossRate
+
+
+Module Contents
+---------------
+
+.. py:class:: LossRate(lossinfo, species)
+
+   
+   Calculate the loss rates due to photo, electron impact, and charge-exchange
+
+
+   :Parameters:
+
+       **lossinfo** : LossInfo
+           Taken from inputs.lossinfo
+
+       **species** : str
+           ..
+
+       **r_sun** : astropy Quantity or ndarray
+           ..
+
+   :Attributes:
+
+       **compute_constant** : bool
+           ..
+
+       **compute_photo** : bool
+           ..
+
+       **compute_eimp** : bool
+           ..
+
+       **compute_chX: bool**
+           ..
+
+       **constant** : astropy Quantity
+           Constant loss rate in 1/s
+
+       **photo_rate** : astropy Quantity
+           Photo-loss (photoionization and/or photodisociation) rate in 1/s
+
+       **eimp_rate** : astropy Quantity
+           Electron impact ionization rate in 1/s
+
+       **chX_rate** : astropy Quantity
+           Charge exchange rate in 1/s
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:method:: compute_lossrate(packets, output, startpoint)
+
+
+   .. py:method:: __str__()
+
+
+   .. py:method:: __repr__()
+
+

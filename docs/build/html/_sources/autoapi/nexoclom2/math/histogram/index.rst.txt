@@ -1,0 +1,97 @@
+nexoclom2.math.histogram
+========================
+
+.. py:module:: nexoclom2.math.histogram
+
+.. autoapi-nested-parse::
+
+   Wrapper classes for numpy.histogram and numpy.histogram2d
+
+   ..
+       !! processed by numpydoc !!
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.math.histogram.Histogram
+   nexoclom2.math.histogram.Histogram2d
+
+
+Module Contents
+---------------
+
+.. py:class:: Histogram(a, bins=10, range=None, weights=None, density=None)
+
+   
+   Wrapper for np.histogram that makes the x-axis the center of each bin.
+   Returns a class with everything self-contained.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: histogram
+
+
+   .. py:attribute:: dx
+
+
+   .. py:attribute:: x
+
+
+   .. py:method:: __repr__()
+
+
+   .. py:method:: __str__()
+
+
+.. py:class:: Histogram2d(ptsx, ptsy, bins=10, range=None, weights=None, density=None)
+
+   
+   Wrapper for np.histogram2d that makes the x,y axes the centers of each bin.
+   Returns a class with everything self-contained.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:attribute:: histogram
+
+
+   .. py:attribute:: x
+
+
+   .. py:attribute:: y
+
+

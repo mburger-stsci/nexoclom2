@@ -1,0 +1,96 @@
+nexoclom2.particle_tracking.rk5
+===============================
+
+.. py:module:: nexoclom2.particle_tracking.rk5
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.rk5.c
+   nexoclom2.particle_tracking.rk5.b
+   nexoclom2.particle_tracking.rk5.bs
+   nexoclom2.particle_tracking.rk5.bd
+   nexoclom2.particle_tracking.rk5.a
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.particle_tracking.rk5.rk5Integrator
+
+
+Module Contents
+---------------
+
+.. py:data:: c
+
+.. py:data:: b
+
+.. py:data:: bs
+
+.. py:data:: bd
+
+.. py:data:: a
+
+.. py:class:: rk5Integrator
+
+   
+   Runge Kutta integrator
+
+   Can run with either constant or variable step size.
+
+   :Parameters:
+
+       **output** : Output
+           nexoclom2 Output clas
+
+
+
+   :Returns:
+
+       Final state of the system
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:method:: step(prev_step, output, h)
+
+      
+      Perform a single rk5 step.
+
+      See Numerical Recipes, 3rd edition, chapter 17.2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

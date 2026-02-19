@@ -1,0 +1,53 @@
+nexoclom2.atomicdata.charge_exchange
+====================================
+
+.. py:module:: nexoclom2.atomicdata.charge_exchange
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.atomicdata.charge_exchange.ChargeExchange
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   nexoclom2.atomicdata.charge_exchange.load_charge_exchange
+
+
+Module Contents
+---------------
+
+.. py:class:: ChargeExchange(neutral, ion, params)
+
+   .. py:attribute:: neutral
+
+
+   .. py:attribute:: ion
+
+
+   .. py:attribute:: reaction
+
+
+   .. py:attribute:: v_rel
+
+
+   .. py:attribute:: T_i
+
+
+   .. py:attribute:: kappa
+
+
+   .. py:attribute:: file
+
+
+   .. py:method:: ratecoef(v_rel, T_i)
+
+
+.. py:function:: load_charge_exchange(neutral)
+

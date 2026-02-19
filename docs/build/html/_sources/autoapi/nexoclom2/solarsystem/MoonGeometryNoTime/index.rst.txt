@@ -1,0 +1,90 @@
+:py:mod:`nexoclom2.solarsystem.MoonGeometryNoTime`
+==================================================
+
+.. py:module:: nexoclom2.solarsystem.MoonGeometryNoTime
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   nexoclom2.solarsystem.MoonGeometryNoTime.MoonGeometryNoTime
+
+
+
+
+.. py:class:: MoonGeometryNoTime(moonname, geometry, _=None)
+
+
+   
+   Contains satellite geometry information needed by the model
+
+
+   :Parameters:
+
+       **geometry** : GeometryNoTime object
+           ..
+
+       **moonname** : str
+           ..
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   * For subplanet_longitude and subplanet_latitude, moons are assumed to be tidally
+   locked.
+
+   * The subsolar_longitude is taken to be the orbital position of the moon.
+
+
+
+   :Attributes:
+
+       **subplanet_longitude** : function
+           Sub-planet longitude (assumed 0) (radians)
+
+       **subplanet_latitude** : function
+           Sub-planet latitude (assumed 0) (radians)
+
+       **r_planet** : function
+           Distance from planet (assumed constant) (R_planet)
+
+       **x_planet, y_planet, z_planet** : function
+           Location of moon in model coordinates (R_planet)
+
+       **drdt_planet** : function
+           Radial velocity relative to planet (assumed 0) (R_planet/s)
+
+       **dxdt_planet, dydt_planet, dzdt_planet** : function
+           Components of moon velocity vector (R_planet/s)
+
+       **subsolar_longitude** : function
+           Equal to the orbital phase. (radians)
+
+       **subsolar_latitude** : function
+           (radians)
+
+       **r_sun** : function
+           Distance from Sun (assumed constant) (au)
+
+       **drdt_sun** : function
+           Radial velocity relative to Sun (assumed constant) (R_planet/s)
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:method:: xyz_planet(times)
+
+
+

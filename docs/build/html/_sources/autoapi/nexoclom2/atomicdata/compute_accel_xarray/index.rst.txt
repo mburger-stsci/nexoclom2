@@ -1,0 +1,45 @@
+nexoclom2.atomicdata.compute_accel_xarray
+=========================================
+
+.. py:module:: nexoclom2.atomicdata.compute_accel_xarray
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   nexoclom2.atomicdata.compute_accel_xarray.compute_accel
+
+
+Module Contents
+---------------
+
+.. py:function:: compute_accel(x, output)
+
+   
+   Compute acceleration due to gravity and radiation pressue
+   :param x: n x 7 array with
+   :type x: xr.DataArray
+   :param output:
+
+   :Returns:
+
+
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+

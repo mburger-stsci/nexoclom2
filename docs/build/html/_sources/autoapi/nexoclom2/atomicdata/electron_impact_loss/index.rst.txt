@@ -1,0 +1,22 @@
+nexoclom2.atomicdata.electron_impact_loss
+=========================================
+
+.. py:module:: nexoclom2.atomicdata.electron_impact_loss
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   nexoclom2.atomicdata.electron_impact_loss.ElectronImpactLoss
+
+
+Module Contents
+---------------
+
+.. py:class:: ElectronImpactLoss
+
+   .. py:method:: rate(packets, output)
+
+
