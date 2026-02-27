@@ -146,7 +146,7 @@ Io Solar
       FRAME_-52555_FAMILY          = 'TWO-VECTOR'
       FRAME_-52555_PRI_AXIS        = 'Z'
       FRAME_-52555_PRI_VECTOR_DEF  = 'CONSTANT'
-      FRAME_-52555_PRI_FRAME       = 'IAU_JUPITER'
+      FRAME_-52555_PRI_FRAME       = 'IAU_IO'
       FRAME_-52555_PRI_SPEC        = 'RECTANGULAR'
       FRAME_-52555_PRI_VECTOR      =  ( 0, 0, 1 )
       FRAME_-52555_SEC_AXIS        = 'X'
@@ -274,6 +274,31 @@ Io Solar-fixed
       FRAME_-52954_SEC_TARGET      = 'SUN'
       FRAME_-52954_SEC_ABCORR      = 'NONE'
       FRAME_-52954_SEC_FRAME       = 'J2000'
+
+    \begintext
+
+Moon Solar
+
+    \begindata
+
+      FRAME_MOONSOLAR           = -52522
+      FRAME_-52522_NAME            = 'MoonSolar'
+      FRAME_-52522_CLASS           = 5
+      FRAME_-52522_CLASS_ID        = -52522
+      FRAME_-52522_CENTER          = 501
+      FRAME_-52522_RELATIVE        = 'J2000'
+      FRAME_-52522_DEF_STYLE       = 'PARAMETERIZED'
+      FRAME_-52522_FAMILY          = 'TWO-VECTOR'
+      FRAME_-52522_PRI_AXIS        = 'Z'
+      FRAME_-52522_PRI_VECTOR_DEF  = 'CONSTANT'
+      FRAME_-52522_PRI_FRAME       = 'IAU_MOON'
+      FRAME_-52522_PRI_SPEC        = 'RECTANGULAR'
+      FRAME_-52522_PRI_VECTOR      =  ( 0, 0, 1 )
+      FRAME_-52522_SEC_AXIS        = 'X'
+      FRAME_-52522_SEC_VECTOR_DEF  = 'OBSERVER_TARGET_POSITION'
+      FRAME_-52522_SEC_OBSERVER    = 'MOON'
+      FRAME_-52522_SEC_TARGET      = 'SUN'
+      FRAME_-52522_SEC_ABCORR      = 'NONE'
 
     \begintext
 

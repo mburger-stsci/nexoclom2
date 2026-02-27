@@ -75,11 +75,26 @@ class SpiceKernels:
             pass
         kernels_to_load.append(pck_kernel)
         
+        if object == 'Mercury':
+            spk_kernel = os.path.join(kernelpath, 'msgr_040803_150430_150430_od431sc_2.bsp')
+            url = 'https://naif.jpl.nasa.gov/pub/naif/pds/data/mess-e_v_h-spice-6-v1.0/messsp_1000/data/spk/msgr_040803_150430_150430_od431sc_2.bsp'
+        
+            if not os.path.exists(spk_kernel):
+                print(f'Retreiving planetary ephemeris kernel {os.path.basename(spk_kernel)}')
+                spk = requests.get(url)
+                with open(spk_kernel, 'wb') as file:
+                    file.write(spk.content)
+            else:
+                pass
+            kernels_to_load.append(spk_kernel)
+        else:
+            pass
+            
         spk_kernel = os.path.join(kernelpath, 'de440.bsp')
+        url = 'https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/de440s.bsp'
         if not os.path.exists(spk_kernel):
             print(f'Retreiving planetary ephemeris kernel {os.path.basename(spk_kernel)}')
-            spk = requests.get(
-                'https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/de440s.bsp')
+            spk = requests.get(url)
             with open(spk_kernel, 'wb') as file:
                 file.write(spk.content)
         else:

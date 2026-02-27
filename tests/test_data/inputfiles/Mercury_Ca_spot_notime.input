@@ -1,0 +1,21 @@
+geometry.center = Mercury
+geometry.startpoint = Mercury
+geometry.taa = 0
+
+# Full surface
+SpatialDist.type = spot
+SpatialDist.longitude = 270
+SpatialDist.latitude = 0
+SpatialDist.sigma = 50
+SpatialDist.n = 1
+
+speeddist.type = Maxwellian
+speeddist.temperature = 50000
+
+angulardist.type = isotropic
+
+options.runtime = 10800
+options.species = Ca
+options.outer_edge = 20
+options.step_size = 30
+options.random_seed = 1234

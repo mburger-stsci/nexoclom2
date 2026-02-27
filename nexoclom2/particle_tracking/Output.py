@@ -381,8 +381,7 @@ class Output:
         return initial_state
     
     def final_state(self, which=None, frame=None, center=None):
-        initial_state = self.initial_state()
-        final_state = FinalState(self, which)
+        final = FinalState(self, which)
         
         if center is None:
             if self.center == 'Sun':
@@ -398,31 +397,24 @@ class Output:
             pass
         
         if frame != self.frame:
-            X = np.column_stack([final_state.x,
-                                 final_state.y,
-                                 final_state.z])
-            V = np.column_stack([final_state.vx,
-                                 final_state.vy,
-                                 final_state.vz])
-            
-            # times = initial_state.time[final_state.packet_number.astype(int)]
-            times = final_state.time
+            # times = initial.time[final.packet_number.astype(int)]
+            times = final.time
             X0 = self.positions[self.startpoint].X(times)
             V0 = self.positions[self.startpoint].V(times)
             
             times = self.modeltime + TimeDelta(times)
             X0 = rotate_frame(center, times, X0, self.frame, frame)
             V0 = rotate_frame(center, times, V0, self.frame, frame)
-            X = rotate_frame(center, times, X, self.frame, frame) - X0
-            V = rotate_frame(center, times, V, self.frame, frame) - V0
+            X = rotate_frame(center, times, final.X, self.frame, frame) - X0
+            V = rotate_frame(center, times, final.V, self.frame, frame) - V0
             
-            final_state.x = X[:,0].to(self.objects[center].unit)
-            final_state.y = X[:,1].to(self.objects[center].unit)
-            final_state.z = X[:,2].to(self.objects[center].unit)
-            final_state.vx = V[:,0].to(u.km/u.s)
-            final_state.vy = V[:,1].to(u.km/u.s)
-            final_state.vz = V[:,2].to(u.km/u.s)
+            final.x = X[:,0].to(self.objects[center].unit)
+            final.y = X[:,1].to(self.objects[center].unit)
+            final.z = X[:,2].to(self.objects[center].unit)
+            final.vx = V[:,0].to(u.km/u.s)
+            final.vy = V[:,1].to(u.km/u.s)
+            final.vz = V[:,2].to(u.km/u.s)
         else:
             pass
         
-        return final_state
+        return final

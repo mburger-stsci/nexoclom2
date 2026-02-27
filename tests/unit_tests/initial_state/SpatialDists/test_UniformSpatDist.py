@@ -25,8 +25,6 @@ Exobase Test Cases
 * exobase <= 0 fails
 
 """
-import os
-import sys
 import pytest
 import hypothesis as hypo
 import hypothesis.strategies as st

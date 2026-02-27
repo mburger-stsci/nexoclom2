@@ -11,7 +11,7 @@ There is configuration work that will need to be completed before nexoclom
 can be used. This process is given in detail below, although it is likely to 
 change soon.
 
-1. Install Anaconda Python (version >= 3.10):
+1. Install Anaconda Python (version >= 3.13):
    1. Download the installer from:
            https://www.anaconda.com/distribution/
    2. double-click the installer to install. This installs anaconda python in

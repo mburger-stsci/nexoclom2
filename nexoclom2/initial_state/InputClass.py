@@ -66,11 +66,30 @@ class InputClass:
     def __repr__(self):
         return self.__str__()
     
-    def pdf(self, v):
+    def pdf(self, x):
+        return None
+    
+    def pdf2d(self, x, y):
         return None
     
     def support(self):
         return None
+    
+    def support_longitude(self):
+        """
+        Returns
+        -------
+        tuple with valid range for the PDF
+        """
+        return 0*u.deg, 360*u.deg
+    
+    def support_latitude(self):
+        """
+        Returns
+        -------
+        tuple with valid range for the PDF
+        """
+        return -90*u.deg, 90*u.deg
     
     def cdf(self, x):
         """Cumulative Distribution Function
@@ -97,7 +116,6 @@ class InputClass:
 
         Returns
         -------
-
         numpy array of length num chosen from the distribution f_x.
         """
         if randgen is None:
@@ -109,33 +127,45 @@ class InputClass:
         cdf = self.cdf(x)
         return np.interp(randgen.random(n_packets), cdf, x)
     
-    def generate_sphere(self, n_packets, randgen):
-        """Create random deviates (longitude, latitude) from a distribution on a sphere
+    def generate2d(self, npackets, randgen=None):
+        """ Compute random deviates from arbitrary 2D distribution
         
-        Uses the rejection mechanism to choose random points on the surface
-        according to a specified distribution. Note that the distribution needs
-        to be defined in longitude and sin(latitude) for proper determination on
-        a sphere. Also, the probability distribution function (pdf) in the
-        distribution class must vary between 0 and 1
+        Uses acceptance/rejection method
+        
+        Parameters
+        ----------
+        n_packets : int
+            The number of random deviates to compute
+
+        randgen : numpy.random._generator.Generator
+
+        Returns
+        -------
+        numpy arrays of length num chosen from the distribution f_x.
         """
-        longitude, latitude = np.zeros(n_packets)*u.rad, np.zeros(n_packets)*u.rad
-        ct = 0
-        while ct < n_packets:
-            u_lon = randgen.random(n_packets) * 2*np.pi * u.rad
-            u_sinlat = (randgen.random(n_packets) * 2 - 1)
-            u_f = randgen.random(n_packets)
+        xpts, ypts = [], []
+        if randgen is None:
+            randgen = np.random.default_rng()
+        else:
+            pass
+        
+        sup_lon = self.support_longitude()
+        sup_lat = self.support_latitude()
+        while len(xpts) < npackets:
+            ux = randgen.random(npackets)*(sup_lon[1]-sup_lon[0]) + sup_lon[0]
+            uy = randgen.random(npackets)*(sup_lat[1]-sup_lat[0]) + sup_lat[0]
+            uf = randgen.random(npackets)
             
-            good = u_f < self.pdf(u_lon, u_sinlat)
-            ng = sum(good)
-            if ng > 0:
-                ept = np.min([ct+ng, n_packets])
-                longitude[ct:ept] = u_lon[good][:ept-ct]
-                latitude[ct:ept] = np.arcsin(u_sinlat[good][:ept-ct]) * u.rad
-                ct += ng
-            else:
-                pass
+            val = self.pdf2d(ux, uy)
+            mm = uf < val
+            xpts.extend(list(ux[mm]))
+            ypts.extend(list(uy[mm]))
             
-        return longitude, latitude
+        xpts, ypts = xpts[:npackets], ypts[:npackets]
+        xpts = np.array([x.value for x in xpts])*sup_lon[0].unit
+        ypts = np.array([y.value for y in ypts])*sup_lat[0].unit
+        
+        return xpts, ypts
     
     def query(self):
         """Find matching records in the database

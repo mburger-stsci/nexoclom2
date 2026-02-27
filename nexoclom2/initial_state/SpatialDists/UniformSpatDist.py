@@ -17,7 +17,7 @@ class UniformSpatDist(InputClass):
     * longitude
     * latitude
     * exobase
-    * frane
+    * frame
     
     See :ref:`spatialdist` for more information.
     
@@ -53,10 +53,12 @@ class UniformSpatDist(InputClass):
             self.latitude = tuple(l*u.deg for l in self.latitude)
         else:
             self.exobase = float(sparam.get('exobase', '1'))
-            if self.exobase <= 0:
+            if self.exobase < 1:
                 raise OutOfRangeError('input_classes.UniformSpatDist',
-                                      'spatialdist.exobase', (0, None),
+                                      'spatialdist.exobase', (1, None),
                                       include_min=False)
+            else:
+                pass
             
             default_longitude = '0, 360'
             lonstr = sparam.get('longitude', default_longitude)
@@ -93,7 +95,7 @@ class UniformSpatDist(InputClass):
                 self.frame = frame
             else:
                 raise InputfileError('input_classes.UniformSpatDist',
-                                     f'spatialdist.frame must be one of {possible_frames}')
+                    f'spatialdist.frame must be one of {possible_frames}')
             
     def pdf_longitude(self, lon):
         lon0, lon1 = self.longitude
@@ -110,14 +112,6 @@ class UniformSpatDist(InputClass):
         dist_cum = np.cumsum(self.pdf_longitude(longitude))
         dist_cum /= dist_cum.max()
         return np.interp(lon, longitude, dist_cum)
-    
-    def support_longitude(self):
-        """
-        Returns
-        -------
-        tuple with valid range for the PDF
-        """
-        return 0*u.deg, 360*u.deg
     
     def pdf_latitude(self, lat):
         if self.latitude[0] == self.latitude[1]:
@@ -136,14 +130,6 @@ class UniformSpatDist(InputClass):
         dist_cum /= dist_cum.max()
         return np.interp(lat, latitude, dist_cum)
     
-    def support_latitude(self):
-        """
-        Returns
-        -------
-        tuple with valid range for the PDF
-        """
-        return -90*u.deg, 90*u.deg
-  
     def choose_points(self, n_packets, randgen=None):
         """
         Returns initial x, y, and z. For a moon, a rotation will be done later
