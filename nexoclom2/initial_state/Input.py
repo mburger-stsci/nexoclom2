@@ -70,6 +70,8 @@ class Input:
             self.spatialdist = UniformSpatDist(spatparams)
         elif type == 'goldenspiral':
             self.spatialdist = GoldenSpiralSpatDist(spatparams)
+        elif type == 'spot':
+            self.spatialdist = SurfSpotSpatDist(spatparams)
         else:
             assert False, f'spatialdist {type} not set up yet.'
 

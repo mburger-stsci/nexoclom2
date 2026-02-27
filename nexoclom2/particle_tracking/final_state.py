@@ -65,3 +65,9 @@ class FinalState:
         self.iteration = np.concatenate([self.iteration, new.iteration])
         self.packet_number = np.concatenate([self.packet_number,
                                              new.packet_number])
+
+    def X(self):
+        return np.column_stack([self.x, self.y, self.z])
+    
+    def V(self):
+        return np.column_stack([self.vx, self.vy, self.vz])

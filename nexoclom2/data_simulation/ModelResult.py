@@ -7,11 +7,11 @@ from nexoclom2.solarsystem.SSObject import SSObject
 from nexoclom2.atomicdata import Atom
 
 
-class ResultPacket:
-    def __init__(self, X):
-        self.time = np.zeros(X.shape[0])*u.s
-        self.X = X
- 
+# class ResultPacket:
+#     def __init__(self, X):
+#         self.time = np.zeros(X.shape[0])*u.s
+#         self.X = X
+
 
 class ModelResult:
     def __init__(self, output, params):
@@ -40,10 +40,13 @@ class ModelResult:
             self.wavelengths = self.choose_wavelengths(wavelengths)
         else:
             pass
-           
-    def radiance_per_atom(self, X, V, output):
-        startpt = output.objects[output.startpoint]
-        center = output.objects[output.center]
+        
+    def radiance_per_atom(self, packets, output):
+        startpos = output.positions[output.startpoint]
+        centerpos = output.objects[output.center]
+        
+        X = np.column_stack([packets.x, packets.y, packets.z])
+        V = np.column_stack([packets.vx, packets.vy, packets.vz])
         kappa = np.zeros(X.shape[0])*u.R*u.cm**2
         
         for wave in self.wavelengths:
@@ -53,25 +56,26 @@ class ModelResult:
             
             if ('resonant scattering' in self.mechanisms) and row.resscat:
                 out_of_shadow = np.ones(X.shape[0], dtype=bool)
-                for obj in output.objects.values():
+                for objname, obj in output.objects.items():
                     if obj.type != 'Star':
-                        out_of_shadow *= obj.out_of_shadow(ResultPacket(X))
+                        pos = output.positions[objname]
+                        out_of_shadow *= pos.out_of_shadow(obj, packets)
                     
-                x_sun = -startpt.sun_dir(0*u.s)[0,:]
+                x_sun = -startpos.sun_dir(0*u.s)[0,:]
                 vr_startpt = np.sum(V * x_sun[np.newaxis, :], axis=1)
-            
                 r_startpt = np.linalg.norm(X, axis=1).to(u.au)
         
-                if center.object == 'Sun':
+                if output.center == 'Sun':
                     r_sun = r_startpt
                     vr_sun = vr_startpt
                 else:
-                    r_sun = r_startpt + startpt.r_sun(0*u.s)
-                    vr_sun = vr_startpt + startpt.drdt_sun(0*u.s)
+                    r_sun = r_startpt + startpos.r_sun(0*u.s)
+                    vr_sun = vr_startpt + startpos.drdt_sun(0*u.s)
                     
                 g_ = output.species.gvalues.gvalue(vr_sun, r_sun)
                 g_waves = np.array([w.value for w in g_.keys()])*u.AA
-                g_wave = g_waves[np.abs(g_waves-wave) == np.abs(g_waves-wave).min()][0]
+                g_wave = g_waves[np.abs(g_waves-wave) ==
+                                 np.abs(g_waves-wave).min()][0]
                 
                 g = g_[g_wave]
                 
@@ -80,7 +84,7 @@ class ModelResult:
                 pass
             
             if ('electron impact excitation' in self.mechanisms) and row.eimp:
-                cml = center.subsolar_longitude(0*u.s)
+                cml = centerpos.subsolar_longitude(0*u.s)
                 electrons = output.plasma.n_and_T('e', X[:,0], X[:,1], X[:,2], cml)
                 coefs = output.species.eimp_emission.ratecoef(electrons, wave)
                 kappa += coefs * electrons['n']
@@ -96,19 +100,23 @@ class ModelResult:
                                      self.species.symbol]
         lambdas = sub.wavelength.values*u.AA
     
-        if wavelengths is None:
+        if (wavelengths is None) and (self.species == 'Na'):
+            waves = 5892*u.AA, 5898*u.AA
+        elif (wavelengths is None) and (self.species == 'Ca'):
+            waves = 4227*u.AA,
+        elif wavelengths is None:
             raise ValueError('ModelResult.choose_wavelengths()',
                              'A wavelength for emission must be specified')
-        elif type(wavelengths) in (set, tuple, list):
-            wavelengths = tuple(lambdas[np.abs(lambdas - wave) ==
-                                        np.abs(lambdas - wave).min()][0]*u.AA
-                                for wave in wavelengths)
         elif (self.species == 'O') and (wavelengths == 1304*u.AA):
-            wavelengths = (1302*u.AA, 1305*u.AA, 1306*u.AA)
+            waves = (1302*u.AA, 1305*u.AA, 1306*u.AA)
         elif (self.species == 'O') and (wavelengths == 1356*u.AA):
-            wavelengths = (1356*u.AA, 1359*u.AA)
+            waves = (1356*u.AA, 1359*u.AA)
+        elif type(wavelengths) in (set, tuple, list):
+            waves = tuple(lambdas[np.abs(lambdas - wave) ==
+                                  np.abs(lambdas - wave).min()][0]*u.AA
+                          for wave in wavelengths)
         else:
-            wavelengths = (lambdas[np.abs(lambdas-wavelengths) ==
-                                   np.abs(lambdas-wavelengths)].min()*u.AA, )
+            waves = (lambdas[np.abs(lambdas-wavelengths) ==
+                             np.abs(lambdas-wavelengths)].min(), )
 
-        return wavelengths
+        return waves

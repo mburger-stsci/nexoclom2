@@ -38,7 +38,7 @@ class IsotropicAngDist(InputClass):
             default_azimuth = '0, 360'
             azimuth = sparam.get('azimuth', default_azimuth)
             if azimuth.count(',') == 1:
-                az = np.array([l*u.deg for l in azimuth.split(',')])
+                az = np.array([float(l) for l in azimuth.split(',')])*u.deg
                 az[az < 0*u.deg] = 0*u.deg
                 az[az > 360*u.deg] = 360*u.deg
                 self.azimuth = tuple(az)
@@ -47,9 +47,9 @@ class IsotropicAngDist(InputClass):
                                      "spatialdist.azimuth must be in form 'az0, az1'")
             
             default_altitude = '0, 90'
-            altitude = sparam.get('altitude', None)
+            altitude = sparam.get('altitude', default_altitude)
             if altitude.count(',') == 1:
-                alt = np.array([l*u.deg for l in altitude.split(',')])
+                alt = np.array([float(l) for l in altitude.split(',')])*u.deg
                 if alt[0] > alt[1]:
                     raise InputfileError('input_classes.UniformSpatialDist',
                                          'altitude0 must be <= altitude1')

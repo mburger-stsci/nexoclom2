@@ -11,7 +11,7 @@ def test_mercury_source():
     if not os.path.exists('figures'):
         os.makedirs('figures')
         
-    overwrite = True
+    overwrite = False
     params = (('Mercury', 'constant'),
               ('Sun', 'constant'),
               ('Mercury', 'variable'),
@@ -24,10 +24,10 @@ def test_mercury_source():
     for taa in trueanom:
         for speed in speeds:
             for center, integrator in params:
-                # inputfile = os.path.join(os.path.dirname(path), 'tests',
-                #                          'test_data', 'inputfiles',
-                #                          f'Mercury_{center}_{integrator}_notime.input')
-                inputfile =  f'Mercury_{center}_{integrator}_notime.input'
+                inputfile = os.path.join(os.path.dirname(path), 'tests',
+                                         'test_data', 'inputfiles',
+                                         f'Mercury_{center}_{integrator}_notime.input')
+                # inputfile =  f'Mercury_{center}_{integrator}_notime.input'
                 inputs = Input(inputfile)
                 
                 # inputs.forces.radpres = False
@@ -98,6 +98,13 @@ def test_mercury_source():
                 figure_file = (f'Mercury_{center}_{integrator}_'
                                f'v{int(speed.value)}_taa{int(taa.value):03d}.png')
                 plt.savefig(f'figures/{figure_file}')
+                
+                from inspect import currentframe, getframeinfo
+                frameinfo = getframeinfo(currentframe())
+                print(frameinfo.filename, frameinfo.lineno)
+                from IPython import embed; embed()
+                import sys; sys.exit()
+                
                 plt.close()
                 
 
