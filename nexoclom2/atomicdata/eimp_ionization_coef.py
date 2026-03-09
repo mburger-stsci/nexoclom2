@@ -35,7 +35,6 @@ class EimpIonizationCoef:
             self.T_e = rate['T_e']
             self.kappa = rate['kappa_ion']
         else:
-            print('No electron impact ionization coefficients found.')
             self.T_e = np.array([0, 1000])*u.eV
             self.kappa = np.array([0, 0])*u.cm**3/u.s
         
