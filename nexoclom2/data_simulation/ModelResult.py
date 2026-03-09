@@ -7,12 +7,6 @@ from nexoclom2.solarsystem.SSObject import SSObject
 from nexoclom2.atomicdata import Atom
 
 
-# class ResultPacket:
-#     def __init__(self, X):
-#         self.time = np.zeros(X.shape[0])*u.s
-#         self.X = X
-
-
 class ModelResult:
     def __init__(self, output, params):
         self.species = output.species
