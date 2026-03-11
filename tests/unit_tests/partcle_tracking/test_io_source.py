@@ -1,10 +1,6 @@
 import os
 import numpy as np
-import sys
-import pytest
 import astropy.units as u
-import hypothesis as hypo
-import hypothesis.strategies as st
 from nexoclom2 import Input, Output, path, SSObject
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -17,7 +13,7 @@ plt.ion()
 
 def test_io_source():
     inputs = Input(os.path.join(os.path.dirname(path), 'tests', 'test_data',
-                                'inputfiles', 'Io_Jupiter_Time.input'))
+                                'inputfiles', 'Io_Jupiter.input'))
     
     inputs.forces.gravity = True
     inputs.forces.radpres = False

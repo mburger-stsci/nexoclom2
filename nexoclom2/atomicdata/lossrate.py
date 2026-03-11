@@ -1,5 +1,6 @@
 import numpy as np
 import astropy.units as u
+from astropy.time import TimeDelta
 
 
 def lossrate(packets, output):
@@ -63,8 +64,8 @@ def lossrate(packets, output):
     
     if lossinfo.electron_impact:
         cml = output.positions[output.center].subsolar_longitude(packets.time)
-        plasma = output.plasma.n_and_T('e', packets.X[:,0], packets.X[:,1],
-                                       packets.X[:,2], cml)
+        plasma = output.plasma.n_and_T('e', TimeDelta(packets.time) + output.modeltime,
+                                       packets.X, cml, output.frame)
         
         ratecoef = (output.species.eimp_ionization.ratecoef(plasma['T']) *
                     output.inputs.lossinfo.eimp_factor)
