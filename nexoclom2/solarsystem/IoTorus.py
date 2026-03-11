@@ -1,10 +1,10 @@
 import os
 import numpy as np
-from scipy.spatial.transform import Rotation
 import pickle
 import astropy.units as u
 from nexoclom2 import path
 from nexoclom2.solarsystem.SSObject import SSObject
+from nexoclom2.solarsystem.frames import Frame
 
 
 class IoTorus:
@@ -33,45 +33,18 @@ class IoTorus:
         
         self.planet = SSObject('Jupiter')
         
-    def xyz_to_Mzeta(self, x, y, z, cml):
-        # Angle relative to local time = 12 hr
-        phi = (np.atan2(-y, -x) + 2*np.pi*u.rad) % (2*np.pi*u.rad)
+    def xyz_to_Mzeta(self, times, X, frame):
+        # Coordinates relative to magnetic field
+        X_MP = frame.to_mag('Jupiter', times, X)
         
-        # Distance from Jupiter center
-        r0 = np.sqrt(x**2 + y**2 + z**2)
-        
-        # Angle between dipole offset and CML
-        ang_off = self.planet.lambda_offset - cml
-        
-        # Location of dipole center
-        x_offset = self.planet.delta_offset * np.cos(ang_off)
-        y_offset = self.planet.delta_offset * np.sin(ang_off)
-        
-        # Positions of packets relative to dipole center
-        x_dip, y_dip, z_dip = x - x_offset, y - y_offset, z
+        # Coordinates relative to centripetal equator
+        X_CP = frame.to_cp('Jupiter', times, X)
         
         # Distance of packets from dipole center
-        r_dip = np.sqrt(x_dip**2 + y_dip**2 + z_dip**2)
-        
-        # Magnetic longitude of each particle
-        lambda0 = (cml - 180*u.deg) + phi
-        
-        # Angle from orbital equator to magnetic equator for each point
-        alpha = -self.planet.alpha_tilt * np.cos(lambda0 -
-                                                  self.planet.lambda_tilt)
-        
-        # Angle from orbital equator to centrifugal equator for each point
-        beta = 2*alpha/3
-        
-        # Angle from centrifugal equator to magnetic equator for each point
-        theta = -alpha/3.
-        
-        # Angle point makes with the orbital equator measured relative to dipole center
-        gamma_d = np.arcsin(z_dip/r_dip)
-        
-        # magnetic latitude, centrifugal latitude
-        maglat = gamma_d - alpha
-        maglat_pr = gamma_d - beta
+        r_dip = np.sqrt(np.sum(X**2, axis=1))
+
+        maglat = np.arcsin(X_MP[:,2]/r_dip)
+        cplat = np.arcsin(X_CP[:,2]/r_dip)
         
         # L-shell,
         L = r_dip/np.cos(maglat)**2
@@ -79,17 +52,18 @@ class IoTorus:
         
         # Distance of the point where field line through the packet crosses #
         # the centrifugal equator
-        M = L * np.cos(theta)**2
+        M = r_dip/np.cos(cplat)**2
+        M[r_dip == 0] = 0*M.unit
         
         # Approximate distance along field line from centrifugal equator to packet
-        zeta = r_dip * np.sin(maglat_pr)
-        zeta[np.abs(maglat_pr) > 30*u.deg] = 1e30*r_dip.unit
+        zeta = r_dip * np.sin(cplat)
+        zeta[np.abs(cplat) > 30*u.deg] = 1e30*r_dip.unit
         zeta[r_dip == 0] = 0.
         
-        return M, zeta, lambda0, phi
+        return M, zeta, L
     
-    def n_and_T(self, species, x, y, z, cml):
-        M, zeta, _, _ = self.xyz_to_Mzeta(x, y, z, cml)
+    def n_and_T(self, species, times, X, frame=None):
+        M, zeta, L = self.xyz_to_Mzeta(times, X, frame)
         plasma = {'species': species}
         
         if species == 'e':

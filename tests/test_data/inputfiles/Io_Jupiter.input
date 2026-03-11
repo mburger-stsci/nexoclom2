@@ -1,7 +1,7 @@
 geometry.center = Jupiter
 geometry.StartPoint = Io
-geometry.modeltime = 2024-10-09 03:06:10.795 # phi = 0
-geometry.include = Jupiter, Io, Europa
+geometry.phi = 0
+geometry.include = Jupiter, Io
 
 # Full surface
 SpatialDist.type = uniform

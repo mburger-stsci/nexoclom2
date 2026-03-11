@@ -1,6 +1,7 @@
 import numpy as np
 import astropy.units as u
 from nexoclom2.solarsystem.coordinate_conversion import lonlat_to_xyz
+from nexoclom2.solarsystem.frames import Frame
 
 
 class StartingPoint:
@@ -54,7 +55,7 @@ class StartingPoint:
         points = output.inputs.spatialdist.choose_points(n_packets,
                                                          randgen=output.randgen)
         if points['type'] == 'lonlat':
-            X0, lon, lat, loctime, frame = lonlat_to_xyz(output, points, self.ut)
+            X0, lon, lat, loctime, frame = lonlat_to_xyz(output, points, [0*u.s])
         else:
             assert False, 'Not set up yet.'
             
@@ -77,7 +78,8 @@ class StartingPoint:
         self.altitude = alt.to(u.deg)
         self.azimuth = az.to(u.deg)
         self.iteration = np.zeros(n_packets) + output.completed_iterations
-        self.frame = frame
+        self.frame = Frame(output.objects[output.startpoint], frame,
+                           output.modeltime, output.inputs.options.runtime)
         
     def __len__(self):
         return len(self.x) if hasattr(self, 'x') else None

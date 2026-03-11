@@ -225,6 +225,22 @@ Jupiter magnetosphere
 
     \begintext
 
+Jupiter centrifugal plane
+
+    \begindata
+
+      FRAME_JUPITERCP             = -51953
+      FRAME_-51953_NAME            = 'JupiterCP'
+      FRAME_-51953_CLASS           = 4
+      FRAME_-51953_CLASS_ID        = -51953
+      FRAME_-51953_CENTER          = 599
+      TKFRAME_-51953_SPEC          = 'ANGLES'
+      TKFRAME_-51953_RELATIVE      = 'IAU_JUPITER'
+      TKFRAME_-51953_ANGLES        = ( 0, -159.2, -6.33 )
+      TKFRAME_-51953_AXES          = ( 2,    3,    2   )
+      TKFRAME_-51953_UNITS         = 'DEGREES'
+
+    \begintext
 Jupiter Solar-fixed
 
     \begindata

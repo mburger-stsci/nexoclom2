@@ -82,11 +82,10 @@ class GeometryNoTime(Geometry):
             
             phi = gparam.get('phi', None)
             if phi is not None:
-                phi = phi.split(',')
-                self.phi = (float(phi[0])*u.deg, float(phi[1])*u.deg)
+                phi = [float(p) for p in phi.split(',')]
             else:
                 pass
-            
+              
             if (center.type == 'Moon') and (phi is not None):
                 self.phi = {center.object: phi[0]}
             elif center.type == 'Moon':
@@ -137,7 +136,10 @@ class GeometryNoTime(Geometry):
                                           period=360*u.deg)
                 
                 if hasattr(self, 'phi'):
-                    return same and (self.phi.values() == other.phi.values())
+                    return (same and np.all(np.allclose(a, b)
+                                            for a, b,
+                                            in zip(self.phi.values(),
+                                                   other.phi.values())))
                 else:
                     return same
             else:

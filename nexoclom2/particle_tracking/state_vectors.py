@@ -1,7 +1,7 @@
 import numpy as np
 import astropy.units as u
 import copy
-from nexoclom2.solarsystem.coordinate_conversion import rotate_frame
+from nexoclom2.solarsystem.frames import Frame
 
 
 class StateVector:
@@ -31,15 +31,15 @@ class StateVector:
                               starting_point.vz]).to(output.unit/u.s)
         step0 = X0 + V0*1000*u.s
         
-        X1 = rotate_frame(output.center, starting_point.ut, X0,
-                          starting_point.frame, output.frame)
-        V1 = rotate_frame(output.center, starting_point.ut, V0,
-                          starting_point.frame, output.frame)
-        step1 = X1 + V1*1000*u.s
+        if output.frame.frame == 'J2000':
+            X1 = starting_point.frame.to_j2000(starting_point.time, X0)
+            V1 = starting_point.frame.to_j2000(starting_point.time, V0)
+        elif output.frame.frame.endswith('SOLAR'):
+            X1 = starting_point.frame.to_solar(starting_point.time, X0)
+            V1 = starting_point.frame.to_solar(starting_point.time, V0)
+        else:
+            assert False, 'Should not be able to get here'
         
-        # X2 = (X1 + X_obj).to(output.unit)
-        # V2 = (V1 + V_obj).to(output.unit/u.s)
-        # step2 = X2 + V2*1000*u.s
         self.X = (X1 + X_obj).to(output.unit)
         self.V = (V1 + V_obj).to(output.unit/u.s)
         

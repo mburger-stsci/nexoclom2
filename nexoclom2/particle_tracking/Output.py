@@ -6,8 +6,8 @@ import copy
 import h5py
 from nexoclom2.atomicdata import Atom
 from nexoclom2.solarsystem import SSObject, IoTorus, SSPosition
-from nexoclom2.solarsystem.coordinate_conversion import rotate_frame
 from nexoclom2.solarsystem.find_modeltime import find_modeltime
+from nexoclom2.solarsystem.frames import Frame
 from nexoclom2.particle_tracking.ConstantIntegrator import ConstantIntegrator
 from nexoclom2.particle_tracking.VariableIntegrator import VariableIntegrator
 from nexoclom2.particle_tracking.state_vectors import StateVector
@@ -114,10 +114,13 @@ class Output:
         self.inputs.options.outer_edge = self.inputs.options.outer_edge * rad
         
         if self.center == 'Sun':
-            self.frame = 'J2000'
+            self.frame = Frame(self.objects[self.startpoint], 'J2000',
+                               self.modeltime, self.inputs.options.runtime)
         else:
-            self.frame = f'{self.center.upper()}SOLAR'
-        
+            self.frame = Frame(self.objects[self.startpoint],
+                               f'{self.center.upper()}SOLAR',
+                               self.modeltime, self.inputs.options.runtime)
+
         if self.inputs.lossinfo.photoionization:
             if self.inputs.lossinfo.photo_lifetime == 0*u.s:
                 self.species.photo_rate *= self.inputs.lossinfo.photo_factor
@@ -243,7 +246,7 @@ class Output:
                     ut = [x.iso for x in start_point.ut]
                     store[f'starting_point/{key}'][:] = ut
                 elif key == 'frame':
-                    store['starting_point'].attrs['frame'] = start_point.frame
+                    store['starting_point'].attrs['frame'] = start_point.frame.frame
                 else:
                     store.create_dataset(f'starting_point/{key}',
                                          shape=((len(start_point), )),
@@ -381,6 +384,18 @@ class Output:
         return initial_state
     
     def final_state(self, which=None, frame=None, center=None):
+        """
+        Default options:
+        If the starting point is a planet and center is the Sun,
+        rotate to the SOLAR frame centered on the planet. Otherwise,
+        no rotation is needed
+
+        Other things that can be specified:
+        * Transform center to a moon.
+        * Rotate to IAU frame.
+        * Can keep in Solar frame
+        """
+        
         final = FinalState(self, which)
         
         if center is None:
@@ -392,21 +407,21 @@ class Output:
             pass
             
         if frame is None:
-            frame = f'{center.upper()}SOLAR'
+            final.frame = f'{center.upper()}SOLAR'
         else:
-            pass
+            final.frame = frame
         
-        if frame != self.frame:
-            # times = initial.time[final.packet_number.astype(int)]
+        if (final.frame != self.frame) or (self.center != center):
             times = final.time
             X0 = self.positions[self.startpoint].X(times)
             V0 = self.positions[self.startpoint].V(times)
             
-            times = self.modeltime + TimeDelta(times)
-            X0 = rotate_frame(center, times, X0, self.frame, frame)
-            V0 = rotate_frame(center, times, V0, self.frame, frame)
-            X = rotate_frame(center, times, final.X, self.frame, frame) - X0
-            V = rotate_frame(center, times, final.V, self.frame, frame) - V0
+            # times = self.modeltime + TimeDelta(times)
+            X0 = self.frame.rotation(times, X0, final.frame)
+            V0 = self.frame.rotation(times, V0, final.frame)
+            
+            X = self.frame.rotation(times, final.X(), final.frame) - X0
+            V = self.frame.rotation(times, final.V(), final.frame) - V0
             
             final.x = X[:,0].to(self.objects[center].unit)
             final.y = X[:,1].to(self.objects[center].unit)

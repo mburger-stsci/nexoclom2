@@ -65,7 +65,6 @@ class SSPosition:
         self.sun_dir = lambda t: np.column_stack([self.sun_dir_x(t),
                                                   self.sun_dir_y(t),
                                                   self.sun_dir_z(t)])
-        self.rotmat = lambda t: np.identity(3)
         
         self.endtime = geometry.modeltime
         self.starttime = self.endtime - TimeDelta(self.runtime)
@@ -165,7 +164,7 @@ class SSPosition:
                 #                      self.abcor, ssobject.orbits)
                 # phi = (np.arctan2(-st[:,1], -st[:,0])*u.rad + (2*pi)) % (2*pi)
                 phi = np.mod(np.arctan2(-self.y(modeltime),
-                                        -self.x(modeltime)), 2*pi)*u.rad
+                                        -self.x(modeltime)), 2*pi)
                 for i in range(ntimes-1):
                     if phi[i+1] < phi[i]:
                         phi[i+1:] += 2*pi
@@ -176,15 +175,7 @@ class SSPosition:
                                    'Should not be able to get here')
             
             kernels.unload()
-            
-    def to_solar(self, pts, t):
-        R = self.rotmat(t)
-        result = np.zeros_like(pts)
-        for i in range(len(t)):
-            result[i,:] = np.matmul(R[i,:,:], pts[i,:])
-        
-        return result
-    
+
     def zeros(self, t):
         if hasattr(t.value, '__len__') :
             return np.zeros(len(t))

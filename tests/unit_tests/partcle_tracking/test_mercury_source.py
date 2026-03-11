@@ -94,16 +94,11 @@ def test_mercury_source():
                         f'TAA = {taa.to_string(format='latex', precision=0)}',
                         ha='center')
                 ax.fill_between(xc*unit, yc*unit, -yc*unit, color='grey')
+                plt.pause(1)
                 
                 figure_file = (f'Mercury_{center}_{integrator}_'
                                f'v{int(speed.value)}_taa{int(taa.value):03d}.png')
                 plt.savefig(f'figures/{figure_file}')
-                
-                from inspect import currentframe, getframeinfo
-                frameinfo = getframeinfo(currentframe())
-                print(frameinfo.filename, frameinfo.lineno)
-                from IPython import embed; embed()
-                import sys; sys.exit()
                 
                 plt.close()
                 

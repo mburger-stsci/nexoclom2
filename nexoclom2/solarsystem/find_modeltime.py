@@ -3,6 +3,7 @@ import astropy.units as u
 from astropy.time import Time, TimeDelta
 from nexoclom2.solarsystem import SSObject, SSPosition
 from nexoclom2.initial_state.geometry.GeometryTime import GeometryTime
+from nexoclom2.initial_state.geometry.GeometryNoTime import GeometryNoTime
 
 
 def find_modeltime(geometry_notime):
@@ -19,31 +20,42 @@ def find_modeltime(geometry_notime):
     """
     startpt = SSObject(geometry_notime.startpoint)
     
-    params = {'startpoint': geometry_notime.startpoint,
-              'center': startpt.orbits,
-              'modeltime': Time.now().iso}
-    geometry_time = GeometryTime(params)
-    
     if startpt.type == 'Planet':
+        params = {'startpoint': geometry_notime.startpoint,
+                  'center': startpt.orbits,
+                  'modeltime': Time.now().iso}
+        geometry_time = GeometryTime(params)
+    
         position = SSPosition(startpt, geometry_time, startpt.orbperiod)
         times = np.linspace(-startpt.orbperiod, 0*u.s, 10000)
+        taa_yr = position.taa(times).to(u.deg)
+        taa_time = TimeDelta(np.interp(geometry_notime.taa, taa_yr, times,
+                                       period=360)) + geometry_time.modeltime
+        return taa_time
     elif startpt.type == 'Moon':
-        orbits = SSObject(startpt.orbits)
-        position = SSPosition(startpt, geometry_time, orbits.orbperiod)
-        times = np.linspace(-orbits.orbperiod, 0*u.s, 10000)
+        params_cent = {'startpoint': startpt.orbits,
+                       'center': startpt.orbits,
+                       'taa': geometry_notime.taa.value}
+        geometry_cent = GeometryNoTime(params_cent)
+        taa_time = find_modeltime(geometry_cent)
+        
+        params = {'startpoint': geometry_notime.startpoint,
+                  'center': startpt.orbits,
+                  'modeltime': taa_time.iso}
+        geometry_time = GeometryTime(params)
+        
+        position = SSPosition(startpt, geometry_time, startpt.orbperiod)
+        times = np.linspace(-startpt.orbperiod, 0*u.s, 10000)
+        phi_month = position.phi(times).to(u.deg)
+        
+        phi_time = TimeDelta(np.interp(geometry_notime.phi[geometry_notime.startpoint],
+                                       phi_month, times, period=360)) + geometry_time.modeltime
+        
+        return phi_time
+        from inspect import currentframe, getframeinfo
+        frameinfo = getframeinfo(currentframe())
+        print(frameinfo.filename, frameinfo.lineno)
+        from IPython import embed; embed()
+        import sys; sys.exit()
     else:
         assert False, 'Can not get here'
-        
-    taa_yr = position.taa(times).to(u.deg)
-    taa_time = TimeDelta(np.interp(geometry_notime.taa, taa_yr, times,
-                                   period=360)) + geometry_time.modeltime
-     
-    if startpt.type == 'Planet':
-        return taa_time
-    else:
-        geometry_time.modeltime = taa_time + TimeDelta(startpt.orbperiod/2)
-        times = np.linspace(-startpt.orbperiod, 0, 10000)
-        phi_yr = position.phi(times).to(u.deg)
-        phi_time = TimeDelta(np.interp(geometry_notime.phi, phi_yr, times,
-                                       period=360)) + geometry_time.modeltime
-        return phi_time
