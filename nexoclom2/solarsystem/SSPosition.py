@@ -2,6 +2,7 @@ import numpy as np
 import astropy.units as u
 from astropy.time import TimeDelta
 import spiceypy as spice
+import copy
 from nexoclom2.solarsystem.load_kernels import SpiceKernels
 from nexoclom2.solarsystem.SSObject import SSObject
 
@@ -83,39 +84,43 @@ class SSPosition:
             pass
         else:
             # Get r_sun, drdt_sun, sun_dir
-            st, _ = spice.spkezr(self.object, times_et, 'J2000', self.abcor,
-                                 geometry.center)
             sun = SSObject('Sun')
-            st, _ = spice.spkezr(self.object, times_et, 'J2000', self.abcor, 'Sun')
-            r_sun = (np.sqrt(np.sum(st[:,:3]**2, axis=1))*u.km).to(self.unit)
-            drdt_sun = (np.sum(st[:,:3]*u.km*st[:,3:]*u.km/u.s,
+            st_sun, _ = spice.spkezr(self.object, times_et, 'J2000',
+                                     self.abcor, 'Sun')
+            r_sun = (np.sqrt(np.sum(st_sun[:,:3]**2, axis=1))*u.km).to(self.unit)
+            drdt_sun = (np.sum(st_sun[:,:3]*u.km*st_sun[:,3:]*u.km/u.s,
                                axis=1)/r_sun).to(self.unit/u.s)
             
             # get x, y, z, vx, vy, vz
             if ((ssobject.type == 'Planet') and
                 (geometry.startpoint == geometry.center)):
-                    frame = geometry.startpoint.upper() + 'SOLAR'
+                    frame = ssobject.solar_frame
             elif ssobject.type == 'Planet':
                 frame = 'J2000'
             elif ssobject.type == 'Moon':
-                frame = ssobject.orbits.upper() + 'SOLAR'
+                planet = SSObject(ssobject.orbits)
+                geoplan = copy.copy(geometry)
+                geoplan.startpoint = planet.object
+                plan_pos = SSPosition(planet, geoplan, runtime)
+                frame = planet.solar_frame
             else:
                 assert False
                 
-            st, _ = spice.spkezr(self.object, times_et, frame, self.abcor,
-                                 geometry.center)
-            x = (st[:,0]*u.km).to(self.unit)
-            y = (st[:,1]*u.km).to(self.unit)
-            z = (st[:,2]*u.km).to(self.unit)
-            vx = (st[:,3]*u.km).to(self.unit)/u.s
-            vy = (st[:,4]*u.km).to(self.unit)/u.s
-            vz = (st[:,5]*u.km).to(self.unit)/u.s
+            st_cent, _ = spice.spkezr(self.object, times_et, frame, self.abcor,
+                                      geometry.center)
+            x = (st_cent[:,0]*u.km).to(self.unit)
+            y = (st_cent[:,1]*u.km).to(self.unit)
+            z = (st_cent[:,2]*u.km).to(self.unit)
+            vx = (st_cent[:,3]*u.km).to(self.unit)/u.s
+            vy = (st_cent[:,4]*u.km).to(self.unit)/u.s
+            vz = (st_cent[:,5]*u.km).to(self.unit)/u.s
             
             # get taa, subsolar longitude and latitude
             taa = np.zeros(ntimes)*u.rad
             ss_lon, ss_lat = np.zeros(ntimes)*u.rad, np.zeros(ntimes)*u.rad
+            # st, _ = spice.spkezr(self.object, times_et, 'J2000', self.abcor, )
             for i, et in enumerate(times_et):
-                taa_ = spice.oscltx(st[i,:], et, -sun.GM.value)
+                taa_ = spice.oscltx(st_sun[i,:], et, -sun.GM.value)
                 taa[i] = taa_[8]*u.rad
                 
                 try:
@@ -127,14 +132,16 @@ class SSPosition:
                                                 et, f'IAU_{self.object.upper()}',
                                                 self.abcor, self.object)
                     
-                lonlat = spice.recpgr(self.object, sublon, ssobject.radius.value, 0.)
+                lonlat = spice.recpgr(self.object, sublon,
+                                      ssobject.radius.value, 0.)
                 ss_lon[i], ss_lat[i] = lonlat[0]*u.rad, lonlat[1]*u.rad
+                
             for i in range(ntimes-1):
                 if taa[i+1] < taa[i]:
                     taa[i+1:] += 2*pi
                 else:
                     pass
-               
+            
             # Get sun_dir
             st, _ = spice.spkezr(self.object, times_et, frame, self.abcor, 'Sun')
             sun_dir_x = -(st[:,0]*u.km/r_sun).to(u.dimensionless_unscaled)
@@ -152,10 +159,11 @@ class SSPosition:
             self.sun_dir_x = lambda t: np.interp(t, modeltime, sun_dir_x)
             self.sun_dir_y = lambda t: np.interp(t, modeltime, sun_dir_y)
             self.sun_dir_z = lambda t: np.interp(t, modeltime, sun_dir_z)
-            self.taa = lambda t: np.interp(t, modeltime, taa) % (2*pi)
-            self.subsolar_longitude = lambda t: np.interp(t, modeltime,
-                                                          ss_lon) % (2*pi)
+            self.taa = lambda t: np.mod(np.interp(t, modeltime, taa), 2*pi)
+            self.subsolar_longitude = lambda t: np.mod(
+                np.interp(t, modeltime, ss_lon), 2*pi)
             self.subsolar_latitude = lambda t: np.interp(t, modeltime, ss_lat)
+            
             if ssobject.type == 'Planet':
                 self.phi = self.taa
             elif ssobject.type == 'Moon':
@@ -169,6 +177,10 @@ class SSPosition:
                     if phi[i+1] < phi[i]:
                         phi[i+1:] += 2*pi
                 self.phi = lambda t: np.interp(t, modeltime, phi) % (2*pi)
+                
+                # Use planet TAA
+                self.taa = plan_pos.taa
+                
                 # self.phi = self.subsolar_longitude
             else:
                 raise RuntimeError('SSObject.get_geometry',

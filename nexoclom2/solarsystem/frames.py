@@ -27,13 +27,10 @@ class Frame:
         
         for i, et in enumerate(self.times_et):
             self.R_to_j2000[i,:,:] = spice.pxform(self.frame, 'J2000', et)
-            self.R_to_iau[i,:,:] = spice.pxform(self.frame,
-                                                f'IAU_{ssobj.object.upper()}', et)
-            self.R_to_solar[i,:,:] = spice.pxform(self.frame,
-                                                  f'{ssobj.object.upper()}SOLAR',
-                                                  et)
+            self.R_to_iau[i,:,:] = spice.pxform(self.frame, ssobj.iau_frame, et)
+            self.R_to_solar[i,:,:] = spice.pxform(self.frame, ssobj.solar_frame, et)
             self.R_to_solarfixed[i,:,:] = spice.pxform(self.frame,
-                f'{ssobj.object.upper()}SOLARFIXED', et)
+                                                       ssobj.solar_frame, et)
             
             if jupiter:
                 self.R_to_mag[i,:,:] = spice.pxform(self.frame, 'JupiterMag', et)

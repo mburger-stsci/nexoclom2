@@ -68,6 +68,10 @@ class GeometryNoTime(Geometry):
             self.subsolarpoint = (gparam['subsolarpoint'][0]*u.deg,
                                   gparam['subsolarpoint'][1]*u.deg)
             self.taa = gparam['taa']*u.deg
+            if 'cml' in gparam:
+                self.cml = gparam['cml']*u.deg
+            else:
+                pass
             self.dtaa = 0*u.deg
         else:
             center = SSObject(self.center)
@@ -110,6 +114,18 @@ class GeometryNoTime(Geometry):
             
             subs = gparam.get('subsolarpoint', '0, 0').split(',')
             self.subsolarpoint = (float(subs[0])*u.deg, float(subs[1])*u.deg)
+            
+            jupiter = SSObject('Jupiter')
+            if ((self.startpoint == 'Jupiter') or
+                (self.startpoint in jupiter.satellites)):
+                cml = gparam.get('cml', None)
+                if cml is not None:
+                    self.cml = float(cml)*u.deg
+                else:
+                    raise InputfileError('input_class.GeometryNoTime',
+                        'geometry.cml must be specified for Jovian system')
+            else:
+                pass
 
             self.dtaa = float(gparam.get('dtaa', 2))*u.deg
 
@@ -122,6 +138,12 @@ class GeometryNoTime(Geometry):
                                            for s, p in self.phi.items()]) + '\n'
         else:
             pass
+        
+        if hasattr(self, 'cml'):
+            output += f'CML: {self.cml}\n'
+        else:
+            pass
+        
         output += (f'Subsolar point: ({self.subsolarpoint[0].to(u.deg):0.1f}, '
                    f'{self.subsolarpoint[1].to(u.deg):0.1f})\n')
         return output

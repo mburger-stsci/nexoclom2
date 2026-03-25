@@ -1,7 +1,7 @@
 import sys
 from nexoclom2 import SSObject
 from nexoclom2.initial_state import GeometryTime, GeometryNoTime
-from nexoclom2.solarsystem.SSPositionTime import SSPositionTime
+from nexoclom2.solarsystem.SSPosition import SSPosition
 from astropy.time import Time
 import astropy.units as u
 
@@ -13,20 +13,21 @@ def load_object_geometries(objname, center, endtime, runtime, geotype):
         include = f'{center}, {objname}'
         
     geometry = GeometryTime({'center': center,
-                             'start_point': objname,
+                             'startpoint': objname,
                              'include': include,
                              'modeltime': endtime.iso})
+    
     ssobject = SSObject(objname)
-    ssposition = SSPositionTime(ssobject, geometry, runtime)
+    ssposition = SSPosition(ssobject, geometry, runtime)
     if geotype == 'notime':
         subsolarpt = (f'{ssposition.subsolar_longitude(0).value}, '
                       f'{ssposition.subsolar_latitude(0).value}')
-        geometry = GeometryNoTime({'center': center,
-                                   'start_point': objname,
-                                   'taa': f'{ssposition.taa(0).value}',
-                                   'phi': f'{ssposition.phi(0).value}',
-                                   'include': include,
-                                   'subsolarpoint': subsolarpt})
+        geometry_nt = GeometryNoTime({'center': center,
+                                      'start_point': objname,
+                                      'taa': f'{ssposition.taa(0).value}',
+                                      'phi': f'{ssposition.phi(0).value}',
+                                      'include': include,
+                                      'subsolarpoint': subsolarpt})
         ssobject = SSObject(objname)
         ssobject.get_geometry(geometry, runtime)
         ssposition = None

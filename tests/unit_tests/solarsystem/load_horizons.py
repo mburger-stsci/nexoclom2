@@ -2,9 +2,12 @@ import os
 import numpy as np
 import pandas as pd
 import astropy.units as u
+from IPython.utils.generics import complete_object
 from astropy.table import QTable
 from astropy.time import Time
 from astroquery.jplhorizons import Horizons
+from more_itertools.more import map_if
+
 from nexoclom2 import SSObject, path
 
 
@@ -40,8 +43,14 @@ def load_horizons(objname, runtime):
     #           'stop': '2021-Dec-29 00:00:00',
     #           'step': '10d'}
 
+    if objname == 'Earth':
+        naif_obj = 301
+    elif objname == 'Moon':
+        naif_obj = 399
+    else:
+        naif_obj = ssobj.naifid
     try:
-        horizons = Horizons(id=ssobj.naifid, location='@Sun', epochs=epochs)
+        horizons = Horizons(id=ssobj.naifid, location=naif_obj, epochs=epochs)
         ephem = horizons.ephemerides()
     except:
         from inspect import currentframe, getframeinfo
@@ -49,7 +58,6 @@ def load_horizons(objname, runtime):
         print(frameinfo.filename, frameinfo.lineno)
         from IPython import embed; embed()
         import sys; sys.exit()
-        
     
     result = QTable()
     result.object = objname
