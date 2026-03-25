@@ -1,8 +1,9 @@
 """Determines whether two values are close in a modular system"""
 import numpy as np
+import astropy.units as u
 
 
-def mod_close(a, b, period=2*np.pi, atol=1e-8):
+def mod_close(a, b, period=360*u.deg, atol=1e-8*u.deg):
     """Wrapper for np.isclose for values close to the periodic boundary
     Decision Chart
     
