@@ -126,8 +126,9 @@ class SSObject:
                 'Object'].to_list())
             self.satellites = satellites if len(satellites) > 0 else None
             
-            self._surf_frame = f'IAU_{self.object.upper()}'
-            self._solar_frame = f'{self.object.upper()}SOLAR'
+            self.iau_frame = f'IAU_{self.object.upper()}'
+            self.solar_frame = f'{self.object.upper()}SOLAR'
+            self.solar_fixed_frame = f'{self.object.upper()}SOLARFIXED'
             self._method = 'INTERCEPT/ELLIPSOID'
             
             if self.orbits == 'Milky Way':
@@ -153,14 +154,12 @@ class SSObject:
                 if self.orbits == 'Sun':
                     self.type = 'Planet'
                     self.a = a.to(u.au)
-                    self.e = 0
                 else:
                     self.type = 'Moon'
                     _, r_center = spice.bodvrd(self.orbits, item='RADII', maxn=3)
                     r_center = r_center[0]*u.km
                     unit = u.def_unit(f'R_{self.orbits}', r_center)
                     self.a = a.to(unit)
-                    self.e = 0.
                 self.orbvel = 2*np.pi*self.a.to(u.km)/self.orbperiod.to(u.s)
         else:
             self.type = 'Unknown'
@@ -192,6 +191,8 @@ class SSObject:
     def __eq__(self, other):
         if isinstance(other, SSObject):
             return self.object == other.object
+        elif isinstance(other, str):
+            return self.object == other
         else:
             return False
     

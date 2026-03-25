@@ -1,7 +1,5 @@
 import numpy as np
 import astropy.units as u
-import spiceypy as spice
-from nexoclom2.solarsystem.load_kernels import SpiceKernels
 from nexoclom2.solarsystem.frames import Frame
 
 
@@ -57,12 +55,10 @@ def lonlat_to_xyz(output, points, time):
     
     if stpoint.type == 'Moon':
         # Rotate to IAU
-        output_frame = f'IAU_{output.startpoint.upper()}'
-        
-        # Need in solar coordinates to get local time
-        loctime_frame = f'{output.startpoint.upper()}SOLAR'
+        output_frame = stpoint.iau_frame
+        loctime_frame = stpoint.solar_frame
     elif stpoint.type == 'Planet':
-        output_frame = f'{output.startpoint.upper()}SOLAR'
+        output_frame = stpoint.solar_frame
         loctime_frame = output_frame
     else:
         assert False, 'Startpoint must be a Planet or Moon'
@@ -76,7 +72,7 @@ def lonlat_to_xyz(output, points, time):
     if output_frame == loctime_frame:
         final_for_lt = final
     else:
-        final_for_lt = input_frame.to_solar(time, points)
+        final_for_lt = input_frame.to_solar(time, start)
         
     lon_out_lt = np.mod((np.sign(final_for_lt[:,1]) *
         np.arccos(final_for_lt[:,0]/np.sqrt(final_for_lt[:,0]**2 +

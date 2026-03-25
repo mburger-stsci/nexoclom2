@@ -64,8 +64,7 @@ def lossrate(packets, output):
     
     if lossinfo.electron_impact:
         cml = output.positions[output.center].subsolar_longitude(packets.time)
-        plasma = output.plasma.n_and_T('e', TimeDelta(packets.time) + output.modeltime,
-                                       packets.X, cml, output.frame)
+        plasma = output.plasma.n_and_T('e', packets.time,  packets.X, output.frame)
         
         ratecoef = (output.species.eimp_ionization.ratecoef(plasma['T']) *
                     output.inputs.lossinfo.eimp_factor)

@@ -34,11 +34,24 @@ class IoTorus:
         self.planet = SSObject('Jupiter')
         
     def xyz_to_Mzeta(self, times, X, frame):
+        """ Convert from (x, y, z) to (M, zeta) in plasma torus
+        
+        Parameters
+        ----------
+        times: astropy Time quantity array
+            Times for the rotation (length n)
+        X: astropy Distance quantity array
+            Locations of each point (nx3 array)
+        frame: nexoclom2 Frame object
+            Coordinate frame for X. This needs to be initialized prior to
+            function call with the modeltime and runtime
+        """
+        
         # Coordinates relative to magnetic field
-        X_MP = frame.to_mag('Jupiter', times, X)
+        X_MP = frame.to_mag(times, X)
         
         # Coordinates relative to centripetal equator
-        X_CP = frame.to_cp('Jupiter', times, X)
+        X_CP = frame.to_cp(times, X)
         
         # Distance of packets from dipole center
         r_dip = np.sqrt(np.sum(X**2, axis=1))
@@ -56,13 +69,12 @@ class IoTorus:
         M[r_dip == 0] = 0*M.unit
         
         # Approximate distance along field line from centrifugal equator to packet
-        zeta = r_dip * np.sin(cplat)
+        zeta = X_CP[:,2]
         zeta[np.abs(cplat) > 30*u.deg] = 1e30*r_dip.unit
-        zeta[r_dip == 0] = 0.
         
         return M, zeta, L
     
-    def n_and_T(self, species, times, X, frame=None):
+    def n_and_T(self, species, times, X, frame):
         M, zeta, L = self.xyz_to_Mzeta(times, X, frame)
         plasma = {'species': species}
         
@@ -81,20 +93,3 @@ class IoTorus:
         plasma['n'] = n * np.exp(-zeta**2/H**2)
         
         return plasma
-    
-    def distance_along_field_line(self, L, theta_c, theta_p):
-        """ Calculate the distance along the dipole field line
-        
-        Parameters
-        ----------
-        L: astropy Quantity
-            L (or modified L) - Field line through magnetic equator
-        theta_c: astropy Quantity
-            Angle from magnetic equator to centrifugal equator
-        theta_p: astropy Quantity
-            Angle from magnetic equator to packet
-
-        Returns
-        -------
-        Distance along field line
-        """
