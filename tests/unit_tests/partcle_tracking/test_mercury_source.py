@@ -30,13 +30,6 @@ def test_mercury_source():
                 # inputfile =  f'Mercury_{center}_{integrator}_notime.input'
                 inputs = Input(inputfile)
                 
-                from inspect import currentframe, getframeinfo
-                frameinfo = getframeinfo(currentframe())
-                print(frameinfo.filename, frameinfo.lineno)
-                from IPython import embed; embed()
-                import sys; sys.exit()
-                
-                
                 # inputs.forces.radpres = False
                 inputs.geometry.taa = taa
                 inputs.options.start_together = True
@@ -108,6 +101,13 @@ def test_mercury_source():
                 plt.savefig(f'figures/{figure_file}')
                 
                 plt.close()
+                
+                from inspect import currentframe, getframeinfo
+                frameinfo = getframeinfo(currentframe())
+                print(frameinfo.filename, frameinfo.lineno)
+                from IPython import embed; embed()
+                import sys; sys.exit()
+                
                 
 
 if __name__ == '__main__':

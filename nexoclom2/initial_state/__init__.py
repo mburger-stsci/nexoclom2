@@ -14,6 +14,7 @@ from nexoclom2.initial_state.SpatialDists.SurfSpotSpatDist import SurfSpotSpatDi
 from nexoclom2.initial_state.SpeedDists.MaxwellianFluxDist import MaxwellianFluxDist
 from nexoclom2.initial_state.SpeedDists.FlatSpeedDist import FlatSpeedDist
 from nexoclom2.initial_state.SpeedDists.SputteringFluxDist import SputteringFluxDist
+from nexoclom2.initial_state.SpeedDists.PSDFluxDist import PSDFluxDist
 
 from nexoclom2.initial_state.AngularDists.RadialAngDist import RadialAngDist
 from nexoclom2.initial_state.AngularDists.IsotropicAngDist import IsotropicAngDist

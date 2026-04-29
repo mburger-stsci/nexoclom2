@@ -1,18 +1,22 @@
 import numpy as np
 import astropy.units as u
 import spiceypy as spice
+import warnings
+from erfa import ErfaWarning
 from nexoclom2.solarsystem.load_kernels import SpiceKernels
 
 
 class Frame:
-    def __init__(self, ssobj, fname, modeltime, runtime):
+    def __init__(self, ssobj, fname, modeltime, runtime, ntimes=1000):
         kernels = SpiceKernels(ssobj.object)
-        
-        times = np.linspace(-runtime, 0*u.s, 1000).to(u.s)
-        modeltimes = modeltime + times
+       
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', category=ErfaWarning)
+            times = np.linspace(-runtime, 0*u.s, ntimes).to(u.s)
+            modeltimes = modeltime + times
+            self.times_et = spice.str2et(modeltimes.iso)
         self.frame = fname
         self.center = ssobj.object
-        self.times_et = spice.str2et(modeltimes.iso)
         self.times_delta = times
         jupiter = (ssobj.object == 'Jupiter') or (ssobj.orbits == 'Jupiter')
         
@@ -87,3 +91,11 @@ class Frame:
             result[:,i] = np.sum(R[:,i,:]*points, axis=1)
             
         return result
+
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.frame == other.frame
+        elif isinstance(other, str):
+            return self.frame == other
+        else:
+            return False

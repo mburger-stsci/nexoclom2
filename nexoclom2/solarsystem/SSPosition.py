@@ -3,6 +3,8 @@ import astropy.units as u
 from astropy.time import TimeDelta
 import spiceypy as spice
 import copy
+import warnings
+from erfa import ErfaWarning
 from nexoclom2.solarsystem.load_kernels import SpiceKernels
 from nexoclom2.solarsystem.SSObject import SSObject
 
@@ -68,16 +70,20 @@ class SSPosition:
                                                   self.sun_dir_z(t)])
         
         self.endtime = geometry.modeltime
-        self.starttime = self.endtime - TimeDelta(self.runtime)
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', category=ErfaWarning)
+            self.starttime = self.endtime - TimeDelta(self.runtime)
         # self.abcor = 'LT+S'
         self.abcor = 'None'
         
         # Load the spice kernels
         kernels = SpiceKernels(ssobject.object)
         
-        times = np.linspace(self.starttime, self.endtime, ntimes)
-        times_et = spice.str2et(times.iso)
-        modeltime = (times - self.endtime).to(u.s)
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', category=ErfaWarning)
+            times = np.linspace(self.starttime, self.endtime, ntimes)
+            times_et = spice.str2et(times.iso)
+            modeltime = (times - self.endtime).to(u.s)
         
         if ssobject.type == 'Star':
             # Everything returns zero with proper units
