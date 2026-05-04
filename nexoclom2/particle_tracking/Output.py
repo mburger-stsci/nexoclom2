@@ -413,6 +413,7 @@ class Output:
             final.frame = frame
         
         if (final.frame != self.frame) or (self.center != center):
+            self.frame = final.frame
             times = final.time
             X0 = self.positions[self.startpoint].X(times)
             V0 = self.positions[self.startpoint].V(times)
