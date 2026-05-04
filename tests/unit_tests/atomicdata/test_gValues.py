@@ -22,7 +22,7 @@ def test_gValue():
                                      'g-values.csv'))
     old_g.sort_values('velocity', inplace=True)
     
-    fig, ax = plt.subplot_mosaic([[0, 1, 2]], figsize=(12, 6))
+    fig, ax = plt.subplot_mosaic([[0, 1, 2]], figsize=(14, 6))
     colors = (x for x in ['black', 'red', 'green', 'blue'])
     ref_pt = 0.352*u.au
     for i, sp in enumerate(species):
@@ -32,31 +32,36 @@ def test_gValue():
                         gvalue.velocity.max()*1.1, 200)
         g = gvalue.gvalue(v, r=ref_pt)
         for wave in g.keys():
-            ax[i].plot(v.value, g[wave].value, label=f'K22', color=next(colors))
+            label = f'{int(round(wave.value))}' + r' $\AA$'
+            ax[i].plot(v.value, g[wave].value, label=label, color=next(colors))
             
-        if sp == 'Na':
-            old_sub = old_g[(old_g.species == sp) & (old_g.wavelength == 5891.)]
-            ax[i].plot(old_sub.velocity, old_sub.gvalue, color='grey',
-                       linestyle='--', label='K09')
-            old_sub = old_g[(old_g.species == sp) & (old_g.wavelength == 5897.)]
-            ax[i].plot(old_sub.velocity, old_sub.gvalue, color='magenta',
-                       linestyle='--', label='K09')
-        elif sp == 'Ca':
-            old_sub = old_g[(old_g.species == sp) & (old_g.wavelength == 4227.)]
-            ax[i].plot(old_sub.velocity, old_sub.gvalue, color='lime',
-                       linestyle='--', label='K09')
-        elif sp == 'Mg':
-            old_sub = old_g[(old_g.species == sp) & (old_g.wavelength == 2852)]
-            ax[i].plot(old_sub.velocity, old_sub.gvalue, color='cyan',
-                       linestyle='--', label='K09')
+        # if sp == 'Na':
+        #     old_sub = old_g[(old_g.species == sp) & (old_g.wavelength == 5891.)]
+        #     ax[i].plot(old_sub.velocity, old_sub.gvalue, color='grey',
+        #                linestyle='--', label='K09')
+        #     old_sub = old_g[(old_g.species == sp) & (old_g.wavelength == 5897.)]
+        #     ax[i].plot(old_sub.velocity, old_sub.gvalue, color='magenta',
+        #                linestyle='--', label='K09')
+        # elif sp == 'Ca':
+        #     old_sub = old_g[(old_g.species == sp) & (old_g.wavelength == 4227.)]
+        #     ax[i].plot(old_sub.velocity, old_sub.gvalue, color='lime',
+        #                linestyle='--', label='K09')
+        # elif sp == 'Mg':
+        #     old_sub = old_g[(old_g.species == sp) & (old_g.wavelength == 2852)]
+        #     ax[i].plot(old_sub.velocity, old_sub.gvalue, color='cyan',
+        #                linestyle='--', label='K09')
         ax[i].legend()
         ax[i].set_xlabel('Velocity (km s$^{-1}$)')
         ax[i].set_ylabel('g-value (s$^{-1}$)')
         ax[i].set_title(sp)
         
-    fig.suptitle('Killen et al. 2009 vs. Killen et al. 2022')
-    plt.savefig('gvalue_compare.png')
+    fig.suptitle('g-Values for Na, Ca, and Mg (Killen et al. 2022)')
+    plt.savefig('gvalues.png')
+    # fig.suptitle('Killen et al. 2009 vs. Killen et al. 2022')
+    # plt.savefig('gvalue_compare.png')
     plt.close()
+    import sys; sys.exit()
+    
     
     geometry = GeometryNoTime({'center': 'Sun',
                                'start_point': 'Mercury',

@@ -75,7 +75,7 @@ class MaxwellianFluxDist(InputClass):
         -------
         tuple with valid range for the PDF
         """
-        return 0*self.v_th.unit, self.v_th*3
+        return 0*self.v_th.unit, self.v_th*10
     
     def choose_points(self, n_packets, randgen=None):
         """Compute random deviates from arbitrary 1D distribution.

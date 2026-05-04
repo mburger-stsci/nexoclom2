@@ -1,8 +1,5 @@
 import os
 import numpy as np
-import astropy.units as u
-
-from nexoclom2.initial_state.AngularDists.IsotropicAngDist import IsotropicAngDist
 from nexoclom2.utilities.exceptions import InputfileError
 from nexoclom2.initial_state import *
 from nexoclom2.utilities.NexoclomConfig import NexoclomConfig
@@ -92,6 +89,14 @@ class Input:
             if species is not None:
                 spdparams['species'] = species
                 self.speeddist = SputteringFluxDist(spdparams)
+            else:
+                raise InputfileError('Input.__init__',
+                                     'options.species not given.')
+        elif type == 'psd':
+            species = optparms.get('species', None)
+            if species is not None:
+                spdparams['species'] = species
+                self.speeddist = PSDFluxDist(spdparams)
             else:
                 raise InputfileError('Input.__init__',
                                      'options.species not given.')

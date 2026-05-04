@@ -109,6 +109,13 @@ def test_mercury_source():
                 
                 plt.close()
                 
+                from inspect import currentframe, getframeinfo
+                frameinfo = getframeinfo(currentframe())
+                print(frameinfo.filename, frameinfo.lineno)
+                from IPython import embed; embed()
+                import sys; sys.exit()
+                
+                
 
 if __name__ == '__main__':
     test_mercury_source()

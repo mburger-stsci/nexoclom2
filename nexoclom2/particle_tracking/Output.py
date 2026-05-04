@@ -362,8 +362,9 @@ class Output:
         
         start = StartingPointSaved(self, iteration=iteration, n_packets=n_packets)
         start.vx = start.vx.to(u.km/u.s)
-        start.vy = start.vx.to(u.km/u.s)
-        start.vz = start.vx.to(u.km/u.s)
+        start.vy = start.vy.to(u.km/u.s)
+        start.vz = start.vz.to(u.km/u.s)
+        start.v = start.v.to(u.km/u.s)
         
         return start
 
@@ -416,7 +417,6 @@ class Output:
             X0 = self.positions[self.startpoint].X(times)
             V0 = self.positions[self.startpoint].V(times)
             
-            # times = self.modeltime + TimeDelta(times)
             X0 = self.frame.rotation(times, X0, final.frame)
             V0 = self.frame.rotation(times, V0, final.frame)
             

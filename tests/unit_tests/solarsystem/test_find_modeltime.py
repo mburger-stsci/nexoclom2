@@ -78,26 +78,25 @@ def test_io_modeltime():
     with open(datafile, 'rb') as file:
         phi, cml, timegrid = pickle.load(file)
     
-    q = np.where(timegrid != 0)
-    
-    nums = np.random.randint(0, len(q[0]), 10)
-    for i in nums:
-        print(i)
-        p, c = phi[q[0][i]], cml[q[1][i]]
+    n_to_do = 10
+    for i in range(n_to_do):
+        nx, ny = np.random.randint(0, len(phi), 2)
+        p, c = phi[nx], cml[ny]
+        print(p, c)
         params = {'startpoint': 'Io',
                   'center': 'Jupiter',
-                  'modeltime': timegrid[q[0][i], q[1][i]].iso}
+                  'modeltime': timegrid[nx,ny].iso}
         geometry = GeometryTime(params)
         io = SSObject('Io')
         jupiter = SSObject('jupiter')
         
         io_pos = SSPosition(io, geometry, 10*u.s)
         phi_result = io_pos.phi(0*u.s).to(u.deg)
-        assert mod_close(p, phi_result, atol=1*u.deg)
+        assert mod_close(p, phi_result, atol=0.25*u.deg)
         
         jup_pos = SSPosition(jupiter, geometry, 10*u.s)
         cml_result = jup_pos.subsolar_longitude(0*u.s).to(u.deg)
-        assert mod_close(c, cml_result, atol=1*u.deg)
+        assert mod_close(c, cml_result, atol=0.25*u.deg)
 
 
 if __name__ == '__main__':

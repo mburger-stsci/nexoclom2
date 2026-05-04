@@ -8,7 +8,7 @@ from nexoclom2.math import Histogram2d
 
 
 class ModelImage(ModelResult):
-    def __init__(self, output, params, overwrite=False, chunksize=1000000):
+    def __init__(self, output, params, overwrite=False, chunksize=1_000_000):
         """ Make a radiance or column density image
         
         Params is a dictionary with the following options:
@@ -55,14 +55,14 @@ class ModelImage(ModelResult):
 
         ybins = np.linspace(*self.yrange, self.dimensions[0]+1)
         zbins = np.linspace(*self.zrange, self.dimensions[1]+1)
-        store = h5py.File(output.savefile, 'r')
+        # store = h5py.File(output.savefile, 'r')
         it, ct = 0, 0
         nchunks = int(output.n_final_packets/chunksize)+1
         
         # Set up the rotation
         slon = self.subobs_longitude
         slat = self.subobs_latitude
-        sun_dir = output.objects[self.origin].sun_dir(0*u.s)[0,:]
+        sun_dir = output.positions[self.origin].sun_dir(0*u.s)[0,:]
         obs_dir = np.array([np.cos(slon)*np.cos(slat),
                             np.sin(slon)*np.cos(slat),
                             -np.sin(slat)])
@@ -86,36 +86,26 @@ class ModelImage(ModelResult):
             ind = np.arange(ct, ct+chunksize).astype(int)
             ind = ind[ind < output.n_final_packets]
             
-            time = store['final_state/time'][ind]*u.s
-            x = store['final_state/x'][ind]*output.unit
-            y = store['final_state/y'][ind]*output.unit
-            z = store['final_state/z'][ind]*output.unit
-            vx = store['final_state/vx'][ind]*output.unit/u.s
-            vy = store['final_state/vy'][ind]*output.unit/u.s
-            vz = store['final_state/vz'][ind]*output.unit/u.s
-            frac = store['final_state/frac'][ind]
-            
-            X = np.column_stack([x, y, z])
-            V = np.column_stack([vx, vy, vz])
-            if self.origin != output.center:
-                # Transform to center
-                X, V = output.to_planet_coords(time, X, V)
-            elif output.center == 'Sun':
-                X = X.to(u.au)
-                V = V.to(u.km/u.s)
-            else:
-                pass
+            final = output.final_state(which=ind)
+            X = np.column_stack([final.x, final.y, final.z])
             
             # Rotate to proper subobs longitude, latitude
             X_pr = self.rotation.apply(X)*output.unit
             
+            from inspect import currentframe, getframeinfo
+            frameinfo = getframeinfo(currentframe())
+            print(frameinfo.filename, frameinfo.lineno)
+            from IPython import embed; embed()
+            import sys; sys.exit()
+            
+            
             inview = np.ones(X.shape[0], dtype=bool)
-            for obj in output.objects.values():
-                y_sep = X_pr[:,1] - obj.y(0*u.s)
-                z_sep = X_pr[:,2] - obj.z(0*u.s)
+            for objname, obj in output.objects.items():
+                y_sep = X_pr[:,1] - output.positions[objname].y(0*u.s)
+                z_sep = X_pr[:,2] - output.positions[objname].z(0*u.s)
                 rho = np.sqrt(y_sep**2 + z_sep**2)
-                inview *= (rho > obj.radius) | (X_pr[:,1] > obj.x(0*u.s))
-            frac *= inview
+                inview *= (rho > obj.radius) | (X_pr[:,1] > output.positions[objname].x(0*u.s))
+                frac *= inview
             
             if (self.quantity == 'column') or (self.quantity == 'density'):
                 weight = frac * output.atoms_per_packet
