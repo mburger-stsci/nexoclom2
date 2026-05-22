@@ -54,14 +54,14 @@ class CosAngleDist(InputClass):
     """
     def __init__(self, sparam: (dict, Document)):
         super().__init__(sparam)
-        self.__name__ = 'SurfSpotSpatDist'
+        self.__name__ = 'CosAngSpatDist'
         if isinstance(sparam, Document):
             self.longitude = self.longitude*u.deg
             self.latitude = self.latitude*u.deg
         else:
             self.longitude = float(sparam.get('longitude', 0))*u.deg
             if (self.longitude < 0*u.deg) or (self.longitude >= 360*u.deg):
-                raise OutOfRangeError('input_classes.SurfaceSpotDist',
+                raise OutOfRangeError('input_classes.CosAngleDist',
                                       'spatialdist.longitude', (0, 360),
                                       include_max=False)
             else:
@@ -69,21 +69,21 @@ class CosAngleDist(InputClass):
             
             self.latitude = float(sparam.get('latitude', 0))*u.deg
             if (self.latitude < -90*u.deg) or (self.latitude > 90*u.deg):
-                raise OutOfRangeError('input_classes.SurfaceSpotDist',
+                raise OutOfRangeError('input_classes.CosAngleDist',
                                       'spatialdist.latitude', (-90, 90))
             else:
                 pass
             
             self.n = float(sparam.get('n', 1))
             if self.n <= 0:
-                raise OutOfRangeError('input_classes.SurfaceSpotDist',
+                raise OutOfRangeError('input_classes.CosAngleDist',
                                       'spatialdist.n', (None, ))
             else:
                 pass
             
             self.exobase = float(sparam.get('exobase', '1'))
             if self.exobase < 1:
-                raise OutOfRangeError('input_classes.SurfaceSpotDist',
+                raise OutOfRangeError('input_classes.CosAngleDist',
                                       'spatialdist.exobase', (1, None),
                                       include_min=False)
             
