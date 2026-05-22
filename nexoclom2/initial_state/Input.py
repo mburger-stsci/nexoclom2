@@ -70,7 +70,7 @@ class Input:
         elif type == 'spot':
             self.spatialdist = SurfSpotSpatDist(spatparams)
         elif type == 'cosang':
-            self.spatialdist = SurfSpotSpatDist(spatparams)
+            self.spatialdist = CosAngleSpatDist(spatparams)
         else:
             assert False, f'spatialdist {type} not set up yet.'
 
