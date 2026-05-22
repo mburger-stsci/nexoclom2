@@ -250,7 +250,8 @@ class Output:
                 else:
                     store.create_dataset(f'starting_point/{key}',
                                          shape=((len(start_point), )),
-                                         maxshape=(None, ))
+                                         maxshape=(None, ),
+                                         dtype='f4')
                     store[f'starting_point/{key}'][:] = start_point.__dict__[key]
             store['starting_point'].attrs['unit'] = start_point.x.unit.name
         
@@ -258,11 +259,13 @@ class Output:
                           'escaped', 'ionized', 'packet_number', 'iteration']
             for key in final_keys:
                 store.create_dataset(f'final_state/{key}', shape=(0, ),
-                                     maxshape=(None, ))
+                                     maxshape=(None, ),
+                                     dtype='f4')
             
             for objname in self.objects:
                 store.create_dataset(f'/final_state/hit/{objname}',
-                                     shape=(0, ), maxshape=(None, ))
+                                     shape=(0, ), maxshape=(None, ),
+                                     dtype='f4')
     
     
     def save_final_state(self, final_state):
@@ -413,7 +416,6 @@ class Output:
             final.frame = frame
         
         if (final.frame != self.frame) or (self.center != center):
-            self.frame = final.frame
             times = final.time
             X0 = self.positions[self.startpoint].X(times)
             V0 = self.positions[self.startpoint].V(times)

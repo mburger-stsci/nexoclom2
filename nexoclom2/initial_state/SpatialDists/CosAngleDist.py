@@ -5,28 +5,33 @@ from nexoclom2.initial_state.InputClass import InputClass
 from nexoclom2.utilities.exceptions import InputfileError, OutOfRangeError
 
 
-class SurfSpotSpatDist(InputClass):
-    """Defines a spatial distribution with a spot on the surface.
+class CosAngleDist(InputClass):
+    """ Defines a spatial distribution CosAngle spatial distribution
+    
+    A source that varies with :math:`cos^n(\phi)` on the hemisphere surounding
+    a specified point. Default is the subsolar point. This is intended to be
+    used for photon stimulated desorption.
+    
+    Probability distribtuon function
+    
+    .. math::
+    
+        P(\phi) \propto cos^n (\phi), \phi < 90^\circ
+        P(\phi) = 0, \phi >= 90^\circ
+        
+    where :math:`\phi` is angle between points on the surface and the central
+    spot on the surface.
     
     Parameters that can be set:
     
     * longitude
+        Longitude of central point. Default = 0º
     * latitude
-    * sigma
+        Latitude of central point. Default = 0º
+    * n
     * exobase
-    * frame
-    See :ref:`spatialdist` for more information.
     
-    Probability distribution function:
-    
-    .. math::
-    
-        P(\theta) \propto e^{-(\frac{\theta/\sigma})^n
-        
-    where :math:`\theta` = angle between the spot center and the location on
-    the surface
-
-    Parameters
+        Parameters
     ----------
     sparam: dict
         Key, value for defining the distribution
@@ -37,10 +42,8 @@ class SurfSpotSpatDist(InputClass):
         Longitude of the source center in degrees.
     latitude: astropy quantity
         Latitude of the source center in degrees.
-    sigma: astropy quantity
-        Angular e-folding width of the source in degrees.
     n: float
-        exponent for exponential
+        exponent for the cossine function
     exobase: float
         Distance from starting object's center from which to eject particles.
         Measured relative to starting object's radius. Default: 1.0
@@ -55,7 +58,6 @@ class SurfSpotSpatDist(InputClass):
         if isinstance(sparam, Document):
             self.longitude = self.longitude*u.deg
             self.latitude = self.latitude*u.deg
-            self.sigma = self.sigma*u.deg
         else:
             self.longitude = float(sparam.get('longitude', 0))*u.deg
             if (self.longitude < 0*u.deg) or (self.longitude >= 360*u.deg):
@@ -72,24 +74,13 @@ class SurfSpotSpatDist(InputClass):
             else:
                 pass
             
-            if 'sigma' in sparam:
-                self.sigma = float(sparam['sigma'])*u.deg
-                if self.sigma < 0*u.deg:
-                    raise OutOfRangeError('input_classes.SurfaceSpotDist',
-                                          'spatialdist.sigma', (0, None))
-                else:
-                    pass
-            else:
-                raise InputfileError('input_classes.SurfaceSpotDist',
-                                     'spatialdist.sigma must be specified')
-           
             self.n = float(sparam.get('n', 1))
             if self.n <= 0:
                 raise OutOfRangeError('input_classes.SurfaceSpotDist',
                                       'spatialdist.n', (None, ))
             else:
                 pass
-        
+            
             self.exobase = float(sparam.get('exobase', '1'))
             if self.exobase < 1:
                 raise OutOfRangeError('input_classes.SurfaceSpotDist',
@@ -102,8 +93,8 @@ class SurfSpotSpatDist(InputClass):
                 self.frame = frame
             else:
                 raise InputfileError('input_classes.UniformSpatDist',
-                    f'spatialdist.frame must be one of {possible_frames}')
-            
+                                     f'spatialdist.frame must be one of {possible_frames}')
+    
     def pdf2d(self, lon, lat):
         spot0 = (np.cos(self.longitude)*np.cos(self.latitude),
                  np.sin(self.longitude)*np.cos(self.latitude),
@@ -114,9 +105,9 @@ class SurfSpotSpatDist(InputClass):
         z = np.sin(lat)
         
         cosang = x*spot0[0] + y*spot0[1] + z*spot0[2]
-        ang = np.arccos(cosang)
-        return np.exp(-(ang/self.sigma)**self.n)
-        
+        cosang[cosang < 0] = 0
+        return cosang**self.n
+    
     def choose_points(self, n_packets, randgen=None):
         lon, lat= self.generate2d(n_packets, randgen=randgen)
         
