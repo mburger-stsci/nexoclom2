@@ -5,7 +5,7 @@ from nexoclom2.initial_state.InputClass import InputClass
 from nexoclom2.utilities.exceptions import InputfileError, OutOfRangeError
 
 
-class CosAngleDist(InputClass):
+class CosAngleSpatDist(InputClass):
     """ Defines a spatial distribution CosAngle spatial distribution
     
     A source that varies with :math:`cos^n(\phi)` on the hemisphere surounding
