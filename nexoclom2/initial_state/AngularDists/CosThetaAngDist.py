@@ -5,13 +5,14 @@ from nexoclom2.initial_state.InputClass import InputClass
 from nexoclom2.utilities.exceptions import InputfileError, OutOfRangeError
 
 
-class IsotropicAngDist(InputClass):
+class CosThetaAngDist(InputClass):
     """Eject particles isotropically from surface into outward facing hemisphere
     
     Parameters that can be set
     
     * altitude in degrees from 0º - 90º
     * azimuth in degrees from 0º - 360º
+    * n
    
     Parameters
     ----------
@@ -26,7 +27,8 @@ class IsotropicAngDist(InputClass):
         
     altitude: tuple of astropy quantities
         altitude range packets are ejected from relative to surface tangent.
-        Default: (0º, 90º)
+
+    n: float
     """
     def __init__(self, sparam: (dict, Document)):
         super().__init__(sparam)
@@ -62,7 +64,12 @@ class IsotropicAngDist(InputClass):
             else:
                     raise InputfileError('input_classes.UniformSpatialDist',
                                          "spatialdist.altitude must be in form 'x, y'")
-    
+     
+            self.n = float(sparam.get('n', 1))
+            if self.n < 0:
+                raise OutOfRangeError('input_classes.CosThetaAngDist',
+                                      'n', (0, ), include_min=True)
+            
     def pdf_azimuth(self, az):
         az0, az1 = self.azimuth
         if az0 == az1:
@@ -86,14 +93,14 @@ class IsotropicAngDist(InputClass):
         tuple with valid range for the PDF
         """
         return 0*u.deg, 360*u.deg
-    
+
     def pdf_altitude(self, alt):
         if self.altitude[0] == self.altitude[1]:
             # Doesn't really work in this case
             return (alt == self.altitude[0]).astype(float)
         else:
             altitude = np.linspace(*self.support_altitude(), 10000)
-            pdf = np.cos(altitude)
+            pdf = np.cos(altitude)*np.sin(altitude)**self.n
             pdf[(altitude < self.altitude[0]) | (altitude >= self.altitude[1])] = 0
             
             return np.interp(alt, altitude, pdf)
@@ -111,7 +118,7 @@ class IsotropicAngDist(InputClass):
         tuple with valid range for the PDF
         """
         return 0*u.deg, 90*u.deg
-    
+
     def choose_points(self, n_packets, randgen=None):
         """
         Returns initial x, y, and z. For a moon, a rotation will be done later
@@ -134,18 +141,20 @@ class IsotropicAngDist(InputClass):
         else:
             pass
         
-        if self.azimuth[0] <= self.azimuth[1]:
-            az = (randgen.random(n_packets) *
-                  (self.azimuth[1] - self.azimuth[0]) + self.azimuth[0])
-        else:
-            az = (randgen.random(n_packets) *
-                  (self.azimuth[1]+360*u.deg - self.azimuth[0]) +
-                  self.azimuth[0]) % (360*u.deg)
+        # if self.azimuth[0] <= self.azimuth[1]:
+        #     az = (randgen.random(n_packets) *
+        #           (self.azimuth[1] - self.azimuth[0]) + self.azimuth[0])
+        # else:
+        #     az = (randgen.random(n_packets) *
+        #           (self.azimuth[1]+360*u.deg - self.azimuth[0]) +
+        #           self.azimuth[0]) % (360*u.deg)
         
-        sinaltrange = np.array([np.sin(self.altitude[0]),
-                                np.sin(self.altitude[1])])
-        sinalt = (randgen.random(n_packets) * (sinaltrange[1]-sinaltrange[0]) +
-                  sinaltrange[0])
-        alt = (np.arcsin(sinalt)*u.rad).to(u.deg)
+        x = np.linspace(*self.support_azimuth(), 1000)
+        cdf = self.cdf_azimuth(x)
+        az = np.interp(randgen.random(n_packets), cdf, x)
+        
+        x = np.linspace(*self.support_altitude(), 1000)
+        cdf = self.cdf_altitude(x)
+        alt = np.interp(randgen.random(n_packets), cdf, x)
         
         return alt, az
