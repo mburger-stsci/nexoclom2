@@ -112,6 +112,8 @@ class Input:
             self.angulardist = RadialAngDist()
         elif type == 'isotropic':
             self.angulardist = IsotropicAngDist(angparams)
+        elif type == 'costheta':
+            self.angulardist = CosThetaAngDist(angparams)
         else:
             assert False, f'angulardist {type} not set up yet.'
             

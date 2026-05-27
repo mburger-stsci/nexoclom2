@@ -25,15 +25,15 @@ class MaxwellianFluxDist(InputClass):
     species : Atom
         Particle being ejected
         
-    v_th : astropy quantity
-        Thermal speed
+    Methods
+    -------
+    v_th : returns thermal speed
     """
     def __init__(self, sparam: dict):
         super().__init__(sparam)
         self.__name__ = 'MaxwellianFluxDist'
         if isinstance(sparam, Document):
             self.temperature = self.temperature * u.K
-            self.v_th = self.v_th * u.km/u.s
         else:
             temperature = sparam.get('temperature', None)
             if temperature is None:
@@ -55,17 +55,19 @@ class MaxwellianFluxDist(InputClass):
         species = sparam.get('species', None)
         if species is not None:
             self.species = species.title()
-            amass = Atom(self.species).mass
-            self.v_th = np.sqrt(2*self.temperature*c.k_B/amass).to(u.km/u.s)
         else:
             raise InputfileError('input_classes.MaxwellianFluxDist',
                                  'speeddist.species not set.')
+    
+    def v_th(self):
+        amass = Atom(self.species).mass
+        return np.sqrt(2*self.temperature*c.k_B/amass).to(u.km/u.s)
 
     def pdf(self, v):
         """Probability Distribution Function
         Needs to be unitless
         """
-        f = v**3 * np.exp(-v**2/self.v_th**2)
+        f = v**3 * np.exp(-v**2/self.v_th()**2)
         
         return f.value
     
@@ -75,7 +77,7 @@ class MaxwellianFluxDist(InputClass):
         -------
         tuple with valid range for the PDF
         """
-        return 0*self.v_th.unit, self.v_th*10
+        return 0*self.v_th().unit, self.v_th()*10
     
     def choose_points(self, n_packets, randgen=None):
         """Compute random deviates from arbitrary 1D distribution.

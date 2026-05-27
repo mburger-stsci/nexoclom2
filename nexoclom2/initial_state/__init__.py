@@ -19,6 +19,7 @@ from nexoclom2.initial_state.SpeedDists.PSDFluxDist import PSDFluxDist
 
 from nexoclom2.initial_state.AngularDists.RadialAngDist import RadialAngDist
 from nexoclom2.initial_state.AngularDists.IsotropicAngDist import IsotropicAngDist
+from nexoclom2.initial_state.AngularDists.CosThetaAngDist import CosThetaAngDist
 
 from nexoclom2.initial_state.Forces import Forces
 from nexoclom2.initial_state.LossInformation import LossInformation

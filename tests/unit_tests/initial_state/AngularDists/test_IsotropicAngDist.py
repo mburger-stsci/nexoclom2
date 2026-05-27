@@ -3,17 +3,18 @@ import pytest
 import hypothesis as hypo
 import hypothesis.strategies as st
 import astropy.units as u
+from nexoclom2.math import Histogram
 from nexoclom2.math.ks_test import ks_d, ks_test
 from nexoclom2.initial_state import IsotropicAngDist
-
+import matplotlib.pyplot as plt
 
 
 @pytest.mark.initial_state
-@hypo.given(alt0=st.floats(min_value=0, max_value=90),
-            alt1=st.floats(min_value=0, max_value=90),
-            az0=st.floats(min_value=0, max_value=360, exclude_max=True),
-            az1=st.floats(min_value=0, max_value=360))
-@hypo.settings(max_examples=100, deadline=None)
+# @hypo.given(alt0=st.floats(min_value=0, max_value=90),
+#             alt1=st.floats(min_value=0, max_value=90),
+#             az0=st.floats(min_value=0, max_value=360, exclude_max=True),
+#             az1=st.floats(min_value=0, max_value=360))
+# @hypo.settings(max_examples=100, deadline=None)
 def test_IsotropicAngularDist(alt0, alt1, az0, az1):
     
     hypo.assume(((alt0 == alt1) or (alt1-alt0 > 1)) and
@@ -39,7 +40,17 @@ def test_IsotropicAngularDist(alt0, alt1, az0, az1):
         d = ks_d(az, angdist.cdf_azimuth)
         
         assert d < 3e-2, f'Azimuth selection failed. d={d}'
+        
+    hist_az = Histogram(az, bins=np.linspace(0, 360, 361)*u.deg)
+    hist_alt = Histogram(alt, bins=np.linspace(0, 90, 91)*u.deg)
+    
+    from inspect import currentframe, getframeinfo
+    frameinfo = getframeinfo(currentframe())
+    print(frameinfo.filename, frameinfo.lineno)
+    from IPython import embed; embed()
+    import sys; sys.exit()
+    
     
     
 if __name__ == '__main__':
-    test_IsotropicAngularDist(0., 0., 0., 360.)
+    test_IsotropicAngularDist(0., 90., 0., 360.)
