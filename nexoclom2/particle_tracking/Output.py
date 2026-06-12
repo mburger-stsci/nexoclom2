@@ -3,7 +3,9 @@ import numpy as np
 import astropy.units as u
 from astropy.time import Time, TimeDelta
 import copy
+import shutil
 import h5py
+import pickle
 from nexoclom2.atomicdata import Atom
 from nexoclom2.solarsystem import SSObject, IoTorus, SSPosition
 from nexoclom2.solarsystem.find_modeltime import find_modeltime
@@ -15,6 +17,7 @@ from nexoclom2.particle_tracking.starting_point import StartingPoint
 from nexoclom2.particle_tracking.starting_point_saved import StartingPointSaved
 from nexoclom2.particle_tracking.final_state import FinalState
 from nexoclom2.utilities import DatabaseOperations
+from nexoclom2.utilities.NexoclomConfig import NexoclomConfig
 
 
 class Output:
@@ -50,37 +53,45 @@ class Output:
     
     """
     def __init__(self, inputs, n_packets=0,  n_iterations=1, compress=True,
-                 overwrite=False):
+                 overwrite=False, h5file=None):
         # sets up outputs, restores existing results, does not run anything
         self.inputs = copy.deepcopy(inputs)
         self.compress = compress
        
         # Search for previous results
-        db = DatabaseOperations()
-        existing = db.search_inputs(self.inputs)
-        
-        if existing is None:
-            # New set of inputs. Add to database and get the unique doc_id
-            self.doc_id = db.insert_inputs(inputs)
-            self.savefile = inputs.make_savefile(self.doc_id)
-            self.completed_packets = 0
-            self.completed_iterations = 0
-            assert not os.path.exists(self.savefile)
-        else:
-            # Inputs already in database, don't need to add them
-            self.doc_id = existing
-            self.savefile = inputs.make_savefile(self.doc_id)
-            if overwrite or (not os.path.exists(self.savefile)):
-                # Removing file if it exists
-                self._remove()
+        if h5file is None:
+            db = DatabaseOperations()
+            existing = db.search_inputs(self.inputs)
+            
+            if existing is None:
+                # New set of inputs. Add to database and get the unique doc_id
+                self.doc_id = db.insert_inputs(inputs)
+                self.savefile = inputs.make_savefile(self.doc_id)
                 self.completed_packets = 0
                 self.completed_iterations = 0
+                assert not os.path.exists(self.savefile)
             else:
-                # Keep preexisiting packets
-                with h5py.File(self.savefile, 'r') as store:
-                    self.completed_packets = len(store['starting_point/time'][:])
-                    self.completed_iterations = int(
-                        store['starting_point/iteration'][:].max() + 1)
+                # Inputs already in database, don't need to add them
+                self.doc_id = existing
+                self.savefile = inputs.make_savefile(self.doc_id)
+                if overwrite or (not os.path.exists(self.savefile)):
+                    # Removing file if it exists
+                    self._remove()
+                    self.completed_packets = 0
+                    self.completed_iterations = 0
+                else:
+                    # Keep preexisiting packets
+                    with h5py.File(self.savefile, 'r') as store:
+                        self.completed_packets = len(store['starting_point/time'][:])
+                        self.completed_iterations = int(
+                            store['starting_point/iteration'][:].max() + 1)
+        else:
+            self.doc_id = None
+            self.savefile = h5file
+            with h5py.File(self.savefile, 'r') as store:
+                self.completed_packets = len(store['starting_point/time'][:])
+                self.completed_iterations = int(
+                    store['starting_point/iteration'][:].max() + 1)
                     
         self.randgen = np.random.default_rng(self.inputs.options.random_seed)
         
@@ -108,10 +119,13 @@ class Output:
         elif edge_origin == 'start_point':
             self.inputs.options.edge_origin = self.startpoint
         else:
-            assert False
-            
+            pass
+
         rad = self.objects[self.inputs.options.edge_origin].radius
-        self.inputs.options.outer_edge = self.inputs.options.outer_edge * rad
+        try:
+            self.inputs.options.outer_edge.value
+        except:
+            self.inputs.options.outer_edge = self.inputs.options.outer_edge * rad
         
         if self.center == 'Sun':
             self.frame = Frame(self.objects[self.startpoint], 'J2000',
@@ -176,7 +190,7 @@ class Output:
                 start_time = Time.now()
                 startpoint = StartingPoint(self, packets_per_it[it])
                 initial_state = StateVector(self, startpoint)
-                self._save_start_point(startpoint)
+                self._save_start_point(startpoint, packets_per_it[it]*nsteps)
                 
                 print(f'{start_time.iso}: Starting iteration {it+1} '
                       f'of {n_iterations}')
@@ -197,7 +211,7 @@ class Output:
                 
                 del startpoint, initial_state
         
-        if n_packets > 0:
+        if (n_packets > 0) or (h5file is not None):
             pack = u.def_unit('packet', 1.0* u.dimensionless_unscaled)
             atoms = u.def_unit('atom', 1.0* u.dimensionless_unscaled)
             with h5py.File(self.savefile, 'r') as store:
@@ -233,7 +247,7 @@ class Output:
         else:
             pass
         
-    def _save_start_point(self, start_point):
+    def _save_start_point(self, start_point, n_packets):
         # Create a template for saved outputs. Each iteration is saved in a
         # temporary file in case the run crashes.
         with h5py.File(self.savefile+'_temp', 'w') as store:
@@ -241,31 +255,44 @@ class Output:
                 if key == 'ut':
                     store.create_dataset(f'starting_point/{key}',
                                          shape=((len(start_point), )),
-                                         maxshape=(None, ),
-                                         dtype=h5py.string_dtype())
+                                         dtype=h5py.string_dtype(),
+                                         chunks=True,
+                                         maxshape=(None, ))
                     ut = [x.iso for x in start_point.ut]
                     store[f'starting_point/{key}'][:] = ut
                 elif key == 'frame':
                     store['starting_point'].attrs['frame'] = start_point.frame.frame
+                elif key == 'packet_number':
+                    store.create_dataset(f'starting_point/{key}',
+                                         shape=((len(start_point), )),
+                                         chunks=True,
+                                         dtype='int',
+                                         maxshape=(None, ))
+                    store[f'starting_point/{key}'][:] = start_point.packet_number
                 else:
                     store.create_dataset(f'starting_point/{key}',
                                          shape=((len(start_point), )),
-                                         maxshape=(None, ),
-                                         dtype='f4')
+                                         chunks=True,
+                                         dtype='float',
+                                         maxshape=(None, ))
                     store[f'starting_point/{key}'][:] = start_point.__dict__[key]
             store['starting_point'].attrs['unit'] = start_point.x.unit.name
         
             final_keys = ['time', 'x', 'y', 'z', 'vx', 'vy', 'vz', 'frac',
                           'escaped', 'ionized', 'packet_number', 'iteration']
             for key in final_keys:
-                store.create_dataset(f'final_state/{key}', shape=(0, ),
-                                     maxshape=(None, ),
-                                     dtype='f4')
+                store.create_dataset(f'final_state/{key}',
+                                     shape=(0, ),
+                                     chunks=True,
+                                     dtype='float',
+                                     maxshape=(None, ))
             
             for objname in self.objects:
                 store.create_dataset(f'/final_state/hit/{objname}',
-                                     shape=(0, ), maxshape=(None, ),
-                                     dtype='f4')
+                                     shape=(0, ),
+                                     chunks=True,
+                                     dtype='float',
+                                     maxshape=(None, ))
     
     
     def save_final_state(self, final_state):
@@ -436,3 +463,63 @@ class Output:
             pass
         
         return final
+
+    def save_modified(self, name, startpt):
+        config = NexoclomConfig()
+        savepath = os.path.join(config.savepath, 'modified', name)
+        if not os.path.exists(savepath):
+            os.makedirs(savepath)
+        
+        h5file = os.path.join(savepath, name+'.h5')
+        inputfile = os.path.join(savepath, name+'_inputs.pkl')
+        
+        shutil.copyfile(self.savefile, h5file)
+        # packet_number = startpt.packet_number
+        with h5py.File(h5file, 'r+') as store:
+            ratio = startpt.frac/store['starting_point/frac']
+            store['starting_point/frac'][:] = startpt.frac
+            assert (store['starting_point/packet_number'][:].max()+1 ==
+                    len(store['starting_point/packet_number'][:]))
+            
+            pnumber = store['final_state/packet_number'][:].astype(int)
+            store['final_state/frac'][:] *= ratio[pnumber]
+            
+            # Remove packets that aren't included
+            q = store['starting_point/frac'][:] != 0
+            for key in startpt.__dict__.keys():
+                if key == 'frame':
+                    store['starting_point'].attrs['frame'] = startpt.frame
+                else:
+                    temp = store[f'starting_point/{key}'][q]
+                    store[f'starting_point/{key}'].resize((q.sum(), ))
+                    store[f'starting_point/{key}'][:] = temp
+            
+            q = store['final_state/frac'][:] != 0
+            final_keys = ['time', 'x', 'y', 'z', 'vx', 'vy', 'vz', 'frac',
+                          'escaped', 'ionized', 'packet_number', 'iteration']
+            for key in final_keys:
+                temp = store[f'final_state/{key}'][q]
+                store[f'final_state/{key}'].resize((q.sum(), ))
+                store[f'final_state/{key}'][:] = temp
+            
+            for objname in self.objects:
+                temp = store[f'final_state/hit/{objname}'][q]
+                store[f'final_state/hit/{objname}'].resize((q.sum(), ))
+                store[f'final_state/hit/{objname}'][:] = temp
+            
+        self.savefile = h5file
+        
+        with open(inputfile, 'wb') as file:
+            pickle.dump(self.inputs, file)
+    
+    @classmethod
+    def restore_modified(cls, name):
+        config = NexoclomConfig()
+        savepath = os.path.join(config.savepath, 'modified', name)
+        h5file = os.path.join(savepath, name+'.h5')
+        inputfile = os.path.join(savepath, name+'_inputs.pkl')
+        with open(inputfile, 'rb') as file:
+            inputs = pickle.load(file)
+            
+        output = cls(inputs, h5file=h5file)
+        return output
