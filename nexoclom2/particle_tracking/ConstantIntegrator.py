@@ -1,6 +1,7 @@
 import numpy as np
 import astropy.units as u
 from nexoclom2.particle_tracking.rk5_integrator import rk5Integrator
+import nexoclom2.particle_tracking.outputIO as outputIO
 
 
 class ConstantIntegrator:
@@ -30,7 +31,7 @@ class ConstantIntegrator:
                              f'{method} not a valid integration method.')
         
         # Save the first step
-        output.save_final_state(state)
+        outputIO.save_final_state(output, state)
         while more_to_go.any():
             # Advance packets one time step
             # next_step, _ = self.step(state, output, step_size)
@@ -45,8 +46,8 @@ class ConstantIntegrator:
             # Check for escape
             next_step.check_escape(output)
             
-            output.save_final_state(next_step)
-
+            outputIO.save_final_state(output, next_step)
+            
             state = next_step
             del next_step
             more_to_go = (state.time < 0) & (state.frac > 0)

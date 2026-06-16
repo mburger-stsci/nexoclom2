@@ -11,7 +11,7 @@ def test_mercury_source():
     if not os.path.exists('figures'):
         os.makedirs('figures')
         
-    overwrite = False
+    overwrite = True
     params = (('Mercury', 'constant'),
               ('Sun', 'constant'),
               ('Mercury', 'variable'),

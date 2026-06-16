@@ -1,6 +1,6 @@
 [project]
 name = "nexoclom2"
-version = "1.0.0"
+version = "1.0.1"
 description = "Neutral EXosphere and CLoud Model v2"
 authors = [
     {name = "Matthew Burger",email = "mburger@stsci.edu"}

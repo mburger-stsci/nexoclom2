@@ -173,7 +173,7 @@ class Input:
         db = DatabaseOperations()
         return db.search_inputs(self)
 
-    def make_savefile(self, doc_id):
+    def make_savefile_name(self, doc_id):
         savefile = os.path.join(self.config.savepath,
                                 'outputfiles',
                                 self.geometry.center,

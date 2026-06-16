@@ -36,7 +36,7 @@ class StartingPoint:
             * azimuth measured north from east, 0º = east
         """
         super().__init__()
-        self.packet_number = np.arange(n_packets, dtype=int) + output.completed_packets
+        self.packet_number = np.arange(n_packets, dtype=int) + output.starting_packets
         
         # Start time for each packet
         if (hasattr(output.inputs.options, 'step_size') or
@@ -77,7 +77,6 @@ class StartingPoint:
         self.local_time = loctime
         self.altitude = alt.to(u.deg)
         self.azimuth = az.to(u.deg)
-        self.iteration = np.zeros(n_packets) + output.completed_iterations
         self.frame = Frame(output.objects[output.startpoint], frame,
                            output.modeltime, output.inputs.options.runtime)
         

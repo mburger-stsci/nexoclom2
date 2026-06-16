@@ -26,7 +26,6 @@ class FinalState:
             self.escaped = final_state['escaped'][which]
             self.hit = {obj: final_state['hit'][obj][which] for obj in output.objects}
             self.ionized = final_state['ionized'][which]
-            self.iteration = final_state['iteration'][which]
             self.packet_number = final_state['packet_number'][which]
 
     def __getitem__(self, q):
@@ -42,7 +41,6 @@ class FinalState:
         new.escaped = self.escaped[q]
         new.hit = {obj: self.hit[obj][q] for obj in self.hit}
         new.ionized = self.ionized[q]
-        new.iteration = self.iteration[q]
         new.packet_number = self.packet_number[q]
 
         return new
@@ -62,7 +60,6 @@ class FinalState:
         self.hit = {obj: np.concatenate([self.hit[obj], new.hit[obj]])
                     for obj in self.hit}
         self.ionized = np.concatenate([self.ionized, new.ionized])
-        self.iteration = np.concatenate([self.iteration, new.iteration])
         self.packet_number = np.concatenate([self.packet_number,
                                              new.packet_number])
 

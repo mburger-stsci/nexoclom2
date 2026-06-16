@@ -1,7 +1,7 @@
 import numpy as np
 import astropy.units as u
 from nexoclom2.particle_tracking.rk5_integrator import rk5Integrator
-import copy
+import nexoclom2.particle_tracking.outputIO as outputIO
 
 
 class VariableIntegrator:
@@ -144,4 +144,4 @@ class VariableIntegrator:
                 if np.any(g):
                     print(step_current[g].mean())
 
-        output.save_final_state(state)
+        outputIO.save_final_state(output, state)
