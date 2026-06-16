@@ -39,7 +39,8 @@ class ModelResult:
         startpos = output.positions[output.startpoint]
         centerpos = output.objects[output.center]
         
-        X = np.column_stack([packets.x, packets.y, packets.z])
+        # X = np.column_stack([packets.x, packets.y, packets.z])
+        X = packets.X
         V = np.column_stack([packets.vx, packets.vy, packets.vz])
         kappa = np.zeros(X.shape[0])*u.R*u.cm**2
         

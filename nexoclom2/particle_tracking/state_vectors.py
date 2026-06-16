@@ -49,7 +49,6 @@ class StateVector:
                     output.inputs.geometry.included}
         self.ionized = np.zeros(npack)
         self.packet_number = starting_point.packet_number
-        self.iteration = np.zeros(npack) + starting_point.iteration
         
     def __getitem__(self, q):
         new = copy.copy(self)
@@ -61,7 +60,6 @@ class StateVector:
         new.ionized = new.ionized[q]
         new.hit = {obj: new.hit[obj][q] for obj in new.hit}
         new.packet_number = new.packet_number[q]
-        new.iteration = new.iteration[q]
         assert len(new.__dict__) == len(self.__dict__)
         return new
     
@@ -75,7 +73,6 @@ class StateVector:
         for obj in self.hit:
             self.hit[obj][q] = new.hit[obj]
         self.packet_number[q] = new.packet_number
-        self.iteration[q] = new.iteration
 
     def __len__(self):
         return self.time.shape[0]

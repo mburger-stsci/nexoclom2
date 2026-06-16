@@ -64,6 +64,18 @@ class Frame:
         kernels.unload()
         
     def rotation(self, times, points, frame):
+        """ Performs the rotation from one frame to another
+        
+        Parameters
+        ----------
+        times
+        points
+        frame
+
+        Returns
+        -------
+        Rotated points
+        """
         if frame == 'J2000':
             matrix = self.R_to_j2000
         elif frame.startswith('IAU'):
@@ -91,6 +103,7 @@ class Frame:
             result[:,i] = np.sum(R[:,i,:]*points, axis=1)
             
         return result
+    
 
     def __eq__(self, other):
         if isinstance(other, self.__class__):
