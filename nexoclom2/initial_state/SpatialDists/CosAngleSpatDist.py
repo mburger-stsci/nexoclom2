@@ -75,7 +75,7 @@ class CosAngleSpatDist(InputClass):
                 pass
             
             self.n = float(sparam.get('n', 1))
-            if self.n <= 0:
+            if self.n < 0:
                 raise OutOfRangeError('input_classes.CosAngleSpatDist',
                                       'spatialdist.n', (None, ))
             else:
@@ -109,7 +109,7 @@ class CosAngleSpatDist(InputClass):
         return cosang**self.n
     
     def choose_points(self, n_packets, randgen=None):
-        lon, lat= self.generate2d(n_packets, randgen=randgen)
+        lon, lat = self.generate2d(n_packets, randgen=randgen, on_sphere=True)
         
         points = {'type': 'lonlat',
                   'longitude': lon,

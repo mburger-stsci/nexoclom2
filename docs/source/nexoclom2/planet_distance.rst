@@ -67,10 +67,10 @@ using the above equations and retrieved from
 `JPL Horizons <https://astroquery.readthedocs.io/en/latest/jplhorizons/jplhorizons.html>`_
 for Mercury, Earth, Jupiter and Saturn are shown here:
 
-.. image:: distance_and_velocity_Mercury.png
+.. image:: figures/distance_and_velocity_Mercury.png
 
-.. image:: distance_and_velocity_Earth.png
+.. image:: figures/distance_and_velocity_Earth.png
 
-.. image:: distance_and_velocity_Jupiter.png
+.. image:: figures/distance_and_velocity_Jupiter.png
 
-.. image:: distance_and_velocity_Saturn.png
+.. image:: figures/distance_and_velocity_Saturn.png

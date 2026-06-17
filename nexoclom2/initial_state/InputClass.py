@@ -127,7 +127,7 @@ class InputClass:
         cdf = self.cdf(x)
         return np.interp(randgen.random(n_packets), cdf, x)
     
-    def generate2d(self, npackets, randgen=None):
+    def generate2d(self, npackets, randgen=None, on_sphere=True):
         """ Compute random deviates from arbitrary 2D distribution
         
         Uses acceptance/rejection method
@@ -151,11 +151,21 @@ class InputClass:
         
         sup_lon = self.support_longitude()
         sup_lat = self.support_latitude()
+        if on_sphere:
+            sup_lat = np.sin(sup_lat[0]), np.sin(sup_lat[1])
+        else:
+            pass
+        
         while len(xpts) < npackets:
             ux = randgen.random(npackets)*(sup_lon[1]-sup_lon[0]) + sup_lon[0]
             uy = randgen.random(npackets)*(sup_lat[1]-sup_lat[0]) + sup_lat[0]
             uf = randgen.random(npackets)
             
+            if on_sphere:
+                uy = np.arcsin(uy).to(u.deg)
+            else:
+                pass
+                
             val = self.pdf2d(ux, uy)
             mm = uf < val
             xpts.extend(list(ux[mm]))
@@ -163,7 +173,7 @@ class InputClass:
             
         xpts, ypts = xpts[:npackets], ypts[:npackets]
         xpts = np.array([x.value for x in xpts])*sup_lon[0].unit
-        ypts = np.array([y.value for y in ypts])*sup_lat[0].unit
+        ypts = np.array([y.value for y in ypts])*sup_lon[0].unit
         
         return xpts, ypts
     

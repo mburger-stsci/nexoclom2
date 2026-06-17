@@ -30,10 +30,15 @@ class Histogram2d:
     Returns a class with everything self-contained.
     """
     def __init__(self, ptsx, ptsy, bins=10, range=None, weights=None,
-                 density=None):
+                 density=None, on_sphere=False):
         hist, x, y = np.histogram2d(ptsx, ptsy, bins=bins, range=range,
                                     weights=weights, density=density)
-        self.histogram = hist.transpose()
+        self.histogram = hist
         self.dx, self.dy = x[1]-x[0], y[1]-y[0]
         self.x = x[:-1] + self.dx/2
         self.y = y[:-1] + self.dy/2
+        
+        if on_sphere:
+            self.histogram = self.histogram/np.cos(self.y)[np.newaxis]
+        else:
+            pass
