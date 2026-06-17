@@ -58,8 +58,8 @@ class SurfaceMap:
             pass
         
         if self.latitude is None:
-            self.latitude = np.linspace(-90, 90, smap.shape[0])*u.deg
-        elif len(self.latitude) != smap.shape[0]:
+            self.latitude = np.linspace(-90, 90, smap.shape[1])*u.deg
+        elif len(self.latitude) != smap.shape[1]:
             raise InputfileError('SpatialDists.SurfaceMap',
                                  'len(latitude) must be equal to smap.shape[1]')
         else:

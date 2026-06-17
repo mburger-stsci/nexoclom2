@@ -118,7 +118,7 @@ class SurfSpotSpatDist(InputClass):
         return np.exp(-(ang/self.sigma)**self.n)
         
     def choose_points(self, n_packets, randgen=None):
-        lon, lat= self.generate2d(n_packets, randgen=randgen)
+        lon, lat= self.generate2d(n_packets, randgen=randgen, on_sphere=True)
         
         points = {'type': 'lonlat',
                   'longitude': lon,
