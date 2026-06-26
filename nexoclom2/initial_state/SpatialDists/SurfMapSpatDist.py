@@ -1,12 +1,9 @@
 import numpy as np
-import astropy.units as u
 from scipy.interpolate import RegularGridInterpolator
-from tests.unit_tests.partcle_tracking.test_StateVector_rotation import longitude
 from tinydb.table import Document
 import pickle
 from nexoclom2.initial_state.InputClass import InputClass
-from nexoclom2.initial_state.SpatialDists.UniformSpatDist import UniformSpatDist
-from nexoclom2.utilities.exceptions import InputfileError, OutOfRangeError
+from nexoclom2.utilities.exceptions import InputfileError
 
 
 class SurfMapSpatDist(InputClass):
@@ -33,10 +30,22 @@ class SurfMapSpatDist(InputClass):
             pass
         else:
             self.filename = sparams['filename']
-
+            
+            possible_frames = 'IAU', 'SOLAR', 'SOLARFIXED'
+            frame = sparams.get('frame', 'SOLAR').upper()
+            if frame in possible_frames:
+                self.frame = frame
+            else:
+                raise InputfileError('SpatialDists.SurfMapSpatDist',
+                                     f'spatialdist.frame must be one of {possible_frames}')
+    
     def pdf2d(self, lon, lat):
         with open(self.filename, 'rb') as file:
             sourcemap = pickle.load(file)
+            
+        if self.frame != sourcemap.frame:
+            raise InputfileError('SpatialDists.SurfMapSpatDist',
+                                 'spatialdist.frame must be equal to sourcemap.frame')
         
         interp = RegularGridInterpolator((sourcemap.longitude, sourcemap.latitude),
                                          sourcemap.flux)
