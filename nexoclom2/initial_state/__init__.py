@@ -11,6 +11,7 @@ from nexoclom2.initial_state.SpatialDists.UniformSpatDist import UniformSpatDist
 from nexoclom2.initial_state.SpatialDists.GoldenSpiralSpatDist import GoldenSpiralSpatDist
 from nexoclom2.initial_state.SpatialDists.SurfSpotSpatDist import SurfSpotSpatDist
 from nexoclom2.initial_state.SpatialDists.CosAngleSpatDist import CosAngleSpatDist
+from nexoclom2.initial_state.SpatialDists.SurfMapSpatDist import SurfMapSpatDist
 
 from nexoclom2.initial_state.SpeedDists.MaxwellianFluxDist import MaxwellianFluxDist
 from nexoclom2.initial_state.SpeedDists.FlatSpeedDist import FlatSpeedDist
