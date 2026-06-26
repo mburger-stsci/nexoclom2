@@ -123,6 +123,12 @@ class UniformSpatDist(InputClass):
             pdf[(latitude < self.latitude[0]) | (latitude >= self.latitude[1])] = 0
             
             return np.interp(lat, latitude, pdf)
+        
+    def pdf2d(self, x, y):
+        lon = self.pdf_longitude(x)
+        lat = self.pdf_latitude(y)
+        
+        return lon * lat
     
     def cdf_latitude(self, lat):
         latitude = np.linspace(*self.support_latitude(), 10000)
