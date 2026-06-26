@@ -32,7 +32,7 @@ class SurfMapSpatDist(InputClass):
         if isinstance(sparams, Document):
             pass
         else:
-            self.filename = sparams.get('filename')
+            self.filename = sparams['filename']
 
     def pdf2d(self, lon, lat):
         with open(self.filename, 'rb') as file:

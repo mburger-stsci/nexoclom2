@@ -1,5 +1,7 @@
 import os
 import numpy as np
+
+from nexoclom2.initial_state.SpatialDists.SurfMapSpatDist import SurfMapSpatDist
 from nexoclom2.utilities.exceptions import InputfileError
 from nexoclom2.initial_state import *
 from nexoclom2.utilities.NexoclomConfig import NexoclomConfig
@@ -71,6 +73,8 @@ class Input:
             self.spatialdist = SurfSpotSpatDist(spatparams)
         elif type == 'cosang':
             self.spatialdist = CosAngleSpatDist(spatparams)
+        elif type == 'surfacemap':
+            self.spatialdist = SurfMapSpatDist(spatparams)
         else:
             assert False, f'spatialdist {type} not set up yet.'
 
