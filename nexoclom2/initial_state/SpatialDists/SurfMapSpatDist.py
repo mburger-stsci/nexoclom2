@@ -49,7 +49,9 @@ class SurfMapSpatDist(InputClass):
         
         interp = RegularGridInterpolator((sourcemap.longitude, sourcemap.latitude),
                                          sourcemap.flux)
-        return interp(np.column_stack([lon, lat]))
+        result = interp(np.column_stack([lon.flatten(), lat.flatten()])).reshape(
+            sourcemap.flux.shape)
+        return result
     
     def choose_points(self, n_packets, randgen=None):
         longitude, latitude = self.generate2d(n_packets, randgen, on_sphere=True)

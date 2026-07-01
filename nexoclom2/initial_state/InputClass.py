@@ -127,6 +127,15 @@ class InputClass:
         cdf = self.cdf(x)
         return np.interp(randgen.random(n_packets), cdf, x)
     
+    def flux_distribution(self, n_lon=361, n_lat=181):
+        lon = np.linspace(0, 2*np.pi, n_lon)*u.rad
+        lat = np.linspace(-np.pi/2, np.pi/2, n_lat)*u.rad
+        longrid, latgrid = np.meshgrid(lon, lat)
+        
+        surfdist = self.pdf2d(longrid, latgrid)
+        
+        return surfdist
+    
     def generate2d(self, npackets, randgen=None, on_sphere=True):
         """ Compute random deviates from arbitrary 2D distribution
         
