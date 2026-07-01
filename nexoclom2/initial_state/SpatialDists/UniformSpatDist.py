@@ -118,12 +118,8 @@ class UniformSpatDist(InputClass):
             # Doesn't really work in this case
             return float(lat == self.latitude[0])
         else:
-            latitude = np.linspace(*self.support_latitude(), 10000)
-            pdf = np.cos(latitude)
-            pdf[(latitude < self.latitude[0]) | (latitude >= self.latitude[1])] = 0
-            
-            return np.interp(lat, latitude, pdf)
-        
+            return (lat >= self.latitude[0]) | (lat < self.latitude[1])
+
     def pdf2d(self, x, y):
         lon = self.pdf_longitude(x)
         lat = self.pdf_latitude(y)
