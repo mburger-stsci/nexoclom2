@@ -58,7 +58,7 @@ def start_iteration(output, start_point, n_packets, n_steps, start_time):
                                  maxshape=(None, ))
             store[f'starting_point/{key}'][:] = start_point.__dict__[key]  #.to(u.km/u.s)
         
-        keys = ('time', 'x', 'y', 'z', 'r', 'longitude', 'latitude',
+        keys = ('time', 'x', 'y', 'z', 'r', 'frac', 'longitude', 'latitude',
                 'local_time', 'altitude', 'azimuth')
         for key in keys:
             store.create_dataset(f'starting_point/{key}',
@@ -206,7 +206,7 @@ class StartingPointSaved:
             self.azimuth = starting_point['azimuth'][:]*u.deg
             self.packet_number = starting_point['packet_number'][:]
             self.frame = starting_point.attrs['frame']
-            self.n_starting_packets = starting_point.attrs['starting_packets']
+            self.n_starting_packets = store.attrs['starting_packets']
             
     def __len__(self):
         return self.n_starting_packets
