@@ -43,6 +43,8 @@ class SurfMapSpatDist(InputClass):
         with open(self.filename, 'rb') as file:
             sourcemap = pickle.load(file)
             
+        sourcemap.flux /= sourcemap.flux.max()
+        
         if self.frame != sourcemap.frame:
             raise InputfileError('SpatialDists.SurfMapSpatDist',
                                  'spatialdist.frame must be equal to sourcemap.frame')
@@ -50,7 +52,7 @@ class SurfMapSpatDist(InputClass):
         interp = RegularGridInterpolator((sourcemap.longitude, sourcemap.latitude),
                                          sourcemap.flux)
         result = interp(np.column_stack([lon.flatten(), lat.flatten()])).reshape(
-            sourcemap.flux.shape)
+            lon.shape)
         return result
     
     def choose_points(self, n_packets, randgen=None):
