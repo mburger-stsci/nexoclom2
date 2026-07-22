@@ -96,8 +96,7 @@ class StateVector:
                 
                 # Update remaining fraction
                 if surfint.__name__ == 'ConstantSurfInt':
-                    self.hit[objname][hitobj] = (self.frac[hitobj] *
-                                                 (1-surfint.stickcoef))
+                    self.hit[objname][hitobj] += self.frac[hitobj] * surfint.stickcoef
                     self.frac[hitobj] *= 1-surfint.stickcoef
                 else:
                     assert False
