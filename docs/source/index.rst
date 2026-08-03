@@ -18,7 +18,6 @@ Requirements Document](nexoclom2/NEXOCLOM_Requirements_Document)
     :maxdepth: 2
     :caption: Contents
 
-    nexoclom2/NEXOCLOM_Requirements_Document.md
     nexoclom2/install.md
     nexoclom2/TestCases.md
     nexoclom2/inputfiles.rst
@@ -30,7 +29,8 @@ Requirements Document](nexoclom2/NEXOCLOM_Requirements_Document)
     nexoclom2/atomicdata.rst
     nexoclom2/particle_tracking.rst
     nexoclom2/references.rst
-    nexoclom2/api.rst
+    apidocs/modules.rst
+    nexoclom2/modules.rst
 
 Indices and tables
 ==================

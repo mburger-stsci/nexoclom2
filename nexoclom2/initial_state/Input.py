@@ -19,14 +19,14 @@ class Input:
         
     Attributes
     ----------
-    geometry : Geometry
-    forces : Forces
-    surfaceinteraction : ConstantSurfaceInteraction, etc
-    spatialdist : UniformSpatialDist, etc.
-    speeddist : GaussianSpeedDist, etc.
-    angulardist : RadialAngularDist, IsotropicAngularDist
-    lossinfo : LossInformation
-    options : Options
+    geometry: Geometry
+    forces: Forces
+    surfaceinteraction: ConstantSurfaceInteraction, etc
+    spatialdist: UniformSpatialDist, etc.
+    speeddist: GaussianSpeedDist, etc.
+    angulardist: RadialAngularDist, IsotropicAngularDist
+    lossinfo: LossInformation
+    options: Options
     """
     def __init__(self, infile: str):
         self._inputfile = infile

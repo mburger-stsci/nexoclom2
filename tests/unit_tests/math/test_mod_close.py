@@ -54,21 +54,6 @@ tests = ((100, 101, True),
          (-10, 0, False))
 
 
-def low_mid_high(x, period, delta):
-    while x < 0:
-        x += period
-    if x >= period:
-        x %= period
-
-    if x <= delta:
-        return 'low'
-    elif x >= period - delta:
-        return 'high'
-    elif (x > delta) and (x < period-delta):
-        return 'mid'
-    else:
-        assert False
-        
 @pytest.mark.math
 @pytest.mark.parametrize('a, b, result', tests)
 def test_mod_close(a, b, result):

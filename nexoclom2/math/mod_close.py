@@ -4,7 +4,7 @@ import astropy.units as u
 
 
 def mod_close(a, b, period=360*u.deg, atol=1e-8*u.deg):
-    """Wrapper for np.isclose for values close to the periodic boundary
+    """Wrapper for np.isclose() for values close to the periodic boundary
     Decision Chart
     
     ==== ====    ==========
@@ -26,11 +26,12 @@ def mod_close(a, b, period=360*u.deg, atol=1e-8*u.deg):
     
     Parameters
     ---------
-    a, b : int, float
+    a, b: int, float
         Inputs to compare. Must be single valued.
-    period : float, Default = 2π
-    atol : float
-        The absolute tolerance parameter
+    period: float
+        Default = 360º
+    atol: float
+        The absolute tolerance parameter. Default=1e-8º
     
     Returns
     -------
@@ -38,19 +39,15 @@ def mod_close(a, b, period=360*u.deg, atol=1e-8*u.deg):
     
     Notes
     -----
-    Uses `numpy.isclose() <https://docutils.sourceforge.io/rst.html>`_ with
+    * Parameters can have units, but units must be the same for all values
+    
+    * Uses `numpy.isclose() <https://docutils.sourceforge.io/rst.html>`_ with
     default relative tolerance and abolute tolerance defined by `atol` parameter.
     """
-    while a < 0:
-        a += period
-    if a >= period:
-        a %= period
+    a = np.mod(a, period)
     assert (a >= 0) & (a < period)
     
-    while b < 0:
-        b += period
-    if b >= period:
-        b %= period
+    b = np.mod(b, period)
     assert (b >= 0) & (b < period)
     
     isclose = lambda x, y: bool(np.isclose(x, y, atol=atol))

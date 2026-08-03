@@ -3,5 +3,3 @@ API
 
 .. autosummary::
     :toctree: generated
-
-    nexoclom2/*

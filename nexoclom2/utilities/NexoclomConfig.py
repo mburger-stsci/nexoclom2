@@ -24,6 +24,8 @@ class NexoclomConfig:
     ``thesolarsystemmb.db``.
     
     ``user``: username (Required if not set as an environment variable).
+    
+    ``messengerdir``: Path to the MESSENGER UVVS data (Required if comparing to UVVS)
 
     Parameters
     ----------
@@ -63,19 +65,9 @@ class NexoclomConfig:
     --------
     For a configuration file in ``$HOME/.nexoclom2`` containing the following::
     
-        savepath = /user/mburger/Data/ModelData
-        database = thesolarsystemmb.db
-        mesdatapath = /Users/mburger/Work/Data/MESSENGER/UVVS
-        mesdatabase = messengeruvvsdb
-    
-    In Python:
-    
-    >>> config = NexoclomConfig()
-    >>> print(config)
-    configfile = /Users/mburger/.nexoclom2_dev
-    savepath = /Volumes/nexoclom_output/modeloutputs2_dev
-    database = thesolarsystemmb_dev.db
-    user = mburger
+        savepath = /Users/mburger/Work/Research/modeloutputs2_dev
+        database = thesolarsystemmb_dev.db
+        messengerdir = /Users/mburger/Work/Data/MESSENGER/UVVS
     
     :Authors: Matthew Burger
     """
@@ -87,6 +79,7 @@ class NexoclomConfig:
         if os.path.exists(os.path.expandvars(self.configfile)):
             # Read the config file into a dict
             for line in open(self.configfile, 'r'):
+                line = line.split('#')[0]
                 if '=' in line:
                     key, value = line.split('=')
                     config[key.strip()] = value.strip()
