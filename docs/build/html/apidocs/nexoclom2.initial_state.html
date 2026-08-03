@@ -17,7 +17,9 @@
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="nexoclom2.math package" href="nexoclom2.math.html" />
+    <link rel="prev" title="nexoclom2.data_simulation package" href="nexoclom2.data_simulation.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,8 +47,7 @@
   
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../nexoclom2/NEXOCLOM_Requirements_Document.html">NEXOCLOM Goals and Requirements</a></li>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../nexoclom2/install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nexoclom2/TestCases.html">NEXOCLOM Test Cases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nexoclom2/inputfiles.html">Input File Format</a></li>
@@ -58,7 +59,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../nexoclom2/atomicdata.html">Atomic Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nexoclom2/particle_tracking.html">Particle Tracking</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nexoclom2/references.html">References</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nexoclom2/api.html">API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">nexoclom2</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="nexoclom2.html">nexoclom2 package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="nexoclom2.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nexoclom2.html#module-nexoclom2">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../nexoclom2/modules.html">nexoclom2</a></li>
 </ul>
 
         </div>
@@ -75,6 +84,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">nexoclom2</a></li>
+          <li class="breadcrumb-item"><a href="nexoclom2.html">nexoclom2 package</a></li>
       <li class="breadcrumb-item active">nexoclom2.initial_state package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/apidocs/nexoclom2.initial_state.rst.txt" rel="nofollow"> View page source</a>
@@ -94,7 +105,7 @@
 <span id="nexoclom2-initial-state-input-module"></span><h2>nexoclom2.initial_state.Input module<a class="headerlink" href="#module-nexoclom2.initial_state.Input" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="nexoclom2.initial_state.Input.Input">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nexoclom2.initial_state.Input.</span></span><span class="sig-name descname"><span class="pre">Input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">infile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.initial_state.Input.Input" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nexoclom2.initial_state.Input.</span></span><span class="sig-name descname"><span class="pre">Input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">infile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.initial_state.Input.Input" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class defining all input parameters for a NEXOCLOM2 model run.</p>
 <dl class="field-list simple">
@@ -107,20 +118,20 @@ a description of the input file format</p>
 </dd>
 <dt class="field-even">Attributes<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>geometry</strong><span class="classifier">Geometry</span></dt><dd></dd>
-<dt><strong>forces</strong><span class="classifier">Forces</span></dt><dd></dd>
-<dt><strong>surfaceinteraction</strong><span class="classifier">ConstantSurfaceInteraction, etc</span></dt><dd></dd>
-<dt><strong>spatialdist</strong><span class="classifier">UniformSpatialDist, etc.</span></dt><dd></dd>
-<dt><strong>speeddist</strong><span class="classifier">GaussianSpeedDist, etc.</span></dt><dd></dd>
-<dt><strong>angulardist</strong><span class="classifier">RadialAngularDist, IsotropicAngularDist</span></dt><dd></dd>
-<dt><strong>lossinfo</strong><span class="classifier">LossInformation</span></dt><dd></dd>
-<dt><strong>options</strong><span class="classifier">Options</span></dt><dd></dd>
+<dt><strong>geometry: Geometry</strong></dt><dd></dd>
+<dt><strong>forces: Forces</strong></dt><dd></dd>
+<dt><strong>surfaceinteraction: ConstantSurfaceInteraction, etc</strong></dt><dd></dd>
+<dt><strong>spatialdist: UniformSpatialDist, etc.</strong></dt><dd></dd>
+<dt><strong>speeddist: GaussianSpeedDist, etc.</strong></dt><dd></dd>
+<dt><strong>angulardist: RadialAngularDist, IsotropicAngularDist</strong></dt><dd></dd>
+<dt><strong>lossinfo: LossInformation</strong></dt><dd></dd>
+<dt><strong>options: Options</strong></dt><dd></dd>
 </dl>
 </dd>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nexoclom2.initial_state.Input.Input.__dict__">
-<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'nexoclom2.initial_state.Input',</span> <span class="pre">'__firstlineno__':</span> <span class="pre">12,</span> <span class="pre">'__doc__':</span> <span class="pre">'Class</span> <span class="pre">defining</span> <span class="pre">all</span> <span class="pre">input</span> <span class="pre">parameters</span> <span class="pre">for</span> <span class="pre">a</span> <span class="pre">NEXOCLOM2</span> <span class="pre">model</span> <span class="pre">run.\n\nParameters\n----------\ninfile</span> <span class="pre">:</span> <span class="pre">str\n</span>&#160;&#160;&#160; <span class="pre">plain</span> <span class="pre">text</span> <span class="pre">file</span> <span class="pre">containing</span> <span class="pre">model</span> <span class="pre">input</span> <span class="pre">parameters.</span> <span class="pre">See</span> <span class="pre">inputfiles</span> <span class="pre">for\n</span>&#160;&#160;&#160; <span class="pre">a</span> <span class="pre">description</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">input</span> <span class="pre">file</span> <span class="pre">format\n</span>&#160;&#160;&#160; <span class="pre">\nAttributes\n----------\ngeometry</span> <span class="pre">:</span> <span class="pre">Geometry\nforces</span> <span class="pre">:</span> <span class="pre">Forces\nsurfaceinteraction</span> <span class="pre">:</span> <span class="pre">ConstantSurfaceInteraction,</span> <span class="pre">etc\nspatialdist</span> <span class="pre">:</span> <span class="pre">UniformSpatialDist,</span> <span class="pre">etc.\nspeeddist</span> <span class="pre">:</span> <span class="pre">GaussianSpeedDist,</span> <span class="pre">etc.\nangulardist</span> <span class="pre">:</span> <span class="pre">RadialAngularDist,</span> <span class="pre">IsotropicAngularDist\nlossinfo</span> <span class="pre">:</span> <span class="pre">LossInformation\noptions</span> <span class="pre">:</span> <span class="pre">Options\n',</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">Input.__init__&gt;,</span> <span class="pre">'__str__':</span> <span class="pre">&lt;function</span> <span class="pre">Input.__str__&gt;,</span> <span class="pre">'__repr__':</span> <span class="pre">&lt;function</span> <span class="pre">Input.__repr__&gt;,</span> <span class="pre">'__eq__':</span> <span class="pre">&lt;function</span> <span class="pre">Input.__eq__&gt;,</span> <span class="pre">'_read_params':</span> <span class="pre">&lt;function</span> <span class="pre">Input._read_params&gt;,</span> <span class="pre">'search':</span> <span class="pre">&lt;function</span> <span class="pre">Input.search&gt;,</span> <span class="pre">'make_savefile':</span> <span class="pre">&lt;function</span> <span class="pre">Input.make_savefile&gt;,</span> <span class="pre">'__static_attributes__':</span> <span class="pre">('_classes',</span> <span class="pre">'_inputfile',</span> <span class="pre">'angulardist',</span> <span class="pre">'config',</span> <span class="pre">'forces',</span> <span class="pre">'geometry',</span> <span class="pre">'lossinfo',</span> <span class="pre">'options',</span> <span class="pre">'spatialdist',</span> <span class="pre">'speeddist',</span> <span class="pre">'surfaceinteraction'),</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'Input'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'Input'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__hash__':</span> <span class="pre">None,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#nexoclom2.initial_state.Input.Input.__dict__" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'nexoclom2.initial_state.Input',</span> <span class="pre">'__firstlineno__':</span> <span class="pre">11,</span> <span class="pre">'__doc__':</span> <span class="pre">'Class</span> <span class="pre">defining</span> <span class="pre">all</span> <span class="pre">input</span> <span class="pre">parameters</span> <span class="pre">for</span> <span class="pre">a</span> <span class="pre">NEXOCLOM2</span> <span class="pre">model</span> <span class="pre">run.\n\nParameters\n----------\ninfile</span> <span class="pre">:</span> <span class="pre">str\n</span>&#160;&#160;&#160; <span class="pre">plain</span> <span class="pre">text</span> <span class="pre">file</span> <span class="pre">containing</span> <span class="pre">model</span> <span class="pre">input</span> <span class="pre">parameters.</span> <span class="pre">See</span> <span class="pre">inputfiles</span> <span class="pre">for\n</span>&#160;&#160;&#160; <span class="pre">a</span> <span class="pre">description</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">input</span> <span class="pre">file</span> <span class="pre">format\n</span>&#160;&#160;&#160; <span class="pre">\nAttributes\n----------\ngeometry:</span> <span class="pre">Geometry\nforces:</span> <span class="pre">Forces\nsurfaceinteraction:</span> <span class="pre">ConstantSurfaceInteraction,</span> <span class="pre">etc\nspatialdist:</span> <span class="pre">UniformSpatialDist,</span> <span class="pre">etc.\nspeeddist:</span> <span class="pre">GaussianSpeedDist,</span> <span class="pre">etc.\nangulardist:</span> <span class="pre">RadialAngularDist,</span> <span class="pre">IsotropicAngularDist\nlossinfo:</span> <span class="pre">LossInformation\noptions:</span> <span class="pre">Options\n',</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">Input.__init__&gt;,</span> <span class="pre">'__str__':</span> <span class="pre">&lt;function</span> <span class="pre">Input.__str__&gt;,</span> <span class="pre">'__repr__':</span> <span class="pre">&lt;function</span> <span class="pre">Input.__repr__&gt;,</span> <span class="pre">'__eq__':</span> <span class="pre">&lt;function</span> <span class="pre">Input.__eq__&gt;,</span> <span class="pre">'_read_params':</span> <span class="pre">&lt;function</span> <span class="pre">Input._read_params&gt;,</span> <span class="pre">'search':</span> <span class="pre">&lt;function</span> <span class="pre">Input.search&gt;,</span> <span class="pre">'make_savefile_name':</span> <span class="pre">&lt;function</span> <span class="pre">Input.make_savefile_name&gt;,</span> <span class="pre">'__static_attributes__':</span> <span class="pre">('_classes',</span> <span class="pre">'_inputfile',</span> <span class="pre">'angulardist',</span> <span class="pre">'config',</span> <span class="pre">'forces',</span> <span class="pre">'geometry',</span> <span class="pre">'lossinfo',</span> <span class="pre">'options',</span> <span class="pre">'spatialdist',</span> <span class="pre">'speeddist',</span> <span class="pre">'surfaceinteraction'),</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'Input'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'Input'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__hash__':</span> <span class="pre">None,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#nexoclom2.initial_state.Input.Input.__dict__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -131,7 +142,7 @@ a description of the input file format</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nexoclom2.initial_state.Input.Input.__firstlineno__">
-<span class="sig-name descname"><span class="pre">__firstlineno__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">12</span></em><a class="headerlink" href="#nexoclom2.initial_state.Input.Input.__firstlineno__" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__firstlineno__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">11</span></em><a class="headerlink" href="#nexoclom2.initial_state.Input.Input.__firstlineno__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -173,8 +184,8 @@ a description of the input file format</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="nexoclom2.initial_state.Input.Input.make_savefile">
-<span class="sig-name descname"><span class="pre">make_savefile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.initial_state.Input.Input.make_savefile" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="nexoclom2.initial_state.Input.Input.make_savefile_name">
+<span class="sig-name descname"><span class="pre">make_savefile_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nexoclom2.initial_state.Input.Input.make_savefile_name" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -203,7 +214,10 @@ instantiate the database themselves.</p>
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="nexoclom2.data_simulation.html" class="btn btn-neutral float-left" title="nexoclom2.data_simulation package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nexoclom2.math.html" class="btn btn-neutral float-right" title="nexoclom2.math package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

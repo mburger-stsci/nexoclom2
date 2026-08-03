@@ -1,0 +1,9 @@
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/nexoclom2/coordinate_systems.rst:18: WARNING: image file not readable: nexoclom2/planet_geometry_Mercury.png [image.not_readable]
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/nexoclom2/particle_tracking.rst:6: WARNING: malformed hyperlink target. [docutils]
+WARNING: autodoc: failed to import function 'compute_accel.compute_accel' from module 'nexoclom2.atomicdata'; the following exception was raised:
+['Traceback (most recent call last):\n', '  File "/Users/mburger/anaconda3/envs/nexoclom2_dev/lib/python3.13/site-packages/sphinx/ext/autodoc/importer.py", line 269, in import_object\n    module = import_module(modname, try_reload=True)\n', '  File "/Users/mburger/anaconda3/envs/nexoclom2_dev/lib/python3.13/site-packages/sphinx/ext/autodoc/importer.py", line 172, in import_module\n    raise ModuleNotFoundError(msg, name=modname)  # NoQA: TRY301\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n', "ModuleNotFoundError: No module named 'nexoclom2.atomicdata.compute_accel'\n"] [autodoc.import_object]
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/apidocs/modules.rst: WARNING: document isn't included in any toctree [toc.not_included]
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/nexoclom2/IoTorus.rst: WARNING: document isn't included in any toctree [toc.not_included]
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/nexoclom2/NEXOCLOM_Requirements_Document.md: WARNING: document isn't included in any toctree [toc.not_included]
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/nexoclom2/generated/nexoclom2.rst: WARNING: document isn't included in any toctree [toc.not_included]
+/Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/nexoclom2/random_deviates.rst: WARNING: document isn't included in any toctree [toc.not_included]

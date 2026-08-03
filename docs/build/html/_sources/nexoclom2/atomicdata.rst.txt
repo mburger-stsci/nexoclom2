@@ -59,6 +59,7 @@ The electron impact ionization rate, :math:`\nu_{EII}(n_e, T_e)` is a function
 of electron density (\ :math:`n_e`\ ) and temperature (\ :math:`T_e`\ ):
 
 .. math::
+
     \nu_{EII}(n_e, T_e) = \kappa(T_e) n_e
 
 where :math:`\kappa(T_e)` is the electron impact ionization rate coefficient.

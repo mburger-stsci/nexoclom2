@@ -7,6 +7,8 @@ from nexoclom2.utilities.exceptions import InputfileError
 class Geometry(InputClass):
     """Solar System geometry information
     
+    .. py:function myfunction(a, b=None)
+    
     Base class for Geometry inputs. This is not intended to be called by the
     user. Sets parameters used jointly by GeometryTime and GeometryNoTime.
     

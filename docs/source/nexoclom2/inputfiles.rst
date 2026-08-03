@@ -24,6 +24,8 @@ each category are defined. Input files are case insensitive.
 Geometry
 ========
 
+:py:class `Geometry`
+
 The geometry can be defined either with a timestamp (i.e., determine the
 geometry values at a defined epoch), or without a timestamp (i.e., by
 specifying important values). If running the model from MESSENGERdata.model(),

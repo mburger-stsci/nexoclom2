@@ -3,7 +3,11 @@ import numpy as np
 import astropy.units as u
 from nexoclom2.atomicdata import atomicmass
 
-species = 'Na', 'H2O', 'O2', 'Na2SO4', 'X'
+species = 'Na', 'Ca', 'O', 'Al'
+
+
+
+
 correct = 22.98977*u.u, 18.015*u.u, 31.998*u.u, 142.03553856000002*u.u, None
 
 

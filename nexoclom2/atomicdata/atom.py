@@ -1,7 +1,6 @@
 import os
 import numpy as np
 import periodictable as pt
-import pickle
 import astropy.units as u
 from astropy.table import QTable
 from nexoclom2 import path

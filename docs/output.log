@@ -1,80 +1,3 @@
-Running Sphinx v8.1.3
-loading translations [en]... done
-loading pickled environment... The configuration has changed (1 option: 'mathjax3_config')
-done
-[AutoAPI] Reading files... [  1%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/__init__.py
-[AutoAPI] Reading files... [  3%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/data_simulation/ModelImage.py
-[AutoAPI] Reading files... [  4%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/data_simulation/__init__.py
-[AutoAPI] Reading files... [  6%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/data_simulation/ModelResult.py
-[AutoAPI] Reading files... [  7%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/derriv.py
-[AutoAPI] Reading files... [  8%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/VariableIntegrator_new.py
-[AutoAPI] Reading files... [ 10%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/bs_integrator.py
-[AutoAPI] Reading files... [ 11%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/starting_point.py
-[AutoAPI] Reading files... [ 12%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/Output_old.py
-[AutoAPI] Reading files... [ 14%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/rk5.py
-[AutoAPI] Reading files... [ 15%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/__init__.py
-[AutoAPI] Reading files... [ 17%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/rk5_attempt.py
-[AutoAPI] Reading files... [ 18%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/rk_scipy.py
-[AutoAPI] Reading files... [ 19%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/final_state.py
-[AutoAPI] Reading files... [ 21%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/rk5_integrator.py
-[AutoAPI] Reading files... [ 22%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/Output.py
-[AutoAPI] Reading files... [ 24%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/VariableIntegrator.py
-[AutoAPI] Reading files... [ 25%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/state_vectors.py
-[AutoAPI] Reading files... [ 26%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/equations_of_motion.py
-[AutoAPI] Reading files... [ 28%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/packets.py
-[AutoAPI] Reading files... [ 29%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/ConstantIntegrator.py
-[AutoAPI] Reading files... [ 31%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/Options.py
-[AutoAPI] Reading files... [ 32%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/InputClass.py
-[AutoAPI] Reading files... [ 33%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/__init__.py
-[AutoAPI] Reading files... [ 35%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/Forces.py
-[AutoAPI] Reading files... [ 36%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/Input.py
-[AutoAPI] Reading files... [ 38%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/LossInformation.py
-[AutoAPI] Reading files... [ 39%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpeedDists/SputteringFluxDist.py
-[AutoAPI] Reading files... [ 40%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpeedDists/FlatSpeedDist.py
-[AutoAPI] Reading files... [ 42%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpeedDists/MaxwellianFluxDist.py
-[AutoAPI] Reading files... [ 43%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/AngularDists/IsotropicAngDist.py
-[AutoAPI] Reading files... [ 44%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/AngularDists/RadialAngDist.py
-[AutoAPI] Reading files... [ 46%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/geometry/GeometryNoTime.py
-[AutoAPI] Reading files... [ 47%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/geometry/GeometryTime.py
-[AutoAPI] Reading files... [ 49%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/geometry/Geometry.py
-[AutoAPI] Reading files... [ 50%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpatialDists/TwoDRegularSpatDist.py
-[AutoAPI] Reading files... [ 51%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpatialDists/SurfSpotSpatDist.py
-[AutoAPI] Reading files... [ 53%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpatialDists/UniformSpatDist.py
-[AutoAPI] Reading files... [ 54%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpatialDists/SurfMapSpatDist.py
-[AutoAPI] Reading files... [ 56%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SurfaceInteraction/ConstantSurfInt.py
-[AutoAPI] Reading files... [ 57%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SurfaceInteraction/SurfMapSurfInt.py
-[AutoAPI] Reading files... [ 58%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SurfaceInteraction/TemperatureDependentSurfInt.py
-[AutoAPI] Reading files... [ 60%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/math/histogram.py
-[AutoAPI] Reading files... [ 61%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/math/__init__.py
-[AutoAPI] Reading files... [ 62%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/math/ks_test.py
-[AutoAPI] Reading files... [ 64%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/math/rotation_matrix.py
-[AutoAPI] Reading files... [ 65%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/math/mod_close.py
-[AutoAPI] Reading files... [ 67%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/utilities/__init__.py
-[AutoAPI] Reading files... [ 68%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/utilities/NexoclomConfig.py
-[AutoAPI] Reading files... [ 69%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/utilities/exceptions.py
-[AutoAPI] Reading files... [ 71%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/utilities/database_operations.py
-[AutoAPI] Reading files... [ 72%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/solarsystem/SSObject.py
-[AutoAPI] Reading files... [ 74%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/solarsystem/__init__.py
-[AutoAPI] Reading files... [ 75%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/solarsystem/IoTorus.py
-[AutoAPI] Reading files... [ 76%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/solarsystem/VoyagerTorus.py
-[AutoAPI] Reading files... [ 78%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/solarsystem/load_kernels.py
-[AutoAPI] Reading files... [ 79%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/data/__init__.py
-[AutoAPI] Reading files... [ 81%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/data/gvalues/reformat_gvalues.py
-[AutoAPI] Reading files... [ 82%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/electron_impact_loss.py
-[AutoAPI] Reading files... [ 83%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/eimp_emission_coef.py
-[AutoAPI] Reading files... [ 85%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/LossRate.py
-[AutoAPI] Reading files... [ 86%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/load_eimp_ionzation_rate_coefs.py
-[AutoAPI] Reading files... [ 88%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/load_emission_rate_coefs.py
-[AutoAPI] Reading files... [ 89%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/read_torus.py
-[AutoAPI] Reading files... [ 90%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/__init__.py
-[AutoAPI] Reading files... [ 92%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/eimp_ionization_coef.py
-[AutoAPI] Reading files... [ 93%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/photoloss.py
-[AutoAPI] Reading files... [ 94%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/constantloss.py
-[AutoAPI] Reading files... [ 96%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/gvalues.py
-[AutoAPI] Reading files... [ 97%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/compute_accel.py
-[AutoAPI] Reading files... [ 99%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/atom.py
-[AutoAPI] Reading files... [100%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/atomicdata/reformat_gvalues.py
-
 WARNING: Cannot resolve cyclic import: nexoclom2, nexoclom2 [autoapi.python_import_resolution]
 WARNING: Cannot resolve import of unknown module nexoclom2.initial_state.AngularDists.IsotropicAngDist in nexoclom2.initial_state.Input [autoapi.python_import_resolution]
 WARNING: Cannot resolve import of unknown module nexoclom2.initial_state.geometry.Geometry in nexoclom2.initial_state [autoapi.python_import_resolution]
@@ -107,55 +30,14 @@ WARNING: Cannot resolve import of unknown module nexoclom2.particle_tracking.com
 WARNING: Cannot resolve import of unknown module nexoclom2.particle_tracking.common in nexoclom2.particle_tracking.rk_scipy [autoapi.python_import_resolution]
 WARNING: Cannot resolve import of unknown module nexoclom2.particle_tracking.common in nexoclom2.particle_tracking.rk_scipy [autoapi.python_import_resolution]
 WARNING: Cannot resolve import of nexoclom2.particle_tracking.dop853_coefficients in nexoclom2.particle_tracking.rk_scipy [autoapi.python_import_resolution]
-[AutoAPI] Mapping Data... [  1%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/__init__.py
-[AutoAPI] Mapping Data... [  3%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/data_simulation/ModelImage.py
-[AutoAPI] Mapping Data... [  4%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/data_simulation/__init__.py
-[AutoAPI] Mapping Data... [  6%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/data_simulation/ModelResult.py
-[AutoAPI] Mapping Data... [  7%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/derriv.py
-[AutoAPI] Mapping Data... [  8%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/VariableIntegrator_new.py
-[AutoAPI] Mapping Data... [ 10%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/bs_integrator.py
-[AutoAPI] Mapping Data... [ 11%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/starting_point.py
-/Users/mburger/anaconda3/envs/nexoclom2_dev/lib/python3.13/site-packages/numpydoc/docscrape.py:384: UserWarning: potentially wrong underline length... 
-Attributes 
-------- in 
-Determine start state of each packet
-Parameters...
-  if not self._is_at_section():
-[AutoAPI] Mapping Data... [ 12%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/Output_old.py
-[AutoAPI] Mapping Data... [ 14%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/rk5.py
-[AutoAPI] Mapping Data... [ 15%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/__init__.py
-[AutoAPI] Mapping Data... [ 17%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/rk5_attempt.py
-[AutoAPI] Mapping Data... [ 18%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/rk_scipy.py
-[AutoAPI] Mapping Data... [ 19%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/final_state.py
-[AutoAPI] Mapping Data... [ 21%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/rk5_integrator.py
-[AutoAPI] Mapping Data... [ 22%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/Output.py
-[AutoAPI] Mapping Data... [ 24%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/VariableIntegrator.py
-[AutoAPI] Mapping Data... [ 25%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/state_vectors.py
-[AutoAPI] Mapping Data... [ 26%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/equations_of_motion.py
-[AutoAPI] Mapping Data... [ 28%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/packets.py
-[AutoAPI] Mapping Data... [ 29%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/particle_tracking/ConstantIntegrator.py
-[AutoAPI] Mapping Data... [ 31%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/Options.py
-[AutoAPI] Mapping Data... [ 32%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/InputClass.py
-[AutoAPI] Mapping Data... [ 33%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/__init__.py
-[AutoAPI] Mapping Data... [ 35%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/Forces.py
-[AutoAPI] Mapping Data... [ 36%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/Input.py
-[AutoAPI] Mapping Data... [ 38%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/LossInformation.py
-[AutoAPI] Mapping Data... [ 39%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpeedDists/SputteringFluxDist.py
-[AutoAPI] Mapping Data... [ 40%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpeedDists/FlatSpeedDist.py
-[AutoAPI] Mapping Data... [ 42%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpeedDists/MaxwellianFluxDist.py
-[AutoAPI] Mapping Data... [ 43%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/AngularDists/IsotropicAngDist.py
-[AutoAPI] Mapping Data... [ 44%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/AngularDists/RadialAngDist.py
-[AutoAPI] Mapping Data... [ 46%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/geometry/GeometryNoTime.py
-[AutoAPI] Mapping Data... [ 47%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/geometry/GeometryTime.py
-[AutoAPI] Mapping Data... [ 49%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/geometry/Geometry.py
 [AutoAPI] Mapping Data... [ 50%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpatialDists/TwoDRegularSpatDist.py
 [AutoAPI] Mapping Data... [ 51%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpatialDists/SurfSpotSpatDist.py
 [AutoAPI] Mapping Data... [ 53%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpatialDists/UniformSpatDist.py
 [AutoAPI] Mapping Data... [ 54%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SpatialDists/SurfMapSpatDist.py
 [AutoAPI] Mapping Data... [ 56%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/initial_state/SurfaceInteraction/ConstantSurfInt.py
-/Users/mburger/anaconda3/envs/nexoclom2_dev/lib/python3.13/site-packages/numpydoc/docscrape.py:203: UserWarning: potentially wrong underline length... 
-Parameters 
---------- in 
+/Users/mburger/anaconda3/envs/nexoclom2_dev/lib/python3.13/site-packages/numpydoc/docscrape.py:203: UserWarning: potentially wrong underline length...
+Parameters
+--------- in
 Surface interaction with constant sticking coefficient and accommodation factor
 ...
   while not self._is_at_section() and not self._doc.eof():
@@ -166,9 +48,9 @@ Surface interaction with constant sticking coefficient and accommodation factor
 [AutoAPI] Mapping Data... [ 62%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/math/ks_test.py
 [AutoAPI] Mapping Data... [ 64%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/math/rotation_matrix.py
 [AutoAPI] Mapping Data... [ 65%] /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/nexoclom2/math/mod_close.py
-/Users/mburger/anaconda3/envs/nexoclom2_dev/lib/python3.13/site-packages/numpydoc/docscrape.py:203: UserWarning: potentially wrong underline length... 
-Parameters 
---------- in 
+/Users/mburger/anaconda3/envs/nexoclom2_dev/lib/python3.13/site-packages/numpydoc/docscrape.py:203: UserWarning: potentially wrong underline length...
+Parameters
+--------- in
 Wrapper for np.isclose for values close to the periodic boundary
 Decision Chart...
   while not self._is_at_section() and not self._doc.eof():
@@ -302,7 +184,7 @@ Possible hints:
 * KeyError: 'nexoclom2'
 myst v4.0.0: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions={'dollarmath', 'amsmath', 'colon_fence'}, disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=0, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
 building [mo]: targets for 0 po files that are out of date
-writing output... 
+writing output...
 building [html]: targets for 74 source files that are out of date
 updating environment: 0 added, 75 changed, 5 removed
 reading sources... [  1%] apidocs/nexoclom2.atomicdata
@@ -432,14 +314,14 @@ checking consistency... /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2
 /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/source/nexoclom2/lossrates.rst: WARNING: document isn't included in any toctree
 done
 preparing documents... done
-copying assets... 
-copying static files... 
+copying assets...
+copying static files...
 Writing evaluated template result to /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/build/html/_static/basic.css
 Writing evaluated template result to /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/build/html/_static/language_data.js
 Writing evaluated template result to /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/build/html/_static/documentation_options.js
 Writing evaluated template result to /Users/mburger/Work/Research/NeutralCloudModel/nexoclom2/docs/build/html/_static/js/versions.js
 copying static files: done
-copying extra files... 
+copying extra files...
 copying extra files: done
 copying assets: done
 writing output... [  1%] apidocs/nexoclom2
@@ -547,8 +429,8 @@ No file math.aux.
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd)
 ! Extra alignment tab has been changed to \cr.
-<template> \egroup \endtemplate 
-                                
+<template> \egroup \endtemplate
+
 l.15 v_{th}^2 & = &
                     2Tk_B/m
 
@@ -556,10 +438,10 @@ l.15 v_{th}^2 & = &
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
- ...                                              
-                                                  
+ ...
+
 l.16 \end{eqnarray*}
-                    
+
 [1] (./math.aux) )
 (see the transcript file for additional information)
 Output written on math.dvi (1 page, 600 bytes).
@@ -592,382 +474,382 @@ For additional information on amsmath, use the `?' option.
 (./math.aux) (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd)
 ! Missing \endgroup inserted.
-<inserted text> 
-                \endgroup 
+<inserted text>
+                \endgroup
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing } inserted.
-<inserted text> 
+<inserted text>
                 }
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! You can't use `\halign' in math mode.
-\eqnarray ... \let \\\@eqncr $$\everycr {}\halign 
+\eqnarray ... \let \\\@eqncr $$\everycr {}\halign
                                                   to\displaywidth \bgroup \h...
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing number, treated as zero.
-<to be read again> 
-                   \bgroup 
+<to be read again>
+                   \bgroup
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   \bgroup 
+<to be read again>
+                   \bgroup
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing } inserted.
-<inserted text> 
+<inserted text>
                 }
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing $ inserted.
-<inserted text> 
+<inserted text>
                 $
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! You can't use `macro parameter character #' in math mode.
 \eqnarray ...g $\displaystyle \tabskip \z@skip {##
                                                   }$\@eqnsel &\global \@eqcn...
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing { inserted.
-<inserted text> 
+<inserted text>
                 {
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing { inserted.
-<inserted text> 
+<inserted text>
                 {
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing $ inserted.
-<inserted text> 
+<inserted text>
                 $
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing } inserted.
-<inserted text> 
+<inserted text>
                 }
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing } inserted.
-<inserted text> 
+<inserted text>
                 }
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! You can't use `macro parameter character #' in restricted horizontal mode.
 \eqnarray ...e \hskip \tw@ \arraycolsep \hfil ${##
                                                   }$\hfil &\global \@eqcnt \...
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing { inserted.
-<inserted text> 
+<inserted text>
                 {
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Extra alignment tab has been changed to \cr.
-<template> }$\hfill \endtemplate 
-                                 
+<template> }$\hfill \endtemplate
+
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing } inserted.
-<inserted text> 
+<inserted text>
                 }
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing $ inserted.
-<inserted text> 
+<inserted text>
                 $
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! You can't use `macro parameter character #' in math mode.
 \eqnarray ... \tw@ \arraycolsep $\displaystyle {##
                                                   }$\hfil \tabskip \@centeri...
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing { inserted.
-<inserted text> 
+<inserted text>
                 {
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing $ inserted.
-<inserted text> 
+<inserted text>
                 $
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! You can't use `macro parameter character #' in restricted horizontal mode.
 \eqnarray ...nt \thr@@ \hb@xt@ \z@ \bgroup \hss ##
-                                                  \egroup \tabskip \z@skip \cr 
+                                                  \egroup \tabskip \z@skip \cr
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Extra alignment tab has been changed to \cr.
-<template> }$\hfill \endtemplate 
-                                 
+<template> }$\hfill \endtemplate
+
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Extra alignment tab has been changed to \cr.
-<template> }$\hfill \endtemplate 
-                                 
+<template> }$\hfill \endtemplate
+
 l.17 \end{eqnarray*}\end{split}
-                               
+
 
 ! LaTeX Error: Too many columns in eqnarray environment.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
- ...                                              
-                                                  
+ ...
+
 l.17 \end{eqnarray*}\end{split}
-                               
+
 
 ! LaTeX Error: \begin{split} on input line 17 ended by \end{eqnarray*}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
- ...                                              
-                                                  
+ ...
+
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing $ inserted.
-<inserted text> 
+<inserted text>
                 $
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Display math should end with $$.
-<to be read again> 
-                   \endgroup 
+<to be read again>
+                   \endgroup
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing } inserted.
-<inserted text> 
+<inserted text>
                 }
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing { inserted.
-<inserted text> 
+<inserted text>
                 {
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing } inserted.
-<inserted text> 
+<inserted text>
                 }
 l.17 \end{eqnarray*}\end{split}
-                               
+
 
 ! LaTeX Error: \begin{equation*} on input line 13 ended by \end{split}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
- ...                                              
-                                                  
+ ...
+
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing $ inserted.
-<inserted text> 
+<inserted text>
                 $
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Misplaced alignment tab character &.
 \math@cr@@@ ->\ifst@rred \nonumber \fi &
                                         \relax \make@display@tag \ifst@rred ...
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Misplaced \cr.
-\math@cr@@@ ...fi \global \advance \row@ \@ne \cr 
-                                                  
+\math@cr@@@ ...fi \global \advance \row@ \@ne \cr
+
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Extra }, or forgotten $.
 \gmeasure@ ...savetaglength@ \crcr #1\math@cr@@@ }
                                                   }\restorecounters@ \if@fle...
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Extra }, or forgotten $.
 \gmeasure@ ...avetaglength@ \crcr #1\math@cr@@@ }}
                                                   \restorecounters@ \if@fleq...
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing $ inserted.
-<inserted text> 
+<inserted text>
                 $
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing } inserted.
-<inserted text> 
+<inserted text>
                 }
 l.17 \end{eqnarray*}\end{split}
-                               
+
 
 Overfull \hbox (17.62482pt too wide) in paragraph at lines 17--17
-[]$[]$ 
+[]$[]$
 ! Missing $ inserted.
-<inserted text> 
+<inserted text>
                 $
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Display math should end with $$.
-<to be read again> 
-                   \endgroup 
+<to be read again>
+                   \endgroup
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Argument of \split has an extra }.
-<inserted text> 
-                \par 
+<inserted text>
+                \par
 l.17 \end{eqnarray*}\end{split}
-                               
+
 Runaway argument?
-\collect@body \gather@split \begin {eqnarray*} F(v) 
+\collect@body \gather@split \begin {eqnarray*} F(v)
 ! Paragraph ended before \split was complete.
-<to be read again> 
-                   \par 
+<to be read again>
+                   \par
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing $ inserted.
-<inserted text> 
+<inserted text>
                 $
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing \endgroup inserted.
-<inserted text> 
-                \endgroup 
+<inserted text>
+                \endgroup
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing \endgroup inserted.
-<inserted text> 
-                \endgroup 
+<inserted text>
+                \endgroup
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing } inserted.
-<inserted text> 
+<inserted text>
                 }
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Extra }, or forgotten $.
 <recently read> }
-                 
+
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing number, treated as zero.
-<to be read again> 
-                   \relax 
+<to be read again>
+                   \relax
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   \relax 
+<to be read again>
+                   \relax
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing $ inserted.
-<inserted text> 
+<inserted text>
                 $
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing $ inserted.
-<inserted text> 
+<inserted text>
                 $
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Extra }, or forgotten $.
 <template> }
-            }\place@tag@gather \endtemplate 
+            }\place@tag@gather \endtemplate
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Extra }, or forgotten $.
 <template> }}
-             \place@tag@gather \endtemplate 
+             \place@tag@gather \endtemplate
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing $ inserted.
-<inserted text> 
+<inserted text>
                 $
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing } inserted.
-<inserted text> 
+<inserted text>
                 }
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing } inserted.
-<inserted text> 
+<inserted text>
                 }
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Extra alignment tab has been changed to \cr.
-<recently read> \endtemplate 
-                             
+<recently read> \endtemplate
+
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing number, treated as zero.
-<to be read again> 
-                   \relax 
+<to be read again>
+                   \relax
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   \relax 
+<to be read again>
+                   \relax
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing $ inserted.
-<inserted text> 
+<inserted text>
                 $
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Extra }, or forgotten $.
 <template> }
-            }\place@tag@gather \endtemplate 
+            }\place@tag@gather \endtemplate
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Extra }, or forgotten $.
 <template> }}
-             \place@tag@gather \endtemplate 
+             \place@tag@gather \endtemplate
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing $ inserted.
-<inserted text> 
+<inserted text>
                 $
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing } inserted.
-<inserted text> 
+<inserted text>
                 }
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing } inserted.
-<inserted text> 
+<inserted text>
                 }
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Extra alignment tab has been changed to \cr.
-<recently read> \endtemplate 
-                             
+<recently read> \endtemplate
+
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing number, treated as zero.
-<to be read again> 
-                   \relax 
+<to be read again>
+                   \relax
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   \relax 
+<to be read again>
+                   \relax
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Extra alignment tab has been changed to \cr.
-<template> }}\place@tag@gather \endtemplate 
-                                            
+<template> }}\place@tag@gather \endtemplate
+
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing number, treated as zero.
-<to be read again> 
-                   \relax 
+<to be read again>
+                   \relax
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   \relax 
+<to be read again>
+                   \relax
 l.17 \end{eqnarray*}\end{split}
-                               
+
 
 Overfull \hbox (80.16864pt too wide) in alignment at lines 17--17
 [] []
@@ -976,112 +858,112 @@ Overfull \hbox (80.16864pt too wide) in alignment at lines 17--17
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
- ...                                              
-                                                  
+ ...
+
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Missing $ inserted.
-<inserted text> 
+<inserted text>
                 $
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Display math should end with $$.
-<to be read again> 
-                   \endgroup 
+<to be read again>
+                   \endgroup
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Extra \endgroup.
-<recently read> \endgroup 
-                          
+<recently read> \endgroup
+
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Misplaced \crcr.
-\endsplit ->\crcr 
+\endsplit ->\crcr
                   \egroup \egroup \iftagsleft@ \@xp \lendsplit@ \else \@xp \...
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Too many }'s.
-\endsplit ->\crcr \egroup 
+\endsplit ->\crcr \egroup
                           \egroup \iftagsleft@ \@xp \lendsplit@ \else \@xp \...
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Too many }'s.
-\endsplit ->\crcr \egroup \egroup 
+\endsplit ->\crcr \egroup \egroup
                                   \iftagsleft@ \@xp \lendsplit@ \else \@xp \...
 l.17 \end{eqnarray*}\end{split}
-                               
+
 
 ! LaTeX Error: \begin{document} ended by \end{split}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
- ...                                              
-                                                  
+ ...
+
 l.17 \end{eqnarray*}\end{split}
-                               
+
 ! Extra \endgroup.
-<recently read> \endgroup 
-                          
+<recently read> \endgroup
+
 l.17 \end{eqnarray*}\end{split}
-                               
+
 
 ! LaTeX Error: Bad math environment delimiter.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
- ...                                              
-                                                  
+ ...
+
 l.18 \end{equation*}
-                    
+
 ! Misplaced \cr.
-\math@cr@@@ ->\cr 
-                  
+\math@cr@@@ ->\cr
+
 l.18 \end{equation*}
-                    
+
 ! Misplaced \noalign.
-\math@cr@@ ... \iffalse }\fi \math@cr@@@ \noalign 
+\math@cr@@ ... \iffalse }\fi \math@cr@@@ \noalign
                                                   {\vskip #1\relax }
 l.18 \end{equation*}
-                    
+
 ! Misplaced \noalign.
-\black@ #1->\noalign 
+\black@ #1->\noalign
                      {\ifdim #1>\displaywidth \dimen@ \prevdepth \nointerlin...
 l.18 \end{equation*}
-                    
+
 ! Too many }'s.
-\endmathdisplay@a ...r \black@ \totwidth@ \egroup 
-                                                  \egroup 
+\endmathdisplay@a ...r \black@ \totwidth@ \egroup
+                                                  \egroup
 l.18 \end{equation*}
-                    
+
 ! Too many }'s.
-\endmathdisplay@a ...@ \totwidth@ \egroup \egroup 
-                                                  
+\endmathdisplay@a ...@ \totwidth@ \egroup \egroup
+
 l.18 \end{equation*}
-                    
+
 
 ! LaTeX Error: \begin{document} ended by \end{equation*}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
- ...                                              
-                                                  
+ ...
+
 l.18 \end{equation*}
-                    
+
 ! Missing $ inserted.
-<inserted text> 
+<inserted text>
                 $
 l.18 \end{equation*}
-                    
+
 ! Display math should end with $$.
-<to be read again> 
-                   \endgroup 
+<to be read again>
+                   \endgroup
 l.18 \end{equation*}
-                    
+
 ! Extra \endgroup.
-<recently read> \endgroup 
-                          
+<recently read> \endgroup
+
 l.18 \end{equation*}
-                    
+
 [1] (./math.aux) )
 (see the transcript file for additional information)
 Output written on math.dvi (1 page, 744 bytes).
