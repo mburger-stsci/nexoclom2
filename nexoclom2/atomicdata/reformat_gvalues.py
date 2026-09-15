@@ -1,13 +1,16 @@
 """Used once to convert gvalue text files to csv"""
 import os
-import pandas as pd
 import re
+
+import pandas as pd
+
 from nexoclom2 import path
 
 
 def reformat_gvalues(species):
     datafile = os.path.join(path, 'data', 'gvalues', f'{species}.txt')
-    rawdata = open(datafile).readlines()
+    with open(datafile) as file:
+        rawdata = file.readlines()
     query = re.compile(r'[0-9]+\.[0-9]+')
     result = [float(x) for x in query.findall(rawdata[1])]
     data = pd.DataFrame(columns=['velocity', *result])
@@ -17,7 +20,8 @@ def reformat_gvalues(species):
     
     if species in ('Al', 'CaII', 'K'):
         datafile = os.path.join(path, 'data', 'gvalues', f'{species}_2.txt')
-        rawdata = open(datafile).readlines()
+        with open(datafile) as file:
+            rawdata = file.readlines()
         query = re.compile(r'[0-9]+\.[0-9]+')
         result = [float(x) for x in query.findall(rawdata[1])]
         for i, row in enumerate(rawdata[2:]):

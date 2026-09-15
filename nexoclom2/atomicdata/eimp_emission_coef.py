@@ -1,13 +1,15 @@
 import os
-import numpy as np
-import astropy.units as u
-from scipy.interpolate import RegularGridInterpolator
 import pickle
+
+import astropy.units as u
+import numpy as np
+from scipy.interpolate import RegularGridInterpolator
+
 from nexoclom2 import path
 
 
 class EImpEmissionCoef:
-    """Loads and computes electron impact emission rate coefficients.
+    r"""Loads and computes electron impact emission rate coefficients.
     
     Parameters
     ----------

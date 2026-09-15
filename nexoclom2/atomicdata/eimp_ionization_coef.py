@@ -1,7 +1,9 @@
 import os
-import numpy as np
 import pickle
+
 import astropy.units as u
+import numpy as np
+
 from nexoclom2 import path
 
 

@@ -1,6 +1,5 @@
-import numpy as np
 import astropy.units as u
-from astropy.time import TimeDelta
+import numpy as np
 
 
 def lossrate(packets, output):

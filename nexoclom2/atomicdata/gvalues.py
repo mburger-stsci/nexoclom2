@@ -1,9 +1,11 @@
 import os
-import numpy as np
-import astropy.units as u
+
 import astropy.constants as c
-from astropy.table import QTable
+import astropy.units as u
+import numpy as np
 import periodictable as pt
+from astropy.table import QTable
+
 from nexoclom2 import path
 
 
@@ -123,9 +125,7 @@ class gValue:
 
     def __eq__(self, other):
         if isinstance(other, gValue):
-            if self.species != other.species:
-                return False
-            elif ((len(self.wavelengths) != len(other.wavelengths)) or
+            if self.species != other.species or ((len(self.wavelengths) != len(other.wavelengths)) or
                   (len(self.velocity) != len(other.velocity)) or
                   (len(self._radiation_accel) != len(other._radiation_accel))):
                 return False

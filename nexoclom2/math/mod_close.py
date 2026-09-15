@@ -1,11 +1,12 @@
 """Determines whether two values are close in a modular system"""
-import numpy as np
 import astropy.units as u
+import numpy as np
 
 
 def mod_close(a, b, period=360*u.deg, atol=1e-8*u.deg):
-    """Wrapper for np.isclose() for values close to the periodic boundary
-    Decision Chart
+    r"""Wrapper for np.isclose() for values close to the periodic boundary
+    
+    **Decision Chart**
     
     ==== ====    ==========
     A    B       Comparison
@@ -39,10 +40,10 @@ def mod_close(a, b, period=360*u.deg, atol=1e-8*u.deg):
     
     Notes
     -----
-    * Parameters can have units, but units must be the same for all values
+    * Parameters can have units, but units must be compatible for all values
     
-    * Uses `numpy.isclose() <https://docutils.sourceforge.io/rst.html>`_ with
-    default relative tolerance and abolute tolerance defined by `atol` parameter.
+    * Uses `numpy.isclose() <https://numpy.org/doc/stable/reference/generated/numpy.isclose.html>`_
+    with default relative tolerance and absolute tolerance defined by `atol` parameter.
     """
     a = np.mod(a, period)
     assert (a >= 0) & (a < period)

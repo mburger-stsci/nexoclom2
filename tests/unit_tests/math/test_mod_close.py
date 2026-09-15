@@ -1,6 +1,6 @@
 import pytest
-from nexoclom2.math.mod_close import mod_close
 
+from nexoclom2.math.mod_close import mod_close
 
 """ Test whether two numbers are close in clock arithmetic
 Test cases

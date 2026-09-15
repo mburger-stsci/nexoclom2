@@ -19,7 +19,7 @@ def zeros(t):
 
 
 class SSObject:
-    """Physical data for solar system bodies.
+    r"""Physical data for solar system bodies.
     Object containing all the necessary physical data for solar system objects.
     Data is stored in a table included with the package. A separate table
     contains the NAIF IDs. If the object is not found in the data table, returns
@@ -43,19 +43,17 @@ class SSObject:
         Named: R_<object>
     GM: Quantity
         Mass times gravitational constant. Source: SPICE
+    GM_center: Quantity
+        Mass times gravitational constant for object orbited. Source: SPICE
     mass: mass quantity
         Object mass in kg. Source: GM from SPICE
     a: distance quantity
         Object semi-major axis. Source: SPICE
     e: float
-        Orbital eccentricity. For planets: Source SPICE. For moons: Set to 0.
-        This only affects calculations when a modeltime is not specified and
-        is a small affect.
+        Orbital eccentricity. For planets: Source SPICE.
     tilt: angle quantity
         Tilt of rotation axis relative to ecliptic in degrees.
         Source: PlanetaryConstants.csv
-    rotperiod: time quantity
-        Siderial rotational period in hours. Source: PlanetaryConstants.csv
     orbperiod: time quantity
         Sideral orbital period. Source: SPICE
     orbvel: velocity quantity
@@ -67,46 +65,20 @@ class SSObject:
     naifid : int
         Source: naifids.csv
     
-
-    Examples
-    --------
-    >>> from nexoclom2.solarsystem import SSObject
-    >>> jupiter = SSObject('Jupiter')
-    >>> print(jupiter)
-    Object: Jupiter
-    Type = Planet
-    Orbits Sun
-    Satellites: Io, Europa, Ganymede, Callisto
-    Radius = 71492.00 km
-    Mass = 1.90e+27 kg
-    a = 5.20 AU
-    Eccentricity = 0.05
-    Tilt = 3.08 deg
-    Rotation Period = 9.93 h
-    Orbital Period = 4333.00 d
-    GM = -1.27e+17 m3 / s2
-    NAIFID = 599
-    >>> print(len(jupiter))
-    5
-    >>> hst = SSObject('HST')
-    >>> print(hst)
-    Object: Hst
-    Type = Unknown
-    NAIFID = -48
-    >>> print(jupiter == hst)
-    False
-
     :Authors: Matthew Burger
     """
-    def __init__(self, obj: str):
+    def __init__(self, obj: str, abcorr='CN+S', observer=None):
         self.object = obj.title()
+        self.abcorr = abcorr
+        self.observer = observer if observer is not None else self.object
+        
+        # This file is only used to determine what orbits what
         datafile = os.path.join(path, 'data', 'PlanetaryConstants.csv')
         data = pd.read_csv(datafile, skipinitialspace=True,
                            skip_blank_lines=True, comment='#', sep=':')
         data.columns = [x.strip() for x in data.columns]
         data.Object = data.Object.apply(lambda x: x.strip())
         data.orbits = data.orbits.apply(lambda x: x.strip())
-        
         row = data[data.Object == self.object]
 
         kernels = SpiceKernels(self.object)
@@ -136,20 +108,23 @@ class SSObject:
                 self.a = 0*u.au
                 self.e = 0.
                 self.orbperiod = 0.*u.d
-                self.rotperiod = row.rot_period * u.h
+                # self.rotperiod = row.rot_period * u.h
                 self.GM_center = self.GM
-                self.orbvel = 0*u.km/u.s
+                # self.orbvel = 0*u.km/u.s
             else:
                 GM_center = spice.bodvrd(self.orbits, item='GM', maxn=1)
                 self.GM_center = -GM_center[1][0]*u.km**3/u.s**2
                 frame = 'J2000'
-                state, lt = spice.spkezr(self.object, 0, frame, 'None', self.orbits)
+                state, _ = spice.spkezr(self.object, 0, frame, 'CN+S', self.orbits)
+                # spkezr: State vector of the object. Needed for input to oscltx
                 params = spice.oscltx(state, 0., -self.GM_center.value)
+                # oscltx: Gives conic elements for object. Includes eccentricity,
+                #         semimajor axis, and orbital period
                 self.e = params[1]
-                self.tilt = row.tilt*u.deg
                 self.orbperiod = (params[10]*u.s).to(u.d)
-                self.rotperiod = row.rot_period * u.h
                 a = params[9]*u.km
+                # self.tilt = row.tilt*u.deg
+                # self.rotperiod = row.rot_period * u.h
                 
                 if self.orbits == 'Sun':
                     self.type = 'Planet'
@@ -160,7 +135,6 @@ class SSObject:
                     r_center = r_center[0]*u.km
                     unit = u.def_unit(f'R_{self.orbits}', r_center)
                     self.a = a.to(unit)
-                self.orbvel = 2*np.pi*self.a.to(u.km)/self.orbperiod.to(u.s)
         else:
             self.type = 'Unknown'
         
@@ -210,7 +184,7 @@ class SSObject:
         if self.type == 'Unknown':
             out = (f'Object: {self.object}\n'
                    f'Type = {self.type}\n')
-            if 'naifid' in self.__dict__.keys():
+            if 'naifid' in self.__dict__:
                 out += f'NAIFID = {self.naifid}'
         else:
             if len(self) == 1:
@@ -225,9 +199,116 @@ class SSObject:
                    f'Mass = {self.mass:0.2e}\n'
                    f'a = {self.a:0.2f}\n'
                    f'Eccentricity = {self.e:0.2f}\n'
-                   f'Tilt = {self.tilt:0.2f}\n'
-                   f'Rotation Period = {self.rotperiod:0.2f}\n'
+                   # f'Tilt = {self.tilt:0.2f}\n'
+                   # f'Rotation Period = {self.rotperiod:0.2f}\n'
                    f'Orbital Period = {self.orbperiod:0.2f}\n'
                    f'GM = {self.GM:0.2e}\n'
                    f'NAIFID = {self.naifid}')
         return out
+    
+    def _frame(self, frame):
+        if frame.upper() == 'IAU':
+            return f'IAU_{self.object.upper()}'
+        elif frame.upper() in ('SOLAR', 'SOLARFIXED'):
+            return self.object.upper() + frame.upper()
+        else:
+            return frame
+    
+    def taa(self, times):
+        if self.type == 'Planet':
+            kernels = SpiceKernels(self.object)
+            sun = SSObject('Sun')
+            taa = np.zeros(len(times))*u.deg
+            times_et = spice.str2et(times.iso)
+            state, _ = spice.spkezr(self.object, times_et, 'J2000', self.abcorr, 'Sun')
+            for i in range(len(times_et)):
+                taa[i] = (spice.oscltx(state[i,:], times_et[i], -sun.GM.value)[8]*u.rad).to(u.deg)
+            kernels.unload()
+            return taa
+        elif self.type == 'Moon':
+            obj = SSObject(self.orbits)
+            return obj.taa(times)
+        else:
+            return np.zeros(len(times))*u.deg
+        
+    def r_sun(self, times):
+        kernels = SpiceKernels(self.object)
+        times_et = spice.str2et(times.iso)
+        state, _ = spice.spkezr(self.object, times_et, 'J2000', self.abcorr, 'Sun')
+        kernels.unload()
+        
+        r = np.sqrt(np.sum(state[:,:3]**2, axis=1))*u.km
+        return r.to(u.au)
+    
+    def drdt_sun(self, times):
+        kernels = SpiceKernels(self.object)
+        times_et = spice.str2et(times.iso)
+        state, _ = spice.spkezr(self.object, times_et, 'J2000', self.abcorr, 'Sun')
+        kernels.unload()
+        
+        X, V = state[:,:3]*u.km, state[:,3:]*u.km/u.s
+        drdt = np.sum(X*V, axis=1)/self.r_sun(times)
+        return drdt.to(u.km/u.s)
+    
+    def subsolar_longitude(self, times):
+        kernels = SpiceKernels(self.object)
+        times_et = spice.str2et(times.iso)
+        subsolar_long = np.zeros(len(times_et))*u.deg
+        for i, et in enumerate(times_et):
+            sublon, _, _ = spice.subslr('INTERCEPT/ELLIPSOID', self.object,
+                                        et, f'IAU_{self.object.upper()}',
+                                        self.abcorr, 'Sun')
+            lonlat = spice.recpgr(self.object, sublon, self.radius.value, 0.)
+            subsolar_long[i] = lonlat[0]*u.rad
+            
+        kernels.unload()
+        return subsolar_long
+    
+    def subsolar_latitude(self, times):
+        kernels = SpiceKernels(self.object)
+        times_et = spice.str2et(times.iso)
+        subsolar_lat = np.zeros(len(times_et))*u.deg
+        for i, et in enumerate(times_et):
+            sublon, _, _ = spice.subslr('INTERCEPT/ELLIPSOID', self.object,
+                                        et, f'IAU_{self.object.upper()}',
+                                        self.abcorr, 'Sun')
+            lonlat = spice.recpgr(self.object, sublon, self.radius.value, 0.0)
+            subsolar_lat[i] = lonlat[1]*u.rad
+        
+        kernels.unload()
+        return subsolar_lat
+    
+    def subobs_longitude(self, times):
+        print('Not implemented')
+    
+    def subobs_latitude(self, times):
+        print('Not implemented')
+    
+    def X(self, times, frame='J2000'):
+        kernels = SpiceKernels(self.object)
+        times_et = spice.str2et(times.iso)
+        state, _ = spice.spkezr(self.object, times_et, self._frame(frame), self.abcorr,
+                                self.orbits)
+        kernels.unload()
+        return state[:,:3]*u.km
+    
+    def V(self, times, frame='J2000'):
+        kernels = SpiceKernels(self.object)
+        times_et = spice.str2et(times.iso)
+        state, _ = spice.spkezr(self.object, times_et, self._frame(frame), self.abcorr,
+                                self.orbits)
+        kernels.unload()
+        return state[:,3:]*u.km/u.s
+    
+    def sundir(self, times, frame='J2000'):
+        kernels = SpiceKernels(self.object)
+        times_et = spice.str2et(times.iso)
+        state, _ = spice.spkezr(self.object, times_et, self._frame(frame), self.abcorr, 'Sun')
+        kernels.unload()
+        
+        r = np.sqrt(np.sum(state[:,:3]**2, axis=1))
+        sundir = state[:,:3]/r[:,np.newaxis]
+        return sundir
+
+    def radec(self, times):
+        print('Not implemented')

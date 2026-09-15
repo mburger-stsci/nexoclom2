@@ -9,9 +9,6 @@ def Q_KS(z):
     to_sum = (-1.)**(ints-1) * np.exp(-2*ints**2 * z**2)
     P_KS2 = 1 - 2*to_sum.sum()
     
-    from scipy.stats import ksone
-    cdf = ksone.cdf(z, 100)
-    
     assert np.isclose(P_KS, P_KS2)
     
     return 1 - P_KS

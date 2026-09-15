@@ -1,19 +1,21 @@
 import os
+
+import astropy.units as u
 import numpy as np
 import periodictable as pt
-import astropy.units as u
 from astropy.table import QTable
+
 from nexoclom2 import path
+from nexoclom2.atomicdata.charge_exchange import load_charge_exchange
 from nexoclom2.atomicdata.eimp_emission_coef import EImpEmissionCoef
 from nexoclom2.atomicdata.eimp_ionization_coef import EimpIonizationCoef
-from nexoclom2.atomicdata.charge_exchange import load_charge_exchange
 from nexoclom2.atomicdata.gvalues import gValue
-
 
 __all__ = ['Atom']
 
+
 class Atom:
-    """Class containing all useful atomic data for a neutral or ionic species.
+    r"""Class containing all useful atomic data for a neutral or ionic species.
     
     Parameters
     ----------
@@ -105,7 +107,7 @@ class Atom:
         else:
             pass
         
-        self.wavelengths = set(wave for wave in waves if wave is not None)
+        self.wavelengths = {wave for wave in waves if wave is not None}
         
         # charge exchange rates
         self.charge_exchange = load_charge_exchange(self.symbol)
