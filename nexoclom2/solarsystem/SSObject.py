@@ -213,23 +213,76 @@ class SSObject:
             return self.object.upper() + frame.upper()
         else:
             return frame
+ 
+    def X(self, times, frame='J2000', center=None):
+        if center is None:
+            center = self.orbits
+        else:
+            pass
+        
+        kernels = SpiceKernels(self.object)
+        times_et = spice.str2et(times.iso)
+        if (self.object == 'Sun') and (isinstance(times_et, float)):
+            return np.zeros(3)*u.km
+        elif self.object == 'Sun':
+            return np.zeros((len(times), 3))*u.km
+        else:
+            state, _ = spice.spkezr(self.object, times_et, self._frame(frame), self.abcorr,
+                                    center)
+            kernels.unload()
+            
+            if len(state.shape) == 1:
+                return state[:3]*u.km
+            else:
+                return state[:,:3]*u.km
     
+    def V(self, times, frame='J2000', center=None):
+        if center is None:
+            center = self.orbits
+        else:
+            pass
+        
+        kernels = SpiceKernels(self.object)
+        times_et = spice.str2et(times.iso)
+        if (self.object == 'Sun') and (isinstance(times_et, float)):
+            return np.zeros(3)*u.km/u.s
+        elif self.object == 'Sun':
+            return np.zeros((len(times), 3))*u.km/u.s
+        else:
+            state, _ = spice.spkezr(self.object, times_et, self._frame(frame), self.abcorr,
+                                    self.orbits)
+            kernels.unload()
+            
+            if len(state.shape) == 1:
+                return state[3:]*u.km/u.s
+            else:
+                return state[:,3:]*u.km/u.s
+
     def taa(self, times):
         if self.type == 'Planet':
             kernels = SpiceKernels(self.object)
             sun = SSObject('Sun')
-            taa = np.zeros(len(times))*u.deg
             times_et = spice.str2et(times.iso)
-            state, _ = spice.spkezr(self.object, times_et, 'J2000', self.abcorr, 'Sun')
-            for i in range(len(times_et)):
-                taa[i] = (spice.oscltx(state[i,:], times_et[i], -sun.GM.value)[8]*u.rad).to(u.deg)
+            
+            state, _ = spice.spkezr(f'{self.object}_BARYCENTER', times_et, 'J2000',
+                                    self.abcorr, 'Sun')
+            if isinstance(times_et, float):
+                taa = (spice.oscltx(state, times_et, -sun.GM.value)[8]*u.rad).to(u.deg)
+            else:
+                taa = np.zeros(len(times))*u.deg
+                for i in range(len(times)):
+                    taa[i] = (spice.oscltx(state[i,:], times_et[i],
+                                           -sun.GM.value)[8]*u.rad).to(u.deg)
             kernels.unload()
             return taa
         elif self.type == 'Moon':
             obj = SSObject(self.orbits)
             return obj.taa(times)
         else:
-            return np.zeros(len(times))*u.deg
+            if isinstance(times.mjd, float):
+                return 0*u.deg
+            else:
+                return np.zeros(len(times))*u.deg
         
     def r_sun(self, times):
         kernels = SpiceKernels(self.object)
@@ -237,7 +290,11 @@ class SSObject:
         state, _ = spice.spkezr(self.object, times_et, 'J2000', self.abcorr, 'Sun')
         kernels.unload()
         
-        r = np.sqrt(np.sum(state[:,:3]**2, axis=1))*u.km
+        if len(state.shape) == 1:
+            r = np.sqrt(np.sum(state[:3]**2))*u.km
+        else:
+            r = np.sqrt(np.sum(state[:,:3]**2, axis=1))*u.km
+
         return r.to(u.au)
     
     def drdt_sun(self, times):
@@ -246,20 +303,44 @@ class SSObject:
         state, _ = spice.spkezr(self.object, times_et, 'J2000', self.abcorr, 'Sun')
         kernels.unload()
         
-        X, V = state[:,:3]*u.km, state[:,3:]*u.km/u.s
-        drdt = np.sum(X*V, axis=1)/self.r_sun(times)
+        if len(state.shape) == 1:
+            if self.object == 'Sun':
+                drdt = 0*u.km/u.s
+            else:
+                X, V = state[:3]*u.km, state[3:]*u.km/u.s
+                drdt = np.sum(X*V)/self.r_sun(times)
+        else:
+            if self.object == 'Sun':
+                drdt = np.zeros(len(times))*u.km/u.s
+            else:
+                X, V = state[:,:3]*u.km, state[:,3:]*u.km/u.s
+                drdt = np.sum(X*V, axis=1)/self.r_sun(times)
+
         return drdt.to(u.km/u.s)
     
     def subsolar_longitude(self, times):
         kernels = SpiceKernels(self.object)
         times_et = spice.str2et(times.iso)
-        subsolar_long = np.zeros(len(times_et))*u.deg
-        for i, et in enumerate(times_et):
-            sublon, _, _ = spice.subslr('INTERCEPT/ELLIPSOID', self.object,
-                                        et, f'IAU_{self.object.upper()}',
-                                        self.abcorr, 'Sun')
-            lonlat = spice.recpgr(self.object, sublon, self.radius.value, 0.)
-            subsolar_long[i] = lonlat[0]*u.rad
+        if isinstance(times_et, float):
+            if self.object == 'Sun':
+                subsolar_long = 0*u.deg
+            else:
+                sublon, _, _ = spice.subslr('INTERCEPT/ELLIPSOID', self.object,
+                                            times_et, f'IAU_{self.object.upper()}',
+                                            self.abcorr, 'Sun')
+                lonlat = spice.recpgr(self.object, sublon, self.radius.value, 0.)
+                subsolar_long = lonlat[0]*u.rad
+        else:
+            if self.object == 'Sun':
+                subsolar_long = np.zeros(len(times))*u.deg
+            else:
+                subsolar_long = np.zeros(len(times_et))*u.deg
+                for i, et in enumerate(times_et):
+                    sublon, _, _ = spice.subslr('INTERCEPT/ELLIPSOID', self.object,
+                                                et, f'IAU_{self.object.upper()}',
+                                                self.abcorr, 'Sun')
+                    lonlat = spice.recpgr(self.object, sublon, self.radius.value, 0.)
+                    subsolar_long[i] = lonlat[0]*u.rad
             
         kernels.unload()
         return subsolar_long
@@ -267,14 +348,28 @@ class SSObject:
     def subsolar_latitude(self, times):
         kernels = SpiceKernels(self.object)
         times_et = spice.str2et(times.iso)
-        subsolar_lat = np.zeros(len(times_et))*u.deg
-        for i, et in enumerate(times_et):
-            sublon, _, _ = spice.subslr('INTERCEPT/ELLIPSOID', self.object,
-                                        et, f'IAU_{self.object.upper()}',
-                                        self.abcorr, 'Sun')
-            lonlat = spice.recpgr(self.object, sublon, self.radius.value, 0.0)
-            subsolar_lat[i] = lonlat[1]*u.rad
         
+        if isinstance(times_et, float):
+            if self.object == 'Sun':
+                subsolar_lat = 0*u.deg
+            else:
+                sublon, _, _ = spice.subslr('INTERCEPT/ELLIPSOID', self.object,
+                                            times_et, f'IAU_{self.object.upper()}',
+                                            self.abcorr, 'Sun')
+                lonlat = spice.recpgr(self.object, sublon, self.radius.value, 0.0)
+                subsolar_lat = lonlat[1]*u.rad
+        else:
+            if self.object == 'Sun':
+                subsolar_lat = np.zeros(len(times))*u.deg
+            else:
+                subsolar_lat = np.zeros(len(times_et))*u.deg
+                for i, et in enumerate(times_et):
+                    sublon, _, _ = spice.subslr('INTERCEPT/ELLIPSOID', self.object,
+                                                et, f'IAU_{self.object.upper()}',
+                                                self.abcorr, 'Sun')
+                    lonlat = spice.recpgr(self.object, sublon, self.radius.value, 0.0)
+                    subsolar_lat[i] = lonlat[1]*u.rad
+            
         kernels.unload()
         return subsolar_lat
     
@@ -284,30 +379,25 @@ class SSObject:
     def subobs_latitude(self, times):
         print('Not implemented')
     
-    def X(self, times, frame='J2000'):
-        kernels = SpiceKernels(self.object)
-        times_et = spice.str2et(times.iso)
-        state, _ = spice.spkezr(self.object, times_et, self._frame(frame), self.abcorr,
-                                self.orbits)
-        kernels.unload()
-        return state[:,:3]*u.km
-    
-    def V(self, times, frame='J2000'):
-        kernels = SpiceKernels(self.object)
-        times_et = spice.str2et(times.iso)
-        state, _ = spice.spkezr(self.object, times_et, self._frame(frame), self.abcorr,
-                                self.orbits)
-        kernels.unload()
-        return state[:,3:]*u.km/u.s
-    
     def sundir(self, times, frame='J2000'):
         kernels = SpiceKernels(self.object)
         times_et = spice.str2et(times.iso)
         state, _ = spice.spkezr(self.object, times_et, self._frame(frame), self.abcorr, 'Sun')
         kernels.unload()
         
-        r = np.sqrt(np.sum(state[:,:3]**2, axis=1))
-        sundir = state[:,:3]/r[:,np.newaxis]
+        if len(state.shape) == 1:
+            if self.object == 'Sun':
+                sundir = np.zeros(3)
+            else:
+                r = np.sqrt(np.sum(state[:3]**2))
+                sundir = state[:3]/r
+        else:
+            if self.object == 'Sun':
+                sundir = np.zeros((len(times), 3))
+            else:
+                r = np.sqrt(np.sum(state[:,:3]**2, axis=1))
+                sundir = state[:,:3]/r[:,np.newaxis]
+            
         return sundir
 
     def radec(self, times):

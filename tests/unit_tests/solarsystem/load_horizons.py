@@ -6,16 +6,19 @@ import warnings
 from nexoclom2.solarsystem.SSObject import SSObject
 
 
-
 warnings.filterwarnings('ignore')
 
-def load_horizons(objname, ntimes=10):
+def load_horizons(objname, ntimes=10, runtime='year'):
     obj_ = SSObject(objname)
     starttime = Time('2011-09-01')
-    endtime = starttime + 1.2*obj_.orbperiod
+    if runtime == 'year':
+        endtime = starttime + 1.2*obj_.orbperiod
+    elif runtime == '10hr':
+        endtime = starttime + 10*u.hr
+    else:
+        assert False
     
     times = Time(pd.date_range(start=starttime.iso, end=endtime.iso, periods=ntimes))
-    
     cols = ('targetname', 'datetime_jd', 'RA', 'DEC', 'PDObsLon', 'PDObsLat',
             'PDSunLon', 'PDSunLat', 'r', 'r_rate', 'true_anom')
     
@@ -32,22 +35,24 @@ def load_horizons(objname, ntimes=10):
 
         if obj_.type == 'Moon':
             plan = SSObject(obj_.orbits)
-            # obj = Horizons(id=plan.naifid, location='@Sun', epochs=time.mjd)
-            obj = Horizons(id=5, location='@Sun', epochs=time.mjd)
-            ephem = obj.ephemerides()
+            
+            obj = Horizons(id=plan.naifid//100, location='@Sun', epochs=time.mjd)
         else:
-            pass
+            obj = Horizons(id=obj_.naifid//100, location='@Sun', epochs=time.mjd)
 
+        ephem = obj.ephemerides()
         horizons_data[-1]['true_anom'] = ephem[0]['true_anom']
 
-    filename = f'horizons/{objname}.fits'
+    filename = f'horizons/{objname}_{runtime}.fits'
     horizons_data.write(filename, overwrite=True)
 
-if __name__ == '__main__':
-    # objects = 'Mercury', 'Earth', 'Jupiter', 'Io', 'Moon'
-    objects = 'Io',
-    ntimes = 100
 
-    for objname in objects:
-        print(objname)
-        load_horizons(objname, ntimes)
+if __name__ == '__main__':
+    objects = 'Mercury', 'Earth', 'Jupiter', 'Io', 'Moon'
+    # objects = 'Io',
+    ntimes = 100
+    
+    for rtime in ('year', '10hr'):
+        for objname in objects:
+            print(objname)
+            load_horizons(objname, ntimes, rtime)

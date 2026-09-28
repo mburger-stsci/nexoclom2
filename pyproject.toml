@@ -111,9 +111,6 @@ dev = [
     "ruff>=0.16.1",
 ]
 
-[tool.ruff.lint.isort]
-relative-imports-order = "closest-to-furthest"
-
 [[tool.mypy.overrides]]
 module = ["astropy.*"]
 ignore_missing_imports = true
