@@ -3,7 +3,8 @@ geometry.startpoint = Mercury
 geometry.taa = 0
 
 # Full surface
-SpatialDist.type = uniform
+spatialdist.type = uniform
+spatialdist.frame = SOLARFIXED
 
 speeddist.type = flat
 speeddist.vmin = 0

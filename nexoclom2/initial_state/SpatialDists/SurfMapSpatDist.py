@@ -32,7 +32,7 @@ class SurfMapSpatDist(InputClass):
             self.filename = sparams['filename']
             
             possible_frames = 'IAU', 'SOLAR', 'SOLARFIXED'
-            frame = sparams.get('frame', 'SOLAR').upper()
+            frame = sparams.get('frame', 'NONE').upper()
             if frame in possible_frames:
                 self.frame = frame
             else:

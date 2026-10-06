@@ -1,0 +1,42 @@
+{
+  "state": {
+    "attrs": [
+      "starting_packets",
+      "total_source"],
+    "starting_point": [
+      "ut",
+      "packet_number",
+      "x",
+      "y",
+      "z",
+      "vx",
+      "vy",
+      "vz",
+      "frac"
+      ],
+    "starting_point.attrs": [
+      "xunit",
+      "vunit",
+      "frame"
+      ],
+    "final_state": [
+      "time",
+      "x",
+      "y",
+      "z",
+      "vx",
+      "vy",
+      "vz",
+      "frac",
+      "escaped",
+      "ionized",
+      "packet_number",
+      "hit"
+      ],
+    "final_state.attrs": [
+      "unit",
+      "frame",
+      "completed"
+      ]
+    }
+}

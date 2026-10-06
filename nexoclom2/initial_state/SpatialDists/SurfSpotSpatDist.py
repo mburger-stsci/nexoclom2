@@ -6,7 +6,7 @@ from nexoclom2.utilities.exceptions import InputfileError, OutOfRangeError
 
 
 class SurfSpotSpatDist(InputClass):
-    """Defines a spatial distribution with a spot on the surface.
+    r"""Defines a spatial distribution with a spot on the surface.
     
     Parameters that can be set:
     
@@ -97,7 +97,7 @@ class SurfSpotSpatDist(InputClass):
                                       include_min=False)
             
             possible_frames = 'IAU', 'SOLAR', 'SOLARFIXED'
-            frame = sparam.get('frame', 'SOLAR').upper()
+            frame = sparam.get('frame', 'NONE').upper()
             if frame in possible_frames:
                 self.frame = frame
             else:

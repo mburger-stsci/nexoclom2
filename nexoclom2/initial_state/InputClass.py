@@ -220,39 +220,3 @@ class InputClass:
             print(frameinfo.filename, frameinfo.lineno)
             from IPython import embed; embed()
             import sys; sys.exit()
-            
-    def altaz_to_vectors(self, alt, az, X0, v0):
-        """Convert from altitude and azimuth to x, y, z components of velocity"""
-        
-        # Find the velocity components in coordinate system centered on packet
-        v_rad = np.sin(alt)                 # Radial component of velocity
-        v_tan0 = np.cos(alt) * np.cos(az)   # Component along latitude (points E)
-        v_tan1 = np.cos(alt) * np.sin(az)   # Component along longitude (points N)
-        
-        # Now rotate to proper surface point
-        # v_ren = M # v_xyz => v_xyz = invert(M) # v_ren
-        x0 = X0[:,0]
-        y0 = X0[:,1]
-        z0 = X0[:,2]
-        
-        rad = np.column_stack([x0, y0, z0])
-        east = np.column_stack([y0, -x0, np.zeros_like(z0)])
-        # north0 = np.array([-z0*x0, -z0*y0, x0**2+y0**2])
-        
-        rad_ = np.linalg.norm(rad, axis=1)
-        rad /= rad_[:, np.newaxis]
-        east_ = np.linalg.norm(east, axis=1)
-        east /= east_[:, np.newaxis]
-        # north_ = np.linalg.norm(north0, axis=0)
-        # north0 /= north_[np.newaxis, :]
-        
-        north = np.cross(rad, east)
-        
-        V0 = (v_tan0[:, np.newaxis]*north + v_tan1[:, np.newaxis]*east +
-              v_rad[:, np.newaxis]*rad) * v0[:, np.newaxis]
-        V0[v0 == 0*v0.unit,:] = 0.*v0.unit
-        
-        assert np.allclose(v0, np.sqrt(np.sum(V0**2, axis=1)))
-        assert np.all(np.sum(X0*V0, axis=1)/v0 > 0)
-        
-        return V0

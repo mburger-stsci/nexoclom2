@@ -99,8 +99,7 @@ class gValue:
         g = {}
         for wave in self._data.colnames[1:]:
             g_ = self._data[wave]
-            g[float(wave)*u.AA] = (np.interp(drdt.to(self.velocity.unit),
-                                             self.velocity, g_) *
+            g[float(wave)*u.AA] = (np.interp(drdt.to(u.km/u.s), self.velocity, g_) *
                                    (self._ref_dist/r)**2)
             
         return g
@@ -120,7 +119,7 @@ class gValue:
         -------
         radiation acceleration at each point as function of ``drdt`` and ``r``
         """
-        radiation_accel = np.interp(drdt, self.velocity, self._radiation_accel)
+        radiation_accel = np.interp(drdt.to(u.km/u.s), self.velocity, self._radiation_accel)
         return radiation_accel * (self._ref_dist/r)**2
 
     def __eq__(self, other):

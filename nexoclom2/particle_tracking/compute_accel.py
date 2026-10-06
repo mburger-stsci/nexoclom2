@@ -48,21 +48,22 @@ def compute_accel(packets, output):
             
         if output.inputs.geometry.center == 'Sun':
             startpt = output.positions[output.inputs.geometry.startpoint]
-            sundir = -startpt.sun_dir(packets.time)
-            v_r = np.sum(packets.V * sundir, axis=1)
+            sundir = startpt.sundir(packets.time)
+            
             r_sun = np.linalg.norm(packets.X, axis=1).to(u.au)
+            v_r = np.sum(packets.V * sundir, axis=1)
             a_rad = output.species.gvalues.radaccel(v_r, r_sun) * out_of_shadow
         else:
             cent = output.positions[output.inputs.geometry.center]
-            sundir = -cent.sun_dir(packets.time)
-            v_r = np.sum(packets.V * sundir, axis=1)
+            sundir = cent.sundir(packets.time)
             
+            v_r = np.sum(packets.V * sundir, axis=1)
             r_sun = cent.r_sun(packets.time)
             X_sun = packets.X + r_sun[:, np.newaxis]*sundir
-            r_sun = np.linalg.norm(X_sun, axis=1)
+            r_sun = np.sqrt(np.sum(X_sun**2, axis=1))
             drdt_sun = cent.drdt_sun(packets.time)
-            a_rad = (output.species.gvalues.radaccel(v_r + drdt_sun, r_sun) *
-                     out_of_shadow)
+            a_rad = (output.species.gvalues.radaccel(v_r.to(u.km/u.s) + drdt_sun, r_sun) *
+                     out_of_shadow).to(output.unit/u.s/u.s)
             
         accel += a_rad[:,np.newaxis] * sundir
     else:

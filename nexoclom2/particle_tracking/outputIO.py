@@ -1,10 +1,13 @@
 """Functions for dealing with saving outputs"""
 import os
+import numpy as np
 import copy
 from astropy.time import Time
 import astropy.units as u
 import h5py
+import spiceypy as spice
 from nexoclom2.solarsystem import SSObject
+from nexoclom2.solarsystem.load_kernels import SpiceKernels
 
 
 def get_completed(savefile):
@@ -26,14 +29,15 @@ def get_total_source(savefile):
     else:
         return 0, 0
 
-
-def start_iteration(output, start_point, n_packets, n_steps, start_time):
+def start_iteration(output, start_point, n_packets, n_steps):
     # Create a template for saved outputs. Each iteration is saved in a
     # temporary file in case the run crashes.
+    
+    assert start_point.vx.unit == u.km/u.s
     with h5py.File(output.savefile+'_temp', 'w') as store:
         store.create_group('starting_point')
         
-        store['starting_point'].attrs['frame'] = start_point.frame.frame
+        store['starting_point'].attrs['frame'] = start_point.frame
         
         store.create_dataset(f'starting_point/ut',
                              shape=(n_packets, ),
@@ -49,17 +53,7 @@ def start_iteration(output, start_point, n_packets, n_steps, start_time):
                              maxshape=(None, ))
         store[f'starting_point/packet_number'][:] = start_point.packet_number
         
-        keys = ('vx', 'vy', 'vz', 'v')
-        for key in keys:
-            store.create_dataset(f'starting_point/{key}',
-                                 shape=(len(start_point), ),
-                                 chunks=True,
-                                 dtype='float',
-                                 maxshape=(None, ))
-            store[f'starting_point/{key}'][:] = start_point.__dict__[key]  #.to(u.km/u.s)
-        
-        keys = ('time', 'x', 'y', 'z', 'r', 'frac', 'longitude', 'latitude',
-                'local_time', 'altitude', 'azimuth')
+        keys = ('time', 'x', 'y', 'z', 'vx', 'vy', 'vz', 'frac')
         for key in keys:
             store.create_dataset(f'starting_point/{key}',
                                  shape=(len(start_point), ),
@@ -68,11 +62,12 @@ def start_iteration(output, start_point, n_packets, n_steps, start_time):
                                  maxshape=(None, ))
             store[f'starting_point/{key}'][:] = start_point.__dict__[key]
         
-        store['starting_point'].attrs['x_unit'] = start_point.x.unit.name
-        store['starting_point'].attrs['v_unit'] = 'km/s'
+        store['starting_point'].attrs['xunit'] = start_point.x.unit.name
+        store['starting_point'].attrs['vunit'] = 'km/s'
+        store['starting_point'].attrs['frame'] = start_point.frame
         store.attrs['starting_packets'] = n_packets
-        store.attrs['start_time'] = start_time.iso
-        
+    
+        #############
         store.create_group('final_state')
         final_keys = ['time', 'x', 'y', 'z', 'vx', 'vy', 'vz', 'frac',
                       'escaped', 'ionized', 'packet_number']
@@ -93,18 +88,60 @@ def start_iteration(output, start_point, n_packets, n_steps, start_time):
             
         store['final_state'].attrs['completed'] = 0
         store.attrs['total_source'] = n_packets_final
-        
-    
+
+
 def save_final_state(output, final_state):
-    X, V = final_state.X, final_state.V
-    
     with h5py.File(output.savefile+'_temp', 'a') as store:
-        if 'unit' not in store['final_state'].attrs:
-            store['final_state'].attrs['unit'] = output.unit.name
-            store['final_state'].attrs['frame'] = output.frame.frame
+        if 'xunit' not in store['final_state'].attrs:
+            store['final_state'].attrs['xunit'] = output.unit.name
+            store['final_state'].attrs['vunit'] = 'km/s'
+            store['final_state'].attrs['frame'] = output.frame
         else:
             pass
         
+        if output.inputs.options.frame is None:
+            newframe = output.objects[output.startpoint].solar_fixed_frame
+        else:
+            newframe = output.inputs.options.frame
+        
+        if output.frame != newframe:
+            # Put into solarfixed frame centered at startpoint
+            stpoint = output.positions[output.startpoint]
+            unit = output.objects[output.startpoint].unit
+            
+            store['final_state'].attrs['frame'] = newframe
+            store['final_state'].attrs['unit'] = unit.name
+            kernels = SpiceKernels(output.startpoint)
+            
+            times = final_state.time
+            X0 = stpoint.X(times)
+            V0 = stpoint.V(times)
+            X_ = (final_state.X - X0).to(unit)
+            V_ = (final_state.V - V0).to(u.km/u.s)
+            
+            X, V = np.zeros_like(X_).to(unit), np.zeros_like(V_).to(u.km/u.s)
+            if np.all(times == times[0]):
+                time = times[0]
+                
+                et = spice.str2et((output.modeltime + time).iso)
+                R = spice.pxform(output.frame, newframe, et)
+                for i in range(3):
+                    X[:,i] = np.sum(R[i,:]*X_, axis=1)
+                    V[:,i] = np.sum(R[i,:]*V_, axis=1)
+            else:
+                R = np.zeros((len(times), 3, 3))
+                times_et = spice.str2et((output.modeltime + times).iso)
+                for i, et in enumerate(times_et):
+                    R[i,:,:] = spice.pxform(output.frame, newframe, et)
+
+                for i in range(3):
+                    X[:,i] = np.sum(R[:,i,:]*X_, axis=1)
+                    V[:,i] = np.sum(R[:,i,:]*V_, axis=1)
+                    
+            kernels.unload()
+        else:
+            X, V = final_state.X, final_state.V.to(u.km/u.s)
+            
         old_len = store['final_state'].attrs['completed']
         new_len = old_len + len(final_state)
         store['final_state'].attrs['completed'] = new_len
@@ -121,26 +158,14 @@ def save_final_state(output, final_state):
                 for objname in final_state.hit:
                     store[f'final_state/hit/{objname}'][old_len:new_len] = final_state.hit[
                         objname]
+            elif key == 'ut':
+                pass
             else:
                 store[f'final_state/{key}'][old_len:new_len] = final_state.__dict__[key]
-
 
 def close_iteration(output):
     # When an iteration is completed, merge it into the final product
     
-    if output.center == 'Sun':
-        from inspect import currentframe, getframeinfo
-        frameinfo = getframeinfo(currentframe())
-        print(frameinfo.filename, frameinfo.lineno)
-        from IPython import embed; embed()
-        import sys; sys.exit()
-        
-        # Move the packets to the planet's solar-fixed frame
-        center = output.startpoint
-        frame = f'{center.upper()}SOLAR'
-        with h5py.File(output.savefile+'_temp', 'r+') as store:
-            pass
-
     if not os.path.exists(output.savefile):
         os.rename(output.savefile+'_temp', output.savefile)
     else:
@@ -184,30 +209,58 @@ class StartingPointSaved:
     def __init__(self, output):
         super().__init__()
         
+        unit = SSObject(output.startpoint).unit
         with h5py.File(output.savefile, 'r') as store:
             starting_point = store['starting_point']
+            
+            assert starting_point.attrs['xunit'] == str(output.objects[output.startpoint].unit)
+            assert starting_point.attrs['vunit'] == 'km/s'
         
-            unit = SSObject(output.startpoint).unit
             self.time = starting_point['time'][:]*u.s
             self.ut = Time([x.decode() for x in starting_point['ut'][:]])
             self.x = starting_point['x'][:]*unit
             self.y = starting_point['y'][:]*unit
             self.z = starting_point['z'][:]*unit
-            self.r = starting_point['r'][:]*unit
-            self.vx = starting_point['vx'][:]*unit/u.s
-            self.vy = starting_point['vy'][:]*unit/u.s
-            self.vz = starting_point['vz'][:]*unit/u.s
-            self.v = starting_point['v'][:]*unit/u.s
+            self.vx = starting_point['vx'][:]*u.km/u.s
+            self.vy = starting_point['vy'][:]*u.km/u.s
+            self.vz = starting_point['vz'][:]*u.km/u.s
             self.frac = starting_point['frac'][:]
-            self.longitude = starting_point['longitude'][:]*u.deg
-            self.latitude = starting_point['latitude'][:]*u.deg
-            self.local_time = starting_point['local_time'][:]*u.hr
-            self.altitude = starting_point['altitude'][:]*u.deg
-            self.azimuth = starting_point['azimuth'][:]*u.deg
             self.packet_number = starting_point['packet_number'][:]
             self.frame = starting_point.attrs['frame']
             self.n_starting_packets = store.attrs['starting_packets']
+            self.frame = starting_point.attrs['frame']
             
+        # Need to compute r, v, longitude, latitude, localtime, altitude, azimuth
+        self.r = np.sqrt(self.x**2 + self.y**2 + self.z**2)
+        self.v = np.sqrt(self.vx**2 + self.vy**2 + self.vz**2)
+        
+        self.longitude = np.mod(np.arctan2(self.y, self.x) + 2*np.pi*u.rad,
+                                2*np.pi*u.rad).to(u.deg)
+        self.latitude = np.arcsin(self.z/self.r).to(u.deg)
+        
+        if 'SOLAR' in self.frame:
+            self.local_time = np.mod(self.longitude * 12*u.hr/(180*u.deg) + 12*u.hr, 24*u.hr)
+        else:
+            assert False
+    
+        rad = np.column_stack([self.x, self.y, self.z])
+        east = np.column_stack([self.y, -self.x, np.zeros_like(self.z)])
+    
+        rad_ = np.linalg.norm(rad, axis=1)
+        rad /= rad_[:, np.newaxis]
+        east_ = np.linalg.norm(east, axis=1)
+        east /= east_[:, np.newaxis]
+        north = np.cross(rad, east)
+    
+        V0 = np.column_stack([self.vx, self.vy, self.vz])
+        v_rad = np.sum(rad * V0, axis=1)
+        v_east = np.sum(east * V0, axis=1)
+        v_north = np.sum(north * V0, axis=1)
+    
+        self.azimuth = np.mod(np.arctan2(v_east, v_north) + 2*np.pi*u.rad,
+                         2*np.pi*u.rad).to(u.deg)
+        self.altitude = np.arcsin(np.clip(v_rad/self.v, -1, 1)).to(u.deg)
+        
     def __len__(self):
         return self.n_starting_packets
     

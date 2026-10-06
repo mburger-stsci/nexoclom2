@@ -3,21 +3,16 @@ import numpy as np
 import astropy.units as u
 from astropy.time import Time
 import copy
-import shutil
-import h5py
-import pickle
 from nexoclom2.atomicdata import Atom
 from nexoclom2.solarsystem import SSObject, IoTorus, SSPosition
 from nexoclom2.solarsystem.find_modeltime import find_modeltime
-from nexoclom2.solarsystem.frames import Frame
 from nexoclom2.particle_tracking.ConstantIntegrator import ConstantIntegrator
 from nexoclom2.particle_tracking.VariableIntegrator import VariableIntegrator
 from nexoclom2.particle_tracking.state_vectors import StateVector
 from nexoclom2.particle_tracking.starting_point import StartingPoint
 from nexoclom2.particle_tracking.final_state import FinalState
-import nexoclom2.particle_tracking.outputIO as outputIO
+from nexoclom2.particle_tracking import outputIO
 from nexoclom2.utilities import DatabaseOperations
-from nexoclom2.utilities.NexoclomConfig import NexoclomConfig
 
 
 class Output:
@@ -54,7 +49,6 @@ class Output:
     """
     def __init__(self, inputs, n_packets=0,  n_iterations=1, compress=True,
                  overwrite=False):
-        # sets up outputs, restores existing results, does not run anything
         self.inputs = copy.deepcopy(inputs)
         self.compress = compress
        
@@ -83,7 +77,7 @@ class Output:
 
         # Determine how many more packets to do
         n_total_to_run = int(n_packets)
-        n_to_do = (n_total_to_run - self.starting_packets)
+        n_to_do = max(n_total_to_run - self.starting_packets, 0)
         print(f'Requested {n_total_to_run} packets.')
         print(f'Found {self.starting_packets} packets.')
         print(f'Will run {n_to_do} packets.')
@@ -102,6 +96,12 @@ class Output:
         else:
             self.modeltime = find_modeltime(inputs.geometry)
             self.inputs.geometry.modeltime = self.modeltime
+            
+        # If object orbiting the Sun, run everything in J2000, otherwise in SolarFixed
+        if self.center == 'Sun':
+            self.frame = 'J2000'
+        else:
+            self.frame = f'{self.center.upper()}SOLARFIXED'
         
         # Load the objects and initialize the object state info (position, etc.)
         self.objects = {obj: SSObject(obj)
@@ -121,14 +121,6 @@ class Output:
 
         rad = self.objects[self.inputs.options.edge_origin].radius
         self.inputs.options.outer_edge = self.inputs.options.outer_edge * rad
-        
-        if self.center == 'Sun':
-            self.frame = Frame(self.objects[self.startpoint], 'J2000',
-                               self.modeltime, self.inputs.options.runtime)
-        else:
-            self.frame = Frame(self.objects[self.startpoint],
-                               f'{self.center.upper()}SOLAR',
-                               self.modeltime, self.inputs.options.runtime)
 
         if self.inputs.lossinfo.photoionization:
             if self.inputs.lossinfo.photo_lifetime == 0*u.s:
@@ -150,7 +142,6 @@ class Output:
             pass
         
         # Surface accommodation - not done yet
-        
         if hasattr(self.inputs.options, 'step_size'):
             nsteps = len(np.arange(-self.inputs.options.runtime.value, 0,
                                    self.inputs.options.step_size.value)) + 1
@@ -177,7 +168,7 @@ class Output:
                 print(f'{start_time.iso}: Starting iteration {it+1} '
                       f'of {n_iterations}')
                 
-                # Will the iteration to a temporary file in case it doesn't complete
+                # Write the iteration to a temporary file in case it doesn't complete
                 if os.path.exists(self.savefile+'_temp'):
                     os.remove(self.savefile+'_temp')
                 else:
@@ -190,8 +181,7 @@ class Output:
                 initial_state = StateVector(self, startpoint)
                 
                 # Save the starting point into the temporary file
-                outputIO.start_iteration(self, startpoint, packets_per_it[it],
-                                         nsteps, start_time)
+                outputIO.start_iteration(self, startpoint, packets_per_it[it], nsteps)
                 
                 if hasattr(self.inputs.options, 'step_size'):
                     ConstantIntegrator(self, initial_state)
@@ -232,12 +222,16 @@ class Output:
         for obj in self.inputs.geometry.included:
             self.positions[obj] = SSPosition(self.objects[obj],
                                              self.inputs.geometry,
-                                             self.inputs.options.runtime)
+                                             self.inputs.options.runtime,
+                                             frame=self.frame)
             self.objects[obj].GM = self.objects[obj].GM.to(self.unit**3/u.s**2)
             self.objects[obj].radius = self.objects[obj].radius.to(self.unit)
             
     def starting_point(self):
         """
+        Returns the starting points of all packets in the reference frame of the
+        starting point object
+        
         Parameters
         ----------
         None
@@ -260,6 +254,10 @@ class Output:
         return start
 
     def initial_state(self):
+        """
+        Returns the starting points of all packets in the reference frame the model was
+        run in
+        """
         starting_point = outputIO.StartingPointSaved(self)
         
         initial_state = StateVector(self, starting_point)
@@ -274,7 +272,7 @@ class Output:
         
         return initial_state
     
-    def final_state(self, which=None, frame=None, center=None):
+    def final_state(self, which=None):
         """
         Default options:
         If the starting point is a planet and center is the Sun,
@@ -286,100 +284,6 @@ class Output:
         * Rotate to IAU frame.
         * Can keep in Solar frame
         """
-        
         final = FinalState(self, which)
         
-        if center is None:
-            if self.center == 'Sun':
-                center = self.startpoint
-            else:
-                center = self.center
-        else:
-            pass
-            
-        if frame is None:
-            final.frame = f'{center.upper()}SOLAR'
-        else:
-            final.frame = frame
-        
-        if (final.frame != self.frame) or (self.center != center):
-            times = final.time
-            X0 = self.positions[self.startpoint].X(times)
-            V0 = self.positions[self.startpoint].V(times)
-            
-            X0 = self.frame.rotation(times, X0, final.frame)
-            V0 = self.frame.rotation(times, V0, final.frame)
-            
-            X = self.frame.rotation(times, final.X(), final.frame) - X0
-            V = self.frame.rotation(times, final.V(), final.frame) - V0
-            
-            final.x = X[:,0].to(self.objects[center].unit)
-            final.y = X[:,1].to(self.objects[center].unit)
-            final.z = X[:,2].to(self.objects[center].unit)
-            final.vx = V[:,0].to(u.km/u.s)
-            final.vy = V[:,1].to(u.km/u.s)
-            final.vz = V[:,2].to(u.km/u.s)
-        else:
-            pass
-        
         return final
-
-    def save_modified(self, name, startpt):
-        config = NexoclomConfig()
-        savepath = os.path.join(config.savepath, 'modified', name)
-        if not os.path.exists(savepath):
-            os.makedirs(savepath)
-        
-        h5file = os.path.join(savepath, name+'.h5')
-        inputfile = os.path.join(savepath, name+'_inputs.pkl')
-        
-        shutil.copyfile(self.savefile, h5file)
-        # packet_number = startpt.packet_number
-        with h5py.File(h5file, 'r+') as store:
-            ratio = startpt.frac/store['starting_point/frac']
-            store['starting_point/frac'][:] = startpt.frac
-            assert (store['starting_point/packet_number'][:].max()+1 ==
-                    len(store['starting_point/packet_number'][:]))
-            
-            pnumber = store['final_state/packet_number'][:].astype(int)
-            store['final_state/frac'][:] *= ratio[pnumber]
-            
-            # Remove packets that aren't included
-            q = store['starting_point/frac'][:] != 0
-            for key in startpt.__dict__.keys():
-                if key == 'frame':
-                    store['starting_point'].attrs['frame'] = startpt.frame
-                else:
-                    temp = store[f'starting_point/{key}'][q]
-                    store[f'starting_point/{key}'].resize((q.sum(), ))
-                    store[f'starting_point/{key}'][:] = temp
-            
-            q = store['final_state/frac'][:] != 0
-            final_keys = ['time', 'x', 'y', 'z', 'vx', 'vy', 'vz', 'frac',
-                          'escaped', 'ionized', 'packet_number', 'iteration']
-            for key in final_keys:
-                temp = store[f'final_state/{key}'][q]
-                store[f'final_state/{key}'].resize((q.sum(), ))
-                store[f'final_state/{key}'][:] = temp
-            
-            for objname in self.objects:
-                temp = store[f'final_state/hit/{objname}'][q]
-                store[f'final_state/hit/{objname}'].resize((q.sum(), ))
-                store[f'final_state/hit/{objname}'][:] = temp
-            
-        self.savefile = h5file
-        
-        with open(inputfile, 'wb') as file:
-            pickle.dump(self.inputs, file)
-    
-    @classmethod
-    def restore_modified(cls, name):
-        config = NexoclomConfig()
-        savepath = os.path.join(config.savepath, 'modified', name)
-        h5file = os.path.join(savepath, name+'.h5')
-        inputfile = os.path.join(savepath, name+'_inputs.pkl')
-        with open(inputfile, 'rb') as file:
-            inputs = pickle.load(file)
-            
-        output = cls(inputs, h5file=h5file)
-        return output

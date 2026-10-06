@@ -1,3 +1,5 @@
+from sysconfig import expand_makefile_vars
+
 import numpy as np
 import astropy.units as u
 from astropy.time import TimeDelta
@@ -85,16 +87,14 @@ class SSPosition:
         self.X = lambda t:np.column_stack([self.x(t),
                                            self.y(t),
                                            self.z(t)])
-        self.V = lambda t:np.column_stack([self.vx(t),
-                                           self.vy(t),
-                                           self.vz(t)])
         
         V = ssobject.V(self.times_ut, frame=self.frame, center=self.center).to(self.unit/u.s)
-        v = np.sqrt(np.sum(V**2, axis=1))
         self.vx = lambda t: np.interp(t, self.times, V[:,0])
         self.vy = lambda t: np.interp(t, self.times, V[:,1])
         self.vz = lambda t: np.interp(t, self.times, V[:,2])
-        self.v = lambda t: np.interp(t, self.times, v)
+        self.V = lambda t:np.column_stack([self.vx(t),
+                                           self.vy(t),
+                                           self.vz(t)])
         
         r_sun = ssobject.r_sun(self.times_ut).to(u.au)
         self.r_sun = lambda t: np.interp(t, self.times, r_sun)
@@ -102,8 +102,7 @@ class SSPosition:
         drdt_sun = ssobject.drdt_sun(self.times_ut).to(u.km/u.s)
         self.drdt_sun = lambda t: np.interp(t, self.times, drdt_sun)
         
-        sundir = ssobject.sundir(self.times_ut)
-        assert np.allclose(np.sum(sundir**2, axis=1), 1)
+        sundir = ssobject.sundir(self.times_ut, frame=self.frame)
         self.sundir_x = lambda t: np.interp(t, self.times, sundir[:,0])
         self.sundir_y = lambda t: np.interp(t, self.times, sundir[:,1])
         self.sundir_z = lambda t: np.interp(t, self.times, sundir[:,2])
@@ -116,7 +115,7 @@ class SSPosition:
             return np.ones(len(packets)).astype(bool)
         else:
             x_obj = self.X(packets.time)
-            x_sun = self.sundir(packets.time)
+            x_sun = -self.sundir(packets.time)
             
             x_from_obj = packets.X - x_obj
             r_from_obj = np.sqrt(np.sum(x_from_obj**2, axis=1))

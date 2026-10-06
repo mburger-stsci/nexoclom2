@@ -122,6 +122,3 @@ class ModelImage(ModelResult):
             self.z = image.y
             ct += chunksize
             it += 1
-            
-            
-        store.close()

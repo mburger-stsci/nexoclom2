@@ -3,7 +3,7 @@ from astropy.coordinates import golden_spiral_grid
 golden_pts = golden_spiral_grid(size=32)
 from tinydb.table import Document
 from nexoclom2.initial_state.InputClass import InputClass
-from nexoclom2.utilities.exceptions import OutOfRangeError
+from nexoclom2.utilities.exceptions import OutOfRangeError, InputfileError
 
 
 class GoldenSpiralSpatDist(InputClass):
@@ -41,7 +41,14 @@ class GoldenSpiralSpatDist(InputClass):
                 raise OutOfRangeError('input_classes.UniformSpatDist',
                                       'spatialdist.exobase', (0, None),
                                       include_min=False)
-        self.frame = 'SOLAR'
+            
+        possible_frames = 'IAU', 'SOLAR', 'SOLARFIXED'
+        frame = sparam.get('frame', 'NONE').upper()
+        if frame in possible_frames:
+            self.frame = frame
+        else:
+            raise InputfileError('input_classes.CosAngleSpatDist',
+                                 f'spatialdist.frame must be one of {possible_frames}')
 
     def choose_points(self, npackets):
         """

@@ -6,6 +6,7 @@ SpatialDist.type = uniform
 SpeedDist.type = flat
 SpeedDist.vprob = 4.
 SpeedDist.delv = 0.
+SpatialDist.frame = SOLARFIXED
 
 AngularDist.type = isotropic
 

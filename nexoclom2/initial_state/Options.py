@@ -118,3 +118,11 @@ class Options(InputClass):
                 else:
                     raise OutOfRangeError('input_classes.Options',
                                           'options.random_seed', (0, None))
+
+            allowed_frames = ('J2000', 'SOLAR', 'SOLARFIXED', None)
+            frame = options.get('frame', None)
+            if frame in allowed_frames:
+                self.frame = frame
+            else:
+                raise InputfileError('input_classes.Options',
+                                     f'options.frame must be in {allowed_frames}')

@@ -1,7 +1,7 @@
 import numpy as np
 import astropy.units as u
 import copy
-from nexoclom2.solarsystem.frames import Frame
+from nexoclom2.particle_tracking.coordinate_conversions import frame_rotation
 
 
 class StateVector:
@@ -17,6 +17,7 @@ class StateVector:
         """
         npack = len(starting_point)
         self.time = starting_point.time
+        self.ut = starting_point.ut
         
         # Move packets to proper position
         startpt = output.positions[output.startpoint]
@@ -31,14 +32,9 @@ class StateVector:
                               starting_point.vz]).to(output.unit/u.s)
         step0 = X0 + V0*1000*u.s
         
-        if output.frame.frame == 'J2000':
-            X1 = starting_point.frame.to_j2000(starting_point.time, X0)
-            V1 = starting_point.frame.to_j2000(starting_point.time, V0)
-        elif output.frame.frame.endswith('SOLAR'):
-            X1 = starting_point.frame.to_solar(starting_point.time, X0)
-            V1 = starting_point.frame.to_solar(starting_point.time, V0)
-        else:
-            assert False, 'Should not be able to get here'
+        # Convert to the model frame
+        X1, V1 = frame_rotation(output.startpoint, self.ut, X0, starting_point.frame,
+                                output.frame, V0)
         
         self.X = (X1 + X_obj).to(output.unit)
         self.V = (V1 + V_obj).to(output.unit/u.s)

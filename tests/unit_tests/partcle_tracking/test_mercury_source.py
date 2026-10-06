@@ -2,7 +2,9 @@ import os
 import numpy as np
 import astropy.units as u
 from nexoclom2 import Input, Output, path, SSObject
+import itertools
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
 from astropy.visualization import quantity_support
 quantity_support()
 
@@ -10,17 +12,21 @@ quantity_support()
 def test_mercury_source():
     if not os.path.exists('figures'):
         os.makedirs('figures')
+    else:
+        pass
         
     overwrite = True
-    params = (('Mercury', 'constant'),
-              ('Sun', 'constant'),
-              ('Mercury', 'variable'),
-              ('Sun', 'variable'))
+    
+    centers = 'Mercury', 'Sun'
+    integrators = 'constant', 'variable'
+    params = itertools.product(centers, integrators)
+    
     # speeds = (2.*u.km/u.s, 4.*u.km/u.s)
     speeds = (4.*u.km/u.s, )
     trueanom = np.linspace(0, 360, 4, endpoint=False)*u.deg
     npack = 1000
 
+    pdf = PdfPages(f'figures/mercury_source_test.pdf')
     for taa in trueanom:
         for speed in speeds:
             for center, integrator in params:
@@ -28,15 +34,20 @@ def test_mercury_source():
                                          'test_data', 'inputfiles',
                                          f'Mercury_{center}_{integrator}_notime.input')
                 # inputfile =  f'Mercury_{center}_{integrator}_notime.input'
-                inputs = Input(inputfile)
                 
-                # inputs.forces.radpres = False
+                inputs = Input(inputfile)
+                # inputs.spatialdist.longitude = (270*u.deg, 90*u.deg)
+                # inputs.angulardist = IsotropicAngDist({})
+                
                 inputs.geometry.taa = taa
                 inputs.options.start_together = True
                 inputs.options.random_seed = 0
                 inputs.speeddist.vmin = speed
                 inputs.speeddist.vmax = speed
                 inputs.options.outer_edge = 1e30
+                inputs.spatialdist.latitude = (0*u.rad, 0*u.rad)
+                
+                # inputs.forces.radpres = False
                 
                 if speed == 2*u.km/u.s:
                     runtimes = np.arange(0, 3600, 360)*u.s
@@ -48,7 +59,6 @@ def test_mercury_source():
                     assert False
                 runtimes += runtimes[1]
                 
-                inputs.spatialdist.latitude = (0*u.rad, 0*u.rad)
                 
                 phi = np.linspace(0, 2*np.pi*u.rad, 361)
                 xc, yc = np.cos(phi), np.sin(phi)
@@ -57,7 +67,7 @@ def test_mercury_source():
                 ax.set_aspect('equal')
                 ax.set_xlim((-15, 5))
                 ax.set_ylim((-10, 10))
-                ax.set_title(f'Center = {center}, {integrator} Integrator')
+                ax.set_title(f'Center = {center}, {integrator} Integrator, taa = {taa}')
                 
                 if integrator == 'constant':
                     rtime = runtimes.max()
@@ -65,6 +75,7 @@ def test_mercury_source():
                     inputs.options.runtime = rtime
                     output = Output(inputs, npack, overwrite=overwrite)
                     
+                    start = output.starting_point()
                     final = output.final_state()
                     final = final[final.frac > 0]
                     
@@ -95,18 +106,10 @@ def test_mercury_source():
                         ha='center')
                 ax.fill_between(xc*unit, yc*unit, -yc*unit, color='grey')
                 plt.pause(1)
-                
-                figure_file = (f'Mercury_{center}_{integrator}_'
-                               f'v{int(speed.value)}_taa{int(taa.value):03d}.png')
-                plt.savefig(f'figures/{figure_file}')
+                pdf.savefig(fig)
                 
                 plt.close()
                 
-                from inspect import currentframe, getframeinfo
-                frameinfo = getframeinfo(currentframe())
-                print(frameinfo.filename, frameinfo.lineno)
-                from IPython import embed; embed()
-                import sys; sys.exit()
                 
                 
 

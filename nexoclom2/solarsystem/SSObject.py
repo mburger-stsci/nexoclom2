@@ -250,7 +250,7 @@ class SSObject:
             return np.zeros((len(times), 3))*u.km/u.s
         else:
             state, _ = spice.spkezr(self.object, times_et, self._frame(frame), self.abcorr,
-                                    self.orbits)
+                                    center)
             kernels.unload()
             
             if len(state.shape) == 1:

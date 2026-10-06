@@ -34,7 +34,6 @@ def test_SSPosition(objname):
     positions = SSPosition(obj, geometry, -1*times.min())
     
     taa = positions.taa(times)
-    
     if objname in ('Earth', 'Moon'):
         horizons['PDSunLon'] = 360*u.deg - horizons['PDSunLon']
     else:

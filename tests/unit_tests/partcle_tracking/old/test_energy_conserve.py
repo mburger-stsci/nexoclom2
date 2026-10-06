@@ -20,34 +20,30 @@ import numpy as np
 import pytest
 import astropy.units as u
 from nexoclom2 import Input, Output, path
-import itertools
 import matplotlib.pyplot as plt
 from astropy.visualization import quantity_support
 quantity_support()
 
 
-npackets = 1000
-overwrite = False
 
-centers = 'Mercury', 'Sun'
-centers = 'Sun',
-integrators = 'constant', 'variable'
-# integrators = 'variable',
-params = itertools.product(centers, integrators)
+# centers = 'Mercury', 'Sun', 'Jupiter'
+centers = 'Sun', 'Jupiter'
+npackets = 1000
 
 
 def compute_energy(packets, output):
     packets.pot_energy = np.zeros(len(packets))*u.km**2/u.s**2
-    if output.inputs.forces.gravity:
-        for objname in output.inputs.geometry.include:
-            obj = output.objects[objname]
-            positions = output.positions[objname]
-            r = np.sqrt((packets.x-positions.x(packets.time))**2 +
-                        (packets.y-positions.y(packets.time))**2 +
-                        (packets.z-positions.z(packets.time))**2)
-            packets.pot_energy += (obj.GM/r).to(u.km**2/u.s**2)
-    else:
-        pass
+    packets.kin_energy = np.zeros(len(packets))*u.km**2/u.s**2
+    
+    for objname, obj in output.objects.items():
+        # if objname == 'Sun':
+        #     pass
+        # else:
+        positions = output.positions[objname]
+        r = np.sqrt((packets.x-positions.x(packets.time))**2 +
+                    (packets.y-positions.y(packets.time))**2 +
+                    (packets.z-positions.z(packets.time))**2)
+        packets.pot_energy += obj.GM/r
         
     v = np.sqrt(packets.vx**2 + packets.vy**2 + packets.vz**2)
     packets.kin_energy = 0.5*v.to(u.km/u.s)**2
@@ -58,24 +54,26 @@ def compute_energy(packets, output):
 
 
 @pytest.mark.particle_tracking
-@pytest.mark.parametrize('center, integrator', params)
-def test_energy_conserve(center, integrator):
-    print(center, integrator)
-    inputfile = os.path.join(os.path.dirname(path), 'tests',
-                             'test_data', 'inputfiles',
-                             f'Mercury_{center}_{integrator}_notime.input')
-    inputs = Input(inputfile)
-    inputs.geometry.include = 'Sun', 'Mercury'
+@pytest.mark.parametrize('center', centers)
+def test_energy_conserve(center):
+    print(center)
+    inputs_path = os.path.join(os.path.dirname(path), 'tests', 'test_data',
+                               'inputfiles')
+    if center in ('Mercury', 'Sun'):
+        inputs = Input(os.path.join(inputs_path, f'Mercury_{center}_Time.input'))
+    elif center == 'Jupiter':
+        inputs = Input(os.path.join(inputs_path, 'Io_Jupiter_Time.input'))
+    else:
+        assert False
+        
+    # inputs = choose_inputs(inputparams)
     inputs.forces.radpres = False
     inputs.forces.gravity = True
     inputs.speeddist.vmin = 0.1*u.km/u.s
     inputs.speeddist.vmax = 10*u.km/u.s
-    if center == 'Sun':
-        inputs.options.frame = 'J2000'
-    else:
-        inputs.options.frame = None
-
-    output = Output(inputs, npackets, overwrite=overwrite)
+    constant = hasattr(inputs.options, 'step_size')
+    
+    output = Output(inputs, npackets, overwrite=False)
     
     # Test energy conservation
     initial = output.initial_state()
@@ -87,14 +85,13 @@ def test_energy_conserve(center, integrator):
     for i in range(len(initial)):
         q = final.packet_number == i
         if q.sum() > 0:
-            # assert np.allclose(final.energy[q], initial.energy[i], rtol=1e-2)
             if not np.allclose(final.energy[q], initial.energy[i]):
-                print(np.max(np.abs(final.energy[q] - initial.energy[i]))/initial.energy[i])
-                from inspect import currentframe, getframeinfo
-                frameinfo = getframeinfo(currentframe())
-                print(frameinfo.filename, frameinfo.lineno)
-                from IPython import embed; embed()
-                import sys; sys.exit()
+                print(np.max(final.energy[q] - initial.energy[i])/initial.energy[i])
+            #     from inspect import currentframe, getframeinfo
+            #     frameinfo = getframeinfo(currentframe())
+            #     print(frameinfo.filename, frameinfo.lineno)
+            #     from IPython import embed; embed()
+            #     import sys; sys.exit()
         else:
             pass
     
@@ -104,6 +101,8 @@ def test_energy_conserve(center, integrator):
     from IPython import embed; embed()
     import sys; sys.exit()
     
+    
+    
 if __name__ == '__main__':
-    for param in params:
-        test_energy_conserve(*param)
+    for center in centers:
+        test_energy_conserve(center)

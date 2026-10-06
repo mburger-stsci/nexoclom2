@@ -88,7 +88,7 @@ class CosAngleSpatDist(InputClass):
                                       include_min=False)
             
             possible_frames = 'IAU', 'SOLAR', 'SOLARFIXED'
-            frame = sparam.get('frame', 'SOLAR').upper()
+            frame = sparam.get('frame', 'NONE').upper()
             if frame in possible_frames:
                 self.frame = frame
             else:
