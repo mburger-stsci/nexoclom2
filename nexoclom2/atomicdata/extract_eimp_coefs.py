@@ -8,12 +8,13 @@ ChiantiPy is not a dependency on nexoclom2 and must be installed by the user
 for this to work.
 """
 import os
-import numpy as np
-import astropy.units as u
 import pickle
-import ChiantiPy.core as ch
-from nexoclom2 import path
 
+import astropy.units as u
+import ChiantiPy.core as ch
+import numpy as np
+
+from nexoclom2 import path
 
 n_e = (np.arange(0, 5000, 10)+10)/u.cm**3
 temperature = np.arange(0.5, 100.1, 0.1)*u.eV

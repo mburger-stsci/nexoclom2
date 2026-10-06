@@ -1,6 +1,5 @@
-import numpy as np
 import astropy.units as u
-from astropy.time import TimeDelta
+import numpy as np
 
 
 def lossrate(packets, output):
@@ -44,20 +43,12 @@ def lossrate(packets, output):
                     obj, packets)
             else:
                 pass
-            
-        if output.center == 'Sun':
-            r_sun = np.linalg.norm(packets.X, axis=1).to(u.au)
-        else:
-            cent = output.positions[output.inputs.geometry.center]
-            sundir = -cent.sun_dir(packets.time)
-            r_sun = cent.r_sun(packets.time)
-            X_sun = packets.X + r_sun[:, np.newaxis]*sundir
-            r_sun = np.linalg.norm(X_sun, axis=1)
-            # x_sun = packets.X[:,0] + r_sun*sundir[:,0]
-            # y_sun = packets.X[:,1] + r_sun*sundir[:,1]
-            # z_sun = packets.X[:,2] + r_sun*sundir[:,2]
-            # r_sun = np.sqrt(x_sun**2 + y_sun**2 + z_sun**2).to(u.au)
-            
+        
+        cent = output.positions[output.inputs.geometry.center]
+        sundir = cent.sundir(packets.time)
+        r_sun = output.positions[output.inputs.geometry.center].r_sun(packets.time)
+        X_sun = packets.X + r_sun[:, np.newaxis]*sundir
+        r_sun = np.sqrt(np.sum(X_sun**2, axis=1))
         rate += output.species.photo_rate * (output.species.photo_refpt/r_sun)**2
     else:
         pass

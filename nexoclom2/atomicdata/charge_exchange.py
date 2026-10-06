@@ -1,8 +1,10 @@
 import os
-import numpy as np
-import astropy.units as u
 import pickle
-from scipy.interpolate import RegularGridInterpolator, CubicSpline
+
+import astropy.units as u
+import numpy as np
+from scipy.interpolate import CubicSpline, RegularGridInterpolator
+
 from nexoclom2 import path
 
 

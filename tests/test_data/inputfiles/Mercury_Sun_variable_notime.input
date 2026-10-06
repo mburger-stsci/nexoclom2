@@ -4,6 +4,7 @@ geometry.taa = 0
 
 # Full surface
 SpatialDist.type = uniform
+SpatialDist.frame = SOLARFIXED
 
 speeddist.type = flat
 speeddist.vmin = 0

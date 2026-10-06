@@ -27,19 +27,18 @@ def find_modeltime(geometry_notime):
     startpt = SSObject(geometry_notime.startpoint)
     if geometry_notime.startpoint == 'Mercury':
         modeltime0 = Time.now()
-        params = {'startpoint': geometry_notime.startpoint,
-                  'center': geometry_notime.center,
-                  'modeltime': modeltime0.iso}
-        geometry_time = GeometryTime(params)
-        position = SSPosition(startpt, geometry_time, startpt.orbperiod)
-
-        # Only need to find TAA
-        times = np.linspace(-startpt.orbperiod, 0*u.s, 1000)
-        taa_yr = position.taa(times).to(u.deg)
-        modeltime = TimeDelta(np.interp(geometry_notime.taa, taa_yr, times,
-                                        period=360)) + modeltime0
+        times = modeltime0 + np.linspace(0, startpt.orbperiod.to(u.s), 1000)
+        taa_yr = startpt.taa(times)
+        modeltime = Time(np.interp(geometry_notime.taa, taa_yr, times.mjd, period=360),
+                                   format='mjd')
         return modeltime
     elif startpt.orbits == 'Jupiter':
+        from inspect import currentframe, getframeinfo
+        frameinfo = getframeinfo(currentframe())
+        print(frameinfo.filename, frameinfo.lineno)
+        from IPython import embed; embed()
+        import sys; sys.exit()
+        
         datafile = os.path.join(path, 'data', 'jupiter_io_times.pkl')
         with open(datafile, 'rb') as file:
             phi, cml, timegrid = pickle.load(file)

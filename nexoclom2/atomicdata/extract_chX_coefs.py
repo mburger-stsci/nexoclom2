@@ -2,13 +2,14 @@
 
 This in noy intended to be run by users and is included here for documentation.
 """
-import os
 import glob
-import astropy.units as u
+import os
 import pickle
-from scipy.io import readsav
-from nexoclom2 import path
 
+import astropy.units as u
+from scipy.io import readsav
+
+from nexoclom2 import path
 
 species = 'Na', 'S', 'O'
 
@@ -25,7 +26,7 @@ for sp in species:
         kappa = ratecoef['kappa'][0].astype(float)*u.cm**3/u.s
         try:
             len(T_i)
-        except:
+        except ValueError:
             T_i = None
 
         assert ion not in chx

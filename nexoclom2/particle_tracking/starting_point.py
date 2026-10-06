@@ -1,7 +1,7 @@
 import numpy as np
 import astropy.units as u
-from nexoclom2.solarsystem.coordinate_conversion import lonlat_to_xyz
-from nexoclom2.solarsystem.frames import Frame
+from nexoclom2.particle_tracking.coordinate_conversions import (lonlat_to_xyz, frame_rotation,
+                                                                altaz_to_vectors)
 
 
 class StartingPoint:
@@ -35,12 +35,11 @@ class StartingPoint:
             * altitude = 0º -> tangent to surface, 90º -> normal to surface
             * azimuth measured north from east, 0º = east
         """
-        super().__init__()
+        stpoint = output.objects[output.startpoint]
         self.packet_number = np.arange(n_packets, dtype=int) + output.starting_packets
         
         # Start time for each packet
-        if (hasattr(output.inputs.options, 'step_size') or
-            output.inputs.options.start_together):
+        if output.inputs.options.start_together:
             self.time = -np.ones(n_packets) * output.inputs.options.runtime
         else:
             self.time = (-output.randgen.random(n_packets) *
@@ -51,34 +50,49 @@ class StartingPoint:
         self.frac = np.ones(n_packets)
         
         #  Starting point in units relative to startpoint
-        unit = output.objects[output.startpoint].unit
-        points = output.inputs.spatialdist.choose_points(n_packets,
-                                                         randgen=output.randgen)
+        unit = stpoint.unit
+        points = output.inputs.spatialdist.choose_points(n_packets, randgen=output.randgen)
         if points['type'] == 'lonlat':
-            X0, lon, lat, loctime, frame = lonlat_to_xyz(output, points, [0*u.s])
+            X0 = lonlat_to_xyz(output, points)
         else:
             assert False, 'Not set up yet.'
+            
+        # Rotate to the proper frame for a starting point
+        # This is just for the starting point, not for the model run
+        # Moon = IAU Frame
+        # Planet = Solar Fixed Frame
+        # Input Frame
+        if output.inputs.spatialdist.frame == 'IAU':
+            input_frame = stpoint.iau_frame
+        elif output.inputs.spatialdist.frame == 'SOLAR':
+            input_frame = stpoint.solar_frame
+        elif output.inputs.spatialdist.frame == 'SOLARFIXED':
+            input_frame = stpoint.solar_fixed_frame
+        else:
+            raise ValueError('coordinate_conversion.lonat_to_xyz',
+                             'Improper starting frame')
+        
+        if stpoint.type == 'Moon':
+            # Rotate to IAU
+            self.frame = stpoint.iau_frame
+        elif stpoint.type == 'Planet':
+            self.frame = stpoint.solar_fixed_frame
+        else:
+            assert False, 'Startpoint must be a Planet or Moon'
             
         v0 = output.inputs.speeddist.choose_points(n_packets, output.randgen)
         
         alt, az = output.inputs.angulardist.choose_points(n_packets, output.randgen)
-        V0 = output.inputs.angulardist.altaz_to_vectors(alt, az, X0, v0)
+        V0 = altaz_to_vectors(alt, az, X0, v0)
+        
+        X0, V0 = frame_rotation(output.startpoint, self.ut, X0, input_frame, self.frame, V0)
         
         self.x = X0[:,0].to(unit)
         self.y = X0[:,1].to(unit)
         self.z = X0[:,2].to(unit)
-        self.r = np.linalg.norm(X0, axis=1).to(unit)
-        self.vx = V0[:,0].to(unit/u.s)
-        self.vy = V0[:,1].to(unit/u.s)
-        self.vz = V0[:,2].to(unit/u.s)
-        self.v = np.linalg.norm(V0, axis=1).to(unit/u.s)
-        self.longitude = lon.to(u.deg)
-        self.latitude = lat.to(u.deg)
-        self.local_time = loctime
-        self.altitude = alt.to(u.deg)
-        self.azimuth = az.to(u.deg)
-        self.frame = Frame(output.objects[output.startpoint], frame,
-                           output.modeltime, output.inputs.options.runtime)
+        self.vx = V0[:,0].to(u.km/u.s)
+        self.vy = V0[:,1].to(u.km/u.s)
+        self.vz = V0[:,2].to(u.km/u.s)
         
     def __len__(self):
         return len(self.x) if hasattr(self, 'x') else None

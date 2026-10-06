@@ -1,75 +1,58 @@
-import os
-import numpy as np
 import pandas as pd
 import astropy.units as u
-from IPython.utils.generics import complete_object
-from astropy.table import QTable
-from astropy.time import Time
 from astroquery.jplhorizons import Horizons
-from more_itertools.more import map_if
+from astropy.time import Time
+import warnings
+from nexoclom2.solarsystem.SSObject import SSObject
 
-from nexoclom2 import SSObject, path
 
+warnings.filterwarnings('ignore')
 
-def load_horizons(objname, runtime):
-    """
-    Parameters
-    ----------
-    objname
-    runtime
-
-    Returns
-    -------
-    QTable with ephemerides information
-    """
-    ssobj = SSObject(objname)
-    
-    if runtime > 1000*u.d:
-        step = '10d'
-    elif runtime > 100*u.d:
-        step = '1d'
-    elif runtime > 10*u.d:
-        step = '360m'
-    elif runtime > 1*u.d:
-        step = '60m'
+def load_horizons(objname, ntimes=10, runtime='year'):
+    obj_ = SSObject(objname)
+    starttime = Time('2011-09-01')
+    if runtime == 'year':
+        endtime = starttime + 1.2*obj_.orbperiod
+    elif runtime == '10hr':
+        endtime = starttime + 10*u.hr
     else:
-        step = '1m'
+        assert False
     
-    endtime = Time('2025-03-02T00:00:00')
-    epochs = {'start': (endtime-runtime).iso.split('.')[0],
-              'stop': endtime.iso.split('.')[0],
-              'step': step}
-    # epochs = {'start': '2010-Jan-01 00:00:00',
-    #           'stop': '2021-Dec-29 00:00:00',
-    #           'step': '10d'}
+    times = Time(pd.date_range(start=starttime.iso, end=endtime.iso, periods=ntimes))
+    cols = ('targetname', 'datetime_jd', 'RA', 'DEC', 'PDObsLon', 'PDObsLat',
+            'PDSunLon', 'PDSunLat', 'r', 'r_rate', 'true_anom')
+    
+    horizons_data = None
+    for i, time in enumerate(times):
+        obj = Horizons(id=obj_.naifid, location='@Sun', epochs=time.mjd)
+        ephem = obj.ephemerides()
 
-    if objname == 'Earth':
-        naif_obj = 301
-    elif objname == 'Moon':
-        naif_obj = 399
-    else:
-        naif_obj = ssobj.naifid
-    try:
-        horizons = Horizons(id=ssobj.naifid, location=naif_obj, epochs=epochs)
-        ephem = horizons.ephemerides()
-    except:
-        from inspect import currentframe, getframeinfo
-        frameinfo = getframeinfo(currentframe())
-        print(frameinfo.filename, frameinfo.lineno)
-        from IPython import embed; embed()
-        import sys; sys.exit()
+        if horizons_data is None:
+            horizons_data = ephem[cols[:-1]]
+            horizons_data['true_anom'] = 0.0*u.deg
+        else:
+            horizons_data.add_row(ephem[0][cols])
+
+        if obj_.type == 'Moon':
+            plan = SSObject(obj_.orbits)
+            
+            obj = Horizons(id=plan.naifid//100, location='@Sun', epochs=time.mjd)
+        else:
+            obj = Horizons(id=obj_.naifid//100, location='@Sun', epochs=time.mjd)
+
+        ephem = obj.ephemerides()
+        horizons_data[-1]['true_anom'] = ephem[0]['true_anom']
+
+    filename = f'horizons/{objname}_{runtime}.fits'
+    horizons_data.write(filename, overwrite=True)
+
+
+if __name__ == '__main__':
+    objects = 'Mercury', 'Earth', 'Jupiter', 'Io', 'Moon'
+    # objects = 'Io',
+    ntimes = 100
     
-    result = QTable()
-    result.object = objname
-    utc = Time(ephem['datetime_jd'], format='jd').iso
-    result['utc'] = Time(utc)
-    if objname in ('Earth', 'Moon'):
-        result['subslon'] = 360*u.deg - ephem['PDSunLon']
-    else:
-        result['subslon'] = ephem['PDSunLon']
-    result['subslat'] = ephem['PDSunLat']
-    result['r'] = ephem['r']
-    result['rdot'] = ephem['r_rate']
-    result['taa'] = ephem['true_anom']
-    
-    return result
+    for rtime in ('year', '10hr'):
+        for objname in objects:
+            print(objname)
+            load_horizons(objname, ntimes, rtime)

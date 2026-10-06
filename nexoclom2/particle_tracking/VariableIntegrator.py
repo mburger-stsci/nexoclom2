@@ -141,7 +141,5 @@ class VariableIntegrator:
             ct += 1
             if (ct % 1000) == 0:
                 print(f'Step {ct}, {more_to_go.sum()} packets to go. ')
-                if np.any(g):
-                    print(step_current[g].mean())
 
         outputIO.save_final_state(output, state)

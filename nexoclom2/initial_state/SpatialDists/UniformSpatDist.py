@@ -90,7 +90,7 @@ class UniformSpatDist(InputClass):
                     "spatialdist.latitude must be in form 'x, y'")
             
             possible_frames = 'IAU', 'SOLAR', 'SOLARFIXED'
-            frame = sparam.get('frame', 'SOLAR').upper()
+            frame = sparam.get('frame', 'NONE').upper()
             if frame in possible_frames:
                 self.frame = frame
             else:

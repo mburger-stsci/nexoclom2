@@ -1,9 +1,11 @@
 import os
-import numpy as np
-import astropy.units as u
+
 import astropy.constants as c
-from astropy.table import QTable
+import astropy.units as u
+import numpy as np
 import periodictable as pt
+from astropy.table import QTable
+
 from nexoclom2 import path
 
 
@@ -97,8 +99,7 @@ class gValue:
         g = {}
         for wave in self._data.colnames[1:]:
             g_ = self._data[wave]
-            g[float(wave)*u.AA] = (np.interp(drdt.to(self.velocity.unit),
-                                             self.velocity, g_) *
+            g[float(wave)*u.AA] = (np.interp(drdt.to(u.km/u.s), self.velocity, g_) *
                                    (self._ref_dist/r)**2)
             
         return g
@@ -118,14 +119,12 @@ class gValue:
         -------
         radiation acceleration at each point as function of ``drdt`` and ``r``
         """
-        radiation_accel = np.interp(drdt, self.velocity, self._radiation_accel)
+        radiation_accel = np.interp(drdt.to(u.km/u.s), self.velocity, self._radiation_accel)
         return radiation_accel * (self._ref_dist/r)**2
 
     def __eq__(self, other):
         if isinstance(other, gValue):
-            if self.species != other.species:
-                return False
-            elif ((len(self.wavelengths) != len(other.wavelengths)) or
+            if self.species != other.species or ((len(self.wavelengths) != len(other.wavelengths)) or
                   (len(self.velocity) != len(other.velocity)) or
                   (len(self._radiation_accel) != len(other._radiation_accel))):
                 return False

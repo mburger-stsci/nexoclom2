@@ -15,18 +15,28 @@ class FinalState:
             else:
                 pass
             
+            unit = None
+            for obj in output.objects.values():
+                if obj.unit.name == final_state.attrs['xunit']:
+                    unit = obj.unit
+                else:
+                    pass
+            assert unit is not None
+            assert final_state.attrs['vunit'] == 'km/s'
+            
             self.time = final_state['time'][which]*u.s
-            self.x = final_state['x'][which]*output.unit
-            self.y = final_state['y'][which]*output.unit
-            self.z = final_state['z'][which]*output.unit
-            self.vx = final_state['vx'][which]*output.unit/u.s
-            self.vy = final_state['vy'][which]*output.unit/u.s
-            self.vz = final_state['vz'][which]*output.unit/u.s
+            self.x = final_state['x'][which]*unit
+            self.y = final_state['y'][which]*unit
+            self.z = final_state['z'][which]*unit
+            self.vx = final_state['vx'][which]*u.km/u.s
+            self.vy = final_state['vy'][which]*u.km/u.s
+            self.vz = final_state['vz'][which]*u.km/u.s
             self.frac = final_state['frac'][which]
             self.escaped = final_state['escaped'][which]
             self.hit = {obj: final_state['hit'][obj][which] for obj in output.objects}
             self.ionized = final_state['ionized'][which]
             self.packet_number = final_state['packet_number'][which]
+            self.frame = final_state.attrs['frame']
 
     def __getitem__(self, q):
         new = copy.copy(self)
@@ -42,6 +52,7 @@ class FinalState:
         new.hit = {obj: self.hit[obj][q] for obj in self.hit}
         new.ionized = self.ionized[q]
         new.packet_number = self.packet_number[q]
+        new.frame = self.frame
 
         return new
     

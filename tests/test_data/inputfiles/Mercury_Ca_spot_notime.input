@@ -8,6 +8,7 @@ SpatialDist.longitude = 270
 SpatialDist.latitude = 0
 SpatialDist.sigma = 50
 SpatialDist.n = 1
+SpatialDist.frame = SOLARFIXED
 
 speeddist.type = Maxwellian
 speeddist.temperature = 50000
